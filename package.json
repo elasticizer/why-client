@@ -6,6 +6,7 @@
 
 	"dependencies": {
 		"bcrypt": "^5.1.1",
+		"aos": "^2.3.4",
 		"chalk": "^5.3.0",
 		"cookie": "^0.6.0",
 		"http-status-codes": "^2.3.0",
@@ -23,7 +24,6 @@
 		"ua-parser-js": "^1.0.37",
 		"zod": "^3.23.8"
 	},
-
 	"devDependencies": {
 		"@tailwindcss/forms": "^0.5.7",
 		"@types/cookie": "^0.6.0",
@@ -38,7 +38,6 @@
 		"tailwindcss": "^3.4.1",
 		"typescript": "^5"
 	},
-
 	"scripts": {
 		"build": "next build",
 		"dev": "next dev",
