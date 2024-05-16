@@ -1,26 +1,25 @@
 import Image from 'next/image';
-import Navbar from '@/components/head/navbar';
-import Slideshow from '@/components/head/slideshow';
-import Slideshow2 from '@/components/head/slideshow2';
-import Course from '@/components/head/course';
-import Article from '@/components/head/article';
-import Rating from '@/components/head/rating';
-import Footer from '@/components/head/footer';
-import Card from '@/components/head/card';
-import Slogan from '@/components/head/slogan';
-import QuickGuide from '@/components/head/quickGuide';
+import Navbar from '@/components/home/navbar';
+import Slideshow from '@/components/home/slideshow';
+import Slideshow2 from '@/components/home/slideshow2';
+import Course from '@/components/home/course';
+import Article from '@/components/home/article';
+import Rating from '@/components/home/rating';
+import Footer from '@/components/home/footer';
+import Card from '@/components/home/card';
+import Slogan from '@/components/home/slogan';
+import QuickGuide from '@/components/home/quickGuide';
+import Home from '@/layouts/home';
 
-export default function Home() {
+export default function Index() {
 	return (
-		<>
-			<Navbar />
+		<Home>
 			<Slideshow2 />
 			<Course />
 			<QuickGuide />
 			{/* <Card /> */}
 			<Article />
 			<Rating />
-			<Footer />
-		</>
+		</Home>
 	);
 }
