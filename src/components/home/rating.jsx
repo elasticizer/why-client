@@ -1,7 +1,7 @@
 /* eslint-disable react/no-unescaped-entities */
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react';
-import RatingCard from '@/components/card-modules/ratingCard';
+import RatingCard from '@/components/home/card-modules/ratingCard';
 import { useState, useEffect } from 'react';
 
 export default function Rating() {
