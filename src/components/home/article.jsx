@@ -1,18 +1,18 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react';
-import CourseCard from '@/components/card-modules/courseCard';
+import ArticleCard from '@/components/home/card-modules/articleCard';
 import { useState, useEffect } from 'react';
 
-export default function Course() {
+export default function Article() {
 	const [page, setPage] = useState(1); // 追蹤當前頁面
-	const [perPage] = useState(3); // 每頁顯示的課程數量
+	const [perPage] = useState(4); // 每頁顯示的課程數量
 	const [data, setData] = useState([]);
 	const [displayedData, setDisplayedData] = useState([]);
 
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const res = await fetch('/api/course');
+				const res = await fetch('/api/article');
 				let postData = await res.json();
 				setData(postData);
 			} catch (error) {
@@ -36,14 +36,14 @@ export default function Course() {
 	const prevPage = () => {
 		setPage(page - 1);
 	};
-
 	return (
 		<>
-			<section className="bg-gray-100">
-				<div className="course max-w-[75rem] mx-auto px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
+			<div className="bg-orange-400	">
+				{/* <!-- Card Blog --> */}
+				<div className="max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
 					<div className="mb-3 flex justify- text-2xl font-semibold justify-between">
-						<h1 className="flex items-center">最新課程</h1>
-						<div className="flex gap-3 items-center ">
+						<h1 className="flex items-center text-white">最新文章</h1>
+						<div className="flex gap-3 items-center">
 							<button
 								className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
 								onClick={prevPage}
@@ -80,17 +80,22 @@ export default function Course() {
 							</button>
 						</div>
 					</div>
-					<div className="flex flex-wrap sm:justify-start sm:flex-nowrap w-full text-sm py-4  gap-x-8">
-						{displayedData.map((course, i) => (
-							<CourseCard
+					{/* <!-- Grid --> */}
+					<div className="grid lg:grid-cols-2 lg:gap-y-16 gap-10">
+						{/* <!-- Card --> */}
+						{displayedData.map((article, i) => (
+							<ArticleCard
 								key={i}
-								title={course.Name}
-								content={course.Intro}
+								title={article.Title}
+								content={''}
 							/>
 						))}
+						{/* <!-- End Card --> */}
 					</div>
+					{/* <!-- End Grid --> */}
 				</div>
-			</section>
+				{/* <!-- End Card Blog --> */}
+			</div>
 		</>
 	);
 }
