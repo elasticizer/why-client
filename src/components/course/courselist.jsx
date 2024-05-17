@@ -1,10 +1,12 @@
 import React from 'react';
 import Cardsec from './cardsec';
+import Search from './search';
 
 export default function CourseList() {
 	return (
 		<>
-			<div className="container  ">
+			<div className="container">
+				<Search/>
 				<div className="mb-3 mt-3  w-full lg:mb-6 lg:mt-6 sm:px-7 ">
 					<div className="sm:order-2 lg:order-none  ">
 						{/* <select
