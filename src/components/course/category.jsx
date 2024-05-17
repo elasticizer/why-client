@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import CourseList from './cltest';
 
 
+
 const getData = async () => {
 	const data = await fetch('/api/cat');
 	const r = await data.json();
@@ -46,7 +47,8 @@ export default function Category() {
 	return (
 		<>
 			<div className="container  ">
-				<CourseList />
+	
+				{/* <CourseList /> */}
 				<div className="mb-3 mt-3  w-full lg:mb-6 lg:mt-6 sm:px-7 ">
 					<h1 className="pb-5">探索領域</h1>
 					<div
