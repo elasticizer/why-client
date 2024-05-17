@@ -1,7 +1,13 @@
-import sequelize from '@/handlers/sequelize';
+import connection from '@/handlers/sqlite3';
 
 export default async function handler(req, res) {
-	const sn = req.query.sn
+	const sn = req.query.sn;
 
-	res.status(200).json(await sequelize.models.Course.findByPk(sn));
+	const [results] = await connection.execute(
+		'SELECT SN,Identifier,Name,Price FROM Course WHERE SN=?',
+		[sn]
+	);
+
+	res.status(200).json(results[0]);
+
 }
