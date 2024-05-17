@@ -1,12 +1,11 @@
-import sequelize from '@/handlers/sequelize';
+import connection from '@/handlers/sqlite3';
 
 export default async function handler(req, res) {
-	const sn = req.query.sn;
+	const limit = req.query.limit ?? 3;
 
-	res.status(200).json(
-		await sequelize.models.Course.findAll({
-			limit: 3,
-			order: sequelize.random()
-		})
+	const [results] = await connection.execute(
+		'SELECT Course.SN, Course.Identifier, Course.Name, Course.Price, Domain.Name as DomainName FROM Course LEFT JOIN Domain ON Course.DomainSN = Domain.SN ORDER BY RANDOM() LIMIT ?',
+		[limit]
 	);
+	res.status(200).json(results);
 }

@@ -14,10 +14,8 @@ export default function CourseItem(props) {
 		try {
 			const res = await fetch(url);
 			const data = await res.json();
-			console.log(data);
 			if (Array.isArray(data) && data.length > 0) {
-				// 確認資料室陣列且至少有一筆資料才設定到狀態中
-				setCourse(data[0]); // 只取陣列中的第一筆資料
+				setCourse(data[0]);
 			}
 		} catch (e) {
 			console.error(e);
@@ -45,9 +43,12 @@ export default function CourseItem(props) {
 						</div>
 					</div>
 					<div className="flex flex-col items-start gap-1">
-						<span className="inline-flex items-center py-0.5 px-1 rounded-md border border-yellow-400 text-sm font-bold bg-yellow-100 text-yellow-800 text-nowrap">
-							設計
-						</span>
+						{course && (
+							<span className="inline-flex items-center py-0.5 px-1 rounded-md border border-yellow-400 text-sm font-bold bg-yellow-100 text-yellow-800 text-nowrap">
+								{course.DomainName}
+							</span>
+						)}
+
 						{course && (
 							<p className="font-semibold text-lg tracking-wide">
 								{course.Name}
@@ -58,7 +59,7 @@ export default function CourseItem(props) {
 				<div className="flex lg:flex-col md:flex-col sm:flex-row lg:items-end md:items-end sm:items-center gap-3 sm:ps-6 lg:ps-0 md:h-full sm:w-full md:w-fit sm:justify-between">
 					{course && <div className="text-xl font-bold">NT${course.Price}</div>}
 
-					<div className="flex items-end gap-3 text-xl">
+					<div className="flex items-end gap-3 text-2xl">
 						<button
 							className="text-orange-500 hover:text-orange-400"
 							data-hs-overlay="#hs-basic-modal-collect">

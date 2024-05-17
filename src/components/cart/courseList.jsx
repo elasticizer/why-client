@@ -7,31 +7,28 @@ import CouponModal from '@/components/cart/couponModal';
 export default function CourseList() {
 	const [course, setCourse] = useState([]);
 
+	// 初始化狀態的函數
+	const initState = courses => {
+		return courses.map((v, i) => {
+			return { ...v, id: i + 1, checked: false };
+		});
+	};
+
 	useEffect(() => {
+		const getCourse = async () => {
+			const url = '/api/course';
+			try {
+				const res = await fetch(url);
+				const data = await res.json();
+				setCourse(initState(data));
+			} catch (e) {
+				console.error(e);
+			}
+		};
+
 		getCourse();
 	}, []);
 
-	const getCourse = async () => {
-		const url = '/api/course';
-		try {
-			const res = await fetch(url);
-			const data = await res.json();
-			console.log(data);
-			if (data) {
-				setCourse(data);
-			}
-		} catch (e) {
-			console.error(e);
-		}
-	};
-
-	const initState = course.map((v, i) => {
-		return { id: i + 1, checked: false };
-	});
-
-	// const [course, setCourse] = useState(initState);
-
-	//
 	const handleToggleChecked = id => {
 		const nextCourseItems = course.map((v, i) => {
 			if (v.id === id) return { ...v, checked: !v.checked };
@@ -40,11 +37,9 @@ export default function CourseList() {
 		setCourse(nextCourseItems);
 	};
 
-	// 全選
 	const handleToggleCheckAll = e => {
 		const nextCourseItems = course.map((v, i) => {
 			return { ...v, checked: e.target.checked };
-			// 讓所有選項與checkAll一樣
 		});
 		setCourse(nextCourseItems);
 	};
