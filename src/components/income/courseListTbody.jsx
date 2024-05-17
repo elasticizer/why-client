@@ -15,8 +15,7 @@ export default function CourseListTbody({ data }) {
 					<p className="text-sm">{data.WhenLaunched}</p>
 				</div>
 				<div
-					className="w-1/5 text-center
-				">
+					className="w-1/5 text-center">
 					<p className="text-sm">NT${data.Income}</p>
 				</div>
 			</div>

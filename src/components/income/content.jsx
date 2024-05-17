@@ -47,7 +47,7 @@ export default function Content({ data }) {
 									className="hidden"
 									role="tabpanel"
 									aria-labelledby="tabs-with-underline-item-2">
-									<p className="text-gray-500 dark:text-neutral-400"></p>
+									<p className="text-gray-500 dark:text-neutral-400"></p>;
 									<CourseList {...{ data }} />
 								</div>
 							</div>
