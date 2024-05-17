@@ -1,96 +1,86 @@
-/* eslint-disable jsx-a11y/img-redundant-alt */
 import React from 'react';
-import CourseCard from '@/components/home/card-modules/courseCard';
-import { useState, useEffect } from 'react';
+import CardFirst from './cardfirst';
+import { IoArrowForwardCircle } from 'react-icons/io5';
+import { IoArrowBackCircle } from 'react-icons/io5';
 
-export default function Course() {
-	const [page, setPage] = useState(1); // 追蹤當前頁面
-	const [perPage] = useState(3); // 每頁顯示的課程數量
-	const [data, setData] = useState([]);
-	const [displayedData, setDisplayedData] = useState([]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const res = await fetch('/api/course');
-				let postData = await res.json();
-				setData(postData);
-			} catch (error) {
-				setData([]);
-			}
-		};
-		fetchData();
-	}, []);
-
-	useEffect(() => {
-		// 根據當前頁面和每頁顯示的課程數量計算要顯示的課程資料
-		const startIndex = (page - 1) * perPage;
-		const endIndex = startIndex + perPage;
-		setDisplayedData(data.slice(startIndex, endIndex));
-	}, [data, page, perPage]);
-
-	const nextPage = () => {
-		setPage(page + 1);
-	};
-
-	const prevPage = () => {
-		setPage(page - 1);
-	};
-
+export default function Hot() {
 	return (
 		<>
-			<section className="bg-gray-100">
-				<div className="course max-w-[75rem] mx-auto px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
-					<div className="mb-3 flex justify- text-2xl font-semibold justify-between">
-						<h1 className="flex items-center">最新課程</h1>
-						<div className="flex gap-3 items-center ">
+			<div className="container">
+				{/* 輪播 */}
+
+				<div
+					data-hs-carousel='{"loadingClasses": "opacity-0","isAutoPlay": true
+					}'
+					className=" lg:mb-6 lg:mt-3 px-7  h-72 lg:h-80   ">
+					<div className="inline-flex justify-between font-semibold text-2xl text-Black-900 mb-2 mt-3  w-full lg:mb-2 lg:mt-6  ">
+						<div className="w-full ">最新上架</div>
+						<div className="relative flex w-full space-x-3 items-center justify-end ">
 							<button
-								className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
-								onClick={prevPage}
-								disabled={page === 1}>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									fill="currentColor"
-									className="bi bi-chevron-left"
-									viewBox="0 0 16 16">
-									<path
-										fill-rule="evenodd"
-										d="M11.354 1.646a.5.5 0 0 1 0 .708L5.707 8l5.647 5.646a.5.5 0 0 1-.708.708l-6-6a.5.5 0 0 1 0-.708l6-6a.5.5 0 0 1 .708 0"
-									/>
-								</svg>
+								type="button"
+								className=" hs-carousel-prev hs-carousel:disabled:opacity-50 disabled:pointer-events-none   justify-center items-center  text-orange-500  hover:bg-gray-800/10 rounded-s-lg">
+								<span
+									className="text-"
+									aria-hidden="true">
+									<IoArrowBackCircle className="size-10 lg:size-12" />
+								</span>
+								<span className="sr-only">Previous</span>
 							</button>
 							<button
-								className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
-								onClick={nextPage}
-								disabled={page * perPage >= data.length}>
-								<svg
-									xmlns="http://www.w3.org/2000/svg"
-									width="16"
-									height="16"
-									fill="currentColor"
-									className="bi bi-chevron-right"
-									viewBox="0 0 16 16">
-									<path
-										fill-rule="evenodd"
-										d="M4.646 1.646a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 0 .708l-6 6a.5.5 0 0 1-.708-.708L10.293 8 4.646 2.354a.5.5 0 0 1 0-.708"
-									/>
-								</svg>
+								type="button"
+								className=" hs-carousel-next hs-carousel:disabled:opacity-50 disabled:pointer-events-none   justify-center items-center  text-orange-500 hover:bg-gray-800/10 rounded-s-lg">
+								<span className="sr-only">Next</span>
+								<span
+									className="text-2xl"
+									aria-hidden="true">
+									<IoArrowForwardCircle className="size-10 lg:size-12" />
+								</span>
 							</button>
 						</div>
 					</div>
-					<div className="flex flex-wrap sm:justify-start sm:flex-nowrap w-full text-sm py-4  gap-x-8">
-						{displayedData.map((course, i) => (
-							<CourseCard
-								key={i}
-								title={course.Name}
-								content={course.Intro}
-							/>
-						))}
+
+					<div className="hs-carousel relative overflow-hidden w-full     min-h-[200px]  rounded-lg">
+						<div className="hs-carousel-body  absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0 bo">
+							<div className="hs-carousel-slide pt-5 lg:py-5 ">
+								<div className="inline-flex  justify-between h-full ">
+									<span className="  w-[700px] lg:w-[575px]">
+										<CardFirst />
+									</span>
+									<span className="sm:hidden lg:block lg:w-[575px]">
+										<CardFirst />
+									</span>
+								</div>
+							</div>
+							<div className="hs-carousel-slide ">
+								<div className="inline-flex  justify-between h-full  py-5">
+									<span className="  w-[700px] lg:w-[575px]">
+										<CardFirst />
+									</span>
+									<span className="sm:hidden lg:block lg:w-[575px]">
+										<CardFirst />
+									</span>
+								</div>
+							</div>
+							<div className="hs-carousel-slide">
+								<div className="inline-flex  justify-between h-full  py-5">
+									<span className="  w-[700px] lg:w-[575px]">
+										<CardFirst />
+									</span>
+									<span className="sm:hidden lg:block lg:w-[575px]">
+										<CardFirst />
+									</span>
+								</div>
+							</div>
+						</div>
+					</div>
+
+					<div className="hs-carousel-pagination flex lg:mt-2  w-full flex-nowrap  justify-center  space-x-2   ">
+						<span className="  hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-md w-6 h-2 cursor-pointer" />
+						<span className="hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-md w-6 h-2 first-letter:cursor-pointer" />
+						<span className="hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-md  w-6 h-2 cursor-pointer" />
 					</div>
 				</div>
-			</section>
+			</div>
 		</>
 	);
 }
