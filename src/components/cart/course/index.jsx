@@ -13,20 +13,17 @@ export default function CourseList() {
 		try {
 			const res = await fetch(url);
 			const data = await res.json();
-			console.log(data);
-			if (data) {
 				setCourse(data);
-			}
 		} catch (e) {
-			console.error(e);
+			setCourse([]);
 		}
 	};
 
 	return (
 		<>
-			{course.map((v, index) => (
+			{course.map((v, i) => (
 				<CourseCard
-					key={index}
+					key={i}
 					name={v.Name}
 					price={v.Price}
 					intro={v.Intro}

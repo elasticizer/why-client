@@ -1,27 +1,9 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-export default function Summary() {
-	const [price, setPrice] = useState(1500); // 預設金額
+export default function Summary({price}) {
+	// const [price, setPrice] = useState(1500); // 預設金額
 	const [disCount, setDisCount] = useState(100); // 預設折扣金額
-
-
-	// const [summaryData, setSummaryData] = useState([]);
-
-	// useEffect(() => {
-	// 	getSummary();
-	// }, []);
-
-	// const getSummary = async () => {
-	// 	const url = '/api/course';
-	// 	try {
-	// 		const res = await fetch(url);
-	// 		const data = await res.json();
-	// 		setSummaryData(data);
-	// 	} catch (error) {
-	// 		setSummaryData([]);
-	// 	}
-	// };
 
 	return (
 		<>
@@ -38,10 +20,10 @@ export default function Summary() {
 						<p className="underline">-NT${disCount}</p>
 					</div>
 					{/* 小計 */}
-						<div className="flex items-center justify-between text-sm">
-							<p>1件小計</p>
-							<p>NT${price}</p>
-						</div>
+					<div className="flex items-center justify-between text-sm">
+						<p>1件小計</p>
+						<p>NT${price}</p>
+					</div>
 
 					{/* 總金額 */}
 					<div className="flex items-center justify-between text-lg border-t pt-4">

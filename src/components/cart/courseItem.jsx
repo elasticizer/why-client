@@ -14,9 +14,7 @@ export default function CourseItem(props) {
 		try {
 			const res = await fetch(url);
 			const data = await res.json();
-			if (Array.isArray(data) && data.length > 0) {
-				setCourse(data[0]);
-			}
+			setCourse(data[0]);
 		} catch (e) {
 			console.error(e);
 		}
@@ -78,9 +76,6 @@ export default function CourseItem(props) {
 						<div className="sm:max-w-lg sm:w-full m-3 sm:mx-auto">
 							<div className="flex flex-col bg-orange-50 border shadow-sm rounded-xl pointer-events-auto">
 								<div className="flex justify-between items-center py-3 px-4">
-									{/* <h3 className="font-bold text-orange-800 text-sm">
-										原創角色設計全攻略｜從風格定位到 IP 經營
-									</h3> */}
 									{course && (
 										<h3 className="font-bold text-orange-800 text-sm">
 											已將「{course.Name}」移至收藏清單
