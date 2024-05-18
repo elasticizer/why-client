@@ -1,12 +1,13 @@
-import { useState } from 'react';
+import MainLayout from '@/layouts/mainLayout';
 import Cart from '@/components/cart';
 
 export default function CartPage() {
-
 	return (
 		<>
-			<title>購物車</title>
-			<Cart />
+			<MainLayout>
+				<title>購物車</title>
+				<Cart />
+			</MainLayout>
 		</>
 	);
 }

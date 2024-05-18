@@ -6,7 +6,7 @@ import PrevPageBtn from './prevPageBtn';
 export default function Cart() {
 	return (
 		<>
-			<div className="container mt-8 max-w-[85rem] sm:px-6 lg:px-8 mx-auto my-8 px-4">
+			<div className="container mt-8 max-w-[85rem] sm:px-6 lg:px-8 mx-auto my-8">
 				<PrevPageBtn />
 				<div className="grid lg:grid-cols-4 gap-y-8 lg:gap-y-0 lg:gap-x-6">
 					<div className="lg:col-span-3">
