@@ -1,11 +1,13 @@
-import React from 'react';
+import MainLayout from '@/layouts/mainLayout';
 import OrderTabs from '@/components/order/orderTabs';
 
 export default function Order() {
 	return (
 		<>
-			<title>訂單</title>
-			<OrderTabs />
+			<MainLayout>
+				<title>訂單</title>
+				<OrderTabs />
+			</MainLayout>
 		</>
 	);
 }

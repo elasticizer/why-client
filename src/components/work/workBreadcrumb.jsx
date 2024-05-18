@@ -1,22 +1,7 @@
 import React from 'react';
 
 export default function WorkBreadcrumb() {
-	const [author, setAuthor] = useState(null);
 
-	useEffect(() => {
-		getAuthor();
-	}, []);
-
-	const getAuthor = async () => {
-		const url = '/api/cart';
-		try {
-			const res = await fetch(url);
-			const data = await res.json();
-			setAuthor(data);
-		} catch (e) {
-			setAuthor(null);
-		}
-	};
 	return (
 		<>
 			{/* Breadcrumb */}

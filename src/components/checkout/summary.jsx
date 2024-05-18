@@ -1,7 +1,23 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 import SummaryItem from './summaryItem';
 
 export default function Summary() {
+	const [courses, setCourses] = useState([]);
+
+	useEffect(() => {
+		const getCourse = async () => {
+			const url = '/api/course';
+			try {
+				const res = await fetch(url);
+				const data = await res.json();
+				setCourses(data);
+			} catch (e) {
+				setCourses([]);
+			}
+		};
+		getCourse();
+	}, []);
+
 	return (
 		<>
 			<div className="border border-gray-300 rounded-lg px-4 pt-4 mb-4">
@@ -12,7 +28,14 @@ export default function Summary() {
 					</div>
 				</div>
 				<div className="grid grid-cols-1 divide-y">
-					<SummaryItem />
+					{courses.length > 0 && (
+						<SummaryItem
+							key={courses[0].id}
+							name={courses[0].Name}
+							domainName={courses[0].DomainName}
+							price={courses[0].Price}
+						/>
+					)}
 				</div>
 			</div>
 		</>
