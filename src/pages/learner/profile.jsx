@@ -8,6 +8,7 @@ import styles from '@/styles/learner.module.css';
 
 export default function Profile() {
 	const [windowNav, setWindowNav] = useState("hidden");
+
 	return (
 		<>
 			<div className={styles.container}>

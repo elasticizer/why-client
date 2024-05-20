@@ -46,43 +46,43 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 			</div>
 			<div className={`${styles.windowNavcontainer} md:justify-between`}>
 				<div className={styles.windowNavcontainerItem}>
-					<Link href="/teacher" className={styles.windowNavItem}>
+					<Link href="/teacher" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
 						<div>
 							<GoVideo size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>我的課程</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>我的課程</div>
 					</Link>
-					<Link href="/teacher/homeworkGrading" className={styles.windowNavItem}>
+					<Link href="/teacher/homeworkGrading" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
 						<div>
 							<RiPencilFill size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>作業批改</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>作業批改</div>
 					</Link>
-					<Link href="/teacher/articleManagement" className={styles.windowNavItem}>
+					<Link href="/teacher/articleManagement" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
 						<div>
 							<MdArticle size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>文章管理</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>文章管理</div>
 					</Link>
-					<Link href="#" className={styles.windowNavItem}>
+					<Link href="#" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
 						<div>
 							<MdOutlineAnalytics size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>數據分析</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>數據分析</div>
 					</Link>
 				</div>
 				<div className={styles.windowNavcontainerItem}>
-					<Link href="#" className={styles.windowNavItem}>
+					<Link href="#" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
 						<div>
 							<GiReceiveMoney size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>提領報酬</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>提領報酬</div>
 					</Link>
-					<Link href="/learner" className={styles.windowNavItem}>
+					<Link href="/learner" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
 						<div>
 							<PiStudent size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>學生模式</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>學生模式</div>
 					</Link>
 
 				</div>

@@ -3,6 +3,7 @@ import Sidebar from '@/components/member/teacher/sidebar';
 import Tabbar from '@/components/member/tabbarTeacher';
 import UploadCard from '@/components/member/teacher/uploadCard';
 import Content from '@/components/member/teacher/content';
+import Search from "@/components/member/search";
 import { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import React from 'react';
@@ -19,10 +20,9 @@ export default function Index() {
 
 				<h1 className="text-2xl md:text-3xl font-semibold mt-10">課程</h1>
 				<div className='mt-10 hidden md:flex justify-between'>
-					<form action="" className="items-center hidden md:flex">
-						<input className="h-full border  shadow-sm	rounded-none ps-2" type="text" placeholder='輸入關鍵字' />
-						<button className="bg-black	p-2 ps-3 pe-3 h-full"><BsSearch size="20px" color="white" /></button>
-					</form>
+					<div className="flex items-center md:flex ">
+						<Search />
+					</div>
 					<Link href="/teacher/uploadCourse">
 						<button
 							type="button"
@@ -33,10 +33,9 @@ export default function Index() {
 
 				</div>
 				<UploadCard />
-				<form action="" className="flex items-center w-full h-9 md:hidden mt-5">
-					<input className="h-full border  shadow-sm	rounded-none w-full ps-2 " type="text" placeholder='輸入關鍵字' />
-					<button className="bg-black	p-2 h-full"><BsSearch size="20px" color="white" /></button>
-				</form>
+				<div className="md:hidden mt-5">
+					<Search />
+				</div>
 				<h1 className="sm:text-2xl text-xl font-semibold text-center mt-10">
 					已發表課程
 				</h1>

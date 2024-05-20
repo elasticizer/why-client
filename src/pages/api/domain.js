@@ -1,13 +1,13 @@
-import { createRouter } from 'next-connect';
-import React from 'react';
+import { createRouter } from "next-connect";
+import connection from '@/handlers/sqlite3';
 
 const router = createRouter();
 
-router.get((req, res) => {
-	res.send(req.query.id);
+
+router.get(async (req, res) => {
+	const [results] = await connection.execute('SELECT * FROM Domain');
+	res.json(results);
 });
-
-
 
 export default router.handler({
 	onError: (err, req, res) => {
