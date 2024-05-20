@@ -7,7 +7,7 @@ export default function Content() {
 	const [nodata, setNoDate] = useState("have");
 	return (
 		<div className={styles.content}>
-			<div className={`grid grid-cols-2 md:grid-cols-3 gap-x-4 gap-y-4 md:gap-x-8 md:gap-y-8 md:gap-y-16 mt-10 sm:mt-16 `}>
+			<div className={`grid grid-cols-2 w-full md:grid-cols-3 gap-x-4 gap-y-4 md:gap-x-8 md:gap-y-8 md:gap-y-16 mt-10 sm:mt-16 `}>
 				<ContentCard
 					title={"學生能養成學習的習慣，就更能達成目標。運用學習排程器來空出學習時間，並使排程器來空出學習時間，排程器來空出學習時間，排程器來空出學習時間，排程器來空出學習時間，排程器來空出學習時間，"}
 					picUrl={"/learner/code1.jpg"}

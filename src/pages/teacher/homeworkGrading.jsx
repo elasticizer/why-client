@@ -11,6 +11,7 @@ import styles from '@/styles/teacher.module.css';
 
 export default function HomeworkGrading() {
 	const [windowNav, setWindowNav] = useState("hidden");
+	const [domain,setDomain]=useState('')
 	return (
 		<>
 			<div className={`${styles.container}`}>
@@ -20,17 +21,14 @@ export default function HomeworkGrading() {
 
 				{/* 分類選擇與搜尋 */}
 				<div className='mt-10 hidden md:flex justify-between'>
-					<Domain />
-					<form action="" className="items-center hidden md:flex ">
-					<div className="flex">
-						<input className="h-auto border  shadow-sm 	rounded-none ps-2 " type="text" placeholder='輸入關鍵字' />
-						<button className="bg-black	p-2 ps-3 pe-3 h-full"><BsSearch size="20px" color="white" /></button>
+					<Domain setDomain={setDomain}/>
+					<div className="flex items-center md:flex ">
+						<Search />
 					</div>
-					</form>
 				</div>
 				<div className="md:hidden mt-5">
 					<Search />
-					<Domain />
+					<Domain setDomain={setDomain}/>
 				</div>
 
 
@@ -40,7 +38,7 @@ export default function HomeworkGrading() {
 					發表過的課程
 				</h1>
 
-				<Content />
+				<Content domain={domain}/>
 			</div>
 			<Tabbar setWindowNav={setWindowNav} windowNav={windowNav} />
 
