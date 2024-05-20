@@ -8,7 +8,7 @@ export default function PrevPageBtn() {
 				<Link href="/cart">
 					<button className="flex items-center gap-1 text-md text-gray-500 hover:text-orange-500 focus:outline-none focus:text-orange-600 dark:text-neutral-500 dark:hover:text-orange-500 dark:focus:text-orange-500">
 						<svg
-							class="flex-shrink-0 size-4"
+							className="flex-shrink-0 size-4"
 							xmlns="http://www.w3.org/2000/svg"
 							width="24"
 							height="24"
