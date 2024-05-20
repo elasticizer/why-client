@@ -3,7 +3,7 @@ import styles from '@/styles/modal.module.css';
 import { IoMdClose } from 'react-icons/io';
 import { IoSend } from 'react-icons/io5';
 
-const Modal = ({ show, onClose }) => {
+const Modal = ({ show }) => {
 	if (!show) {
 		return null;
 	}
@@ -11,24 +11,24 @@ const Modal = ({ show, onClose }) => {
 	return (
 		<div className={styles.modalOverlay}>
 			<div className={styles.modalContent}>
-				<button
-					className={styles.closeButton}
-					onClick={onClose}>
-					<IoMdClose />
-				</button>
-				<div>
-					<h2>歡迎使用Why School小幫手</h2>
-					<p>有任何問題歡迎隨時傳訊息與我們聯絡</p>
+				<div className={styles.header}>
+					<div className="flex flex-col">
+						<h2 className={styles.title}>歡迎使用why小幫手</h2>
+						<p>留下您的疑問，我們將及時回覆</p>
+					</div>
 				</div>
-				<div className={styles.chatBoxBody}></div>
-				<form className="flex gap-2">
-					<input className="py-3 px-5 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none" />
-					<button
-						className="hover:scale-110"
-						type="submit">
+				{/* <div className={styles.chatBoxBody}></div> */}
+				<div className={styles.chatWindow}>{/* 聊天內容可以在這裡添加 */}</div>
+				<div className={styles.inputContainer}>
+					<input
+						type="text"
+						className={styles.input}
+						placeholder="Send a message..."
+					/>
+					<button className={styles.sendButton}>
 						<IoSend />
 					</button>
-				</form>
+				</div>
 			</div>
 		</div>
 	);
