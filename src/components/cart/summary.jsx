@@ -1,9 +1,8 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-export default function Summary({ price, totalQty, totalPrice }) {
-	// const [price, setPrice] = useState(1500); // 預設金額
-	const [disCount, setDisCount] = useState(100); // 預設折扣金額
+export default function Summary({ totalQty, totalPrice }) {
+	const [disCount, setDisCount] = useState(0); // 預設折扣金額
 
 	return (
 		<>
