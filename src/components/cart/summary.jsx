@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import Link from 'next/link';
 
-export default function Summary({price}) {
+export default function Summary({ price, totalQty, totalPrice }) {
 	// const [price, setPrice] = useState(1500); // 預設金額
 	const [disCount, setDisCount] = useState(100); // 預設折扣金額
 
@@ -21,14 +21,14 @@ export default function Summary({price}) {
 					</div>
 					{/* 小計 */}
 					<div className="flex items-center justify-between text-sm">
-						<p>1件小計</p>
-						<p>NT${price}</p>
+						<p>{totalQty} 件小計</p>
+						<p>NT${totalPrice}</p>
 					</div>
 
 					{/* 總金額 */}
 					<div className="flex items-center justify-between text-lg border-t pt-4">
 						<p>結帳總金額 :</p>
-						<p className="font-bold">NT${price - disCount}</p>
+						<p className="font-bold">NT${totalPrice - disCount}</p>
 					</div>
 					{/* 結帳按鈕 */}
 					<Link href="./cart/checkout">
