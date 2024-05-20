@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 export default function CourseList({ addItemToCart = () => {} }) {
-	console.log(addItemToCart);
 
 	const [courses, setCourse] = useState([]);
 
@@ -12,7 +11,6 @@ export default function CourseList({ addItemToCart = () => {} }) {
 				const res = await fetch(url);
 				const data = await res.json();
 				setCourse(data);
-				console.log(data);
 			} catch (e) {
 				setCourse([]);
 			}
