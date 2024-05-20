@@ -94,6 +94,7 @@ export default function Rating() {
 							key={i}
 							title={course.Name}
 							content={course.Intro}
+							image={course.Filename}
 						/>
 					))}
 				</div>
