@@ -1,7 +1,7 @@
-/* styles/modal.module.css */
 .modalOverlay {
 	position: fixed;
 	display: flex;
+	width: 400px;
 	bottom: 17%;
 	right: 0;
 	justify-content: center;
@@ -10,22 +10,70 @@
 }
 
 .modalContent {
-	background: white;
-	padding: 20px;
-	border-radius: 5px;
-	max-width: 500px;
-	width: 100%;
-	box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-	position: relative;
+	background: #fff;
+	border-radius: 10px;
+	width: 90%;
+	max-width: 400px;
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
 }
 
-.closeButton {
-	position: absolute;
-	top: 10px;
-	right: 10px;
-	background: none;
+.header {
+	background: #e96730;
+	color: #fff;
+	padding: 10px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+}
+
+.header > p {
+	font-size: 10px;
+}
+
+.title {
+	font-size: 1.2rem;
+	font-weight: 600;
+}
+
+.chatWindow {
+	min-height: 300px;
+	max-height: 500px;
+	overflow-y: auto;
+	background: #f5f5f5;
+	padding: 10px;
+}
+
+.inputContainer {
+	display: flex;
+	align-items: center;
+	border-top: 1px solid #ddd;
+	padding: 10px;
+	background: #fff;
+}
+
+.input {
+	flex: 1;
 	border: none;
-	font-size: 20px;
+	padding: 10px;
+	border-radius: 20px;
+	background: #f0f0f0;
+	margin-right: 10px;
+}
+
+.input::placeholder {
+	color: #aaa;
+}
+
+.sendButton {
+	border: none;
+	border-radius: 50%;
+	width: 40px;
+	height: 40px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 	cursor: pointer;
 }
 
@@ -34,30 +82,22 @@
 	bottom: 50px;
 	right: 50px;
 	background: #f6741e;
-	width: 60px;
-	height: 60px;
+	width: 50px;
+	height: 50px;
 	border-radius: 50%;
 	color: white;
 	padding: 10px;
 	cursor: pointer;
-	box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.6),
-		0 3px 1px -2px rgba(0, 0, 0, 0.2), 0 1px 5px 0 rgba(0, 0, 0, 0.12);
+	box-shadow: 0px 3px 16px 0px rgba(0, 0, 0, 0.6);
 	z-index: 1001;
+	transition: ease-in-out 0.2s;
 }
 
 .floatingButton:hover {
-	scale: 110%;
+	scale: 120%;
 }
 
 .floatingIcon {
 	height: 100%;
 	object-fit: cover;
-}
-
-.chatBoxBody {
-	position: relative;
-	height: 350px;
-	border: 1px solid #ccc;
-	border-radius: 10px;
-	overflow: hidden;
 }
