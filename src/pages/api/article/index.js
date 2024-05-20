@@ -1,12 +1,9 @@
-import sequelize from '@/handlers/sequelize';
+import connection from '@/handlers/sqlite3';
 
 export default async function handler(req, res) {
 	const limit = req.query.limit ?? 10;
 
-	const data = await sequelize.models.Article.findAll({
-		limit: 12,
-		order: sequelize.random()
-	});
+	const [results] = await connection.execute('SELECT * FROM Article limit 15');
 
-	return res.status(200).json(data);
+	return res.status(200).json(results);
 }
