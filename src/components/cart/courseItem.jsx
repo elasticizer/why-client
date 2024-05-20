@@ -17,7 +17,7 @@ export default function CourseItem({ item, checked, onChange, removeItem }) {
 					<div className="w-40 h-20 rounded flex relative group overflow-hidden transition">
 						<img
 							className="size-full absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded"
-							src="https://images.hahow.in/images/660637d3b38e616560508c46?width=450"
+							src={item.Filename}
 							alt={item.Name}
 						/>
 					</div>
