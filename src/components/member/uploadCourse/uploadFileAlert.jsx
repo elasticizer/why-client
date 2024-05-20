@@ -49,7 +49,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 
 	return (
 
-		<div className={`bg-white flex flex-col items-center  shadow-sm ring-1 ring-gray-300 fixed w-3/5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-5 overflow-scroll h-2/3 ${UploadFileAlertDisplay}
+		<div className={`bg-white flex flex-col items-center shadow-sm ring-1 ring-gray-300 fixed w-3/5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-5 overflow-scroll h-3/6 ${UploadFileAlertDisplay}
 		`}>
 
 			<div className="mt-5 relative"><BsCloudUploadFill size="80px" color="#FFAF60" /></div>

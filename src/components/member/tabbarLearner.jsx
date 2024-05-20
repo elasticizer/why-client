@@ -57,7 +57,7 @@ export default function Tabbar({ setWindowNav, windowNav }) {
 					<BsChevronDown size="20px" color="white" />
 				</div>
 			</div>
-			<UserList userList={userList} />
+			<UserList userList={userList} option={'-top-52'}/>
 		</nav>
 	);
 }

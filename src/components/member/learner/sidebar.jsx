@@ -23,7 +23,7 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 
 		>
 			<div className={`${styles.windowNavHead} justify-between md:justify-center`}>
-				<div className={styles.logo}>
+				<div>
 					<Image
 						src="/learner/mobile/logo.png"
 						alt=""
@@ -41,49 +41,49 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 			</div>
 			<div className={styles.windowNavcontainer}>
 				<div className={styles.windowNavcontainerItem}>
-					<Link href="/learner" className={styles.windowNavItem}>
-						<div>
+					<Link href="/learner" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
+						<div className="">
 							<GoPerson size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>會員中心</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>會員中心</div>
 					</Link>
-					<Link href="/learner/myCourse" className={styles.windowNavItem}>
-						<div>
+					<Link href="/learner/myCourse" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
+						<div className="">
 							<RiFolderVideoFill size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>我的課程</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>我的課程</div>
 					</Link>
-					<Link href="/learner/wishList" className={styles.windowNavItem}>
-						<div>
+					<Link href="/learner/wishList" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
+						<div className="">
 							<BsFillBagHeartFill size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>心願清單</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>心願清單</div>
 					</Link>
-					<Link href="/learner/learnerHomework" className={styles.windowNavItem}>
-						<div>
+					<Link href="/learner/learnerHomework" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
+						<div className="">
 							<RiPencilFill size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>作業總覽</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>作業總覽</div>
 					</Link>
 				</div>
 				<div className={styles.windowNavcontainerItem}>
-					<Link href="#" className={styles.windowNavItem}>
-						<div>
+					<Link href="#" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
+						<div className="">
 							<BiSolidCoupon size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>優惠票券</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>優惠票券</div>
 					</Link>
-					<Link href="/learner/articleBookmarking" className={styles.windowNavItem}>
-						<div>
+					<Link href="/learner/articleBookmarking" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
+						<div className="">
 							<BsBookmarkHeart size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>文章收藏</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>文章收藏</div>
 					</Link>
-					<Link href="/teacher" className={styles.windowNavItem}>
-						<div>
+					<Link href="/teacher" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
+						<div className="">
 							<FaChalkboardTeacher size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont}`}>教師模式</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>教師模式</div>
 					</Link>
 				</div>
 			</div>

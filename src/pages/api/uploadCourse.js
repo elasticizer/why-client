@@ -9,6 +9,7 @@ const storage = multer.diskStorage({
 		cb(null, resolve(env.PWD, "public", "learner"));
 	},
 	filename: function (req, file, cb) {
+		console.log(file)
 		const newFileName = randomUUID() + extname(file.originalname);
 		cb(null, newFileName);
 	},

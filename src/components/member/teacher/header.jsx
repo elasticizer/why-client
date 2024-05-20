@@ -1,12 +1,15 @@
 import Image from 'next/image';
-import React from 'react';
+import {useState} from 'react';
 import styles from '@/styles/teacher.module.css';
+import UserList from '@/components/member/userList';
 import { BsBell } from "react-icons/bs";
 
 
 export default function Header() {
+	const [toggle, setToggle] = useState("hidden");
 	return (
-		<div className={styles.header}>
+		<div className={`${styles.header} hidden md:flex relative`}>
+		<UserList userList={toggle} option={'top-10 -right-3'} />
 			<a
 				href="#"
 				className={`${styles.textStyleBlack16} ${styles.headerA} `}>
@@ -15,7 +18,9 @@ export default function Header() {
 			<div className={styles.bell}>
 				<BsBell />
 			</div>
-			<div className={styles.user}>
+			<button className={styles.user} onClick={() => {
+				setToggle(toggle === 'hidden' ? 'flex' : 'hidden');
+			}}>
 				<Image
 					src="/learner/container.png"
 					alt=""
@@ -23,7 +28,7 @@ export default function Header() {
 					height={30}
 					className={styles.userImg}
 				/>
-			</div>
+			</button>
 		</div>
 	);
 }

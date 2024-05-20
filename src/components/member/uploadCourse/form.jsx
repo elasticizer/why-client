@@ -3,6 +3,9 @@ import Quill from "@/components/member/uploadCourse/Quill";
 import { GoVideo } from "react-icons/go";
 import { RiPencilFill } from "react-icons/ri";
 import UploadTables from "@/components/member/uploadCourse/uploadTables";
+import { errorAlert } from "@/components/member/errorAlert";
+
+
 
 
 
@@ -48,19 +51,16 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 	};
 
 
-
-
-
 	const handleSumbit = async (e) => {
 		e.preventDefault();
 		const allINput = [courseTitle, domain, selectFile, previewURL, selectVideoFile, previewVideo, courseDescription, instructorExperience];
 		const emptyInputs = allINput.filter((v) => !v);
 		if (emptyInputs.length === 0) {
-			alert("填寫完成");
+			console.log('填寫完成');
 		} else {
-			alert(`還有 ${emptyInputs.length} 個欄位未填`);
+			errorAlert(`有 ${emptyInputs.length} 個欄位未填`, '請全部填寫完成再次送出');
+			return false;
 		}
-		console.log('Mother');
 
 
 		const formdata = new FormData(formEl.current);
@@ -78,6 +78,8 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 		} catch (err) {
 			console.log(err);
 		}
+
+		window.location.href = '/teacher';
 	};
 
 
