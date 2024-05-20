@@ -24,7 +24,13 @@ export default function CourseList({ addItemToCart = () => {} }) {
 					className="flex flex-col bg-white border-2 shadow-sm rounded-xl"
 					key={i}>
 					<div className="p-4 md:p-5 flex flex-col gap-3">
-						<h3 className="text-lg font-bold text-gray-800 dark:text-white">
+						<img
+							class="w-full h-auto rounded-t-xl"
+							src={course.Filename}
+							alt={course.Name}
+						/>
+
+						<h3 className="font-bold text-gray-800 dark:text-white">
 							{course.Name}
 						</h3>
 						<p>價格：{course.Price}</p>
