@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react';
 
 export default function CourseList({ addItemToCart = () => {} }) {
-
 	const [courses, setCourse] = useState([]);
 
 	useEffect(() => {
