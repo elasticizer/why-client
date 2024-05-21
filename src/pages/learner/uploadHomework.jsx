@@ -11,11 +11,11 @@ export default function HomeworkGrading() {
 	const [windowNav, setWindowNav] = useState("hidden");
 	return (
 		<>
-			<div className={`${styles.container} dark:bg-black`}>
+			<div className={`${styles.container} `}>
 				{/* header */}
 				<Header />
-				<h1 className="text-2xl md:text-3xl font-semibold text-center dark:text-white mt-10">繳交作業</h1>
-				<h2 className="sm:text-2xl text-xl dark:text-white font-semibold text-center mt-10">
+				<h1 className="text-2xl md:text-3xl font-semibold text-center mt-10">繳交作業</h1>
+				<h2 className="sm:text-2xl text-xl font-semibold text-center mt-10">
 					完成每次的課程都是對自己的一次認可
 				</h2>
 				<Content />

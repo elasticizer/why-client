@@ -43,8 +43,8 @@ export default function ContentCard() {
 								<div className="text-sm leading-6">
 									<p className="font-semibold text-gray-900">
 										<a href="#">
-											<span className="absolute inset-0" />
-											Michael Foster
+											<span className="inset-0 line-clamp-1">Michael Foster</span>
+
 										</a>
 									</p>
 									<p className="text-gray-600">Co-Founder / CTO</p>

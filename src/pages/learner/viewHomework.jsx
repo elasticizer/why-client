@@ -12,9 +12,9 @@ export default function HomeworkGradingPage() {
 	const [windowNav, setWindowNav] = useState("hidden");
 	return (
 		<>
-			<div className={`${styles.container} dark:bg-black`}>
+			<div className={`${styles.container}`}>
 				<Header />
-				<h1 className="text-2xl md:text-3xl font-semibold dark:text-white mt-10">檢視作業</h1>
+				<h1 className="text-2xl md:text-3xl font-semibold mt-10">檢視作業</h1>
 
 				{/* 作業資訊 */}
 				<div className='mt-10 flex flex-col justify-start'>

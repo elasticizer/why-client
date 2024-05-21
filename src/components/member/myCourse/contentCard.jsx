@@ -1,11 +1,12 @@
 import { useState } from 'react';
 import styles from '@/styles/learner.module.css';
 import Link from 'next/link';
+import 'animate.css';
 
 export default function Card({ picUrl, title, domain,Nickname}) {
 	return (
-		<Link href='#'>
-			<div className="flex w-full  shadow-sm ring-1 ring-gray-300 md:flex-col relative overflow-hidden hover:bg-gray-100">
+		<Link href='#' className="animate__animated animate__fadeIn">
+			<div className="flex w-full h-full  shadow-sm ring-1 ring-gray-300 md:flex-col relative overflow-hidden hover:bg-gray-100">
 				<div className="w-1/3 h-36 md:h-52 md:w-full md:me-0 overflow-hidden">
 					<img
 						className="hover:scale-125"

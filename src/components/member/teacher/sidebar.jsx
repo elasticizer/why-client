@@ -28,14 +28,14 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 
 		>
 			<div className={`${styles.windowNavHead} justify-between md:justify-center`}>
-				<div className={styles.logo}>
+				<Link href="/learner">
 					<Image
-						src="/learner/mobile/logo.png"
+						src="/learner/why_mini_icon.png"
 						alt=""
 						width={40}
 						height={40}
 					/>
-				</div>
+				</Link>
 				<button
 					className={styles.rebeccapurple} onClick={() => {
 						setWindowNav(WindowNav ? "" : "hidden");
@@ -52,7 +52,9 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 						</div>
 						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>我的課程</div>
 					</Link>
-					<Link href="/teacher/homeworkGrading" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
+
+					{/* 作業批改隱藏掉，家回來只要加 ${styles.windowNavItem} */}
+					<Link href="/teacher/homeworkGrading" className={` hover:ps-2 hover:border-l-4 hover:border-l-red-500 hidden`}>
 						<div>
 							<RiPencilFill size="30px" color="#999999" />
 						</div>
