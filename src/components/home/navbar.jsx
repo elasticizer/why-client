@@ -1,13 +1,16 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { IoIosArrowDown } from 'react-icons/io';
+import { IoMenu } from 'react-icons/io5';
+import { IoMdClose } from 'react-icons/io';
 
 export default function Navbar() {
 	return (
 		<>
 			{/* <!-- ========== HEADER ========== --> */}
 			<header className="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-50 w-full bg-white border-b border-gray-200 text-sm py-3 sm:py-0 ">
-				<nav className="backdrop-blur-lg relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
+				<nav className="relative max-w-[85rem] w-full mx-auto px-4 sm:flex sm:items-center sm:justify-between sm:px-6 lg:px-8">
 					<div className="flex items-center justify-between">
 						<Link href="/">
 							<div className="flex-none text-xl font-semibold dark:text-white">
@@ -23,53 +26,9 @@ export default function Navbar() {
 							<button
 								type="button"
 								className="hs-collapse-toggle size-9 flex justify-center items-center text-sm font-semibold rounded-lg border border-gray-200 text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-								data-hs-collapse="#navbar-collapse-with-animation"
-								aria-controls="navbar-collapse-with-animation"
-								aria-label="Toggle navigation">
-								<svg
-									className="hs-collapse-open:hidden flex-shrink-0 size-4"
-									xmlns="http://www.w3.org/2000/svg"
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round">
-									<line
-										x1="3"
-										x2="21"
-										y1="6"
-										y2="6"
-									/>
-									<line
-										x1="3"
-										x2="21"
-										y1="12"
-										y2="12"
-									/>
-									<line
-										x1="3"
-										x2="21"
-										y1="18"
-										y2="18"
-									/>
-								</svg>
-								<svg
-									className="hs-collapse-open:block hidden flex-shrink-0 size-4"
-									xmlns="http://www.w3.org/2000/svg"
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									stroke-width="2"
-									stroke-linecap="round"
-									stroke-linejoin="round">
-									<path d="M18 6 6 18" />
-									<path d="m6 6 12 12" />
-								</svg>
+								data-hs-collapse="#navbar-collapse-with-animation">
+								<IoMenu className="hs-collapse-open:hidden flex-shrink-0 size-4" />
+								<IoMdClose className="hs-collapse-open:block hidden flex-shrink-0 size-4" />
 							</button>
 						</div>
 					</div>
@@ -90,19 +49,7 @@ export default function Navbar() {
 									type="button"
 									className="hs-dropdown-toggle inline-flex items-center gap-x-2 text-sm font-medium text-gray-500 hover:text-orange-400">
 									領域
-									<svg
-										className="hs-dropdown-open:rotate-180 size-4 text-gray"
-										xmlns="http://www.w3.org/2000/svg"
-										width="24"
-										height="24"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round">
-										<path d="m6 9 6 6 6-6"></path>
-									</svg>
+									<IoIosArrowDown />
 								</button>
 
 								<div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2">
@@ -134,19 +81,7 @@ export default function Navbar() {
 									type="button"
 									className="hs-dropdown-toggle inline-flex items-center gap-x-2 text-sm font-medium text-gray-500 hover:text-orange-400">
 									部落格
-									<svg
-										className="hs-dropdown-open:rotate-180 size-4 text-gray"
-										xmlns="http://www.w3.org/2000/svg"
-										width="24"
-										height="24"
-										viewBox="0 0 24 24"
-										fill="none"
-										stroke="currentColor"
-										stroke-width="2"
-										stroke-linecap="round"
-										stroke-linejoin="round">
-										<path d="m6 9 6 6 6-6"></path>
-									</svg>
+									<IoIosArrowDown />
 								</button>
 
 								<div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2">
