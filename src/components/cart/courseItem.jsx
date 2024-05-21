@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { RiDeleteBinLine } from 'react-icons/ri';
 import { TbHeartPlus } from 'react-icons/tb';
 
