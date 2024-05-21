@@ -3,20 +3,11 @@ import CheckAll from '@/components/cart/checkAll';
 import CourseItem from '@/components/cart/courseItem';
 import CourseItemNone from '@/components/cart/courseItemNone';
 import CouponModal from '@/components/cart/couponModal';
+import { useCart } from '@/hooks/useCart';
 
-export default function CartList({ cartItem, removeItem }) {
+export default function CartList() {
+	const { cartItem, removeItem } = useCart();
 	const [course, setCourse] = useState([]);
-
-	// useEffect(() => {
-	// 	setCourse(cartItem);
-	// }, [cartItem]);
-
-	// useEffect(() => {
-	// 	const initState = cartItem.map((v, i) => {
-	// 		return { id: i + 1, checked: false };
-	// 	});
-	// 	setCourse(initState);
-	// }, [cartItem]);
 
 	useEffect(() => {
 		const initState = cartItem.map((v, i) => {
@@ -25,7 +16,6 @@ export default function CartList({ cartItem, removeItem }) {
 		setCourse(initState);
 	}, [cartItem]);
 
-	// 處理checked切換布林的函式
 	const handleToggleChecked = id => {
 		const nextItems = course.map(v => {
 			if (v.id === id) return { ...v, checked: !v.checked };
@@ -34,7 +24,6 @@ export default function CartList({ cartItem, removeItem }) {
 		setCourse(nextItems);
 	};
 
-	// 處理全選的函式
 	const handleToggleCheckAll = e => {
 		const nextItems = course.map(v => {
 			return { ...v, checked: e.target.checked };
