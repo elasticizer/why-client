@@ -1,6 +1,9 @@
 import { useState, useEffect } from 'react';
+import { useCart } from '@/hooks/useCart';
 
-export default function CourseList({ addItemToCart = () => {} }) {
+export default function CourseList() {
+	const { addItemToCart } = useCart();
+
 	const [courses, setCourse] = useState([]);
 
 	useEffect(() => {
