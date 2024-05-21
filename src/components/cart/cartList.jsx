@@ -7,6 +7,8 @@ import { useCart } from '@/hooks/useCart';
 
 export default function CartList() {
 	const { cartItem, removeItem } = useCart();
+
+	const [selectedItems, setSelectedItems] = useState([]);
 	const [course, setCourse] = useState([]);
 
 	useEffect(() => {
@@ -30,6 +32,13 @@ export default function CartList() {
 		});
 		setCourse(nextItems);
 	};
+
+	useEffect(() => {
+		const selected = course.filter(v => v.checked);
+		setSelectedItems(selected);
+		console.log(selected);
+	}, [course]);
+	// 
 
 	return (
 		<div className="border border-gray-300 rounded-lg">
