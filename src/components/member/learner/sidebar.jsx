@@ -23,9 +23,9 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 
 		>
 			<div className={`${styles.windowNavHead} justify-between md:justify-center`}>
-				<div>
+				<div href="/learner">
 					<Image
-						src="/learner/mobile/logo.png"
+						src="/learner/why_mini_icon.png"
 						alt=""
 						width={40}
 						height={40}
@@ -34,7 +34,7 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 				<button
 					className={styles.rebeccapurple} onClick={() => {
 						setWindowNav(WindowNav ? "" : "hidden");
-						setWindowNavFont("md:hidden")
+						setWindowNavFont("md:hidden");
 					}}>
 					<BsX size="30px" color="white" />
 				</button>
@@ -59,7 +59,8 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 						</div>
 						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>心願清單</div>
 					</Link>
-					<Link href="/learner/learnerHomework" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
+					{/* 作業總覽隱藏起來，打開加 ${styles.windowNavItem}*/}
+					<Link href="/learner/learnerHomework" className={`hover:ps-2 hover:border-l-4 hover:border-l-red-500 hidden`}>
 						<div className="">
 							<RiPencilFill size="30px" color="#999999" />
 						</div>
