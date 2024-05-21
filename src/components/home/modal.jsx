@@ -1,7 +1,7 @@
 import React from 'react';
-import styles from '@/styles/modal.module.css';
 import { IoMdClose } from 'react-icons/io';
 import { IoSend } from 'react-icons/io5';
+import styles from '@/styles/modal.module.css';
 
 const Modal = ({ show }) => {
 	if (!show) {
