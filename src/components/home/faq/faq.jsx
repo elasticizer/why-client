@@ -83,7 +83,7 @@ export default function Faq() {
 							<h2 className="mb-3 text-2xl font-bold md:text-4xl md:leading-tight">
 								常見問題
 							</h2>
-							<p className="mt-1 hidden md:block text-gray-600 dark:text-neutral-400">
+							<p className="mt-1 mb-3 hidden md:block text-gray-600 dark:text-neutral-400">
 								以下提供您熱門的常見問題與解答
 								<br />
 								也歡迎於下方
