@@ -10,37 +10,38 @@ export default function Card({ data = {
     , Intro: ''
     , Price: 0
     , Nickname: ''
+    , Filename: ''
 } }) {
-    console.log(data)
     const { SN
         , Name
         , Intro
         , Price
-        , Nickname } = data
+        , Nickname, Filename } = data
     return (
-        <div
-            className="group bg-gray rounded-xl overflow-hidden md:max-w-2xl md:flex gap-3">
-            <div className="md:shrink-0 relative  group-hover:scale-105 transition-transform duration-500 ease-in-out "	>
+        <a
+            className="group bg-gray overflow-hidden md:max-w-2xl md:flex gap-3"
+        href='#'>
+            <div className="md:shrink-0 relative    group-hover:scale-[1.1] transition-transform duration-500 ease-in-out hover:rounded-lg"	>
                 <img
-                    className=" z-0 border-spacing-4 border rounded-[15px] h-60 w-full object-cover md:h-full md:w-60"
-                    src="/image/group-1.jpg"
+                    className="z-0 border-spacing-4 sm:rounded-2xl lg:rounded-[15px] sm:h-auto  sm:w-[580px]    md:h-[180px] md:w-[250px] object-fill"
+                    src={Filename}
                     alt="Modern building architecture "
                 />
 
             </div>
 
 
-            <div className="inline-flex flex-col space-y-2">
-                <BsBookmarkHeart className="size-7 text-red-500 " />
-                <div className=" h-12 tracking-wide text-lg text-black font-bold ">
+            <div className=" inline-flex flex-col space-y-2">
+                <BsBookmarkHeart className="sm:my-2 lg:my-0 md:size-7 sm:size-9 text-red-500 " />
+                <div className=" lg:h-12 md:h-7 sm:h-5 tracking-wide text-lg text-black font-bold ">
                     {Name}
                 </div>
                 <span className="block mt-1 text-sm leading-tight font-normal text-gray-500 ">
                     {Nickname}
                 </span>
-                <div className="flex space-between">
-                    <div className="inline-flex space-x-1 ">
-                        <div className="mt-0.5 size-15 inline-flex  justify-center  rounded-full text-yellow-400 ">
+                <div className="inline-flex space-x-4 ">
+                    <div className="inline-flex space-x-2 ">
+                        <div className="mt-0.5 size-15 inline-flex  justify-center  text-yellow-400 ">
                             <FaStar />
                             <FaStar />
                             <FaStar />
@@ -48,7 +49,7 @@ export default function Card({ data = {
                             <FaStar />
                         </div>
 
-                        <div className="mb-5 lg:text-sm text-base text-gray-500 hover:underline">
+                        <div className=" lg:text-sm text-base text-gray-500 hover:underline">
                             5.0 <span>( 168 )</span>
                         </div>
 
@@ -69,9 +70,9 @@ export default function Card({ data = {
                     </div>
                 </div>
 
-                <span className=" text-2xl font-bold tracking-tight  text-[#019fde]	 ">
+                <span className=" text-2xl font-bold tracking-tight  text-[#019fde]">
                     NT$<span>{Price}</span>
                 </span>
             </div>
-        </div>)
+        </a>)
 }

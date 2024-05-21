@@ -3,7 +3,7 @@ import { IoArrowBackCircle, IoArrowForwardCircle } from 'react-icons/io5';
 
 import Slide from './slide';
 
-export default function New() {
+export default function Slideshow() {
 	const [courses, setCourses] = useState([]);
 	const data = async () => {
 		const url = `/api/course?limit=11`;
@@ -63,9 +63,10 @@ export default function New() {
 						</div>
 					</div>
 
-					<div className=" hs-carousel relative overflow-hidden w-full     min-h-full  rounded-lg"
+					<div className=" hs-carousel relative overflow-hidden w-full     min-h-auto  rounded-lg"
 					>
-						<div className="hs-carousel-body  absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0 bo">
+						<div className="hs-carousel-body   flex flex-nowrap transition-transform duration-700 opacity-0 ">
+							
 							{courses.reduce((pv, cv, i) => {
 								return i % 2 === 0
 									? [...pv, <Slide key={i / 2} data={[cv, courses[i + 1]]} />]
@@ -74,7 +75,7 @@ export default function New() {
 						</div>
 					</div>
 
-					<div className=" hs-carousel-pagination flex lg:mt-2  w-full flex-nowrap  justify-center  space-x-2">
+					<div className="hs-carousel-pagination flex lg:mt-0  w-full flex-nowrap  justify-center  space-x-2">
 						{[...Array(Math.ceil(courses.length / 2)).keys()].map(
 							v => <span key={v} className=" hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-md w-6 h-2 cursor-pointer"></span>)}
 					</div>
