@@ -1,16 +1,15 @@
-import sequelize from '@/handlers/sequelize';
+import connection from '@/handlers/sqlite3';
 
 export default async function handler(req, res) {
-    const sn = req.query.sn;
 
-    res.status(200).json(await sequelize.models.Course.findAll({
-        attributes: ['SN', 'Name', 'Intro', 'Price'],
-        limit: 5,
-    }));
+    const limit = req.query.limit ?? 10;
     
-    res.status(200).json(await sequelize.models.User.findAll({
-        attributes: ['SN', 'NicknName'],
-        limit: 5,
-    }));
+    const [results] = await connection.execute('SELECT course.SN , course.Name, course.Intro, course.Price, user.Nickname FROM Course INNER JOIN user ON Course.TeacherSN=user.SN LIMIT ?', [limit]);
+
+    //原本的篩選結果
+    // const [results] = await connection.execute('SELECT course.SN, course.Name, course.Intro, course.Price FROM Course LIMIT ?', [limit]);
+
+    res.status(200).json(results);
+    
 
 }

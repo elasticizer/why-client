@@ -8,11 +8,11 @@ import styles from '@/styles/font.module.css';
 export default function Cardsec() {
 	return (
 		<>
-			<div className=" w-[400px]  h-[380px] lg:w-[250px] lg:h-[360px] flex flex-col group bg-white  shadow-sm rounded-xl overflow-hidden hover:shadow-lg transition">
-				<div className="rounded-lg relative pt-[50%] sm:pt-[60%] lg:pt-[60%] rounded-t-xl overflow-hidden">
+			<div className=" w-[400px]  h-[380px] lg:w-[250px] lg:h-[360px] flex flex-col group bg-white  shadow-sm  overflow-hidden hover:shadow-lg transition">
+				<div className="relative pt-[50%] sm:pt-[60%] lg:pt-[60%]  overflow-hidden">
 					<img
-						className="w-full lg:w-[250px] h-auto absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-t-xl"
-						src="/img/group-1.jpg"
+						className="w-full lg:w-[250px] h-auto absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-tr-3xl  rounded-bl-3xl"
+						src="/image/group-1.jpg"
 						alt="Image Description"
 					/>
 				</div>

@@ -3,14 +3,16 @@ import React from 'react';
 import SecTwo from '@/components/courseLesson/SecTwo';
 import SecThird from '@/components/courseLesson/SecThird';
 import Hotcard from '@/components/video';
-import Navbar from '@/components/Navbar/navbar';
+import Home from '../../layouts/home';
 
 export default function Course() {
 	return (
 		<>
+			<h1>列表頁</h1>
+			<Home>
 			<div className=" bg-[#FFFCF9]">
 				
-				<Navbar />
+				
 				<div className="relative  w-full ">
 					<div className="w-full absolute top-200 left-300 -z-1 backdrop-blur-sm">
 						<Hotcard />
@@ -253,7 +255,8 @@ export default function Course() {
 					{/* sec5 */}
 					<div className="container"></div>
 				</div>
-			</div>
+				</div>
+			</Home>
 		</>
 	);
 }
