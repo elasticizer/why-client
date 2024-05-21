@@ -19,7 +19,7 @@ export default function Cart() {
 	};
 
 	const removeItem = id => {
-		const nextItems = cartItem.filter(item => item.id !== id);
+		const nextItems = cartItem.filter(item => item.SN !== id);
 		setCartItem(nextItems);
 	};
 
