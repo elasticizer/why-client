@@ -7,7 +7,7 @@ import Pages from '@/components/course/pages';
 
 import Banner from '@/components/course/banner';
 import Home from '../../layouts/home';
-import New from '@/components/course/new';
+import Slideshow from '../../components/slideShow/slideshow';
 
 
 export default function Group() {
@@ -16,9 +16,7 @@ export default function Group() {
 			<Home>
 
 				<Banner />
-				<New />
-			
-
+				<Slideshow />
 				<div className="bg-[#fdf9f7]">
 					<Category />
 					<div className=" py-5">
