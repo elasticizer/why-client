@@ -2,7 +2,7 @@ import React from 'react';
 import { BsCheckLg, BsX } from "react-icons/bs";
 
 
-export default function UploadTables({ practiceButton, UploadFileAlertDisplay, SetUploadFileAlertDisplay }) {
+export default function UploadTables({ SetUploadFileAlertDisplay }) {
 	return (
 		<div className="flex flex-col w-full">
 			<div className="-m-1.5 overflow-x-auto">
@@ -48,12 +48,6 @@ export default function UploadTables({ practiceButton, UploadFileAlertDisplay, S
 									</th>
 									<th
 										scope="col"
-										className="px-6 py-3 text-start text-xs font-medium text-slate-100 uppercase"
-									>
-										作業
-									</th>
-									<th
-										scope="col"
 										className="px-6 py-3 text-end text-xs font-medium text-slate-100 uppercase"
 									>
 										編輯
@@ -73,9 +67,6 @@ export default function UploadTables({ practiceButton, UploadFileAlertDisplay, S
 									</td>
 									<td className="px-6 py-4 whitespace-nowrap text-sm text-slate-200">
 										2025-12-31
-									</td>
-									<td className="px-6 py-4 whitespace-nowrap text-sm text-slate-200">
-										{practiceButton ? <BsCheckLg color='#28FF28' size="25px" /> : <BsX color='#FF0000' size="25px" />}
 									</td>
 									<td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
 										<button className="bg-amber-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={(e) => {

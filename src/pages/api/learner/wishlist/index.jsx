@@ -6,13 +6,14 @@ const router = createRouter();
 
 router.get(async (req, res) => {
 	const sql = `
-	SELECT Course.SN, Course.Name, Course.Price, Teacher.Nickname, File.Filename, Domain.SN AS DomainSN, COUNT(*) AS Total
+	SELECT CollectedCourse.UserSN,CollectedCourse.CourseSN AS CollectedCoursSN, Course.SN, Course.Name, Course.Price, Teacher.Nickname, File.Filename, Domain.SN AS DomainSN,Domain.Name AS DomainName, COUNT(*) AS Total
 	FROM
     Course
     JOIN UserCourse ON UserCourse.CourseSN = Course.SN
     JOIN User AS Teacher ON Teacher.SN = Course.TeacherSN
     JOIN File ON File.SN = Course.ThumbnailSN
     JOIN Domain ON Domain.SN = Course.DomainSN
+		JOIN CollectedCourse ON CollectedCourse.CourseSN=Course.SN
 	WHERE
     Course.SN IN (
         SELECT CourseSN
@@ -22,6 +23,7 @@ router.get(async (req, res) => {
     )
 	GROUP BY
     Course.SN;
+
 	`;
 	let [results] = await connection.execute(sql, [1]); // TODO
 

@@ -4,13 +4,12 @@ import ContentCard from "@/components/member/wishList/contentCard";
 
 export default function Content({ domain, search }) {
 	const [data, setData] = useState([]);
+	const [dataSuccess, setDataSuccess] = useState('false');
 
 	useEffect(() => {
 		const handleData = async () => {
 			try {
-				const list = await fetch(`/api/learner/wishlist`).then(r => r.json());
-				console.log(list);
-
+				const list = await fetch(`/api/learner/wishList`).then(r => r.json());
 				const data = list.filter(
 					item => item.Name.includes(search)
 						&& (!domain || item.DomainSN === +domain
@@ -23,7 +22,7 @@ export default function Content({ domain, search }) {
 		};
 
 		handleData();
-	}, [domain, search]);
+	}, [domain, search, dataSuccess]);
 
 	return (
 		<div className={styles.content}>
@@ -32,12 +31,17 @@ export default function Content({ domain, search }) {
 					return (
 						<ContentCard
 							key={v.SN}
+							user={v.UserSN}
+							collectedCoursSN={v.CollectedCoursSN}
 							title={v.Name}
 							teacher={v.Nickname}
 							domain={v.DomainName}
 							picUrl={v.Filename}
 							price={v.Price}
-							quantity={v.Total} />
+							quantity={v.Total}
+							setDataSuccess={setDataSuccess}
+						/>
+
 					);
 				})}
 

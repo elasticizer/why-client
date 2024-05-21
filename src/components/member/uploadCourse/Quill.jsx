@@ -4,10 +4,10 @@ import { useState } from "react";
 
 const ReactQuill = dynamic(import("react-quill"), { ssr: false });
 
-export default function Quill({ text, setText }) {
+export default function Quill({ text, setText,metion }) {
 	return (
 		<div>
-			<div className="form-group">
+			<div className={`form-group ${metion}`}>
 				<ReactQuill
 					value={text}
 					onChange={(value) => {
