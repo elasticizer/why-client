@@ -1,6 +1,9 @@
 import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
+import { IoIosArrowDown } from 'react-icons/io';
+import { IoMenu } from 'react-icons/io5';
+import { IoMdClose } from 'react-icons/io';
 
 export default function Navbar() {
     const session = useSession();
