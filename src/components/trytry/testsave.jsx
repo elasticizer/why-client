@@ -7,8 +7,9 @@ import { FaRegBookmark } from 'react-icons/fa6';
 import { BsBookmarkHeartFill } from 'react-icons/bs';
 // 空心圖
 import { BsBookmarkHeart } from 'react-icons/bs';
+import FavFcon from './testfav';
 
-const CourseList = () => {
+const TestSave = () => {
   const [courses, setCourses] = useState([]);
   const [users, setUsers] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -53,11 +54,11 @@ const CourseList = () => {
           onMouseLeave={() => setHover(false)}>
 
           <div className="md:shrink-0 relative  group-hover:scale-105 transition-transform duration-500 ease-in-out ">
-           
+{/* 
             <div className="absolute end-5 top-3 size-9 ">
-              {hover ? <BsBookmarkHeart className="size-7 text-red-500 " /> : ''}
-            </div>
-            
+              <BsBookmarkHeart className="size-7 text-red-500 " />            </div> */}
+            <FavFcon/>
+
             <img
               className="z-0 border-spacing-4 border rounded-[20px] h-48 w-full object-cover md:h-full md:w-48"
               src="/img/group-1.jpg"
@@ -69,7 +70,7 @@ const CourseList = () => {
               {course.Name}
             </div>
             <span className="block mt-1 text-sm leading-tight font-normal text-gray-500 ">
-              講師
+              {course.Nickname}
             </span>
 
             <div className="flex space-x-3">
@@ -110,10 +111,10 @@ const CourseList = () => {
       ))
       }
     </div>
-	
+
   );
 };
 
-export default CourseList;
+export default TestSave;
 
 //此為GPT用箭頭函數跟函式表達式預設導出

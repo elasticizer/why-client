@@ -1,6 +1,6 @@
 import React from 'react';
-import Cardsec from './cardsec';
-import Search from './search';
+import Cardsec from '../course/cardsec';
+import Search from '../course/search';
 
 export default function CourseList() {
 	return (
@@ -40,18 +40,7 @@ export default function CourseList() {
 										99+
 									</span>
 								</button>
-								<button
-									type="button"
-									className="items-center hs-tab-active:border-b-orange-500 hs-tab-active:text-orange-600 relative min-w-0 flex-1 bg-white first:border-s-0  border-b-2 py-4 px-4 text-gray-500 hover:text-orange-600 text-sm font-bold   lg:text-lg text-center overflow-hidden hover:bg-gray-200 focus:z-10 focus:outline-none   focus:text-orange-600 disabled:opacity-50 disabled:pointer-events-none"
-									id="hs-tab-to-select-item-2"
-									data-hs-tab="#hs-tab-to-select-2"
-									aria-controls="hs-tab-to-select-2"
-									role="tab">
-									文章
-									<span className=" hs-tab-active:text-orange-600 dark:hs-tab-active:bg-orange-800 dark:hs-tab-active:text-white ms-1 py-0.5 px-1.5 rounded-full text-base font-bold">
-										99+
-									</span>
-								</button>
+							
 							</nav>
 						</div>
 
@@ -66,7 +55,7 @@ export default function CourseList() {
 									<em className="font-semibold text-gray-800">first</em> items
 									tab body.
 								</p> */}
-									<div className="flex sm:flex-wrap gap-6">
+									<div className="flex flex-col-3 sm:flex-wrap gap-6">
 										<Cardsec />
 										<Cardsec />
 										<Cardsec />
@@ -82,19 +71,7 @@ export default function CourseList() {
 									</div>
 								</div>
 							</div>
-							<div
-								id="hs-tab-to-select-2"
-								className="hidden"
-								role="tabpanel"
-								aria-labelledby="hs-tab-to-select-item-2">
-								<div className="p-3 sm:p-0">
-									<p className="text-gray-500">
-										This is the{' '}
-										<em className="font-semibold text-gray-800">second</em>{' '}
-										items tab body.
-									</p>
-								</div>
-							</div>
+						
 						</div>
 					</div>
 				</div>

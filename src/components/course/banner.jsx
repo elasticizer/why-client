@@ -16,7 +16,7 @@ export default function Banner() {
 						src="/img/course-banner-01.jpg"
 						className=" opacity-50 inline-block  "
 						width={2000}
-						height={500}
+						height={600}
 						alt=""
 					/>
 				
