@@ -3,10 +3,12 @@
 import React from 'react';
 import RatingCard from '@/components/home/card-modules/ratingCard';
 import { useState, useEffect } from 'react';
+import { IoIosArrowBack } from 'react-icons/io';
+import { IoIosArrowForward } from 'react-icons/io';
 
 export default function Rating() {
 	const [page, setPage] = useState(1); // 追蹤當前頁面
-	const [perPage] = useState(4); // 每頁顯示的課程數量
+	const [perPage] = useState(6); // 每頁顯示的課程數量
 	const [data, setData] = useState([]);
 	const [displayedData, setDisplayedData] = useState([]);
 
@@ -37,18 +39,31 @@ export default function Rating() {
 	const prevPage = () => {
 		setPage(page - 1);
 	};
+
 	return (
-		<>
+		<section>
 			{/* <!-- Card Blog --> */}
-			<div class="max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+			<div className="max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
 				{/* <!-- Title --> */}
-				<div class="max-w-2xl mb-10">
-					<h2 class="text-2xl font-bold md:text-4xl md:leading-tight dark:text-white">
-						熱門課程
-					</h2>
-					<p class="mt-1 text-gray-600 dark:text-neutral-400">
-						看看大家都在學習什麼！
-					</p>
+				<div className="mb-3 flex justify- text-2xl font-semibold justify-between">
+					<div className="flex flex-col justify-items-start gap-3 md:flex-row md:items-center">
+						<h1>熱門課程</h1>
+						<p className="text-sm font-light">看看大家都在學些什麼</p>
+					</div>
+					<div className="flex gap-3 items-center ">
+						<button
+							className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
+							onClick={prevPage}
+							disabled={page === 1}>
+							<IoIosArrowBack />
+						</button>
+						<button
+							className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
+							onClick={nextPage}
+							disabled={page * perPage >= data.length}>
+							<IoIosArrowForward />
+						</button>
+					</div>
 				</div>
 				{/* <!-- End Title --> */}
 				<div className="flex gap-3 items-center">
@@ -88,19 +103,17 @@ export default function Rating() {
 					</button>
 				</div>
 				{/* <!-- Grid --> */}
-				<div class="grid sm:grid-cols-2 lg:grid-cols-4 gap-6">
+				<div class="grid grid-cols-1 gap-y-5 md:grid-cols-3 md:gap-5">
 					{displayedData.map((course, i) => (
 						<RatingCard
 							key={i}
-							title={course.Name}
-							content={course.Intro}
-							image={course.Filename}
+							data={course}
 						/>
 					))}
 				</div>
 				{/* <!-- End Grid --> */}
 			</div>
 			{/* <!-- End Card Blog --> */}
-		</>
+		</section>
 	);
 }
