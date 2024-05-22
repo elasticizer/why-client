@@ -54,8 +54,8 @@ export default function Footer() {
 							</div>
 							{/* <!-- End Col --> */}
 
-							<div class="col-span-2">
-								<h4 class="font-semibold text-gray-100 mb-3">聯絡我們</h4>
+							<div className="col-span-2">
+								<h4 className="font-semibold text-gray-100 mb-3">聯絡我們</h4>
 
 								<form
 									id="contact-form"
@@ -65,18 +65,18 @@ export default function Footer() {
 											className="w-full py-3 px-4 block w-full border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
 											placeholder="輸入您的訊息"></textarea>
 									</div>
-									<div class="flex items-center gap-2 sm:flex-row sm:gap-3  p-2">
-										<div class="w-full">
+									<div className="flex items-center gap-2 sm:flex-row sm:gap-3  p-2">
+										<div className="w-full">
 											<input
 												type="email"
 												id="hero-input"
-												name="hero-input"
-												class="py-3 px-4 block w-full border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+												name="entry.28436927"
+												className="py-3 px-4 block w-full border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
 												placeholder="輸入您的信箱"
 											/>
 										</div>
 										<button
-											class="w-full sm:w-auto whitespace-nowrap p-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-sky-400	 text-white hover:bg-sky-600 disabled:opacity-50 disabled:pointer-events-none"
+											className="w-full sm:w-auto whitespace-nowrap p-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-sky-400	 text-white hover:bg-sky-600 disabled:opacity-50 disabled:pointer-events-none"
 											type="submit">
 											送出
 										</button>
