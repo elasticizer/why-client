@@ -5,6 +5,7 @@ import React from 'react';
 const router = createRouter();
 
 router.get(async (req, res) => {
+	const {id}=req.query
 	const sql = `
 	SELECT CollectedCourse.UserSN,CollectedCourse.CourseSN AS CollectedCoursSN, Course.SN, Course.Name, Course.Price, Teacher.Nickname, File.Filename, Domain.SN AS DomainSN,Domain.Name AS DomainName, COUNT(*) AS Total
 	FROM
@@ -25,7 +26,7 @@ router.get(async (req, res) => {
     Course.SN;
 
 	`;
-	let [results] = await connection.execute(sql, [1]); // TODO
+	let [results] = await connection.execute(sql, [id]); // TODO
 
 	res.json(results);
 });
