@@ -11,7 +11,6 @@ export default function ArticleCard({ title, content, author, image }) {
 		<>
 			<a
 				className="group rounded-xl overflow-hidden"
-				data-aos="zoom-in"
 				href="#">
 				<div className="sm:flex">
 					<div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full sm:w-56 h-44">
@@ -39,9 +38,9 @@ export default function ArticleCard({ title, content, author, image }) {
 								viewBox="0 0 24 24"
 								fill="none"
 								stroke="currentColor"
-								stroke-width="2"
-								stroke-linecap="round"
-								stroke-linejoin="round">
+								strokeWidth="2"
+								strokeLinecap="round"
+								strokeLinejoin="round">
 								<path d="m9 18 6-6-6-6" />
 							</svg>
 						</p>
