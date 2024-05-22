@@ -4,7 +4,6 @@ import Navbar from '@/components/head/navbar';
 import React from 'react';
 import Intro from '@/components/home/aboutUs/intro';
 import Faq from '../components/home/faq/faq';
-import Faq2 from '../components/home/faq/faq2';
 import Home from '@/layouts/home';
 import Modal from '@/components/home/modal';
 import styles from '@/styles/modal.module.css';
