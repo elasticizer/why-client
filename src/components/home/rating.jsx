@@ -15,7 +15,7 @@ export default function Rating() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const res = await fetch('/api/course');
+				const res = await fetch('/api/rating');
 				let postData = await res.json();
 				setData(postData);
 			} catch (error) {
@@ -41,9 +41,9 @@ export default function Rating() {
 	};
 
 	return (
-		<section>
+		<section data-aos="zoom-in-down">
 			{/* <!-- Card Blog --> */}
-			<div className="max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+			<div className=" max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
 				{/* <!-- Title --> */}
 				<div className="mb-3 flex justify- text-2xl font-semibold justify-between">
 					<div className="flex flex-col justify-items-start gap-3 md:flex-row md:items-center">
@@ -103,7 +103,7 @@ export default function Rating() {
 					</button>
 				</div>
 				{/* <!-- Grid --> */}
-				<div class="grid grid-cols-1 gap-y-5 md:grid-cols-3 md:gap-5">
+				<div className="grid grid-cols-2 gap-y-5 gap-3 md:grid-cols-3 md:gap-5">
 					{displayedData.map((course, i) => (
 						<RatingCard
 							key={i}
