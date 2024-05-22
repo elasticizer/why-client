@@ -34,7 +34,11 @@ export function CartProvider({ children }) {
 		const fd = new FormData();
 
 		fd.append('user', 1);
-		fd.append('course', course.SN);
+
+		if (course) {
+			fd.append('course', course.SN);
+			console.log(course);
+		}
 
 		const data = await fetch('/api/cart', {
 			method: 'DELETE',
