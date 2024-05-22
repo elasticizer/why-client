@@ -9,12 +9,12 @@ export default function Content({ domain, search }) {
 	useEffect(() => {
 		const handleData = async () => {
 			try {
-				const list = await fetch(`/api/learner/wishList`).then(r => r.json());
-				const data = list.filter(
+				const list = await fetch(`/api/learner/wishList?id=2`).then(r => r.json());
+				const results = list.filter(
 					item => item.Name.includes(search)
 						&& (!domain || item.DomainSN === +domain
 						));
-				setData(data);
+				setData(results);
 				console.log(data);
 			} catch (err) {
 				console.error('Error fetching data:', err);

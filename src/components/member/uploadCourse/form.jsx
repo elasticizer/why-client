@@ -219,7 +219,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 										id="domain"
 										name="domain"
 										autoComplete="domain-name"
-										className={`block w-full  border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 sm:max-w-xs sm:text-sm sm:leading-6 ps-1 pe-3 ${selectLimit}`}
+										className={`block w-full  border-1 border-gray-300 py-1.5 text-gray-900 shadow-sm sm:max-w-xs sm:text-sm sm:leading-6 ps-1 pe-3 ${selectLimit}`}
 										value={domain}
 										onChange={(e) => {
 											setDomain(e.target.value);
@@ -326,11 +326,11 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 								</label>
 								<div className="mt-2">
 									<div className="sm:flex ">
-										<div className="mb-5 sm:mb-0 sm:me-5 w-full sm:w-6/12	h-72 overflow-y-scroll">
+										<div className="mb-5 sm:mb-0 sm:me-5 w-full sm:w-6/12 md:h-72 overflow-y-scroll">
 											<img src={previewURL} alt="" style={{ "width": "100%" }} />
 										</div>
 										<div className="sm:w-6/12">
-											<p className="text-base text-justify">在此上傳您的課程圖片。必須符合我們的課程圖片品質標準方可使用。重要規範：750x422 像素；jpg、jpeg、png 檔案類型，圖片上不可有文字。</p>
+											<p className="text-base text-justify">在此上傳您的課程圖片。必須符合我們的課程圖片品質標準方可使用。重要規範：1920x1080 像素；jpg、jpeg、png 檔案類型，圖片上不可有文字。</p>
 											<div className="mt-5">
 												<label htmlFor="file-input" className="sr-only">
 													Choose file
@@ -365,7 +365,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 								</label>
 								<div className="mt-2">
 									<div className="sm:flex ">
-										<div className="mb-5 sm:mb-0 sm:me-5 w-full sm:w-6/12	h-72">
+										<div className="mb-5 sm:mb-0 sm:me-5 w-full sm:w-6/12	md:h-72">
 											<video src={previewVideo} alt="" style={{ "width": "100%" }} controls autoPlay />
 										</div>
 										<div className="sm:w-6/12">
