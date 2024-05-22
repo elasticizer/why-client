@@ -3,7 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 
-export default function ArticleCard({ title, content }) {
+export default function ArticleCard({ title, content, author, image }) {
 	useEffect(() => {
 		AOS.init();
 	}, []);
@@ -17,18 +17,18 @@ export default function ArticleCard({ title, content }) {
 					<div className="flex-shrink-0 relative rounded-xl overflow-hidden w-full sm:w-56 h-44">
 						<img
 							className="group-hover:scale-105 transition-transform duration-500 ease-in-out size-full absolute top-0 start-0 object-cover rounded-xl"
-							src="https://images.hahow.in/images/65bb68f25c7e820201bd6075"
+							src={image}
 							alt="Image Description"
 						/>
 					</div>
 					<div className="grow mt-4 sm:mt-0 sm:ms-6 px-4 sm:px-0">
-						<h6 className="text-sm font-light text-white group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
-							Poyuan發表的文章
+						<h6 className="text-sm font-light text-white group-hover:text-gray-600 dark:text-neutral-300">
+							{author}發表的文章
 						</h6>
-						<h3 className="text-xl font-semibold text-white group-hover:text-gray-600 dark:text-neutral-300 dark:group-hover:text-white">
+						<h3 className="text-xl font-semibold text-white group-hover:text-gray-600 dark:text-neutral-300 line-clamp-2">
 							{title}
 						</h3>
-						<p className="mt-3 text-white ">{content}</p>
+						<p className="mt-3 text-white line-clamp-2">{content}</p>
 						<p className="mt-4 inline-flex items-center gap-x-1 text-gray-600 decoration-2 hover:underline font-medium">
 							Read more
 							<svg
