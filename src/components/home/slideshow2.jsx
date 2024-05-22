@@ -10,11 +10,11 @@ export default function Slideshow2() {
           "loadingClasses": "opacity-0"
         }'
 					class="relative">
-					<div className="hs-carousel relative overflow-hidden w-full h-[30rem] md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] bg-gray-100 rounded-2xl ">
+					<div className="hs-carousel relative overflow-hidden w-full h-[20rem] md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] bg-gray-100 rounded-2xl ">
 						<div className="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
 							{/* <!-- Item --> */}
 							<div class="hs-carousel-slide">
-								<div class="h-[30rem] md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] flex flex-col bg-cover bg-center bg-no-repeat bg-[url('/image/slide.jpg')]">
+								<div class="h-[20rem] w-full md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] flex flex-col bg-cover bg-center bg-no-repeat bg-[url('/image/slide.jpg')]">
 									{/* <div className="mt-auto w-2/3 md:max-w-lg ps-5 pb-5 md:ps-10 md:pb-10">
 										<span className="block text-white">Nike React</span>
 										<span className="block text-white text-xl md:text-3xl">
