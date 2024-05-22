@@ -10,13 +10,13 @@ export default function Navbar() {
 		<>
 			{/* <!-- ========== HEADER ========== --> */}
 			<header className="sticky top-0 inset-x-0 flex flex-wrap md:justify-start md:flex-nowrap z-50 w-full bg-white border-b border-gray-200 text-md py-3 md:py-0 ">
-				<nav className="relative max-w-[85rem] w-full mx-auto px-4 md:flex md:items-center md:justify-between md:px-6 lg:px-8">
+				<nav className="relative max-w-[100rem] w-full mx-auto px-4 md:flex md:items-center md:justify-between md:px-6 lg:px-8">
 					<div className="flex items-center justify-between">
 						<Link href="/">
 							<div className="flex-none text-xl font-semibold dark:text-white">
 								<Image
 									src="/image/why_logo.png"
-									width={200}
+									width={250}
 									height={100}
 									alt="why logo"
 								/>
@@ -53,26 +53,26 @@ export default function Navbar() {
 								</button>
 
 								<div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2">
-									<a
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
 										href="#">
 										領域1
-									</a>
-									<a
+									</Link>
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
 										href="#">
 										領域2
-									</a>
-									<a
+									</Link>
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
 										href="#">
 										領域3
-									</a>
-									<a
+									</Link>
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
 										href="#">
 										領域4
-									</a>
+									</Link>
 								</div>
 							</div>
 							<div className="hs-dropdown hs-dropdown-example relative inline-flex">
@@ -85,35 +85,35 @@ export default function Navbar() {
 								</button>
 
 								<div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2">
-									<a
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
 										href="#">
 										分類1
-									</a>
-									<a
+									</Link>
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
 										href="#">
 										分類2
-									</a>
-									<a
+									</Link>
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
 										href="#">
 										分類3
-									</a>
-									<a
+									</Link>
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
 										href="#">
 										分類4
-									</a>
+									</Link>
 								</div>
 							</div>
-							<a
+							<Link
 								className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
 								href="#">
 								購物車
-							</a>
+							</Link>
 
-							<a
+							<Link
 								className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-orange-400 md:border-s md:border-gray-300 md:my-6 md:ps-6"
 								href="#">
 								<svg
@@ -135,7 +135,7 @@ export default function Navbar() {
 									/>
 								</svg>
 								登入/註冊
-							</a>
+							</Link>
 						</div>
 					</div>
 				</nav>
