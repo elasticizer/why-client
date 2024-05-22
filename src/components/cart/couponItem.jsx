@@ -4,7 +4,9 @@ export default function CouponItem() {
 	const couponData = [
 		{ id: 1, title: '隨機優惠', directions: '隨機優惠券，折扣10%' },
 		{ id: 2, title: '畢業生專屬', directions: '畢業生專屬優惠，折扣50%' },
-		{ id: 3, title: '端午節優惠', directions: '端午節特別優惠，享受額外30%折扣' }
+		{ id: 3, title: '端午節優惠', directions: '端午節特別優惠，享受額外30%折扣' },
+		{ id: 4, title: '會員專屬', directions: '會員享10%折扣' },
+		{ id: 5, title: '夏季優惠', directions: '夏天專屬優惠，折扣10%' }
 	];
 
 	return (
