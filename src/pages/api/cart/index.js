@@ -5,30 +5,27 @@ const router = createRouter();
 
 router.get(async (req, res) => {
 	const [results] = await connection.execute(
-		'SELECT Course.SN, Course.Identifier, Course.Name, Course.Price, Domain.Name AS DomainName, File.Filename FROM Course LEFT JOIN	Domain ON Course.DomainSN = Domain.SN JOIN File ON Course.ThumbnailSN = File.SN LIMIT 3'
+		'SELECT Course.SN, Course.Identifier, Course.Name, Course.Price, Domain.Name AS DomainName, File.Filename FROM Cart JOIN Course ON Course.SN = Cart.CourseSN JOIN User ON User.SN = Cart.UserSN JOIN Domain ON Course.DomainSN = Domain.SN JOIN File ON Course.ThumbnailSN = File.SN'
 	);
 	res.status(200).json(results);
 });
 
 router.post(async (req, res) => {
 	const { user, course } = req.body;
-
 	if (!user || !course) {
-		return res.status(400).json({ message: '缺少必要欄位' }); // TODO:資料傳遞未成功，會回傳此行
+		return res.status(400).json({ done: false, message: '缺少必要欄位' });
 	}
-
 	const [results] = await connection.execute(
 		'INSERT INTO Cart (UserSN, CourseSN) VALUES (?, ?)',
 		[user, course]
 	);
-	res.status(200).json({ message: '新增課程成功' });
+	res.status(200).json({ done: true, message: '新增課程成功' });
 });
 
 router.delete(async (req, res) => {
 	const { user, course } = req.body;
-
 	if (!user || !course) {
-		return res.status(400).json({ message: '缺少必要欄位' });
+		return res.status(400).json({ done: false, message: '缺少必要欄位' });
 	}
 	const [results] = await connection.execute(
 		'DELETE FROM Cart WHERE UserSN = ? AND CourseSN = ?',

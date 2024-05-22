@@ -39,7 +39,7 @@ export default function CourseItem({ item, checked, onChange, removeItem }) {
 					<button
 						className="text-red-400 hover:text-red-600"
 						data-hs-overlay="#hs-basic-modal-delete"
-						onClick={() => removeItem(item.SN)}>
+						onClick={() => removeItem(item)}>
 						<RiDeleteBinLine />
 					</button>
 					{/* 收藏Modal */}
