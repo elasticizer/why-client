@@ -6,11 +6,12 @@ import CouponModal from '@/components/cart/couponModal';
 import { useCart } from '@/hooks/useCart';
 
 export default function CartList() {
-	const { cartItem, removeItem, selected } = useCart();
+	const { cartItem, removeItem } = useCart();
 
 	const [selectedItems, setSelectedItems] = useState([]);
 
 	const [course, setCourse] = useState([]);
+
 
 	useEffect(() => {
 		const getCourse = async () => {
