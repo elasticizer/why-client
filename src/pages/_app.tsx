@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 
+import { SessionProvider } from '@/contexts/session';
 import type { AppProps } from 'next/app';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
@@ -13,5 +14,9 @@ export default function App({ Component, pageProps }: AppProps) {
 		[pathname]
 	);
 
-	return <Component {...pageProps} />;
+	return (
+		<SessionProvider>
+			<Component {...pageProps} />
+		</SessionProvider>
+	);
 }

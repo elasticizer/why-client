@@ -2,12 +2,18 @@ import Break from '@/components/account/break';
 import Google from '@/components/account/oauth/google';
 import Line from '@/components/account/oauth/line';
 import SigninForm from '@/components/session/SigninForm';
+import { useSession } from '@/contexts/session';
 import SessionLayout from '@/layouts/session';
 import Link from 'next/link';
 import { useRouter } from 'next/router';
 
 export default function Index() {
 	const router = useRouter();
+	const session = useSession();
+
+	if (session) {
+		router.replace('/');
+	}
 
 	return (
 		<SessionLayout>
