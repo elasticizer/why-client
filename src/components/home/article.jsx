@@ -5,10 +5,11 @@ import { IoIosArrowBack, IoIosArrowForward } from 'react-icons/io';
 
 export default function Article() {
 	const [page, setPage] = useState(1); // 追蹤當前頁面
-	const [perPage] = useState(4); // 每頁顯示的課程數量
+	const perPage = 4; // 每頁顯示的課程數量
+	const [data, setData] = useState([]);
 	const [displayedData, setDisplayedData] = useState([]);
 
-	const article = [
+	const articleImg = [
 		{
 			author: 'Andy',
 			title: '德文自學，從零開始——免費德語自學資源大公開',
@@ -39,11 +40,10 @@ export default function Article() {
 		},
 		{
 			author: 'Jack',
-			title: '有病制作－歡迎來到有病的世界',
+			title: '如果人生是場「遊戲」，你該怎樣升等通關？',
 			content:
-				'點開手機遊戲，日系精美的繪畫風格伴隨著一陣文字的躁動跳轉，隨著詭譎的畫面轉場，一名有著兔子臉龐的誰就這樣映入了你的眼簾，而她也就這樣的筆直地凝視著你打量，脖子上垂掛的麻繩線頭她一手拎著，笑容中帶著瘋狂的氣息，彷彿你也和她一樣，是一個狂徒。每一個人都是不一樣的，都是有病的患者。若你下載了有病制作所創作的手機遊戲，便能在遊玩的過程中深刻地體會這樣的一件事情，「有病」不代表你非得改變自己，它可以是一件很幽默、很有趣，甚至是讓人醉心於其中的事情。而這一切獨特的世界觀都來自一個人與遊戲之神之間的情感拉扯、剪不斷理還亂的纏綿悱惻。',
-			fileName:
-				'https://blog.hahow.in/content/images/2017/10/21584063_1651441011541008_477287500_o-1.jpg'
+				'很多人的求學時期應該跟我一樣，一碰電玩遊戲就會被父母提醒：「整天都在玩！還不快去讀書！」殊不知我才剛開機 5 分鐘連角色都還沒登入啊⋯⋯。時至今日遊戲產業蓬勃發展，上一輩鮮少預料到有「電競選手」這個職業的誕生，因此許多的父母也漸漸的改變原先的觀點，不會讓孩子埋首於書本堆中；因為遊戲有時候能讓我們「體驗」真實的人生，甚至及早認知社會的協作必要性，如果將「遊戲化」的思維用在工作與學習上，還會有加倍的效率與成果！',
+			fileName: 'https://images.hahow.in/images/642697be3101425220f1230e'
 		},
 		{
 			author: 'Cindy',
@@ -69,11 +69,24 @@ export default function Article() {
 	];
 
 	useEffect(() => {
+		const fetchData = async () => {
+			try {
+				const res = await fetch('/api/article?limit=8');
+				let postData = await res.json();
+				setData(postData);
+			} catch (error) {
+				setData([]);
+			}
+		};
+		fetchData();
+	}, []);
+
+	useEffect(() => {
 		// 根據當前頁面和每頁顯示的課程數量計算要顯示的課程資料
 		const startIndex = (page - 1) * perPage;
 		const endIndex = startIndex + perPage;
-		setDisplayedData(article.slice(startIndex, endIndex));
-	}, [page, perPage]);
+		setDisplayedData(data.slice(startIndex, endIndex));
+	}, [data, page, perPage]);
 
 	const nextPage = () => {
 		setPage(page + 1);
@@ -85,9 +98,11 @@ export default function Article() {
 
 	return (
 		<>
-			<div className="bg-orange-400	">
+			<div className="bg-orange-400">
 				{/* <!-- Card Blog --> */}
-				<div className="max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+				<div
+					className="max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto"
+					data-aos="fade-up-right">
 					<div className="mb-3 flex justify- text-2xl font-semibold justify-between">
 						<div className="flex flex-col justify-items-start gap-3 md:flex-row md:items-center text-white">
 							<h1>精選文章</h1>
@@ -114,7 +129,7 @@ export default function Article() {
 							<button
 								className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
 								onClick={nextPage}
-								disabled={page * perPage >= article.length}>
+								disabled={page * perPage >= data.length}>
 								<IoIosArrowForward />
 							</button>
 						</div>
@@ -125,10 +140,10 @@ export default function Article() {
 						{displayedData.map((article, i) => (
 							<ArticleCard
 								key={i}
-								title={article.title}
-								content={article.content}
-								image={article.fileName}
-								author={article.author}
+								title={article.Title}
+								content={article.Content}
+								author={article.Username}
+								image={articleImg[i + (page - 1) * perPage].fileName}
 							/>
 						))}
 						{/* <!-- End Card --> */}
