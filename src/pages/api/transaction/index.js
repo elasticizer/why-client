@@ -9,7 +9,14 @@ router.get(async (req, res) => {
 	);
 	res.status(200).json(results);
 });
-
+router.post(async (req, res) => {
+	const { learner } = req.body;
+	const [results] = await connection.execute(
+		'INSERT INTO Order (UserSN, CourseSN) VALUES (?, ?)',
+		[learner]
+	);
+	res.status(200).json(results);
+});
 export default router.handler({
 	onError(e, req, res) {
 		res.status(500).json({ message: '已經有資料' });
