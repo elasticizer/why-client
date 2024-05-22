@@ -59,11 +59,6 @@ export default function CouponModal() {
 									</div>
 									<div className="p-4 overflow-y-auto flex gap-3 flex-wrap justify-center">
 										<CouponItem />
-										<CouponItem />
-										<CouponItem />
-										<CouponItem />
-										<CouponItem />
-										<CouponItem />
 									</div>
 									<div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t dark:border-neutral-700">
 										<button
