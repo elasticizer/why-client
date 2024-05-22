@@ -12,7 +12,7 @@ router.get(async (req, res) => {
 	`;
 	let [results] = await connection.execute(sql, [User, collectedCoursSN]); // TODO
 
-	res.json({ status: 'success', message: '刪除成功' });
+	res.status(200).json({ status: 'success', message: '刪除成功' });
 });
 
 export default router.handler({

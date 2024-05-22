@@ -85,7 +85,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 
 	return (
 
-		<div className={`bg-white flex flex-col items-center shadow-sm ring-1 ring-gray-300 fixed w-3/5 top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 px-5 overflow-scroll h-3/6  ${UploadFileAlertDisplay}
+		<div className={`bg-white flex flex-col items-center shadow-sm ring-1 ring-gray-300 fixed w-full h-full top-0 left-0 md:w-3/5 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 px-5 overflow-scroll md:h-4/6	${UploadFileAlertDisplay}
 		`}>
 
 			<div className="mt-5 relative"><BsCloudUploadFill size="80px" color="#FFAF60" /></div>
@@ -134,7 +134,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 						<Quill setText={setText} text={text} />
 					</div>
 				</div> */}
-				<div className="mt-10">
+				<div className="mt-2">
 					<button
 						type="button"
 						className=" ring-1 ring-orange-500 text-orange-500 px-6 py-2 text-sm font-semibold  shadow-sm hover:text-orange-300  hover:ring-orange-300" onClick={(e) => {

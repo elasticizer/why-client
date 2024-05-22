@@ -13,7 +13,7 @@ export default function Dropzone({ video, setVideo,metion }) {
 	const { getRootProps, getInputProps } = useDropzone({ onDrop });
 	const dropzoneStyle = {
 		border: '2px dashed #ccc',
-		padding: '50px',
+		padding:video?'4px':'50px',
 		textAlign: 'center',
 		cursor: 'pointer',
 
