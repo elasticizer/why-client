@@ -3,6 +3,7 @@ import AOS from 'aos';
 import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import QuickGuideCard from '@/components/home/card-modules/quickGuideCard';
+import WaveBackground from './waveBackground';
 
 export default function QuickGuide() {
 	useEffect(() => {
@@ -10,9 +11,7 @@ export default function QuickGuide() {
 	}, []);
 	return (
 		<>
-			<section
-				className="my-10"
-				data-aos="fade-right">
+			<section data-aos="fade-right">
 				<div className="flex course max-w-[75rem] mx-auto flex-col md:flex-row justify-center gap-10 px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
 					<QuickGuideCard
 						title={'立即開始學習'}
@@ -27,6 +26,7 @@ export default function QuickGuide() {
 						content={'看看優秀的學員們在課堂後大放異彩！'}
 					/>
 				</div>
+				<WaveBackground />
 			</section>
 		</>
 	);
