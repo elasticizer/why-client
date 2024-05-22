@@ -11,7 +11,10 @@ router.get(async (req, res) => {
 	const id = req.cookies.SESSION_ID;
 
 	if (!id) {
-		throw new RouteError(StatusCodes.BAD_REQUEST, 'Session not established');
+		throw new RouteError(
+			StatusCodes.BAD_REQUEST,
+			'Session not established'
+		);
 	}
 
 	const [[user]] = await connection.execute(
@@ -22,7 +25,10 @@ router.get(async (req, res) => {
 	const icon = `https://ui-avatars.com/api/?background=random&name=${name}`;
 
 	if (!user) {
-		throw new RouteError(StatusCodes.UNAUTHORIZED, 'Invalid session received');
+		throw new RouteError(
+			StatusCodes.UNAUTHORIZED,
+			'Invalid session received'
+		);
 	}
 
 	const cookie = serialize('SESSION_ID', id, {

@@ -33,7 +33,7 @@ router.post(async (req, res) => {
 		`${env.APP_URL}/api/auth/signin/challenge?token=${token}`
 	));
 
-	res.status(200).json({
+	res.status(StatusCodes.OK).json({
 		done: true,
 		data: null
 	});

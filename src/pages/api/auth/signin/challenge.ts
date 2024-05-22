@@ -28,7 +28,7 @@ router.get(async (req, res) => {
 		const identifier = randomUUID();
 
 		await connection.execute(
-			`INSERT INTO Session (UUID, IP, ChallengeToken, UserAgent, UserSN) VALUES (?, ?, ?, ?, ?)`,
+			`INSERT INTO Session (UUID, ChallengeToken, IP, UserAgent, UserSN) VALUES (?, ?, ?, ?, ?)`,
 			[identifier, token, ip, agent, data.sn]
 		);
 
@@ -57,7 +57,10 @@ function getToken(req: NextApiRequest) {
 	const token = [req.query.token].flat().at(-1);
 
 	if (!token) {
-		throw new RouteError(StatusCodes.BAD_REQUEST, 'Token not provided');
+		throw new RouteError(
+			StatusCodes.BAD_REQUEST,
+			'Token not received'
+		);
 	}
 
 	return token;

@@ -62,7 +62,7 @@ router.get(async (req, res) => {
 	const identifier = randomUUID();
 
 	const [[user]] = await connection.execute(
-		'INSERT INTO User (Email, FirstName, LastName) VALUES (?, ?, ?) RETURNING SN',
+		'REPLACE INTO User (Email, FirstName, LastName) VALUES (?, ?, ?) RETURNING SN',
 		[info.email, info.given_name, info.family_name]
 	);
 
