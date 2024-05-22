@@ -4,8 +4,13 @@ import Link from 'next/link';
 import { IoIosArrowDown } from 'react-icons/io';
 import { IoMenu } from 'react-icons/io5';
 import { IoMdClose } from 'react-icons/io';
+import { useSession } from '@/contexts/session';
+import LoginSession from '@/components/home/loginSession';
+import LogoutSession from '@/components/home/logoutSession';
 
 export default function Navbar() {
+	const session = useSession();
+
 	return (
 		<>
 			{/* <!-- ========== HEADER ========== --> */}
@@ -43,38 +48,11 @@ export default function Navbar() {
 									關於
 								</div>
 							</Link>
-							<div className="hs-dropdown hs-dropdown-example relative inline-flex">
-								<button
-									id="hs-dropdown-example"
-									type="button"
-									className="hs-dropdown-toggle inline-flex items-center gap-x-2 text-md font-medium text-gray-500 hover:text-orange-400">
-									領域
-									<IoIosArrowDown />
-								</button>
-
-								<div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2">
-									<Link
-										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
-										href="#">
-										領域1
-									</Link>
-									<Link
-										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
-										href="#">
-										領域2
-									</Link>
-									<Link
-										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
-										href="#">
-										領域3
-									</Link>
-									<Link
-										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
-										href="#">
-										領域4
-									</Link>
-								</div>
-							</div>
+							<Link
+								className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
+								href="#">
+								領域
+							</Link>
 							<div className="hs-dropdown hs-dropdown-example relative inline-flex">
 								<button
 									id="hs-dropdown-example"
@@ -112,30 +90,7 @@ export default function Navbar() {
 								href="#">
 								購物車
 							</Link>
-
-							<Link
-								className="flex items-center gap-x-2 font-medium text-gray-500 hover:text-orange-400 md:border-s md:border-gray-300 md:my-6 md:ps-6"
-								href="#">
-								<svg
-									className="flex-shrink-0 size-4"
-									xmlns="http://www.w3.org/2000/svg"
-									width="24"
-									height="24"
-									viewBox="0 0 24 24"
-									fill="none"
-									stroke="currentColor"
-									strokeWidth="2"
-									strokeLinecap="round"
-									strokeLinejoin="round">
-									<path d="M19 21v-2a4 4 0 0 0-4-4H9a4 4 0 0 0-4 4v2" />
-									<circle
-										cx="12"
-										cy="7"
-										r="4"
-									/>
-								</svg>
-								登入/註冊
-							</Link>
+							{session ? <LogoutSession /> : <LoginSession />}
 						</div>
 					</div>
 				</nav>
