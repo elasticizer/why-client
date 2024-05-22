@@ -6,7 +6,7 @@ import CouponModal from '@/components/cart/couponModal';
 import { useCart } from '@/hooks/useCart';
 
 export default function CartList() {
-	const { cartItem, removeItem } = useCart();
+	const { cartItem, removeItem, selected } = useCart();
 
 	const [selectedItems, setSelectedItems] = useState([]);
 
@@ -51,7 +51,7 @@ export default function CartList() {
 							selectedItems.length === course.length
 								? setSelectedItems([])
 								: setSelectedItems(course.map(v => v.SN))
-						} // TODO id改為SN就行了
+						}
 					/>
 					{course.map(item => (
 						<CourseItem
