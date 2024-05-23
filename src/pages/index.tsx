@@ -17,6 +17,7 @@ export default function Index() {
 	};
 	return (
 		<Home>
+			<title>WhyAcademy</title>
 			<button
 				className={styles.floatingButton}
 				onClick={toggleModal}>
