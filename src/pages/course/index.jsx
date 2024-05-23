@@ -1,16 +1,17 @@
-import React from 'react';
-import Category from '@/components/course/category';
-import CardFirst from '../../components/card/cardfirst';
-import CourseList from '../../components/card/courselist';
+import React, { useState } from 'react'
+import Category from '../../components/category/category';
+import CardFirst from '../../components/card/cardlist';
+import CourseList from '../../components/card/cardseclist';
 
 import Pages from '@/components/course/pages';
 
-import Banner from '@/components/course/banner';
+import Banner from '../../components/banner/banner';
 import Home from '../../layouts/home';
 import Slideshow from '../../components/slideShow/slideshow';
 
 
-export default function Group() {
+export default function Course() {
+
 	return (
 		<>
 			<Home>

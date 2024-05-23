@@ -2,7 +2,12 @@ import React from 'react'
 import { FaStar } from 'react-icons/fa';
 import { MdPeopleAlt } from 'react-icons/md';
 import { IoTimeOutline } from 'react-icons/io5';
+//空心
 import { BsBookmarkHeart } from 'react-icons/bs';
+//實心
+import { BsBookmarkHeartFill } from "react-icons/bs";
+import { FaShoppingCart } from "react-icons/fa";
+
 
 export default function Card({ data = {
     SN: ''
@@ -32,7 +37,12 @@ export default function Card({ data = {
 
 
             <div className=" inline-flex flex-col space-y-2">
-                <BsBookmarkHeart className="sm:my-2 lg:my-0 md:size-7 sm:size-9 text-red-500 " />
+                <div className="flex justify-end space-x-5">
+                    {/* <FaShoppingCart className="sm:my-2 lg:my-0 md:size-7 sm:size-9 text-blue-500 " /> */}
+                     <BsBookmarkHeart className="sm:my-2 lg:my-0 md:size-7 sm:size-9 text-red-500 " />
+                    
+                </div>
+               
                 <div className=" lg:h-12 md:h-7 sm:h-5 tracking-wide text-lg text-black font-bold ">
                     {Name}
                 </div>
