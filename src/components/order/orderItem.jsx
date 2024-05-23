@@ -1,9 +1,26 @@
-import React from 'react';
+import { useState, useEffect } from 'react';
 
 export default function OrderItem() {
+	const [orders, setOrders] = useState([]);
+
+	useEffect(() => {
+		const getOrder = async () => {
+			const url = '/api/transaction';
+			try {
+				const res = await fetch(url);
+				const data = await res.json();
+				setOrders(data);
+				// console.log(data);
+			} catch (e) {
+				setOrders([]);
+			}
+		};
+		getOrder();
+	}, []);
+	console.log(orders);
 	return (
 		<>
-			<div className="container ">
+			<div className="container">
 				<div className="border-2 border-dashed rounded-lg p-4 mt-4 mx-auto w-4/5">
 					{/* 訂單標頭 */}
 					<div className="flex justify-between items-center border-b-2 pb-2">
@@ -61,12 +78,6 @@ export default function OrderItem() {
 												玩轉 RPA：使用 UiPath 打造專屬小助理
 											</span>
 										</div>
-										{/* <p className="text-gray-600 lg:text-base md:text-sm sm:text-sm tracking-wide">
-									原創角色設計全攻略｜從風格定位到 IP 經營
-								</p>
-								<p className="text-gray-600 lg:text-base md:text-sm sm:text-sm tracking-wide">
-									玩轉 RPA：使用 UiPath 打造專屬小助理
-								</p> */}
 									</div>
 									<div>
 										<p className="font-bold lg:text-lg md:text-base sm:text-base">
@@ -106,7 +117,7 @@ export default function OrderItem() {
 							</div>
 						</div>
 						{/* 訂單時間條 */}
-						<div className="ms-4">
+						<div className="ms-4 me-4">
 							{/* Item */}
 							<div className="flex gap-x-3">
 								{/* Icon */}
@@ -118,7 +129,7 @@ export default function OrderItem() {
 								{/* End Icon */}
 								{/* Right Content */}
 								<div className="grow pt-0.5 pb-4">
-									<h3 className="flex gap-x-1.5 font-semibold text-gray-800 dark:text-white">
+									<h3 className="flex gap-x-1.5 font-semibold text-gray-800 text-nowrap">
 										<svg
 											className="flex-shrink-0 size-4 mt-1"
 											xmlns="http://www.w3.org/2000/svg"
@@ -177,29 +188,6 @@ export default function OrderItem() {
 									<p className="mt-1 text-sm text-gray-600 dark:text-neutral-400">
 										2024-03-31
 									</p>
-								</div>
-								{/* End Right Content */}
-							</div>
-							{/* End Item */}
-							{/* Item */}
-							<div className="flex gap-x-3">
-								{/* Icon */}
-								<div className="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] after:bg-gray-200 dark:after:bg-neutral-700">
-									<div className="relative z-10 size-7 flex justify-center items-center">
-										<div className="size-2 rounded-full bg-gray-400 dark:bg-neutral-600" />
-									</div>
-								</div>
-								{/* End Icon */}
-								{/* Right Content */}
-								<div className="grow pt-0.5 pb-4">
-									<h3 className="flex gap-x-1.5 font-semibold text-gray-800 dark:text-white">
-										前往課程頁面
-									</h3>
-									<a
-										href='#'
-										className="mt-1 -ms-1 p-1 inline-flex items-center gap-x-2 text-xs rounded-lg border border-transparent text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-neutral-400 dark:hover:bg-neutral-700 text-nowrap cursor-pointer">
-										原創角色設計全攻略｜從風格定位到 IP 經營
-									</a>
 								</div>
 								{/* End Right Content */}
 							</div>
