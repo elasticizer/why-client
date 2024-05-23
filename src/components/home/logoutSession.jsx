@@ -18,6 +18,11 @@ export default function LogoutSession() {
 				<a
 					className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
 					href="#">
+					個人資料
+				</a>
+				<a
+					className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
+					href="#">
 					會員中心
 				</a>
 				<a
