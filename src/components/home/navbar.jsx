@@ -44,7 +44,7 @@ export default function Navbar() {
 							<Link href="/about">
 								<div
 									className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
-									href="#">
+									href="/about">
 									關於
 								</div>
 							</Link>
