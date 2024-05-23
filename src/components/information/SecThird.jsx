@@ -1,6 +1,6 @@
 import React from 'react';
 import NavIntro from '@/components/courseLesson/NavIntro';
-import NavCh from './unit/NavCh';
+import NavCh from '../chapter/NavCh';
 import NavComment from '@/components/courseLesson/NavComment';
 import NavAsk from '@/components/courseLesson/NavAsk';
 import AccordItem from '@/components/courseLesson/AccordItem';
@@ -20,7 +20,7 @@ export default function SecThird() {
 									</div>
 								</div>
 							</div>
-							
+
 							<div className="">
 								<p className=" text-gray-500 font-['Inter'] leading-7 pt-3 lg:pt-1 mt-2 text-base  dark:text-neutral-400 text-justify ">
 									探索
@@ -68,8 +68,8 @@ export default function SecThird() {
 							<br />
 							{/* 手風琴 */}
 							<AccordItem />
-							
-				
+
+
 							<div className=" w-full   lg:sticky lg:z-50 lg:top-[69px] py-0  z-0  ">
 								<nav
 									className=" bg-gray-200 flex space-x-0 "

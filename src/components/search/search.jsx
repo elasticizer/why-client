@@ -12,10 +12,10 @@ export default function Search({ setSearch }) {
 
     return (
         <>
-            <div className="mt-7 sm:mt-12 mx-auto max-w-xl relative">
+            <div className="sm:mt-12 mx-auto max-w-xl relative ">
                 {/* Form */}
                 <form onSubmit={handleData}>
-                    <div className="relative z-10 flex space-x-3 p-3 bg-white border rounded-lg shadow-lg shadow-gray-100 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-gray-900/20">
+                    <div className=" relative z-10 flex space-x-3 p-3 bg-white border rounded-lg shadow-lg shadow-gray-100 dark:bg-neutral-900 dark:border-neutral-700 dark:shadow-gray-900/20">
                         <div className="flex-[1_0_0%] ">
                             <label
                                 htmlFor="hs-search-article-1"

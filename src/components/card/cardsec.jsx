@@ -24,6 +24,10 @@ export default function CardSec({ data = {
 		, Price
 		, Nickname, Filename, DomainName } = data
 	const [icon, setIcon] = useState(false)
+	const [cart, setCart] = useState(false)
+
+
+
 
 	// const { addItemToCart } = useCart();
 
@@ -36,10 +40,16 @@ export default function CardSec({ data = {
 			console.error("Error fetching data:", error);
 		}
 	};
-	const notify = () => toast.success('已加入購物車');
+	const addCart = () => toast.success('已加入購物車');
+	const cancelCart = () => toast.success('已移除購物車');
+
+	const bookmark = () => toast.success('加入收藏成功');
+	const unbookmark = () => toast.success('已移除收藏');
+
+
 	return (
 		<>
-			<a className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-lg transition">
+			<a href="../../pages/course/[pid].jsx" className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-lg transition">
 				<div className="relative pt-[50%] sm:pt-[60%] lg:pt-[60%]  overflow-hidden">
 					<img
 						className="w-full h-auto absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-tr-3xl  rounded-bl-3xl"
@@ -54,7 +64,7 @@ export default function CardSec({ data = {
 						{DomainName}
 					</div>
 					<button onClick={() => {
-						icon ? setIcon(false) : setIcon(true)
+						icon ? setIcon(false) || unbookmark() : setIcon(true) || bookmark()
 						getData()
 					}}
 					>
@@ -102,7 +112,7 @@ export default function CardSec({ data = {
 
 						<div>
 							<button onClick={() => {
-								notify()
+								addCart()
 								{ addItemToCart }
 							}}>
 								<img

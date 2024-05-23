@@ -1,12 +1,12 @@
 import React from 'react';
-import VideoIframe from '../../coursevideo/content';
+import VideoIframe from '../coursevideo/content';
 import Chapter from './chapter';
 import ChapterVideo from './chapter';
 
 export default function NavCh() {
 	return (
 		<>
-			
+
 			<Chapter />
 			<ChapterVideo />
 			{/* 輪播 */}
