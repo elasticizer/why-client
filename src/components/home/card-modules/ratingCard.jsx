@@ -14,13 +14,13 @@ export default function RatingCard({ data }) {
 				src={data.Filename}
 				alt="Image Description"
 			/>
-			<div className="px-4 py-2 md:px-5">
+			<div className="px-2 py-2 md:px-5">
 				<h3 className="text-lg font-bold text-gray-800 line-clamp-1">
 					{data.Name}
 				</h3>
 				<p className="mt-1 text-gray-500 line-clamp-2">{data.Intro}</p>
 			</div>
-			<div className="flex p-2 items-center gap-2">
+			<div className="flex items-center pt-1 pb-2 pl-4 gap-1 text-sm sm:gap-2">
 				<div className="flex items-center gap-1">
 					<FaFire />
 					熱門課程
