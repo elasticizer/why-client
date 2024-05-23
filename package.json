@@ -18,6 +18,8 @@
 		"nodemailer": "^6.9.13",
 		"preline": "^2.1.0",
 		"qrcode": "^1.5.3",
+		"quill": "^2.0.2",
+		"quill-image-resize-module": "^3.0.0",
 		"react": "^18",
 		"react-dom": "^18",
 		"react-dropzone": "^14.2.3",
@@ -25,8 +27,8 @@
 		"react-quill": "^2.0.0",
 		"sqlite3": "^5.1.7",
 		"string-strip-html": "^13.4.8",
-		"ua-parser-js": "^1.0.37",
 		"sweetalert2": "^11.11.0",
+		"ua-parser-js": "^1.0.37",
 		"zod": "^3.23.8"
 	},
 	"devDependencies": {
