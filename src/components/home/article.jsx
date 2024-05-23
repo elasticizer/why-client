@@ -50,7 +50,7 @@ export default function Article() {
 			title: '跨越山海，共創知識：推動偏遠教師增能的學習 3 動力',
 			content:
 				'近年來，科技的快速發展不僅改變我們的生活方式，也為教育帶來前所未有的革命。Hahow for Campus 聯手教育部國教署和為台灣而教基金會、誠致教育基金會共同推動《偏遠地區學校教師增能公益計畫》，精選 100 堂豐富多元的課程內容，透過科技的力量更為偏遠地區的教育帶來新的可能。',
-			fileName: 'https://images.hahow.in/images/66447e59d7fd64c4efec8c28'
+			fileName: 'https://images.api.hahow.in/images/60c376fbfc01bc126e64481b'
 		},
 		{
 			author: 'Jason',
@@ -142,7 +142,7 @@ export default function Article() {
 								key={i}
 								title={article.Title}
 								content={article.Content}
-								author={article.Username}
+								author={article.Nickname}
 								image={articleImg[i + (page - 1) * perPage].fileName}
 							/>
 						))}
