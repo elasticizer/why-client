@@ -1,9 +1,10 @@
-import { createContext, useContext, useState } from 'react';
+import { createContext, useContext, useState, useEffect } from 'react';
 
 const CartContext = createContext(null);
 
 export function CartProvider({ children }) {
 	const [cartItem, setCartItem] = useState([]);
+	const [currentItem, setCurrentItem] = useState([]);
 
 	const addItemToCart = async course => {
 		if (!cartItem.some(item => item.SN === course.SN)) {
@@ -37,7 +38,7 @@ export function CartProvider({ children }) {
 
 		if (course) {
 			fd.append('course', course.SN);
-			console.log(course);
+			// console.log(course);
 		}
 
 		const data = await fetch('/api/cart', {
@@ -51,9 +52,24 @@ export function CartProvider({ children }) {
 		}
 	};
 
-	const totalQty = cartItem.reduce((acc, v) => acc + v.qty, 0);
-	const totalPrice = cartItem.reduce((acc, v) => acc + v.qty * v.Price, 0);
+	useEffect(() => {
+		const fetchCartItems = async () => {
+			const res = await fetch('/api/cart', {
+				method: 'GET'
+			});
+			const data = await res.json();
+			// console.log(data);
+			if (data) {
+				setCartItem(data);
+			}
+		};
+		fetchCartItems();
+	}, []);
+	console.log(cartItem);
 
+	const totalQty = cartItem.reduce((acc, v) => acc + 1, 0);
+	const totalPrice = cartItem.reduce((acc, v) => acc + 1 * v.Price, 0);
+	
 	return (
 		<CartContext.Provider
 			value={{

@@ -12,7 +12,6 @@ export default function CartList() {
 
 	const [course, setCourse] = useState([]);
 
-
 	useEffect(() => {
 		const getCourse = async () => {
 			const url = '/api/cart';
