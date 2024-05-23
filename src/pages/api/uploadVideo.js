@@ -4,13 +4,16 @@ import { extname, resolve } from 'path';
 import { env } from 'process';
 import { randomUUID } from 'crypto';
 import connection from '@/handlers/sqlite3';
-import { useSession } from '@/contexts/session';
-
+import { onError, onNoMatch } from '@/handlers/router';
+import { StatusCodes } from 'http-status-codes';
+import Session from '@/helpers/session';
+import { RouteError } from '@/handlers/router'
 
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, resolve(env.PWD, "public", "learner"));
+		cb(null, resolve(env.PWD, "public", "learner","LessonVideo"));
 	},
+
 	filename: function (req, file, cb) {
 		const newFileName = randomUUID() + extname(file.originalname);
 		cb(null, newFileName);
@@ -28,32 +31,40 @@ export const config = {
 };
 
 router.use(upload.single("video")).post(async (req, res) => {
-	const { title } = req.body;
-	console.log(req.file);
+	const sessionId = req.cookies.SESSION_ID;
+
+	if (!sessionId) {
+		throw new RouteError(
+			StatusCodes.FORBIDDEN,
+			'沒有登入'
+		);
+	}
+
+
+	const { lessonTitle } = req.body;
 	const file = req.file;
 	const filename = file.filename;
 	const ext = extname(filename).substring(1);
 	const contentType = file.mimetype;
 	const uuid = randomUUID();
+	const user = await Session.associate(sessionId);
 
 
-	// const [writeVideo] = await connection.execute('INSERT INTO File (Filename,Extension,ContentType,ContentHash,UploaderSN) VALUES (?,?,?,?,?)', [filename, ext, contentType,uuid,]);
+	await connection.execute('INSERT INTO File (Filename,Extension,ContentType,ContentHash,UploaderSN) VALUES (?,?,?,?,?)', [filename, ext, contentType, uuid, user.SN]);
 
+	const [fileResult] = await connection.execute('SELECT SN AS fileSN FROM File WHERE Filename =?', [filename]);
 
-	// 	const [writeCourse]=await connection.execute(
-	// 		'INSERT INTO Lesson (SN,Title,Intro,WhenCreated,WhenLastEdited,CourseSN,VideoSN,) VALUES (,?,,CURRENT_TIMESTAMP,,,)',[title])
-	// 	console.log(req.body);
-	const { lessonTitle } = req.body;
-	const nowDate = new Date();
-	res.status(200).json({ lesson: lessonTitle, file: req.file, Date: nowDate });
+	const viedoSN = fileResult[0].fileSN;
+
+	await connection.execute(
+		'INSERT INTO Lesson (Title,WhenCreated,CourseSN,VideoSN) VALUES (?,CURRENT_TIMESTAMP,?,?)', [lessonTitle, user.SN, viedoSN]);
+
+	const [lessonResult] = await connection.execute('SELECT SN AS lessonSN FROM Lesson WHERE VideoSN =?', [viedoSN]);
+
+	const lessonSN = lessonResult[0].lessonSN;
+
+	res.status(200).json({ lessonSN: lessonSN });
+	// 可以獲得這次上傳的章節的章節SN
 });
 
-export default router.handler({
-	onError: (err, req, res) => {
-		console.log(err);
-		res.status(err.statusCode || 500).json({ error: err.message });
-	},
-	onNoMatch: (req, res) => {
-		res.status(404).json({ error: `路由 ${req.method} ${req.url} 找不到` });
-	}
-});
+export default router.handler({ onError, onNoMatch });
