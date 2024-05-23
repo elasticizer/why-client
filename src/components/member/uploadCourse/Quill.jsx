@@ -4,7 +4,7 @@ import { useState } from "react";
 
 const ReactQuill = dynamic(import("react-quill"), { ssr: false });
 
-export default function Quill({ text, setText,metion }) {
+export default function Quill({ text, setText, metion }) {
 	return (
 		<div>
 			<div className={`form-group ${metion}`}>
@@ -15,7 +15,7 @@ export default function Quill({ text, setText,metion }) {
 					}}
 					modules={{
 						toolbar: [
-							[{ header: [1, 2, false] }],
+							[{ header: [1, 2, 3, 4, 5, 6, false] }],
 							["bold", "italic", "underline", "strike"],
 							["link"],
 							[{ align: [] }],
