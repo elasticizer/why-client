@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import Image from 'next/image';
-import Navbar from '@/components/head/navbar';
 import React from 'react';
 import Intro from '@/components/home/aboutUs/intro';
 import Faq from '../components/home/faq/faq';
@@ -31,7 +30,6 @@ export default function About() {
 			<Modal show={showModal} />
 			<Intro />
 			<Faq />
-			<Footer />
-		</>
+		</Home>
 	);
 }
