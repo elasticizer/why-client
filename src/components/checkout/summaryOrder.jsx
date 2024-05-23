@@ -1,7 +1,16 @@
 import React from 'react';
 import CheckoutModal from './checkoutModal';
+import { useState, useEffect } from 'react';
+import { useCart } from '@/hooks/useCart';
 
 export default function SummaryOrder() {
+	const [discount, setDiscount] = useState(0); // 預設折扣金額
+
+	const { totalPrice, totalQty } = useCart();
+
+	useEffect(() => {
+		setDiscount(Math.round(totalPrice * 0.25));
+	}, [totalPrice]);
 	return (
 		<>
 			{/* 送出結帳確認提示框 */}
@@ -17,7 +26,7 @@ export default function SummaryOrder() {
 						{/* 優惠券折抵 */}
 						<div className="flex items-center justify-between text-sm hs-tooltip">
 							<p>優惠折抵</p>
-							<p className="underline hs-tooltip-toggle">-NT$100</p>
+							<p className="underline hs-tooltip-toggle">-NT${discount}</p>
 							{/* 優惠券工具提示 */}
 							<span
 								className="hs-tooltip-content hs-tooltip-shown:opacity-50 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-600 text-white text-xs rounded-lg"
@@ -27,13 +36,13 @@ export default function SummaryOrder() {
 						</div>
 						{/* 小計 */}
 						<div className="flex items-center justify-between text-sm">
-							<p>1件小計</p>
-							<p>NT$1000</p>
+							<p>{totalQty} 件小計</p>
+							<p>NT${totalPrice}</p>
 						</div>
 						{/* 總金額 */}
 						<div className="flex items-center justify-between text-lg border-t pt-4">
 							<p>結帳總金額 :</p>
-							<p className="font-bold">NT$900</p>
+							<p className="font-bold">NT${totalPrice - discount}</p>
 						</div>
 						{/* 結帳按鈕 */}
 						<button

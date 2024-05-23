@@ -29,6 +29,7 @@
 		"react-icons": "^5.2.1",
 		"react-paginate": "^8.2.0",
 		"react-player": "^2.16.0",
+		"react-router-dom": "^6.23.1",
 		"sqlite3": "^5.1.7",
 		"string-strip-html": "^13.4.8",
 		"sweetalert2": "^11.11.0",

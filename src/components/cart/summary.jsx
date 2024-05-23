@@ -8,7 +8,7 @@ export default function Summary() {
 	const { totalPrice, totalQty } = useCart();
 
 	useEffect(() => {
-		setDiscount(totalPrice * 0.1);
+		setDiscount(Math.round(totalPrice * 0.25));
 	}, [totalPrice]);
 
 	return (
