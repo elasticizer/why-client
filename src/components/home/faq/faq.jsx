@@ -7,17 +7,27 @@ const faqs = [
 	{
 		question: '買過的課程在哪裡',
 		answer:
-			'點擊 WhySchool 官網右上角的「我的學習」，並點擊你所購買的商品類型，即可在「所有課程」中找到購買的商品。'
+			'點擊 WhyAcademy官網右上角的「我的學習」，並點擊你所購買的商品類型，即可在「所有課程」中找到購買的商品。'
 	},
 	{
-		question: '如何在 WhySchool 購買課程',
-		answer:
-			'Step 1. 前往你想要購買的課程頁面，點選「立即購買」<br /> Step 2.網頁將會跳轉至登入頁面，若你已經是 WhySchool會員請點選註冊帳號時的登入方式； 若還不是 WhySchool會員，請點選「快速註冊」'
+		question: '如何在 WhyAcademy購買課程',
+		answer: [
+			'前往你想要購買的課程頁面，點選「立即購買」。',
+			'網頁將會跳轉至登入頁面，若你已經是 WhySchool會員請點選註冊帳號時的登入方式；若還不是 WhySchool會員，請點選「快速註冊」。'
+		]
 	},
 	{
 		question: '課程影片無法播放',
-		answer:
-			'如果課程影片載入過慢或者觀看不流暢，可以嘗試下列方式來獲得改善：<br /> 1.帳號登出後重新登入<br /> 2.確認瀏覽器頁面是否開啟過多分頁<br /> 3.使用瀏覽器「無痕模式」播放測試<br /> 4.瀏覽器關閉重開<br /> 5.清除瀏覽器快取<br /> 6.設備關機重開<br /> 7.更換其他網路<br /> 8.更換其他瀏覽器'
+		answer: [
+			'帳號登出後重新登入',
+			'確認瀏覽器頁面是否開啟過多分頁',
+			'使用瀏覽器「無痕模式」播放測試',
+			'瀏覽器關閉重開',
+			'清除瀏覽器快取',
+			'設備關機重開',
+			'更換其他網路',
+			'更換其他瀏覽器'
+		]
 	},
 	{
 		question: '在「我的學習」找不到曾經購買的課程',
@@ -26,18 +36,23 @@ const faqs = [
 	},
 	{
 		question: '線上影音課程的意思',
-		answer:
-			'可以無限次重複觀看，且沒有期限，不再擔心錯過上課時間<br /> 1.帶著筆電、手機、或是平板，連著網路，在哪裡都可以開心學習<br /> 2.課程頁面多有其他好學生留下的評價、作業，可以在購課前參考<br /> 3.部分課程提供單元試看，可在購買前確認課程是否適合自己<br /> 4.可在問題討論區留言發問，與好老師及同學們互動交流意見'
+		answer: [
+			'可以無限次重複觀看，且沒有期限，不再擔心錯過上課時間',
+			'帶著筆電、手機、或是平板，連著網路，在哪裡都可以開心學習',
+			'課程頁面多有其他好學生留下的評價、作業，可以在購課前參考',
+			'部分課程提供單元試看，可在購買前確認課程是否適合自己',
+			'可在問題討論區留言發問，與好老師及同學們互動交流意見'
+		]
 	},
 	{
-		question: '註冊成為 WhySchool 會員',
+		question: '註冊成為 WhyAcademy會員',
 		answer:
-			'點擊 WhySchool 官網右上角的「我的學習」，並點擊你所購買的商品類型，即可在「所有課程」中找到購買的商品。'
+			'點擊 WhyAcademy官網右上角的「我的學習」，並點擊你所購買的商品類型，即可在「所有課程」中找到購買的商品。'
 	},
 	{
 		question: '建立個人檔案',
 		answer:
-			'在 WhySchool 的系統裡，可以透過Google進行登入，或是申請一組「帳號密碼」進行登入。而註冊後若想要有多種登入方式，請到「帳號設定」頁面連結其他登入方式'
+			'在 WhyAcademy的系統裡，可以透過Google進行登入，或是申請一組「帳號密碼」進行登入。而註冊後若想要有多種登入方式，請到「帳號設定」頁面連結其他登入方式'
 	},
 	{
 		question: '可以一次使用多張折扣券 (Coupon) 嗎',
@@ -63,13 +78,23 @@ export default function Faq() {
 		setSearchTerm(event.target.value);
 	};
 
-	const handleSearchClick = () => {
-		const filtered = faqs.filter(
-			faq =>
-				faq.question.toLowerCase().includes(searchTerm.toLowerCase()) ||
-				faq.answer.toLowerCase().includes(searchTerm.toLowerCase())
-		);
+	const handleSearch = () => {
+		const filtered = faqs.filter(faq => {
+			const questionMatch = faq.question
+				.toLowerCase()
+				.includes(searchTerm.toLowerCase());
+			const answerMatch = Array.isArray(faq.answer)
+				? faq.answer.join(' ').toLowerCase().includes(searchTerm.toLowerCase())
+				: faq.answer.toLowerCase().includes(searchTerm.toLowerCase());
+			return questionMatch || answerMatch;
+		});
 		setFilteredFaqs(filtered);
+	};
+
+	const handleSearchKeyPress = event => {
+		if (event.key === 'Enter') {
+			handleSearch();
+		}
 	};
 
 	return (
@@ -100,10 +125,11 @@ export default function Faq() {
 								type="text"
 								value={searchTerm}
 								onChange={handleSearchChange}
+								onKeyPress={handleSearchKeyPress}
 								placeholder="搜尋常見問題"
 								className="py-3 px-5 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
 							/>
-							<button onClick={handleSearchClick}>
+							<button onClick={handleSearch}>
 								<FaSearch />
 							</button>
 						</div>
@@ -117,7 +143,15 @@ export default function Faq() {
 								<FaqCard
 									key={index}
 									question={faq.question}>
-									<p dangerouslySetInnerHTML={{ __html: faq.answer }} />
+									{Array.isArray(faq.answer) ? (
+										<ol className="list-decimal list-inside text-gray-800 dark:text-white">
+											{faq.answer.map((v, i) => (
+												<li key={i}>{v}</li>
+											))}
+										</ol>
+									) : (
+										<p>{faq.answer}</p>
+									)}
 								</FaqCard>
 							))}
 						</div>
