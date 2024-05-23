@@ -3,6 +3,8 @@ import multer from 'multer';
 import { extname, resolve } from 'path';
 import { env } from 'process';
 import { randomUUID } from 'crypto';
+import connection from '@/handlers/sqlite3';
+import { useSession } from '@/contexts/session';
 
 
 const storage = multer.diskStorage({
@@ -18,6 +20,7 @@ const storage = multer.diskStorage({
 const router = createRouter();
 const upload = multer({ storage: storage });
 
+
 export const config = {
 	api: {
 		bodyParser: false
@@ -25,10 +28,24 @@ export const config = {
 };
 
 router.use(upload.single("video")).post(async (req, res) => {
-	console.log(req.body)
-	const { Introduction } = req.body;
+	const { title } = req.body;
+	console.log(req.file);
+	const file = req.file;
+	const filename = file.filename;
+	const ext = extname(filename).substring(1);
+	const contentType = file.mimetype;
+	const uuid = randomUUID();
+
+
+	// const [writeVideo] = await connection.execute('INSERT INTO File (Filename,Extension,ContentType,ContentHash,UploaderSN) VALUES (?,?,?,?,?)', [filename, ext, contentType,uuid,]);
+
+
+	// 	const [writeCourse]=await connection.execute(
+	// 		'INSERT INTO Lesson (SN,Title,Intro,WhenCreated,WhenLastEdited,CourseSN,VideoSN,) VALUES (,?,,CURRENT_TIMESTAMP,,,)',[title])
+	// 	console.log(req.body);
+	const { lessonTitle } = req.body;
 	const nowDate = new Date();
-	res.status(200).json({ Introduction: Introduction, Date: nowDate });
+	res.status(200).json({ lesson: lessonTitle, file: req.file, Date: nowDate });
 });
 
 export default router.handler({

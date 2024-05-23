@@ -4,13 +4,17 @@ import Record from '@/components/member/learner/record';
 import Sidebar from '@/components/member/learner/sidebar';
 import Tabbar from '@/components/member/tabbarLearner';
 import Content from '@/components/member/learner/content';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import styles from '@/styles/learner.module.css';
+import { useSession } from '@/contexts/session';
 
 export default function Index() {
 	const [windowNav, setWindowNav] = useState("hidden");
+	const session = useSession();
+
 	return (
 		<>
+			<div>{session?.firstName}</div>
 			<link
 				rel="stylesheet"
 				href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
@@ -39,10 +43,10 @@ export default function Index() {
 				<Content />
 			</div>
 			{/* SECTION mobileNavbar */}
-			<Tabbar setWindowNav={setWindowNav} windowNav={windowNav}/>
+			<Tabbar setWindowNav={setWindowNav} windowNav={windowNav} />
 
 			{/* SECTION mobileWindowNavbar */}
-			<Sidebar  WindowNav={windowNav} setWindowNav={setWindowNav}/>
+			<Sidebar WindowNav={windowNav} setWindowNav={setWindowNav} />
 		</>
 	);
 }

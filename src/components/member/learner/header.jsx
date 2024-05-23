@@ -1,15 +1,32 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/learner.module.css';
 import UserList from '@/components/member/userList';
 import { BsBell } from "react-icons/bs";
 
 
 export default function Header() {
-	const [toggle, setToggle] = useState("hidden");
+	const button = useRef();
+	const [hidden, setHidden] = useState(true);
+
+	useEffect(
+		() => {
+			const type = 'click';
+			const listener = e => button.current.contains(e.target)
+				? setHidden(!hidden)
+				: !hidden && setHidden(true);
+
+			window.addEventListener(type, listener);
+
+			return () => {
+				window.removeEventListener(type, listener);
+			};
+		}
+	);
+
 	return (
 		<div className={`${styles.header} hidden md:flex relative`}>
-			<UserList userList={toggle} option={'top-10 -right-3'} />
+			<UserList userList={hidden} option={'top-10 -right-3'} />
 			<a
 				href="#"
 				className={`${styles.textStyleBlack16} ${styles.headerA} `}>
@@ -18,9 +35,7 @@ export default function Header() {
 			<div className={styles.bell}>
 				<BsBell />
 			</div>
-			<button className={`${styles.user}`} onClick={() => {
-				setToggle(toggle === 'hidden' ? 'flex' : 'hidden');
-			}}>
+			<button className={styles.user} ref={button}>
 				<Image
 					src="/learner/container.png"
 					alt=""
@@ -29,9 +44,6 @@ export default function Header() {
 					className={styles.userImg}
 				/>
 			</button>
-
-
-
 		</div>
 	);
 }
