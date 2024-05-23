@@ -2,6 +2,7 @@ import React from 'react';
 import CouponItem from './couponItem';
 
 export default function CouponModal() {
+	
 	return (
 		<>
 			<div className="flex justify-between p-4 border-t border-gray-300">
