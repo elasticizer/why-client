@@ -19,6 +19,7 @@ export default function Footer() {
 										src="/image/why_logo-white.png"
 										width={300}
 										height={100}
+										alt="why logo"
 									/>
 								</a>
 							</div>
@@ -29,24 +30,22 @@ export default function Footer() {
 
 								<div className="mt-3 grid space-y-3">
 									<a
-										className="inline-flex gap-x-2 text-white hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+										className="inline-flex gap-x-2 text-white hover:text-gray-800"
 										href="#">
 										最新消息
 									</a>
-									<Link href="/faq">
-										<div
-											className="inline-flex gap-x-2 text-white hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200"
-											href="#">
-											常見問題
-										</div>
-									</Link>
 									<a
-										className="inline-flex gap-x-2 text-white hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+										className="inline-flex gap-x-2 text-white hover:text-gray-800"
+										href="#">
+										常見問題
+									</a>{' '}
+									<a
+										className="inline-flex gap-x-2 text-white hover:text-gray-800"
 										href="#">
 										服務契約
 									</a>
 									<a
-										className="inline-flex gap-x-2 text-white hover:text-gray-800 dark:text-neutral-400 dark:hover:text-neutral-200"
+										className="inline-flex gap-x-2 text-white hover:text-gray-800"
 										href="#">
 										隱私權政策
 									</a>
@@ -58,10 +57,25 @@ export default function Footer() {
 								<h4 className="font-semibold text-gray-100 mb-3">聯絡我們</h4>
 
 								<form
+									action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSc6h_KVkpN2bcQkRb7L2t5sZkL7oCQ45wJtZEDU5xV5ztQ_PQ/formResponse"
 									id="contact-form"
-									className="bg-white rounded-lg">
+									method="GET"
+									className="bg-white rounded-lg"
+									onSubmit={e => {
+										e.preventDefault();
+										const form = e.currentTarget;
+										const data = new URLSearchParams(new FormData(form));
+										fetch(form.action + '?' + data.toString(), {
+											method: form.method,
+											mode: 'no-cors'
+										}).then(() => {
+											form.reset();
+											alert('表單送出成功');
+										});
+									}}>
 									<div className="p-2">
 										<textarea
+											name="entry.691578112"
 											className="w-full py-3 px-4 block w-full border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
 											placeholder="輸入您的訊息"></textarea>
 									</div>
