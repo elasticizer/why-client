@@ -76,8 +76,8 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 					setProgress(progressPercent); // 更新進度狀態
 				},
 			});
-			console.log('影片上傳成功');
-			return response.data;
+			console.log({ data: response.data });
+			return response;
 		} catch (error) {
 			console.error('影片上傳失敗', error);
 		}
@@ -101,8 +101,8 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 				<div className="flex  shadow-sm ring-1 ring-gray-300 sm:max-w-md w-full mt-5">
 					<input
 						type="text"
-						name="Introduction"
-						autoComplete="Introduction "
+						name="lessonTitle"
+						autoComplete="lessonTitle"
 						className={`block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 ${chapterNameLimit}`}
 						placeholder="輸入章節名稱..."
 						value={chapterName}
@@ -112,7 +112,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 					/>
 				</div>
 				<p className={`text-xs leading-6 text-${chapterNameLimitMetion} `}>
-				輸入內容不能低於5個字元</p>
+					輸入內容不能低於5個字元</p>
 
 
 				{/* 填寫作業 */}

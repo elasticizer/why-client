@@ -1,5 +1,5 @@
 import Image from 'next/image';
-import { useState } from 'react';
+import { createRef, useEffect, useState } from 'react';
 import styles from '@/styles/learner.module.css';
 import { GoVideo } from "react-icons/go";
 import { RiPencilFill } from "react-icons/ri";
@@ -11,10 +11,26 @@ import Link from 'next/link';
 
 
 
-
 export default function Tabbar({ setWindowNav, windowNav }) {
 	const [iconRotate, setIconRotate] = useState("");
-	const [userList, setUserList] = useState("hidden");
+	const [hidden, setHidden] = useState(true);
+	const buttonEl = createRef();
+	useEffect(
+		() => {
+			const type = 'click';
+			const listener = e => buttonEl.current.contains(e.target)
+				? setHidden(!hidden)
+				: !hidden && setHidden(true);
+
+			window.addEventListener(type, listener);
+
+			return () => {
+				// 拔除監聽器，因為離開該頁面所監聽的元素消失，但監聽器不會消失，會持續監聽，就會監聽一個空的東西而占用記憶體
+				window.removeEventListener(type, listener);
+			};
+		}
+	);
+
 	return (
 		<nav className={`${styles.bottomNav}`}>
 			<Link href="/teacher" className={styles.navItem}>
@@ -46,19 +62,11 @@ export default function Tabbar({ setWindowNav, windowNav }) {
 						height={20}
 					/>
 				</div>
-				<div className={`${styles.learnerListIcon} transition-all ${iconRotate}`} onClick={() => {
-					if (iconRotate) {
-						setIconRotate("");
-						setUserList("hidden");
-					} else {
-						setIconRotate("-rotate-180");
-						setUserList("");
-					}
-				}}>
+				<div className={`${styles.learnerListIcon} transition-all ${hidden?'':'-rotate-180'}`} ref={buttonEl}>
 					<BsChevronDown size="20px" color="white" />
 				</div>
 			</div>
-			<UserList userList={userList} option={'-top-52'} />
+			<UserList userList={hidden} option={'-top-52'} />
 		</nav>
 	);
 }

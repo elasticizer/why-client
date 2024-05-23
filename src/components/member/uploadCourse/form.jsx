@@ -12,6 +12,7 @@ import { extname } from 'path';
 export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, courseClass, setCourseClass }) {
 	const [courseTitle, setCourseTitle] = useState("");
 	const [domain, setDomain] = useState("");
+	const [price, setPrice] = useState("");
 	const [selectFile, setSelectFile] = useState(null);
 	const [previewURL, setPreviewURL] = useState("/learner/upload.png");
 	const [selectVideoFile, setSelectVideoFile] = useState(null);
@@ -26,6 +27,8 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 	const [titleMetion, setTitleMetion] = useState('white');
 	const [selectLimit, setSelectLimit] = useState('');
 	const [selectMetion, setSelectMetion] = useState('white');
+	const [priceLimit, setPriceLimit] = useState('');
+	const [priceMetion, setPriceMetion] = useState('white');
 	const [courseDescriptionLimite, setCourseDescriptionLimite] = useState('');
 	const [courseDescriptionLimiteMetion, setCourseDescriptionLimiteMetion] = useState('white');
 	const [instructorExperienceLimite, setInstructorExperienceLimite] = useState('');
@@ -97,6 +100,20 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 			setCourseDescriptionLimite('');
 			setCourseDescriptionLimiteMetion('white');
 		}
+
+		if (price === "") {
+			setPriceLimit('ring ring-red-400');
+			setPriceMetion('red-500');
+			isValid = false;
+		} else if (price < 1) {
+			setPriceLimit('ring ring-red-400');
+			setPriceMetion('red-500');
+		}
+		else {
+			setPriceLimit('');
+			setPriceMetion('white');
+		}
+
 		if (instructorExperience.length < 200) {
 			setInstructorExperienceLimite('ring ring-red-400');
 			setInstructorExperienceLimiteMetion('red-500');
@@ -261,6 +278,35 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 									輸入說明至少達200字元以上</p>
 								<p className={`text-xs leading-6 text-${courseDescriptionLimiteMetion} `}>
 									內容未達200字元</p>
+							</div>
+
+							<div className="sm:col-span-4">
+								<label
+									htmlFor="title"
+									className="block text-md font-semibold leading-6 text-gray-900"
+								>
+									課程定價
+								</label>
+								<div className="mt-2">
+									<div className="flex  shadow-sm ring-1 ring-gray-300 sm:max-w-md">
+										<input
+											type="number"
+											min="0"
+											name="price"
+											autoComplete="price"
+											className={`block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 ${priceLimit}`}
+											placeholder="輸入課程標售價格"
+											value={price}
+											onChange={(e) => {
+												setPrice(e.target.value);
+											}}
+										/>
+									</div>
+									<p className="mt-1 text-xs leading-6 text-gray-400">
+										建議可先參考其他類似課程的售價再做決定</p>
+									<p className={`text-xs leading-6 text-${priceMetion} `}>
+										{!price ? "此欄位必填" : price < 1 && "價格不能低於1"}</p>
+								</div>
 							</div>
 
 							{/* SECTION 教學類型 */}
