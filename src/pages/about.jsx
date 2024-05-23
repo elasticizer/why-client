@@ -16,6 +16,7 @@ export default function About() {
 	};
 	return (
 		<Home>
+			<title>關於</title>
 			<button
 				className={styles.floatingButton}
 				onClick={toggleModal}>
