@@ -7,7 +7,7 @@ export default function Sidebar() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const res = await fetch('/api/income/courseCount/${}');
+				const res = await fetch('/api/income/courseCount');
 				let postData = await res.json();
 				setCourseCount(postData);
 			} catch (error) {
