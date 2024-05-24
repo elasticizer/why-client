@@ -3,25 +3,10 @@ import CourseListTbody from './courseListTbody';
 import SearchBox from './searchBox';
 import { useState, useEffect } from 'react';
 
-export default function CourseList() {
-	const [data, setData] = useState([]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const res = await fetch('/api/income');
-				let postData = await res.json();
-				setData(postData);
-			} catch (error) {
-				setData([]);
-			}
-		};
-		fetchData();
-	}, []);
-
+export default function CourseList({ data }) {
 	return (
 		<>
-			<SearchBox />
+			{/* <SearchBox /> */}
 			{/* table */}
 			{/* thead */}
 			<div className="flex flex-row justify-between items-center px-4 py-2 border rounded-t-lg font-semibold bg-yellow-50">

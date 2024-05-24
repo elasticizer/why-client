@@ -1,0 +1,497 @@
+/* 文字 */
+.textStyleGrey14 {
+	font-size: 0.875rem;
+	letter-spacing: 0.0187rem;
+	line-height: 1.5rem;
+	color: #9a9a9a;
+}
+
+.textStyleGrey12 {
+	font-size: 12px;
+	letter-spacing: 0.0187rem;
+	line-height: 1.5rem;
+	color: #9a9a9a;
+}
+
+.textStyleBlack16 {
+	font-size: 1rem;
+	letter-spacing: 0.0187rem;
+	line-height: 1.5rem;
+	color: black;
+	font-weight: bold;
+}
+
+.textStyleBlack16 {
+	font-size: 1rem;
+	letter-spacing: 0.0187rem;
+	line-height: 1.5rem;
+	color: black;
+	font-weight: bold;
+}
+
+.textStyleBlackBold14 {
+	font-size: 0.875rem;
+	letter-spacing: 0.0187rem;
+	line-height: 1.5rem;
+	color: black;
+	font-weight: bold;
+}
+
+.textStyleTitle {
+	font-size: 1.5rem;
+	font-weight: bold;
+	letter-spacing: 5%;
+	line-height: 2rem;
+	color: black;
+	letter-spacing: 0.0187rem;
+}
+
+.textStyleTitle2 {
+	font-size: 1rem;
+	font-weight: bold;
+	letter-spacing: 5%;
+	line-height: 2rem;
+	color: black;
+	letter-spacing: 0.0187rem;
+}
+
+.nevFont {
+	font-size: 0.875rem;
+	line-height: 1.25rem;
+	color: white;
+}
+
+.rebeccapurple {
+	color: rebeccapurple;
+}
+
+.container {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	margin: auto;
+	display: flex;
+	padding: 0.625rem;
+	margin-bottom: 6.25rem;
+	margin-top: 1.25rem;
+}
+
+/* SECTION　CSS header */
+.header {
+	display: none;
+	justify-content: flex-end;
+}
+
+.headerA {
+	margin-right: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.header > .bell {
+	font-size: 1.25rem;
+	margin-right: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.user {
+	width: 1.875rem;
+	height: 1.875rem;
+	border-radius: 50%;
+	overflow: hidden;
+	margin-right: 20px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 0rem;
+}
+
+.userImg {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+/*SECTION CSS record*/
+.record {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+}
+
+.recordItem {
+	width: 49%;
+	padding: 0.9375rem;
+	border: 1px solid rgb(223, 223, 223);
+	border-radius: 0.3125rem;
+}
+
+/*SECTION CSS courseCards*/
+.content {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	margin-top: 1.875rem;
+}
+
+.contentDiv {
+	width: fit-content;
+	/* margin-top: 1.5625rem; */
+}
+
+.courseCards {
+	width: 100%;
+	display: flex;
+	flex-wrap: wrap;
+	justify-content: space-between;
+}
+
+.courseCard {
+	width: 48%;
+	height: auto;
+	border: 0.1px solid rgba(144, 144, 144, 0.2);
+	margin-bottom: 0.625rem;
+	border-radius: 0.3125rem;
+	overflow: hidden;
+}
+
+.cardText {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+	padding: 0.625rem 0.625rem;
+}
+
+.CardPic {
+	width: 100%;
+	height: 9.375rem;
+	position: relative;
+}
+
+.CardPic > img {
+	width: 100%;
+	height: 100%;
+	object-fit: cover;
+}
+
+.progress {
+	width: 100%;
+	height: 1.0625rem;
+	border: 1px solid rgba(250, 121, 23, 0.534);
+	border-radius: 0.3125rem;
+	overflow: hidden;
+}
+
+.progressValue {
+	width: 65%;
+	height: 0.9375rem;
+	background-color: #f4d074;
+	border-top-right-radius: 0.3125rem;
+	border-bottom-right-radius: 0.3125rem;
+}
+
+.contentButton {
+	margin-top: 1.5625rem;
+	padding: 0.5rem 0.75rem;
+	border: 2px solid #e3802f;
+	border-radius: 0.5rem;
+	color: white;
+	font-weight: bold;
+	background-color: #e3802f;
+}
+
+/* SECTION CSS mobileNavbar */
+.bottomNav {
+	width: 100%;
+	position: fixed;
+	left: 0rem;
+	bottom: 0rem;
+	display: flex;
+	justify-content: space-around;
+	align-items: center;
+	background-color: #2e363d;
+	padding: 0.625rem 0;
+	z-index: 2;
+}
+
+.navItem {
+	width: 25%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+
+.memberList {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+}
+
+.memberListImage {
+	width: 2rem;
+	height: 2rem;
+	border-radius: 50%;
+	background-color: white;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin-right: 0.625rem;
+}
+
+.memberListIcon {
+	color: white;
+	width: 1.25rem;
+	height: 1.25rem;
+}
+
+/* SECTION CSS mobileWindowNavbar */
+.windowNav {
+	width: 100%;
+	height: 100vh;
+	position: fixed;
+	top: 0rem;
+	left: 0rem;
+	background-color: #2d2f31;
+	z-index: 1;
+	padding: 0.9375rem;
+	padding-top: 0.625rem;
+	padding-bottom: 1.875rem;
+	/* display: none; */
+	/*SECTION CSS 手機Navbar開關*/
+}
+
+.windowNavHead {
+	display: flex;
+	align-items: flex-start;
+	width: 100%;
+	padding: 0.625rem 0;
+}
+
+.windowNavcontainer {
+	width: 100%;
+	display: flex;
+	justify-content: space-between;
+	margin-top: 1.25rem;
+}
+
+.windowNavFont {
+	font-size: 1rem;
+	letter-spacing: 0.0313rem;
+	font-weight: bold;
+}
+
+.windowNavcontainerItem {
+	padding: 0.625rem;
+}
+
+.windowNavItem {
+	margin-top: 4.375rem;
+}
+
+.windowNavcontainerItem > .windowNavItem:first-child {
+	margin-top: 0px;
+}
+
+.windowNavItem {
+	display: flex;
+	align-items: center;
+	justify-content: flex-start;
+}
+
+.windowNavItem > div:first-child {
+	margin-right: 1.875rem;
+}
+
+/* SECTION CSS 螢幕大於401px */
+@media screen and (min-width: 401px) {
+	.container {
+		margin-bottom: 5rem;
+	}
+
+	.header {
+		margin-top: 0rem;
+	}
+
+	.banner {
+		margin-top: 1.875rem;
+		width: 100%;
+		height: auto;
+		padding: 1.875rem 0;
+		position: relative;
+	}
+
+	.record {
+		margin-top: 1.875rem;
+		width: 100%;
+		display: flex;
+		justify-content: space-between;
+	}
+
+	.content {
+		margin-top: 1.875rem;
+	}
+
+	.recordItem {
+		width: 49%;
+		padding: 0.9375rem;
+		border: 1px solid rgb(223, 223, 223);
+		border-radius: 0.3125rem;
+	}
+
+	.content {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		margin-top: 1.875rem;
+	}
+
+	.contentDiv {
+		width: fit-content;
+		/* margin-top: 1.5625rem; */
+	}
+
+	.courseCards {
+		width: 100%;
+		display: flex;
+		flex-wrap: wrap;
+		justify-content: space-between;
+	}
+
+	.courseCard {
+		width: 48%;
+		height: auto;
+		border: 0.1px solid rgba(144, 144, 144, 0.2);
+		margin-bottom: 0.625rem;
+		border-radius: 0.3125rem;
+		overflow: hidden;
+	}
+
+	.cardText {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		padding: 0.625rem 0.625rem;
+	}
+
+	.CardPic {
+		width: 100%;
+		height: 12.5rem;
+		overflow: hidden;
+	}
+
+	.CardPic > img {
+		width: 100%;
+		height: 100%;
+		object-fit: cover;
+	}
+
+	.progress {
+		width: 100%;
+		height: 1.0625rem;
+		border: 1px solid rgba(250, 121, 23, 0.534);
+		border-radius: 0.3125rem;
+		overflow: hidden;
+	}
+
+	.progressValue {
+		width: 65%;
+		height: 0.9375rem;
+		background-color: #f4d074;
+		border-top-right-radius: 0.3125rem;
+		border-bottom-right-radius: 0.3125rem;
+	}
+
+	.contentButton {
+		margin-top: 1.5625rem;
+		padding: 0.5rem 0.75rem;
+		border: 2px solid #e3802f;
+		border-radius: 0.5rem;
+		color: white;
+		font-weight: bold;
+		background-color: #e3802f;
+	}
+}
+
+/* SECTION CSS 螢幕大於769px */
+@media screen and (min-width: 768px) {
+	.container {
+		padding-left: 70px;
+		margin-bottom: 3.125rem;
+	}
+
+	.header {
+		display: flex;
+		margin: top 0px;
+	}
+
+	.banner {
+		margin-top: 2.5rem;
+	}
+
+	.record {
+		margin-top: 2.5rem;
+	}
+
+	.content {
+		margin-top: 2.5rem;
+	}
+
+	.courseCard {
+		width: 32%;
+	}
+
+	.bottomNav {
+		display: none;
+	}
+
+	.windowNav {
+		display: flex;
+		flex-direction: column;
+		width: 60px;
+		padding: 0.3125rem;
+		padding-top: 0.625rem;
+		padding-bottom: 1.875rem;
+		/* width: 250px; */
+	}
+
+	.windowNav:hover {
+		width: 250px;
+	}
+
+	.windowNavHead > button {
+		display: none;
+	}
+
+	.windowNavcontainer {
+		flex-direction: column;
+	}
+
+	.windowNavcontainerItem {
+		padding: 0;
+	}
+
+	.windowNavItem {
+		margin-top: 0.9375rem;
+	}
+
+	.windowNavcontainerItem:last-child {
+		margin-top: 0.9375rem;
+	}
+
+	.windowNavFont {
+		display: none;
+		/* SECTION 平板navbar開關 */
+	}
+}
+
+/* SECTION CSS 螢幕大於1200px */
+@media screen and (min-width: 1200px) {
+	.container {
+		width: 1200px;
+	}
+}
