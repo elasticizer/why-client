@@ -23,7 +23,7 @@ export default function QuickGuide() {
 					/>
 					<QuickGuideCard
 						title={'查看精選作業'}
-						content={'看看優秀的學員們在課堂後大放異彩！'}
+						content={'透過作品追蹤學習成效，看看優秀的學員們在課堂後大放異彩！'}
 					/>
 				</div>
 				<WaveBackground />
