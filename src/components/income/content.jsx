@@ -2,7 +2,7 @@ import React from 'react';
 import SalesData from '@/components/income/salesData';
 import CourseList from '@/components/income/courseList';
 
-export default function Content() {
+export default function Content({ data }) {
 	return (
 		<>
 			<div className="lg:col-span-3 mb-10">
@@ -40,7 +40,7 @@ export default function Content() {
 									role="tabpanel"
 									aria-labelledby="tabs-with-underline-item-1">
 									<p className="text-gray-500 dark:text-neutral-400"></p>
-									<SalesData />
+									<SalesData {...{ data }} />
 								</div>
 								<div
 									id="tabs-with-underline-2"
@@ -48,7 +48,7 @@ export default function Content() {
 									role="tabpanel"
 									aria-labelledby="tabs-with-underline-item-2">
 									<p className="text-gray-500 dark:text-neutral-400"></p>
-									<CourseList />
+									<CourseList {...{ data }} />
 								</div>
 							</div>
 						</>
