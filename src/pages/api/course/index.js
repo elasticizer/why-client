@@ -2,6 +2,7 @@ import { onError, onNoMatch } from '@/handlers/router';
 import connection from '@/handlers/sqlite3';
 import { StatusCodes } from 'http-status-codes';
 import { createRouter } from 'next-connect';
+import { stripHtml } from 'string-strip-html';
 
 import { createRouter } from "next-connect";
 
@@ -17,4 +18,5 @@ router.get(async (req, res) => {
 	res.status(200).json(results);
 });
 
-export default router.handler({ onError, onNoMatch })
+
+export default router.handler({ onError, onNoMatch });
