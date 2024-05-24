@@ -21,15 +21,15 @@ export default function CourseCard({ data }) {
 						alt="Image Description"
 					/>
 				</div>
-				<div className="mt-2">
+				<div className="mt-3">
 					<Tags>{data.DomainName}</Tags>
 				</div>
 				<div className="mt-2">
-					<h3 className="text-xl font-semibold text-gray-800 group-hover:text-gray-600 line-clamp-1">
+					<h3 className="text-md font-semibold text-gray-800 group-hover:text-gray-600 line-clamp-1">
 						{data.Name}
 					</h3>
-					<div className="mt-3 text-gray-800 line-clamp-3">{data.Intro}</div>
-					<div className="flex items-center gap-2">
+					<div className="mt-1 text-gray-800 line-clamp-2">{data.Intro}</div>
+					<div className="flex mt-2 items-center gap-2">
 						<div className="text-sky-500 text-xl font-semibold">NT:</div>
 						<div className="text-orange-500 text-2xl font-semibold">
 							${data.Price}
