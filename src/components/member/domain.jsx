@@ -25,16 +25,19 @@ export default function Domain({ setDomain }) {
 					name="domain"
 					autoComplete="domain-name"
 					className="block w-full  border-0  text-base text-gray-400 shadow-sm ring-1 ring-inset ring-gray-300 sm:leading-6 hover:ring-orange-300 hover:ring-2"
-					onChange={(e) => {
+					onChange={e => {
 						setDomain(e.target.value);
-					}}
-				><option value="">選擇領域</option>
-					{data.map((v) => {
+					}}>
+					<option value="">選擇領域</option>
+					{data.map(v => {
 						return (
-							<option key={v.SN} value={v.SN}>{v.Name}</option>
+							<option
+								key={v.SN}
+								value={v.SN}>
+								{v.Name}
+							</option>
 						);
 					})}
-
 				</select>
 			</div>
 		</div>

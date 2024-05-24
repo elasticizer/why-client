@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import { BsFillTrash3Fill } from "react-icons/bs";
+import { BsFillTrash3Fill } from 'react-icons/bs';
 import Swal from 'sweetalert2';
 import 'animate.css';
-import { stripHtml } from "string-strip-html";
-
+import { stripHtml } from 'string-strip-html';
 
 export default function ContentCard({
 	key,
@@ -13,36 +12,36 @@ export default function ContentCard({
 	Author,
 	UserSN,
 	ArticleSN,
-	setDataSuccess }) {
-
-	const whencreated = new Date(WhenCreated + "Z").toLocaleString();
-	const deletedData = async (e) => {
-
+	setDataSuccess
+}) {
+	const whencreated = new Date(WhenCreated + 'Z').toLocaleString();
+	const deletedData = async e => {
 		try {
-
 			const result = await Swal.fire({
-				title: "確定要刪除該篇收藏嗎?",
-				text: "或許他還對妳有幫助!",
-				icon: "warning",
+				title: '確定要刪除該篇收藏嗎?',
+				text: '或許他還對妳有幫助!',
+				icon: 'warning',
 				showCancelButton: true,
-				confirmButtonColor: "#3085d6",
-				cancelButtonColor: "#d33",
-				confirmButtonText: "刪除!",
-				cancelButtonText: "取消!"
+				confirmButtonColor: '#3085d6',
+				cancelButtonColor: '#d33',
+				confirmButtonText: '刪除!',
+				cancelButtonText: '取消!'
 			});
 
 			if (result.isConfirmed) {
-				const data = await fetch(`/api/learner/articleBookmarking/delete?UserSN=${UserSN}&ArticleSN=${ArticleSN}`).then(r => r.json());
+				const data = await fetch(
+					`/api/learner/articleBookmarking/delete?UserSN=${UserSN}&ArticleSN=${ArticleSN}`
+				).then(r => r.json());
 				// 將空物件設定給狀態，讓content再次渲染
 				setDataSuccess({});
 				console.log('刪除成功');
 
 				await Swal.fire({
-					title: "已刪除!",
-					text: "如果有需要可以再列入收藏",
-					icon: "success",
-					confirmButtonColor: "#3085d6",
-					confirmButtonText: "完成!"
+					title: '已刪除!',
+					text: '如果有需要可以再列入收藏',
+					icon: 'success',
+					confirmButtonColor: '#3085d6',
+					confirmButtonText: '完成!'
 				});
 			}
 		} catch (err) {
@@ -51,15 +50,17 @@ export default function ContentCard({
 	};
 
 	return (
-		<Link href="#" className="animate__animated animate__fadeIn">
+		<Link
+			href="#"
+			className="animate__animated animate__fadeIn">
 			<article className="flex max-w-full flex-col items-start justify-between shadow-sm ring-1 ring-gray-300 p-5 hover:bg-gray-100	animate__animated animate__fadeIn">
 				<div className="flex items-center gap-x-4 text-xs">
-					<time dateTime="2020-03-16" className="text-gray-500">
+					<time
+						dateTime="2020-03-16"
+						className="text-gray-500">
 						{whencreated}
 					</time>
-					<div
-						className="relative z-5 rounded-full bg-orange-100 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"
-					>
+					<div className="relative z-5 rounded-full bg-orange-100 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100">
 						Marketing
 					</div>
 				</div>
@@ -67,7 +68,6 @@ export default function ContentCard({
 					<h3 className="mt-3 text-lg font-semibold leading-6 text-gray-900 group-hover:text-gray-600">
 						<div>
 							<span className="inset-0 line-clamp-1">{Title}</span>
-
 						</div>
 					</h3>
 					<div className="mt-5 line-clamp-3 text-sm leading-6 text-gray-600 text-justify">
@@ -90,15 +90,19 @@ export default function ContentCard({
 							</div>
 						</div>
 					</div>
-					<button className="mb-1" onClick={(e) => {
-						deletedData(e);
-						e.preventDefault();
-					}}><BsFillTrash3Fill color='#7B7B7B' size="20px" /></button>
+					<button
+						className="mb-1"
+						onClick={e => {
+							deletedData(e);
+							e.preventDefault();
+						}}>
+						<BsFillTrash3Fill
+							color="#7B7B7B"
+							size="20px"
+						/>
+					</button>
 				</div>
-
 			</article>
 		</Link>
-
-
 	);
 }

@@ -1,20 +1,19 @@
 import { useState, useEffect } from 'react';
 import styles from '@/styles/learner.module.css';
-import ContentCard from "@/components/member/wishList/contentCard";
+import ContentCard from '@/components/member/wishList/contentCard';
 
 export default function Content({ domain, search }) {
 	const [data, setData] = useState([{}]);
 	const [dataSuccess, setDataSuccess] = useState('false');
-
 
 	useEffect(() => {
 		const handleData = async () => {
 			try {
 				const list = await fetch(`/api/learner/wishlist`).then(r => r.json());
 				const results = list.filter(
-					item => item.Name.includes(search)
-						&& (!domain || item.DomainSN === +domain
-						));
+					item =>
+						item.Name.includes(search) && (!domain || item.DomainSN === +domain)
+				);
 				setData(results);
 				console.log(data);
 			} catch (err) {
@@ -44,10 +43,8 @@ export default function Content({ domain, search }) {
 							rating={3}
 							setDataSuccess={setDataSuccess}
 						/>
-
 					);
 				})}
-
 			</div>
 		</div>
 	);

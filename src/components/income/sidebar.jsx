@@ -1,21 +1,7 @@
-import React from 'react';
-import { useState, useEffect } from 'react';
+import { useSession } from '@/contexts/session';
 
-export default function Sidebar() {
-	const [courseCount, setCourseCount] = useState([]);
-
-	useEffect(() => {
-		const fetchData = async () => {
-			try {
-				const res = await fetch('/api/income/courseCount');
-				let postData = await res.json();
-				setCourseCount(postData);
-			} catch (error) {
-				setCourseCount([]);
-			}
-		};
-		fetchData();
-	}, []);
+export default function Sidebar({ data }) {
+	const session = useSession();
 
 	return (
 		<>
@@ -28,7 +14,7 @@ export default function Sidebar() {
 							href="#">
 							<img
 								className="size-10 rounded-full"
-								src="https://images.unsplash.com/photo-1669837401587-f9a4cfe3126e?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=facearea&facepad=2&w=320&h=320&q=80"
+								src={session?.Icon}
 								alt="Image Description"
 							/>
 						</a>
@@ -36,7 +22,7 @@ export default function Sidebar() {
 							className="group grow block"
 							href="">
 							<h5 className="group-hover:text-gray-600 text-sm font-semibold text-gray-800 dark:group-hover:text-neutral-400 dark:text-neutral-200">
-								Leyla Ludic
+								{session?.Nickname || session?.FirstName}
 							</h5>
 						</a>
 					</div>
@@ -47,12 +33,12 @@ export default function Sidebar() {
 							<div className="p-2 md:p-3 lg:w-48 md:w-32 sm:w-32">
 								<div className="flex items-center gap-x-2">
 									<p className="text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500">
-										課程銷售數據
+										已開設
 									</p>
 								</div>
 								<div className="mt-1 flex items-center gap-x-2">
 									<p className="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">
-										{courseCount.TotalCourses} 堂
+										{data.length} 堂課程
 									</p>
 								</div>
 							</div>
@@ -68,23 +54,7 @@ export default function Sidebar() {
 								</div>
 								<div className="mt-1 flex items-center gap-x-2">
 									<p className="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">
-										NT$500
-									</p>
-								</div>
-							</div>
-						</div>
-						{/* End Card */}
-						{/* Card */}
-						<div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-neutral-800 dark:border-neutral-700">
-							<div className="p-2 md:p-3 md:w-32 sm:w-32">
-								<div className="flex items-center gap-x-2">
-									<p className="text-xs uppercase tracking-wide text-gray-500 dark:text-neutral-500">
-										已開設
-									</p>
-								</div>
-								<div className="mt-1 flex items-center gap-x-2">
-									<p className="text-xl sm:text-2xl font-medium text-gray-800 dark:text-neutral-200">
-										1 堂課
+										NT${data.reduce((total, value) => total + value.Income, 0)}
 									</p>
 								</div>
 							</div>

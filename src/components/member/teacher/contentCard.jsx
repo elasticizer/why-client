@@ -1,24 +1,26 @@
 import Link from 'next/link';
 import React from 'react';
 import { MdAccessTime } from 'react-icons/md';
-import { stripHtml } from "string-strip-html";
+import { stripHtml } from 'string-strip-html';
 
 export default function ContentCard({
 	SN,
 	Name,
 	Intros,
 	Filename,
-	WhenCreated }) {
+	WhenCreated
+}) {
 	return (
 		<>
-			<Link href={`/teacher/uploadCourse?CourseSN=${SN}`} className="flex w-full  ring-1  ring-gray-300 relative overflow-hidden hover:bg-gray-100 shadow-sm">
+			<Link
+				href={`/teacher/uploadCourse?CourseSN=${SN}`}
+				className="flex w-full  ring-1  ring-gray-300 relative overflow-hidden hover:bg-gray-100 shadow-sm">
 				<div className="w-36 md:w-52 h-28 md:h-36 overflow-hidden">
 					<img
 						className="w-full me-3 object-cover size-full hover:scale-125 ease-in duration-300"
 						src={`/learner/LessonVideo/${Filename}`}
 						alt=""
 					/>
-
 				</div>
 
 				<div className="flex-col items-start w-full p-2 md:p-5">

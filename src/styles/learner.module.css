@@ -539,7 +539,7 @@
 		display: flex;
 		flex-direction: column;
 		margin-right: 0;
-		align-items:center;
+		align-items: center;
 	}
 
 	.windowNavItem {
@@ -557,7 +557,7 @@
 
 	.windowNavFont {
 		margin-left: 1.875rem;
-		width:70px
+		width: 70px;
 		/* SECTION 平板navbar開關 */
 	}
 }

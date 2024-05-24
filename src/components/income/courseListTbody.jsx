@@ -9,14 +9,15 @@ export default function CourseListTbody({ data }) {
 					<p className="text-nowrap text-sm font-bold text-gray-800">
 						{data.Name}
 					</p>
+					<p className="text-xs text-gray-500">{data.Identifier}</p>
 				</div>
-				<div className="w-1/5 text-center">
-					<p className="text-sm">{data.WhenApproved}</p>
+				<div className="w-1/3 text-center">
+					<p className="text-sm">{data.WhenLaunched}</p>
 				</div>
 				<div
 					className="w-1/5 text-center
 				">
-					<p className="text-sm">NT${data.Price * data.SN}</p>
+					<p className="text-sm">NT${data.Income}</p>
 				</div>
 			</div>
 			{/* end tbody */}
