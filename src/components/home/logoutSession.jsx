@@ -1,6 +1,7 @@
 import React from 'react';
 import { FiUser } from 'react-icons/fi';
 import { useSession } from '@/contexts/session';
+import Link from 'next/link';
 
 export default function LogoutSession() {
 	const session = useSession();
@@ -11,25 +12,29 @@ export default function LogoutSession() {
 				id="hs-dropdown-example"
 				type="button"
 				className="hs-dropdown-toggle inline-flex items-center gap-x-2 text-md font-medium text-gray-500 hover:text-orange-400">
-				<FiUser />
-				{session.FirstName}
+				<img
+					className="rounded-full h-10"
+					src={session.Icon}
+					alt=""
+				/>
+				{session.Nickname || session.FirstName}
 			</button>
 			<div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2">
 				<a
 					className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
 					href="#">
-					個人資料
+					我的帳戶
 				</a>
-				<a
+				<Link
 					className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
-					href="#">
+					href="/teacher">
 					會員中心
-				</a>
-				<a
+				</Link>
+				<Link
 					className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
-					href="http://localhost:3000/signout">
+					href="/signout">
 					登出
-				</a>
+				</Link>
 			</div>
 		</div>
 	);
