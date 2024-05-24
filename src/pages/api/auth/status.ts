@@ -21,7 +21,7 @@ router.get(async (req, res) => {
 		'SELECT User.SN, User.Email, User.FirstName, User.LastName, User.Nickname FROM Session JOIN User ON User.SN = Session.UserSN WHERE UUID = ? AND WhenRevoked IS NULL',
 		[id]
 	);
-	const name = `${user.FirstName}+${user.LastName}`;
+	const name = user.Nickname?? `${user.FirstName}+${user.LastName}`;
 	const icon = `https://ui-avatars.com/api/?background=random&name=${name}`;
 
 	if (!user) {
