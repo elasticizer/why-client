@@ -3,13 +3,13 @@ import styles from '@/styles/learner.module.css';
 import ContentCard from "@/components/member/wishList/contentCard";
 
 export default function Content({ domain, search }) {
-	const [data, setData] = useState([]);
+	const [data, setData] = useState([{}]);
 	const [dataSuccess, setDataSuccess] = useState('false');
 
 	useEffect(() => {
 		const handleData = async () => {
 			try {
-				const list = await fetch(`/api/learner/wishList?id=2`).then(r => r.json());
+				const list = await fetch(`/api/learner/wishlist`).then(r => r.json());
 				const results = list.filter(
 					item => item.Name.includes(search)
 						&& (!domain || item.DomainSN === +domain

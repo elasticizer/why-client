@@ -20,15 +20,14 @@ router.get(async (req, res) => {
 
 	const User = user.SN;
 
+console.log(user);
+
 	const sql = `
-	SELECT CollectedArticle.*,User.Nickname,Article.Title,Article.Content,Article.WhenCreated,Author.Nickname AS Author FROM CollectedArticle
-JOIN
-	User ON User.SN=CollectedArticle.UserSN
-JOIN
-	Article ON Article.SN=CollectedArticle.ArticleSN
-JOIN
-	User AS Author ON Author.SN=Article.AuthorSN
-WHERE User.SN=?
+	SELECT Article.SN AS ArticleSN , Article.Title, Article.Content, Article.WhenCreated, Article.AuthorSN, User.Nickname AS Authorname
+	FROM Article
+			JOIN User ON Article.AuthorSN = User.SN
+	WHERE
+			AuthorSN = ?
 	`;
 	let [results] = await connection.execute(sql, [User]); // TODO
 

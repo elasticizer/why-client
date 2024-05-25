@@ -56,7 +56,7 @@ export default function ContentCard({
 
 	return (
 		<Link href="#" className="animate__animated animate__fadeIn">
-			<article className="flex max-w-full flex-col items-start justify-between shadow-sm ring-1 ring-gray-300 p-5 hover:bg-orange-50	animate__animated animate__fadeIn">
+			<article className="flex max-w-full flex-col items-start justify-between shadow-sm ring-1 ring-gray-300 p-5 hover:bg-gray-100	animate__animated animate__fadeIn">
 				<div className="flex items-center gap-x-4 text-xs">
 					<time dateTime="2020-03-16" className="text-gray-500">
 						{WhenCreated}

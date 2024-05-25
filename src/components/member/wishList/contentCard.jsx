@@ -5,9 +5,9 @@ import Swal from 'sweetalert2';
 import { useState, useEffect } from 'react';
 
 
+
 export default function Card({ setDataSuccess, user, collectedCoursSN, title, picUrl, price, quantity, teacher, domain }) {
 	const [iconColor, setIconColor] = useState("red");
-	console.log(iconColor);
 
 
 	const deletedData = async () => {
@@ -24,7 +24,7 @@ export default function Card({ setDataSuccess, user, collectedCoursSN, title, pi
 			});
 
 			if (result.isConfirmed) {
-				const data = await fetch(`/api/learner/wishList/delete?User=${user}&collectedCoursSN=${collectedCoursSN}`).then(r => r.json());
+				const data = await fetch(`/api/learner/wishlist/delete?collectedCoursSN=${collectedCoursSN}`).then(r => r.json());
 				// 將空物件設定給狀態，讓content再次渲染
 				setDataSuccess({});
 				console.log('刪除成功');
@@ -51,8 +51,8 @@ export default function Card({ setDataSuccess, user, collectedCoursSN, title, pi
 			<div className="flex w-full h-full shadow-sm ring-1 ring-gray-300 flex-col relative rounded-lg overflow-hidden hover:bg-gray-100">
 				<div className="h-36 md:h-52 w-full md:me-0 overflow-hidden">
 					<img
-						className="hover:scale-125"
-						src={picUrl}
+						className="hover:scale-125 hover:scale-125 ease-in duration-300"
+						src={picUrl && picUrl.startsWith('h') ? picUrl : `/learner/LessonVideo/${picUrl}`}
 						alt=""
 						style={{ "width": "100%", "height": "100%", "object-fit": "cover" }}
 					/>

@@ -3,11 +3,25 @@ import { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/learner.module.css';
 import UserList from '@/components/member/userList';
 import { BsBell } from "react-icons/bs";
+import { useSession } from '@/contexts/session';
 
 
 export default function Header() {
 	const button = useRef();
 	const [hidden, setHidden] = useState(true);
+	const [Icon, setIcon] = useState("");
+
+	const session = useSession();
+
+	useEffect(() => {
+		if (session) {
+			const Icon = session.Icon;
+			setIcon(Icon);
+		}
+	}, [session]);
+
+
+
 
 	useEffect(
 		() => {
@@ -36,8 +50,8 @@ export default function Header() {
 				<BsBell />
 			</div>
 			<button className={styles.user} ref={button}>
-				<Image
-					src="/learner/container.png"
+				<img
+					src={Icon}
 					alt=""
 					width={30}
 					height={30}
