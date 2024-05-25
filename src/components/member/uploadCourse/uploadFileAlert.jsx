@@ -7,10 +7,7 @@ import 'animate.css';
 import { extname } from 'path';
 import { errorAlert } from "@/components/member/errorAlert";
 
-
-
-
-export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, onSubmit }) {
+export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, lesson, setLesson, lessonData, setLessonData }) {
 	const [displayForm, setDisplayForm] = useState("");
 	const [uploadDuring, setUploadDuring] = useState("hidden");
 	const [video, setVideo] = useState(null);
@@ -76,7 +73,8 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 					setProgress(progressPercent); // 更新進度狀態
 				},
 			});
-			console.log({ data: response.data });
+			setLesson([...lesson, response.data.SN]);
+			setLessonData([...lessonData, response.data]);
 			return response;
 		} catch (error) {
 			console.error('影片上傳失敗', error);
@@ -85,7 +83,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 
 	return (
 
-		<div className={`bg-white flex flex-col items-center shadow-sm ring-1 ring-gray-300 fixed w-full h-full top-0 left-0 md:w-3/5 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 md:-translate-y-1/2 px-5 overflow-scroll md:h-4/6	${UploadFileAlertDisplay}
+		<div className={`bg-white flex flex-col items-center shadow-sm ring-1 ring-gray-300 fixed w-full h-full top-0 left-0 md:w-3/5 md:top-1/2 md:left-1/2 md:transform md:-translate-x-1/2 justify-center md:-translate-y-1/2 px-5 overflow-scroll md:h-4/6	${UploadFileAlertDisplay}
 		`}>
 
 			<div className="mt-5 relative"><BsCloudUploadFill size="80px" color="#FFAF60" /></div>
@@ -94,7 +92,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 
 
 			{/* 表單開關 */}
-			<form className={`flex w-full flex-col items-center my-5 ${displayForm}`} onSubmit={async e => onSubmit(await handleSubmit(e))} ref={formEl}>
+			<form className={`flex w-full flex-col items-center my-5 ${displayForm}`} onSubmit={e => handleSubmit(e)} ref={formEl}>
 				<Dropzone video={video} setVideo={setVideo} metion={videoLimit} />
 				<p className={`text-xs leading-6 text-${videoLimitMetion} `}>
 					請上傳mp4檔</p>
@@ -146,8 +144,6 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 							setVideoLimitMetion('white');
 							setChapterNameLimit("");
 							setChapterNameLimitMetion('white');
-							// setHomeworkName("");
-							// setText("");
 						}}
 					>
 						離開

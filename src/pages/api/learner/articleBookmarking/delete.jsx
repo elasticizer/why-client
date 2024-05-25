@@ -5,7 +5,6 @@ import React from 'react';
 const router = createRouter();
 
 router.get(async (req, res) => {
-	console.log(req.query);
 	const { UserSN, ArticleSN } = req.query;
 	const sql = `
 	DELETE FROM CollectedArticle where UserSN=? AND ArticleSN=?

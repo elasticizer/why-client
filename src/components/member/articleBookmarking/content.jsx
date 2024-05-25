@@ -3,13 +3,15 @@ import styles from '@/styles/teacher.module.css';
 import ContentCard from '@/components/member/articleBookmarking/contentCard';
 
 export default function Content({ domain, search }) {
-	const [data, setData] = useState([]);
+	const [data, setData] = useState([{}]);
 	const [dataSuccess, setDataSuccess] = useState('false');
 
 	useEffect(() => {
 		const handleData = async () => {
 			try {
 				const list = await fetch(`/api/learner/articleBookmarking`).then(r => r.json());
+console.log(list);
+
 
 				const data = list.filter(
 					item => item.Title.includes(search)

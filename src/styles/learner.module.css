@@ -557,6 +557,7 @@
 
 	.windowNavFont {
 		margin-left: 1.875rem;
+		width:70px
 		/* SECTION 平板navbar開關 */
 	}
 }

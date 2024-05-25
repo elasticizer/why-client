@@ -1,16 +1,32 @@
 import { createRouter } from "next-connect";
 import connection from '@/handlers/sqlite3';
 import React from 'react';
+import Session from '@/helpers/session';
+import { RouteError } from '@/handlers/router';
 
 const router = createRouter();
 
 router.get(async (req, res) => {
-	const {id}=req.query
+
+
+	const sessionId = req.cookies.SESSION_ID;
+
+
+	if (!sessionId) {
+		throw new RouteError(
+			StatusCodes.FORBIDDEN,
+			'沒有登入'
+		);
+	}
+	const user = await Session.associate(sessionId);
+	console.log(user);
+
+	const id = user.SN;
+
 	const sql = `
 	SELECT CollectedCourse.UserSN,CollectedCourse.CourseSN AS CollectedCoursSN, Course.SN, Course.Name, Course.Price, Teacher.Nickname, File.Filename, Domain.SN AS DomainSN,Domain.Name AS DomainName, COUNT(*) AS Total
 	FROM
     Course
-    JOIN UserCourse ON UserCourse.CourseSN = Course.SN
     JOIN User AS Teacher ON Teacher.SN = Course.TeacherSN
     JOIN File ON File.SN = Course.ThumbnailSN
     JOIN Domain ON Domain.SN = Course.DomainSN

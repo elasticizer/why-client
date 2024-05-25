@@ -1,11 +1,25 @@
 import { createRouter } from "next-connect";
 import connection from '@/handlers/sqlite3';
 import React from 'react';
+import Session from '@/helpers/session';
+import { RouteError } from '@/handlers/router'
 
 const router = createRouter();
 
 router.get(async (req, res) => {
 	const { domain, search } = req.query;
+	const sessionId = req.cookies.SESSION_ID;
+
+
+ if (!sessionId) {
+  throw new RouteError(
+   StatusCodes.FORBIDDEN,
+   '沒有登入'
+  );
+ }
+ const user = await Session.associate(sessionId);
+
+const User=user.SN
 	let sql = `SELECT
 	Course.*,
 	Domain.SN,
@@ -23,10 +37,10 @@ JOIN
 JOIN
 	User ON Course.TeacherSN=User.SN
 WHERE
-	UserCourse.UserSN=1
+	UserCourse.UserSN=?
 	`;
 
-	let params = [];
+	let params = [User];
 	if (domain) {
 		sql += ' AND Domain.SN = ?';
 		params.push(domain);

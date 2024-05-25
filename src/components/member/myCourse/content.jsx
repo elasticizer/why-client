@@ -3,7 +3,7 @@ import styles from '@/styles/learner.module.css';
 import ContentCard from "@/components/member/myCourse/contentCard";
 
 export default function Content({ domain, search }) {
-	const [data, setData] = useState([]);
+	const [data, setData] = useState([{}]);
 	const handleData = async () => {
 		try {
 			const response = await fetch(`/api/learner/myCourse/filter${domain ? `?domain=${domain}` : ''}${search ? `${domain ? '&' : '?'}search=${search}` : ''}`);
