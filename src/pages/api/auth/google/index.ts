@@ -1,5 +1,4 @@
 import { onError, onNoMatch } from '@/handlers/router';
-import connection from '@/handlers/sqlite3';
 import { serialize } from 'cookie';
 import { randomUUID } from 'crypto';
 import { StatusCodes } from 'http-status-codes';
@@ -24,7 +23,7 @@ router.get(async (_, res) => {
 		state: uuid
 	});
 
-	const cookie = serialize('OAUTH_CSRF_TOKEN', uuid, {
+	const cookie = serialize('CSRF_TOKEN', uuid, {
 		maxAge: 3600,
 		httpOnly: true,
 		path: '/',
