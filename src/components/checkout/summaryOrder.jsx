@@ -1,7 +1,6 @@
-import React from 'react';
 import CheckoutModal from './checkoutModal';
 import { useState, useEffect } from 'react';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/contexts/cart';
 
 export default function SummaryOrder() {
 	const [discount, setDiscount] = useState(0); // 預設折扣金額
@@ -9,7 +8,7 @@ export default function SummaryOrder() {
 	const { totalPrice, totalQty } = useCart();
 
 	useEffect(() => {
-		setDiscount(Math.round(totalPrice * 0.25));
+		setDiscount(Math.round(totalPrice * 0.1));
 	}, [totalPrice]);
 	return (
 		<>

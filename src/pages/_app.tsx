@@ -18,7 +18,7 @@ export default function App({ Component, pageProps }: AppProps) {
 
 	return (
 		<SessionProvider>
-				<Component {...pageProps} />
+			<Component {...pageProps} />
 		</SessionProvider>
 	);
 }

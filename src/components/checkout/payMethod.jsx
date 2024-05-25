@@ -1,12 +1,6 @@
 import React, { useState } from 'react';
 
 export default function PayMethod() {
-	const payMethod = [
-		{ SN: 1, method: 'LINE PAY' },
-		{ SN: 2, method: '信用卡一次付款' },
-		{ SN: 3, method: 'ATM付款' }
-	];
-	const [selectedMethod, setSelectMethod] = useState(null);
 	return (
 		<>
 			<div className="border border-gray-300 rounded-lg p-4">
@@ -21,9 +15,6 @@ export default function PayMethod() {
 				{/* 付款項目列 */}
 				<div className="hs-accordion-group mt-4">
 					{/* LINE PAY */}
-					{/* <div
-						className={`hs-accordion ${selectedMethod === 'LINE PAY' && 'hs-accordion-active:border-gray-200 bg-white border border-transparent rounded-xl'}`}
-						id="hs-active-bordered-heading-one"></div> */}
 					<div
 						className="hs-accordion hs-accordion-active:border-gray-200 bg-white border border-transparent rounded-xl"
 						id="hs-active-bordered-heading-one">
@@ -31,12 +22,12 @@ export default function PayMethod() {
 							className="hs-accordion-toggle hs-accordion-active:text-blue-600 inline-flex justify-between items-center gap-x-3 w-full font-semibold text-start text-gray-800 py-4 px-5 hover:text-gray-500 disabled:opacity-50 disabled:pointer-events-none"
 							aria-controls="hs-basic-active-bordered-collapse-one">
 							<div className="flex flex-row justify-center items-center gap-1">
-								<input
+								{/* <input
 									type="radio"
 									name="hs-default-radio"
 									className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
 									id="hs-checked-radio"
-								/>
+								/> */}
 								LINE PAY
 							</div>
 
@@ -81,7 +72,7 @@ export default function PayMethod() {
 						</div>
 					</div>
 					{/* 信用卡一次付款 */}
-					<div
+					{/* <div
 						className="hs-accordion hs-accordion-active:border-gray-200 bg-white border border-transparent rounded-xl"
 						id="hs-active-bordered-heading-two">
 						<button
@@ -151,9 +142,9 @@ export default function PayMethod() {
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> */}
 					{/* ATM付款 */}
-					<div
+					{/* <div
 						className="hs-accordion hs-accordion-active:border-gray-200 bg-white border border-transparent rounded-xl"
 						id="hs-active-bordered-heading-one">
 						<button
@@ -207,7 +198,7 @@ export default function PayMethod() {
 								</p>
 							</div>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</>

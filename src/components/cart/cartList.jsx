@@ -3,7 +3,7 @@ import CheckAll from '@/components/cart/checkAll';
 import CourseItem from '@/components/cart/courseItem';
 import CourseItemNone from '@/components/cart/courseItemNone';
 import CouponModal from '@/components/cart/couponModal';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/contexts/cart';
 
 export default function CartList() {
 	const { cartItem, removeItem } = useCart();
@@ -11,6 +11,7 @@ export default function CartList() {
 	const [selectedItems, setSelectedItems] = useState([]);
 
 	const [course, setCourse] = useState([]);
+
 
 	useEffect(() => {
 		const getCourse = async () => {
@@ -38,6 +39,8 @@ export default function CartList() {
 			? setSelectedItems(selectedItems.filter(v => v !== sn))
 			: setSelectedItems([...selectedItems, sn]);
 	};
+
+	console.log(selectedItems);
 
 	return (
 		<div className="border border-gray-300 rounded-lg">

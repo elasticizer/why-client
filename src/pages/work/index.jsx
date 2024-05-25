@@ -1,12 +1,12 @@
-import MainLayout from '@/layouts/mainLayout';
+import Cart from '@/layouts/Cart';
 import List from '@/components/work/list';
 export default function WorkPage() {
 	return (
 		<>
-			<MainLayout>
+			<Cart>
 				<title>精選作業</title>
 				<List />
-			</MainLayout>
+			</Cart>
 		</>
 	);
 }
