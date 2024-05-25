@@ -3,7 +3,7 @@ import Search from '../search/search';
 import CardSec from './cardsec';
 
 export default function CardSecList() {
-	const [course, setCourses] = useState([]);
+	const [course, setCourse] = useState([]);
 	const [search, setSearch] = useState('');
 	console.log(search);
 
@@ -15,10 +15,10 @@ export default function CardSecList() {
 				const data = await res.json();
 				const result = data.filter(v => v.Name.includes(search));
 				console.log(result);
-				setCourses(result);
+				setCourse(result);
 			} catch (e) {
 				console.error(e);
-				setCourses([]);
+				setCourse([]);
 			}
 		};
 		data();
@@ -55,7 +55,7 @@ export default function CardSecList() {
 									<CardSec
 										data={v}
 										key={v.SN}
-										addItemToCart={v.addItemToCart}
+										// addItemToCart={addItemToCart}
 									/>
 								);
 							})}

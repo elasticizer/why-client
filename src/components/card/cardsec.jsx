@@ -1,13 +1,14 @@
-import { useState } from 'react';
-import { FaHeart, FaStar } from 'react-icons/fa';
+import { useEffect, useState } from 'react';
+import { FaStar } from 'react-icons/fa';
 import { MdPeopleAlt } from 'react-icons/md';
 import { IoTimeOutline } from 'react-icons/io5';
 import styles from '@/styles/font.module.css';
 import { BsBookmarkHeart } from 'react-icons/bs';
 import { BsBookmarkHeartFill } from "react-icons/bs";
 import toast, { Toaster } from 'react-hot-toast';
+import { useCart } from '../../contexts/cart';
 import Link from 'next/link';
-import { useCart } from '../../hooks/use-cart';
+
 
 export default function CardSec({ data = {
 	SN: ''
@@ -24,32 +25,37 @@ export default function CardSec({ data = {
 		, Price
 		, Nickname, Filename, DomainName } = data
 	const [icon, setIcon] = useState(false)
-	const [cart, setCart] = useState(false)
+	
 
-
-
-
-	// const { addItemToCart } = useCart();
 
 	const getData = async () => {
 		try {
-			const res = await fetch(`/api/wishlist/insert?userid=1&courseSN=${SN}`);
+			const res = await fetch(`/api/wishlist/insert?courseSN=${SN}`);
 			const data = await res.json();
 			console.log(data);
+			console.log('收藏成功');
+
 		} catch (error) {
-			console.error("Error fetching data:", error);
+			console.error("收藏失敗", error);
 		}
 	};
-	const addCart = () => toast.success('已加入購物車');
-	const cancelCart = () => toast.success('已移除購物車');
+	const deleteData = async () => {
+		try {
+			const res = await fetch(`/api/wishlist/delete?courseSN=${SN}`);
+			const data = await res.json();
+			console.log(data);
+			console.log('刪除收藏成功');
 
+		} catch (error) {
+			console.error("刪除收藏失敗", error);
+		}
+	};
 	const bookmark = () => toast.success('加入收藏成功');
 	const unbookmark = () => toast.success('已移除收藏');
-
-
+	const { addItemToCart } = useCart();
 	return (
 		<>
-			<a href="../../pages/course/[pid].jsx" className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-lg transition">
+			<div href="#" className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-lg transition">
 				<div className="relative pt-[50%] sm:pt-[60%] lg:pt-[60%]  overflow-hidden">
 					<img
 						className="w-full h-auto absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-tr-3xl  rounded-bl-3xl"
@@ -59,13 +65,15 @@ export default function CardSec({ data = {
 				</div>
 				<div className="mt-2 flex justify-between">
 					<div
-						type="button"
-						className="py- px-2 inline-flex items-center gap-x-2 text-sm  rounded-lg border border-transparent bg-yellow-400 text-black disabled:opacity-50 disabled:pointer-events-none">
+
+						className="py- px-2 inline-flex items-center gap-x-2 text-base font-medium  rounded-lg border border-transparent  bg-yellow-200 text-yellow-800 disabled:opacity-50 disabled:pointer-events-none">
 						{DomainName}
 					</div>
 					<button onClick={() => {
-						icon ? setIcon(false) || unbookmark() : setIcon(true) || bookmark()
-						getData()
+						icon ? setIcon(false) || unbookmark() : setIcon(true) || bookmark();
+						icon ? deleteData() : getData();
+
+
 					}}
 					>
 						{icon ? <BsBookmarkHeartFill className=" text-red-500 sm:my-2 lg:my-0 md:size-7 sm:size-9 " /> : <BsBookmarkHeart className="text-red-500  sm:my-2 lg:my-0 md:size-7 sm:size-9 " />}
@@ -112,7 +120,6 @@ export default function CardSec({ data = {
 
 						<div>
 							<button onClick={() => {
-								addCart()
 								{ addItemToCart }
 							}}>
 								<img
@@ -128,7 +135,7 @@ export default function CardSec({ data = {
 					</span>
 				</div>
 
-			</a>
+			</div>
 
 		</>
 	);

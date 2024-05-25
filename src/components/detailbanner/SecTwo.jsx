@@ -1,33 +1,83 @@
-import React from 'react';
-import { FaHeart, FaStar } from 'react-icons/fa';
+import React, { useEffect, useState } from 'react';
+import { FaStar } from 'react-icons/fa';
 import { MdPeopleAlt } from 'react-icons/md';
-import Hotcard from '../coursevideo/content';
+import Link from 'next/link';
 
 export default function SecTwo() {
+const [course, setCourse] = useState([]);
+	useEffect(() => {
+		const fetchdata = async () => {
+			try {
+				const res = await fetch(`/api/coursedetail`);
+				if (!res.ok) {
+					throw new Error(`HTTP error! status: ${res.status}`);
+				}
+				const postdata = await res.json();
+				setCourse(postdata);
+			} catch (e) {
+				console.error(e);
+				setCourse([]);
+			}
+		};
+		fetchdata();
+	}, []);
+	if (course.length === 0) {
+		return <div>Loading...</div>;
+	}
+
 	return (
 		<>
-			<div className="w-full mx-auto px-4 sm:px-6 ">
+			<div className=" container ">
+				<div className="sm:flex-col sm:flex-wrap  ">
+					
+					<div className=" flex items-center  w-full ">
+							<li className="  lg:pl-0 inline-flex items-center sm:text-base">
+								<Link
+									className="flex items-center text-xl font-medium text-white hover:text-blue-600 focus:outline-none focus:text-blue-600"
+									href="/course">
+									全部領域
+								</Link>
+								<svg
+									className="flex-shrink-0 mx-2 overflow-visible size-4 text-white"
+									xmlns="http://www.w3.org/2000/svg"
+									width={24}
+									height={24}
+									viewBox="0 0 24 24"
+									fill="none"
+									stroke="currentColor"
+									strokeWidth={2}
+									strokeLinecap="round"
+									strokeLinejoin="round">
+									<path d="m9 18 6-6-6-6" />
+								</svg>
+							</li>
+							<li
+								className="inline-flex items-center text-xl font-semibold  text-white truncate"
+								aria-current="page">
+								網頁設計
+							</li>
+						</div>
+						<h2
+							className="mt-20 text-sm sm:text-base lg:text-white">
+							<span className="font-bold">
+								<span class="before:block before:absolute before:-inset-1 before:-skew-y-3 before:bg-pink-500 relative inline-block">
+									<span class="relative text-white">{course[0].Nickname}</span>
+								</span>
 
-				<div className="   ">
-					<div className="    sm:py-3 lg:col-span-3">
-						<h3 className=" block text-2xl font-bold lg:text-white sm:text-4xl md:text-5xl lg:text-3xl dark:text-white">
-							產品設計實戰：用Figma打造絕佳UI/UX
-						</h3>
-						<p className="pt-3 lg:pt-1 mt-2 text-base lg:text-white dark:text-neutral-400">
-							你想要學習
-							UI/UX設計嗎？想知道如何打造絕佳產品體驗嗎？一起來學習使用 Figma
-							這個火紅全球的介面設計工具
-							，跟上全球設計趨勢，成為軟硬實力兼具的產品設計師吧！
+							</span>
+						</h2>
+					<h3 className=" mt-6 block text-2xl text-white font-bold  sm:text-3xl md:text-4xl lg:text-4xl dark:text-white"
+						>
+							{course[0].Name}
+						</h3><p className="pt-3 lg:pt-1 mt-2 text-base lg:text-white dark:text-neutral-400">
+							
 						</p>
-						
-						<div className="mt-2 lg:mt-2">
+					
+					
+					{/* <div className="mt-2 lg:mt-2">
 							<ul className="space-y-2 sm:space-y-4">
 								<li className="flex space-x-3">
-									<a
-										href="#"
-										className="text-sm sm:text-base lg:text-white">
-										<span className="font-bold">by Ms.Hw．why講師</span>
-									</a>
+									
 								</li>
 								<span className="flex">
 									<span className="flex space-x-3">
@@ -67,14 +117,13 @@ export default function SecTwo() {
 									</a>
 								</div>
 							</ul>
-						</div>
-						{/* End Brands */}
-					</div>
-					{/* End Col */}
+						</div> */}
+					{/* End Brands */}
 				</div>
-				{/* End Grid */}
+
+
 			</div>
-			{/* End Hero */}
+
 		</>
 	);
 }

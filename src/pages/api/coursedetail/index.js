@@ -1,17 +1,18 @@
+import { onError, onNoMatch } from '@/handlers/router';
 import connection from '@/handlers/sqlite3';
 
-export default async function handler(req, res) {
+import { createRouter } from "next-connect";
 
-    
+const router = createRouter();
 
-    const limit = req.query.limit ?? 12;
-    
-    const [results] = await connection.execute('SELECT *, user.Nickname, File.* FROM Course INNER JOIN user ON Course.TeacherSN=user.SN JOIN File ON Course.ThumbnailSN=File.SN WHERE Course.SN = 11', [limit]);
+router.get(async (req, res) => {
+   
+    const limit = req.query.limit ?? 1;
 
-    //原本的篩選結果
-    // const [results] = await connection.execute('SELECT course.SN, course.Name, course.Intro, course.Price FROM Course LIMIT ?', [limit]);
+    const [results] = await connection.execute('SELECT Course.*,Course.ThumbnailSN AS CourseThumbnailSN, User.SN AS UserSN, User.Nickname, File.* FROM Course INNER JOIN User ON Course.TeacherSN=User.SN JOIN File ON Course.ThumbnailSN=File.SN WHERE Course.SN = 11 LIMIT ?', [limit]);
 
     res.status(200).json(results);
-    
 
-}
+});
+export default router.handler({ onError, onNoMatch });
+
