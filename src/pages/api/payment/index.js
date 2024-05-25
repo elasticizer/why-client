@@ -1,10 +1,20 @@
 import connection from '@/handlers/sqlite3';
+import { randomUUID } from 'crypto';
 import { createRouter } from 'next-connect';
-import { v4 as uuidv4 } from 'uuid';
+import Session from '@/helpers/session';
+import { RouteError } from '@/handlers/router';
 
 const router = createRouter();
 
 router.get(async (req, res) => {
+	const sessionId = req.cookies.SESSION_ID;
+
+	if (!sessionId) {
+		throw new RouteError(StatusCodes.FORBIDDEN, '沒有登入');
+	}
+
+	const user = await Session.associate(sessionId);
+
 	const payments = await rp({
 		method: 'POST',
 		uri: `https://sandbox-api-pay.line.me/v2/payments/request`,
@@ -19,7 +29,7 @@ router.get(async (req, res) => {
 			productImageUrl:
 				'https://images.hahow.in/images/5b8fe80ade22ba001ee81b4b',
 			confirmUrl: process.env['LINE_PAY_CONFIRM_URL'],
-			orderId: v4(),
+			orderId: randomUUID(),
 			currency: 'TWD'
 		}
 	});

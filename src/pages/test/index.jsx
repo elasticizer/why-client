@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import MainLayout from '@/layouts/mainLayout';
+import Cart from '@/layouts/Cart';
 import CourseList from '../../components/cart/course';
 import Link from 'next/link';
 import PrevPageBtn from '../../components/cart/prevPageBtn';
@@ -7,7 +7,7 @@ import PrevPageBtn from '../../components/cart/prevPageBtn';
 export default function TestPage() {
 	return (
 		<>
-			<MainLayout>
+			<Cart>
 				<title>測試課程頁面</title>
 				<div className="container mt-8 max-w-[85rem] sm:px-6 lg:px-8 mx-auto my-8">
 					<PrevPageBtn
@@ -16,7 +16,7 @@ export default function TestPage() {
 					/>
 					<CourseList />
 				</div>
-			</MainLayout>
+			</Cart>
 		</>
 	);
 }

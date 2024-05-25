@@ -1,9 +1,19 @@
 import connection from '@/handlers/sqlite3';
 import { createRouter } from 'next-connect';
+import Session from '@/helpers/session';
+import { RouteError } from '@/handlers/router';
 
 const router = createRouter();
 
 router.get(async (req, res) => {
+	const sessionId = req.cookies.SESSION_ID;
+
+	if (!sessionId) {
+		throw new RouteError(StatusCodes.FORBIDDEN, '沒有登入');
+	}
+
+	const user = await Session.associate(sessionId);
+
 	const [results] = await connection.execute(
 		'SELECT "Order"."SN", "Order"."WhenCheckedOut", "Order"."WhenPaid", "OrderDetail"."Subtotal", Course.Name, Course.Price, File.Filename FROM "Order" JOIN "OrderDetail" ON "Order"."SN" = "OrderDetail"."OrderSN" JOIN Course ON Course.SN = OrderDetail.CourseSN JOIN File ON Course.ThumbnailSN = File.SN'
 	);
