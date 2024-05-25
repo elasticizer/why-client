@@ -1,13 +1,9 @@
-import Divider from '@/components/session/divider';
-import Google from '@/components/session/oauth/google';
-import Line from '@/components/session/oauth/line';
-import SigninForm from '@/components/session/signin-form';
+import SignupForm from '@/components/session/signup-form';
 import { useSession } from '@/contexts/session';
 import SessionLayout from '@/layouts/session';
-import Link from 'next/link';
 import { useRouter } from 'next/router';
 
-export default function Signin() {
+export default function Signup() {
 	const router = useRouter();
 	const session = useSession();
 
@@ -21,23 +17,20 @@ export default function Signin() {
 				<div className="p-4 sm:p-8">
 					<div className="text-center">
 						<h1 className="block text-2xl font-bold text-gray-800 dark:text-white">
-							登入
+							註冊
 						</h1>
 						<p className="mt-2 text-sm text-gray-600 dark:text-neutral-400">
-							沒有帳戶？
-							<Link
-								href="signup"
+							已有帳戶？
+							<a
+								href="signin"
 								className="text-blue-600 decoration-2 hover:underline font-medium dark:text-blue-500">
-								前往註冊
-							</Link>
+								前往登入
+							</a>
 						</p>
 					</div>
 
 					<div className="flex flex-col gap-3 mt-5">
-						<Google />
-						<Line />
-						<Divider>或</Divider>
-						<SigninForm />
+						<SignupForm />
 					</div>
 				</div>
 			</div>

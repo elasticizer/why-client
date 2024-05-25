@@ -19,8 +19,8 @@ router.post(async (req, res) => {
 		maxAge: 0,
 		httpOnly: true,
 		path: '/',
-		sameSite: 'lax',
-		secure: true
+		sameSite: 'lax'
+		// secure: true
 	});
 
 	res.setHeader('Set-Cookie', cookie);

@@ -49,24 +49,19 @@ router.get(async (req, res) => {
 		maxAge: 0,
 		httpOnly: true,
 		path: '/',
-		sameSite: 'lax',
-		secure: true
+		sameSite: 'lax'
+		// secure: true
 	});
 
 	res.setHeader('Set-Cookie', cookie);
 
 	if (state !== req.cookies.CSRF_TOKEN) {
-		throw new RouteError(
-			StatusCodes.BAD_REQUEST,
-			'CSRF token not matched'
-		);
+		throw new RouteError(StatusCodes.BAD_REQUEST, 'CSRF token not matched');
 	}
 
 	const { id_token } = await getAccessToken(code as string);
 	const info = getUserInfo(id_token);
 	const identifier = randomUUID();
-
-	console.log(info);
 
 	const [[user]] = await connection.execute(
 		'REPLACE INTO User (Email, FirstName, LastName) VALUES (?, ?, ?) RETURNING SN',
@@ -82,8 +77,8 @@ router.get(async (req, res) => {
 		maxAge: 24 * 60 * 60,
 		httpOnly: true,
 		path: '/',
-		sameSite: 'lax',
-		secure: true
+		sameSite: 'lax'
+		// secure: true
 	});
 
 	res.setHeader('Set-Cookie', cookie1);
@@ -112,9 +107,6 @@ function getUserInfo(idToken: string) {
 	try {
 		return verify(idToken, env.LINE_CHANNEL_SECRET as string) as UserInfo;
 	} catch (e) {
-		throw new RouteError(
-			StatusCodes.BAD_REQUEST,
-			'Token not verified'
-		);
+		throw new RouteError(StatusCodes.BAD_REQUEST, 'Token not verified');
 	}
 }

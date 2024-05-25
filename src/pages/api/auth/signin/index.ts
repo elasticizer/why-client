@@ -6,6 +6,9 @@ import jwt from 'jsonwebtoken';
 import { env } from 'process';
 import chalk from 'chalk';
 import { StatusCodes } from 'http-status-codes';
+import { send } from '@/handlers/mailer';
+import { render } from '@react-email/components';
+import MagicLinkEmail from '@/emails/magic-link';
 
 const router = createRouter<NextApiRequest, NextApiResponse>();
 
@@ -27,13 +30,17 @@ router.post(async (req, res) => {
 	const token = jwt.sign({ sn: user.SN }, env.APP_KEY as string, {
 		expiresIn: 15 * 60
 	});
+	const link = `${env.APP_URL}/signin/challenge?token=${token}`;
 
-	console.info(chalk.bgBlueBright(
-		'Magic link:',
-		`${env.APP_URL}/api/auth/signin/challenge?token=${token}`
-	));
+	send({
+		html: render(MagicLinkEmail({ link })),
+		recipient: email,
+		subject: '您的 Why Academy 登入連結'
+	});
 
-	res.status(200).json({
+	console.info(chalk.bgBlueBright('Magic link:', link));
+
+	res.status(StatusCodes.OK).json({
 		done: true,
 		data: null
 	});

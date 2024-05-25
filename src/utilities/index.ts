@@ -1,5 +1,5 @@
-export function sleep<T>(ms: BigInt, data?: T): Promise<T> {
-	return new Promise(
-		resolve => setTimeout(resolve, Number(ms), data)
-	);
+import type { Inputable } from '@/types';
+
+export function sleep<T>(ms: BigInt, data?: T) {
+	return new Promise<T>(resolve => setTimeout(resolve, Number(ms), data));
 }

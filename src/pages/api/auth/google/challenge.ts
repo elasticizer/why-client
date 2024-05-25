@@ -44,17 +44,14 @@ router.get(async (req, res) => {
 		maxAge: 0,
 		httpOnly: true,
 		path: '/',
-		sameSite: 'lax',
-		secure: true
+		sameSite: 'lax'
+		// secure: true
 	});
 
 	res.setHeader('Set-Cookie', cookie);
 
 	if (state !== req.cookies.CSRF_TOKEN) {
-		throw new RouteError(
-			StatusCodes.BAD_REQUEST,
-			'CSRF token not matched'
-		);
+		throw new RouteError(StatusCodes.BAD_REQUEST, 'CSRF token not matched');
 	}
 
 	const { access_token } = await getAccessToken(code as string);
@@ -75,8 +72,8 @@ router.get(async (req, res) => {
 		maxAge: 24 * 60 * 60,
 		httpOnly: true,
 		path: '/',
-		sameSite: 'lax',
-		secure: true
+		sameSite: 'lax'
+		// secure: true
 	});
 
 	res.setHeader('Set-Cookie', cookie1);

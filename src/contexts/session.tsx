@@ -2,7 +2,7 @@ import type { Uncertain } from '@/types';
 import type { ApiResponseBody } from '@/types/api';
 import type { Progenitive } from '@/types/react';
 import { usePathname } from 'next/navigation';
-import { createContext, useContext, useEffect, useState } from 'react';
+import { createContext, useContext, useEffect, useRef, useState } from 'react';
 
 export type SessionData = Uncertain<{
 	SN: number;
@@ -20,13 +20,16 @@ export function useSession() {
 }
 
 export function SessionProvider({ children }: Progenitive) {
+	const firstRendering = useRef(true);
 	const pathname = usePathname();
 	const [session, setSession] = useState<SessionData>();
 
 	useEffect(
-		() => void fetch('/api/auth/status')
-			.then(r => r.json())
-			.then(({ data }: ApiResponseBody<SessionData>) => setSession(data ?? null)),
+		() => firstRendering.current
+			? void (firstRendering.current = false)
+			: void fetch('/api/auth/status')
+				.then(r => r.json())
+				.then(({ data }: ApiResponseBody<SessionData>) => setSession(data ?? null)),
 		[pathname]
 	);
 
