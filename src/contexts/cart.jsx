@@ -1,6 +1,10 @@
 import { createContext, useContext, useState, useEffect } from 'react';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 const CartContext = createContext(null);
+
+const MySwal = withReactContent(Swal);
 
 export function CartProvider({ children }) {
     const [cartItem, setCartItem] = useState([]);
@@ -26,7 +30,12 @@ export function CartProvider({ children }) {
 
             setCartItem(nextItem);
         } else {
-            alert(`${course.Name} 已經在購物車`);
+            const notifyAndRemove = () => {
+                MySwal.fire({
+                    title: `<p style="font-size: 1.5rem;">${course.Name}<br />已經在購物車囉！</p>`
+                });
+            };
+            notifyAndRemove();
         }
     };
 
@@ -39,12 +48,12 @@ export function CartProvider({ children }) {
             fd.append('course', course.SN);
         }
 
-        const data = await fetch('/api/cart', {
+        const response = await fetch('/api/cart', {
             method: 'DELETE',
             body: new URLSearchParams(fd)
         });
 
-        if (data.done) {
+        if (response.ok) {
             const nextItems = cartItem.filter(item => item.SN !== course.SN);
             setCartItem(nextItems);
         }

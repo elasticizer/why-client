@@ -8,7 +8,7 @@ export default function NavCh() {
 		<>
 
 			<Chapter />
-			<ChapterVideo />
+			{/* <ChapterVideo /> */}
 			{/* 輪播 */}
 			<div
 				data-hs-carousel='{"loadingClasses": "opacity-0"}'

@@ -6,19 +6,19 @@ import '@/styles/test.module.css';
 
 export function Video() {
   return (
-    <div className="  backdrop-filter backdrop-saturate-125 backdrop-opacity-20">
+    <div className=" ">
       <video
         autoPlay
         loop
         muted
-        className=" rounded-lg w-full h-auto">
+        className=" contrast-50 rounded-lg w-full ">
         <source
           src="/video/design02.mp4"
           type="video/mp4"
         />
 
       </video>
-      <div className="content"></div>
+    
     </div>
   );
 }

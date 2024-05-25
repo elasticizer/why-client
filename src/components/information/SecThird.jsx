@@ -1,15 +1,38 @@
-import React from 'react';
-import NavIntro from '@/components/courseLesson/NavIntro';
+import React, { useEffect, useState } from 'react';
+import NavIntro from '../intro/NavIntro';
 import NavCh from '../chapter/NavCh';
-import NavComment from '@/components/courseLesson/NavComment';
-import NavAsk from '@/components/courseLesson/NavAsk';
-import AccordItem from '@/components/courseLesson/AccordItem';
+import NavComment from '@/components/Comment/NavComment';
+import NavAsk from '@/components/question/NavAsk';
+import AccordItem from '@/components/learn/AccordItem';
+
 
 export default function SecThird() {
+	const [course, setCourse] = useState([]);
+	useEffect(() => {
+		const fetchdata = async () => {
+			try {
+				const res = await fetch(`/api/coursedetail`);
+				if (!res.ok) {
+					throw new Error(`HTTP error! status: ${res.status}`);
+				}
+				const postdata = await res.json();
+				setCourse(postdata);
+			} catch (e) {
+				console.error(e);
+				setCourse([]);
+			}
+		};
+		fetchdata();
+	}, []);
+	if (course.length === 0) {
+		return <div>Loading...</div>;
+	}
+
+
 	return (
 		<>
-			<div className="lg:mt-[500px] xl:mt-[700px]">
-				<div className="mt-8 w-full mx-2 px-0 lg:px-0 ">
+			<div className="mt-[100px] sm:mt-[250px] md:mt-[350px] lg:mt-[550px] xl:mt-[800px]">
+				<div className="w-full mx-2 px-0 lg:px-0 ">
 					<div className="  lg:grid lg:grid-cols-[650px_minmax(300px,_1fr)_100px] xl:grid-cols-[850px_minmax(300px,_1fr)_100px] gap-x-10 ">
 						{/* 左邊 */}
 						<div className="pr-2">
@@ -20,57 +43,18 @@ export default function SecThird() {
 									</div>
 								</div>
 							</div>
-
-							<div className="">
-								<p className=" text-gray-500 font-['Inter'] leading-7 pt-3 lg:pt-1 mt-2 text-base  dark:text-neutral-400 text-justify ">
-									探索
-									Figma，這個設計師必備的全能利器！本課程不僅僅是一場學習，更是一場啟發，一場對創意的探索之旅！從
-									UI/UX 設計的基礎到進階技巧，我們將帶你徹底掌握設計的精髓。透過
-									Figma，你將不再受限於創意的表現，而是能夠將你的想像力轉化為真實的產品體驗。無論你是剛起步還是已經有一定經驗，這個課程都將為你打開新的視野，讓你在
+<p className=" text-gray-500 font-['Inter'] leading-7 pt-3 lg:pt-1 mt-2 text-base  dark:text-neutral-400 text-justify ">
+									{course[0].Intro}
+									
 								</p>
-								<div
-									id="hs-show-hide-collapse-heading"
-									className="hs-collapse hidden w-full overflow-hidden transition-[height] duration-300"
-									aria-labelledby="hs-show-hide-collapse">
-									<p className=" text-gray-500 font-['Inter'] leading-7  lg:pt-0  text-base  dark:text-neutral-400 	">
-										設計的道路上更上一層樓！趕快加入我們，成為軟硬實力兼具的產品設計師，並跟上全球最前沿的設計趨勢！
-									</p>
-								</div>
-								<p className="mt-2">
-									<button
-										type="button"
-										className="hs-collapse-toggle inline-flex items-center gap-x-1 text-sm font-semibold rounded-lg border border-transparent text-blue-600 hover:text-blue-800 disabled:opacity-50 disabled:pointer-events-none"
-										id="hs-show-hide-collapse"
-										data-hs-collapse="#hs-show-hide-collapse-heading">
-										<span className="hs-collapse-open:hidden  border-blue-400">
-											查看全部
-										</span>
-										<span className="hs-collapse-open:block hidden">
-											收合內容
-										</span>
-										<svg
-											className="hs-collapse-open:rotate-180 flex-shrink-0 size-4"
-											xmlns="http://www.w3.org/2000/svg"
-											width={24}
-											height={24}
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											strokeWidth={2}
-											strokeLinecap="round"
-											strokeLinejoin="round">
-											<path d="m6 9 6 6 6-6" />
-										</svg>
-									</button>
-								</p>
-							</div>
+							
 
 							<br />
 							{/* 手風琴 */}
 							<AccordItem />
 
 
-							<div className=" w-full   lg:sticky lg:z-50 lg:top-[69px] py-0  z-0  ">
+							<div className=" w-full   lg:sticky lg:z-50 lg:top-[89px] py-0  z-0  ">
 								<nav
 									className=" bg-gray-200 flex space-x-0 "
 									aria-label="Tabs"
@@ -160,10 +144,11 @@ export default function SecThird() {
 						<div className=" xl:h-[5000px]   ">
 							<div className=" sticky top-28   flex flex-col   border shadow-sm rounded-xl">
 								<div className="bg-gray-100 bg-[var(--)] border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5">
-									<p className="mt-1 text-base text-gray-800">關於課程</p>
+								<p className="mt-1 font-bold text-lg text-center text-red-500">~購課好康~</p>
 								</div>
 								<div className="p-4 md:p-5">
 									<ul className="space-y-2 sm:space-y-4">
+										
 										<li className="flex space-x-3">
 											{/* Solid Check */}
 											<span className="mt-0.5 size-5 flex justify-center items-center rounded-full bg-blue-50 text-blue-600 dark:bg-blue-800/30 dark:text-blue-500">
@@ -183,54 +168,10 @@ export default function SecThird() {
 											</span>
 											{/* End Solid Check */}
 											<span className="text-sm sm:text-base text-gray-500 dark:text-neutral-500">
-												課程教學影片時長
-												<span className="font-bold">15 時 1 分鐘</span>
+												購課即可領取優惠贈品
 											</span>
 										</li>
-										<li className="flex space-x-3">
-											{/* Solid Check */}
-											<span className="mt-0.5 size-5 flex justify-center items-center rounded-full bg-blue-50 text-blue-600 dark:bg-blue-800/30 dark:text-blue-500">
-												<svg
-													className="flex-shrink-0 size-3.5"
-													xmlns="http://www.w3.org/2000/svg"
-													width={24}
-													height={24}
-													viewBox="0 0 24 24"
-													fill="none"
-													stroke="currentColor"
-													strokeWidth={2}
-													strokeLinecap="round"
-													strokeLinejoin="round">
-													<polyline points="20 6 9 17 4 12" />
-												</svg>
-											</span>
-											{/* End Solid Check */}
-											<span className="text-sm sm:text-base text-gray-500 dark:text-neutral-500">
-												單元數共 6 章節 60 單元
-											</span>
-										</li>
-										<li className="flex space-x-3">
-											{/* Solid Check */}
-											<span className="mt-0.5 size-5 flex justify-center items-center rounded-full bg-blue-50 text-blue-600 dark:bg-blue-800/30 dark:text-blue-500">
-												<svg
-													className="flex-shrink-0 size-3.5"
-													xmlns="http://www.w3.org/2000/svg"
-													width={24}
-													height={24}
-													viewBox="0 0 24 24"
-													fill="none"
-													stroke="currentColor"
-													strokeWidth={2}
-													strokeLinecap="round"
-													strokeLinejoin="round">
-													<polyline points="20 6 9 17 4 12" />
-												</svg>
-											</span>
-											{/* End Solid Check */}
-											<span className="text-sm sm:text-base text-gray-500 dark:text-neutral-500">
-												5 份編碼練習作業
-											</span>
-										</li>
+										
 										<li className="flex space-x-3">
 											{/* Solid Check */}
 											<span className="mt-0.5 size-5 flex justify-center items-center rounded-full bg-blue-50 text-blue-600 dark:bg-blue-800/30 dark:text-blue-500">
@@ -281,29 +222,12 @@ export default function SecThird() {
 									<a
 										href="#"
 										type="button"
-										className="py-3 px-4 mt-3    inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+										className="py-3 px-4 mt-3  w-full  inline-flex items-center justify-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-orange-500 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
 										加入購物車
-										<svg
-											className="flex-shrink-0 size-4"
-											xmlns="http://www.w3.org/2000/svg"
-											width="24"
-											height="24"
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											stroke-width="2"
-											stroke-linecap="round"
-											stroke-linejoin="round">
-											<path d="m5 11 4-7"></path>
-											<path d="m19 11-4-7"></path>
-											<path d="M2 11h20"></path>
-											<path d="m3.5 11 1.6 7.4a2 2 0 0 0 2 1.6h9.8c.9 0 1.8-.7 2-1.6l1.7-7.4"></path>
-											<path d="m9 11 1 9"></path>
-											<path d="M4.5 15.5h15"></path>
-											<path d="m15 11-1 9"></path>
-										</svg>
+										<img src='/image/cart.gif' className='size-6 items-centerr'/>
+										
 									</a>
-									<a
+									{/* <a
 										type="button"
 										className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none">
 										立即購買
@@ -321,7 +245,7 @@ export default function SecThird() {
 											<path d="M5 12h14"></path>
 											<path d="m12 5 7 7-7 7"></path>
 										</svg>
-									</a>
+									</a> */}
 								</div>
 							</div>
 						</div>

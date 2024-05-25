@@ -5,7 +5,9 @@ import { FaPencil } from 'react-icons/fa6';
 
 
 export default function AccordItem() {
-  return (
+	
+
+	return (
 		<>
 			<div
 				className="hs-accordion-group "
@@ -48,23 +50,16 @@ export default function AccordItem() {
 						id="hs-basic-active-bordered-collapse-two"
 						className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300"
 						aria-labelledby="hs-active-bordered-heading-two">
-						<div className="pb-4 px-5">
-							<p className="text-gray-800">
-								這門課程總長超過 15
-								小時，如果你能夠認真學習完這堂課程所有單元，並扎實的完成課堂作業
-							</p>
-
-							<div className="text-gray-800 ">
-								你將會：
-								<br />
+					<div className="pb-4 px-5">
+						<div className="text-gray-800 ">
+							
 								<ol>
 									<li className="flex space-x-3">
 										<span className="mt-0.5 size-5 flex justify-center items-center ">
 											<IoMdCheckmarkCircleOutline className="text-red-600/75" />{' '}
 										</span>
 										<span className=" text-gray-800  text-sm sm:text-base ">
-											掌握介面設計 (UI Design) 與使用者體驗設計 (UX Design)
-											的核心知識與觀念。
+											了解職涯選擇三步驟，認識職業生涯規劃三元素——價值、興趣、能力
 										</span>
 									</li>
 									<li className="flex space-x-3">
@@ -72,7 +67,7 @@ export default function AccordItem() {
 											<IoMdCheckmarkCircleOutline className="text-red-600/75" />{' '}
 										</span>
 										<span className=" text-gray-800  text-sm sm:text-base ">
-											熟悉業界產品開發、團隊合作流程以及產品(UI/UX)設計師的能力需求與工作細節。
+											了解「選工作、轉職評估、斜槓副業」三大實務職涯問題的評估步驟
 										</span>
 									</li>
 									<li className="flex space-x-3">
@@ -80,35 +75,10 @@ export default function AccordItem() {
 											<IoMdCheckmarkCircleOutline className="text-red-600/75" />{' '}
 										</span>
 										<span className=" text-gray-800  text-sm sm:text-base ">
-											透過 Figma
-											做出可供使用者及團隊測試的原型(Prototype)，並且能夠根據反饋調整及改善設計。
+											有方向地檢視目前的職涯內容是否適合自己
 										</span>
 									</li>
-									<li className="flex space-x-3">
-										<span className="mt-0.5 size-5 flex justify-center items-center ">
-											<IoMdCheckmarkCircleOutline className="text-red-600/75" />
-										</span>
-										<span className=" text-gray-800  text-sm sm:text-base  ">
-											學習到如何準備與設計面試與求職作品集，讓自己在其他競爭者中脫穎而出。
-										</span>
-									</li>
-									<li className="flex space-x-3">
-										<span className="mt-0.5 size-5 flex justify-center items-center ">
-											<IoMdCheckmarkCircleOutline className="text-red-600/75" />{' '}
-										</span>
-										<span className=" text-gray-800  text-sm sm:text-base ">
-											建立正確的學習心態與工作觀念，包含在未來的設計和職涯路上都能掌握的原則，幫助你持續自我精進成長。
-										</span>
-									</li>
-									<li className="flex space-x-3">
-										<span className="mt-0.5 size-5 flex justify-center items-center ">
-											<IoMdCheckmarkCircleOutline className="text-red-600/75" />{' '}
-										</span>
-										<span className=" text-gray-800  text-sm sm:text-base ">
-											從概念發想到實際操作，從 0 到 1 完成兩個產品(iOS App & RWD
-											網頁)的核心功能設計與原型製作。
-										</span>
-									</li>
+									
 								</ol>
 							</div>
 						</div>
@@ -155,14 +125,15 @@ export default function AccordItem() {
 						aria-labelledby="hs-active-bordered-heading-one">
 						<div className="pb-4 px-5 ">
 							<p className="text-gray-800 text-sm">
-								這門課程適合所有程度的同學來參與，只要你對 UI/UX
-								/產品設計有熱情，不管你是沒有經驗、想轉
-								職、或是已經在業界一段時間想要更精進 UI/UX
-								設計，都會非常適合來參與這門課程，課程內容將
-								由淺入深帶你走過產品設計的每一個環節！
+								這門課程適合所有程度的同學來參與，不管你是沒有經驗、想轉
+								職、或是已經在業界一段時間想要更精進，都會非常適合來參與這門課程，課程內容將由淺入深帶你走過每一個環節！
 							</p>
 
 							<br />
+							<h3 className="text-lg font-bold">請注意!</h3>
+							<p className="text-gray-800 text-sm">
+								課程並非提供你客製化的職涯諮詢，如果你想要獲得更深入的職涯諮詢服務，可以參考「人生設計心理諮商所」官網的服務內容。
+							</p>
 							<div className="text-gray-800 ">
 								這邊我列出以下幾個相對非常適合上這門課的的族群：
 								<ol>
@@ -171,9 +142,7 @@ export default function AccordItem() {
 											<FcIdea />
 										</span>
 										<span className=" text-gray-800  text-sm sm:text-base ">
-											你對 UI/UX
-											設計完全沒經驗，但對這塊領域充滿好奇與熱情，並且未來想轉職成為UI/UX
-											設計師。
+											在職者：想掙脫目前遇到的職涯困境，想要尋求方向指引
 										</span>
 									</li>
 									<li className="flex space-x-2">
@@ -181,8 +150,7 @@ export default function AccordItem() {
 											<FcIdea />
 										</span>
 										<span className=" text-gray-800  text-sm sm:text-base ">
-											你對 UI/UX
-											設計有基本的認識，想要更進一步學習產品設計概念與精進設計工具的操作技巧。
+											教學人員／職涯諮詢師：想要尋找合適的工具與學生進行互動，共同探索人生職涯方向。
 										</span>
 									</li>
 									<li className="flex space-x-2">
@@ -190,43 +158,17 @@ export default function AccordItem() {
 											<FcIdea />
 										</span>
 										<span className=" text-gray-800  text-sm sm:text-base ">
-											你是 UX 設計師，想要更精進 UI
-											設計能力與美感，讓產出的設計細節更完整，幫助你和 UI /
-											視覺設計師的溝通更順暢。
+											學生／求職者：嘗試過各種職涯探索工具，但對於未來要從事的職業仍沒有方向
+
 										</span>
 									</li>
-									<li className="flex space-x-2">
-										<span className="mt-0.5 size-5 flex justify-center items-center ">
-											<FcIdea />
-										</span>
-										<span className=" text-gray-800  text-sm sm:text-base ">
-											你已經在在業界工作一段時間，但工作上還是使用其他工具(Photoshop
-											/ Sketch / Adobe XD)，未來想轉換到 Figma或想深入了解 Figma
-											的操入技巧與協作流程。
-										</span>
-									</li>
-									<li className="flex space-x-2">
-										<span className="mt-0.5 size-5 flex justify-center items-center ">
-											<FcIdea />
-										</span>
-										<span className=" text-gray-800  text-sm sm:text-base ">
-											你是使用者研究員、工程師、產品經理，或是團隊任何角色，想要更進一步了解產品設計思維與細節，以及加強與設計師的合作關係。
-										</span>
-									</li>
-									<li className="flex space-x-2">
-										<span className="mt-0.5 size-5 flex justify-center items-center ">
-											<FcIdea />
-										</span>
-										<span className=" text-gray-800  text-sm sm:text-base ">
-											你是部門的設計主管，想要了解Figma可以如何幫助團隊提高工作效率與合作溝通品質。
-										</span>
-									</li>
+								
 								</ol>
 							</div>
 						</div>
 					</div>
 				</div>
-
+{/* 
 				<div
 					className=" bg-blue-200 hs-accordion hs-accordion-active:shadow-gray-500  border border-transparent rounded-xl"
 					id="hs-active-bordered-heading-three">
@@ -327,7 +269,7 @@ export default function AccordItem() {
 							</div>
 						</div>
 					</div>
-				</div>
+				</div> */}
 				<br />
 			</div>
 		</>
