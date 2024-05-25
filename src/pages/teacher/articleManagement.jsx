@@ -11,7 +11,8 @@ import styles from '@/styles/teacher.module.css';
 
 export default function ArticleManagement() {
 	const [windowNav, setWindowNav] = useState("hidden");
-	const [domain, setDomain] = useState('');
+	const [domain, setDomain] = useState("");
+	const [search, setSearch] = useState("");
 	return (
 		<>
 			<div className={`${styles.container}`}>
@@ -21,15 +22,16 @@ export default function ArticleManagement() {
 
 				{/* 分類選擇與搜尋 */}
 				<div className='mt-10 hidden md:flex justify-between'>
-					<Domain setDomain={setDomain} />
+				<Domain setDomain={setDomain} />
 					<div className="flex items-center md:flex ">
-						<Search />
+						<Search setSearch={setSearch} />
 					</div>
 				</div>
 				<div className="md:hidden mt-5">
-					<Search />
+					<Search setSearch={setSearch} />
 					<Domain setDomain={setDomain} />
 				</div>
+
 
 
 
@@ -38,7 +40,7 @@ export default function ArticleManagement() {
 					已發表文章
 				</h1>
 
-				<Content domain={domain} />
+				<Content domain={domain} search={search} />
 			</div>
 			<Tabbar setWindowNav={setWindowNav} windowNav={windowNav} />
 

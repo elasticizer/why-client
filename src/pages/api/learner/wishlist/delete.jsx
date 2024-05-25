@@ -1,12 +1,26 @@
 import { createRouter } from "next-connect";
 import connection from '@/handlers/sqlite3';
 import React from 'react';
+import Session from '@/helpers/session';
+import { RouteError } from '@/handlers/router'
 
 const router = createRouter();
 
 router.get(async (req, res) => {
 	console.log(req.query);
-	const { User, collectedCoursSN } = req.query;
+	const {collectedCoursSN } = req.query;
+	const sessionId = req.cookies.SESSION_ID;
+
+
+ if (!sessionId) {
+  throw new RouteError(
+   StatusCodes.FORBIDDEN,
+   '沒有登入'
+  );
+ }
+ const user = await Session.associate(sessionId);
+
+const User=user.SN
 	const sql = `
 	DELETE FROM CollectedCourse where UserSN=? AND CourseSN=?
 	`;

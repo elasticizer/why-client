@@ -1,15 +1,14 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import Quill from "@/components/member/uploadCourse/Quill";
 import { GoVideo } from "react-icons/go";
 import { RiPencilFill } from "react-icons/ri";
 import UploadTables from "@/components/member/uploadCourse/uploadTables";
 import { errorAlert } from "@/components/member/errorAlert";
 import { extname } from 'path';
+import axios from 'axios';
 
 
-
-
-export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, courseClass, setCourseClass }) {
+export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, courseClass, setCourseClass, lesson, lessonData, setCourseProgress, SetUploadCourseAlertDisplay }) {
 	const [courseTitle, setCourseTitle] = useState("");
 	const [domain, setDomain] = useState("");
 	const [price, setPrice] = useState("");
@@ -19,8 +18,23 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 	const [previewVideo, setPreviewVideo] = useState("/learner/upload.png");
 	// const [viedoButton, setVideoButton] = useState("select");
 	// const [practiceButton, setPracticeButton] = useState("select");
-	const [courseDescription, setCourseDescription] = useState('');
+	const [courseDescription, setCourseDescription] = useState("");
 	const [instructorExperience, setInstructorExperience] = useState('');
+
+	const [selectData, setSelectData] = useState([]);
+	const handleData = async () => {
+		try {
+			const response = await fetch('/api/domain');
+			const results = await response.json();
+			setSelectData(results);
+		} catch (err) {
+			console.log(err);
+		}
+	};
+
+	useEffect(() => {
+		handleData();
+	}, []);
 
 	// 判斷式的部分
 	const [titleLimit, setTitleLimit] = useState('');
@@ -29,8 +43,10 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 	const [selectMetion, setSelectMetion] = useState('white');
 	const [priceLimit, setPriceLimit] = useState('');
 	const [priceMetion, setPriceMetion] = useState('white');
+
 	const [courseDescriptionLimite, setCourseDescriptionLimite] = useState('');
 	const [courseDescriptionLimiteMetion, setCourseDescriptionLimiteMetion] = useState('white');
+
 	const [instructorExperienceLimite, setInstructorExperienceLimite] = useState('');
 	const [instructorExperienceLimiteMetion, setInstructorExperienceLimiteMetion] = useState('white');
 	const [selectFileLimite, setSelectFileLimite] = useState('');
@@ -159,33 +175,44 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 			return false;
 		}
 
+		SetUploadCourseAlertDisplay('')
 
 		const formdata = new FormData(formEl.current);
+
+		console.log(lesson);
+
+
+		lesson.forEach(v => formdata.append("lesson[]", v));
 		formdata.append("courseDescription", courseDescription);
-		formdata.append("instructorExperience", instructorExperience);
-		formdata.append("courseCover", selectFile);
-		formdata.append("promotionalVideo", selectVideoFile);
+		formdata.append("syllabuse", instructorExperience);
+
 		try {
-			const response = await fetch("/api/uploadCourse", {
-				method: "POST",
-				body: formdata
+			const response = await axios.post("/api/uploadCourse", formdata, {
+				headers: {
+					'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
+				},
+				onUploadProgress: (progressEvent) => {
+					const progressPercent = Math.round(
+						(progressEvent.loaded * 100) / progressEvent.total
+					); // 計算上傳進度的百分比
+					setCourseProgress(progressPercent); // 更新進度狀態
+				},
 			});
 			const data = await response.json();
-			console.log(data);
+
 		} catch (err) {
 			console.log(err);
 		}
 
-		window.location.href = '/teacher';
+
+		// window.location.href = '/teacher';
 	};
-
-
 
 
 
 	return (
 		<>
-			<form ref={formEl} >
+			<form ref={formEl} onSubmit={handleSumbit}>
 				<div className="space-y-12">
 					<div className="border-b border-gray-900/10 pb-12">
 						<h2 className="text-xl font-semibold leading-7 text-gray-900">
@@ -243,18 +270,11 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 										}}
 									>
 										<option value="">請選擇</option>
-										<option value="Music">音樂</option>
-										<option value="Language">語言</option>
-										<option value="Photography">攝影</option>
-										<option value="Art">藝術</option>
-										<option value="Design">設計</option>
-										<option value="Humanities">人文</option>
-										<option value="Marketing">行銷</option>
-										<option value="Programming">程式</option>
-										<option value="InvestingFinance">投資理財</option>
-										<option value="WorkplaceSkills">職場技能</option>
-										<option value="Diy">手作</option>
-										<option value="Lifestyle">生活品味</option>
+										{selectData.map((v) => {
+											return (
+												<option key={v.SN} value={v.SN}>{v.Name}</option>
+											);
+										})}
 									</select>
 								</div>
 								<p className="mt-1 text-xs leading-6 text-gray-400">
@@ -276,7 +296,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 								</div>
 								<p className="mt-1 text-xs leading-6 text-gray-400">
 									輸入說明至少達200字元以上</p>
-								<p className={`text-xs leading-6 text-${courseDescriptionLimiteMetion} `}>
+								<p className={`text-xs leading-6 text-${courseDescriptionLimiteMetion}`}>
 									內容未達200字元</p>
 							</div>
 
@@ -348,10 +368,10 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 							{/* SECTION 講師經歷 得用append加進formdata*/}
 							<div className="col-span-full">
 								<label
-									htmlFor="instructorExperience"
+									htmlFor="syllabus"
 									className="block text-md font-semibold leading-6 text-gray-900"
 								>
-									講師經歷
+									課程大綱
 								</label>
 								<div className="mt-2  shadow-sm">
 									<Quill setText={setInstructorExperience} text={instructorExperience} metion={instructorExperienceLimite} />
@@ -439,7 +459,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 								</div>
 							</div>
 							{/* SECTION 上傳課程 */}
-							<div className=" col-span-full">
+							<div className="col-span-full">
 								<label
 									htmlFor="title"
 									className="block text-md font-semibold leading-6 text-gray-900"
@@ -448,7 +468,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 								</label>
 								<div className="mt-2">
 									<div className="sm:flex overflow-y-scroll">
-										<UploadTables UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay}
+										<UploadTables UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay} {...{ lesson }} {...{ lessonData }}
 										/>
 									</div>
 								</div>
@@ -468,12 +488,12 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 					<button
 						type="submit"
 						className=" bg-orange-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500"
-						onClick={handleSumbit}
 					>
 						送出
 					</button>
 				</div>
 			</form>
+
 		</>
 
 	);

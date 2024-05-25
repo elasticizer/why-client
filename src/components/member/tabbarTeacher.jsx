@@ -8,13 +8,27 @@ import { MdArticle, MdOutlineAnalytics } from "react-icons/md";
 import { BsChevronDown } from "react-icons/bs";
 import UserList from "./userList";
 import Link from 'next/link';
+import { useSession } from '@/contexts/session';
+
 
 
 
 export default function Tabbar({ setWindowNav, windowNav }) {
 	const [iconRotate, setIconRotate] = useState("");
+	const [Icon, setIcon] = useState("");
 	const [hidden, setHidden] = useState(true);
 	const buttonEl = createRef();
+
+
+	const session = useSession();
+	useEffect(() => {
+		if (session) {
+			setIcon(session.Icon);
+		}
+	}, [session]);
+
+
+
 	useEffect(
 		() => {
 			const type = 'click';
@@ -54,19 +68,17 @@ export default function Tabbar({ setWindowNav, windowNav }) {
 				<div className={styles.nevFont}>服務總覽</div>
 			</div>
 			<div className={styles.learnerList}>
-				<div className={`${styles.learnerListImage} relative`}>
-					<Image
-						src="/learner/learner-Icon.png"
+				<div className={`${styles.learnerListImage} relative overflow-hidden`}>
+					<img
+						src={Icon}
 						alt=""
-						width={20}
-						height={20}
 					/>
 				</div>
 				<div className={`${styles.learnerListIcon} transition-all ${hidden?'':'-rotate-180'}`} ref={buttonEl}>
 					<BsChevronDown size="20px" color="white" />
 				</div>
 			</div>
-			<UserList userList={hidden} option={'-top-52'} />
+			<UserList userList={hidden} option={'-top-32'} />
 		</nav>
 	);
 }

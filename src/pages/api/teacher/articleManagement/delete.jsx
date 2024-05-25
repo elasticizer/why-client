@@ -4,9 +4,13 @@ import React from 'react';
 import Session from '@/helpers/session';
 import { RouteError } from '@/handlers/router';
 
+
 const router = createRouter();
 
 router.get(async (req, res) => {
+	const { ArticleSN } = req.query;
+
+
 	const sessionId = req.cookies.SESSION_ID;
 
 
@@ -20,19 +24,14 @@ router.get(async (req, res) => {
 
 	const User = user.SN;
 
-	const sql = `
-	SELECT CollectedArticle.*,User.Nickname,Article.Title,Article.Content,Article.WhenCreated,Author.Nickname AS Author FROM CollectedArticle
-JOIN
-	User ON User.SN=CollectedArticle.UserSN
-JOIN
-	Article ON Article.SN=CollectedArticle.ArticleSN
-JOIN
-	User AS Author ON Author.SN=Article.AuthorSN
-WHERE User.SN=?
-	`;
-	let [results] = await connection.execute(sql, [User]); // TODO
 
-	res.json(results);
+
+	const sql = `
+	DELETE FROM Article where AuthorSN=? AND SN=?
+	`;
+	let [results] = await connection.execute(sql, [User, ArticleSN]); // TODO
+
+	res.json({ status: 'success', message: '刪除成功' });
 });
 
 export default router.handler({

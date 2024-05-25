@@ -7,12 +7,25 @@ import { RiFunctionLine } from "react-icons/ri";
 import { BsChevronDown } from "react-icons/bs";
 import Link from 'next/link';
 import UserList from "./userList";
+import { useSession } from '@/contexts/session';
 
 
 
 export default function Tabbar({ setWindowNav, windowNav }) {
 	const [hidden, setHidden] = useState(true);
+	const [Icon, setIcon] = useState("");
 	const button = useRef();
+
+	const session = useSession();
+
+
+	useEffect(() => {
+		if (session) {
+			setIcon(session.Icon);
+		}
+	}, [session]);
+
+
 
 	useEffect(
 		() => {
@@ -53,19 +66,17 @@ export default function Tabbar({ setWindowNav, windowNav }) {
 				<div className={styles.nevFont}>服務總覽</div>
 			</div>
 			<div className={styles.learnerList}>
-				<div className={styles.learnerListImage}>
-					<Image
-						src="/learner/learner-Icon.png"
+				<div className={`${styles.learnerListImage} overflow-hidden`}>
+					<img
+						src={Icon}
 						alt=""
-						width={20}
-						height={20}
 					/>
 				</div>
 				<div className={`${styles.learnerListIcon} transition-all ${hidden ? '' : '-rotate-180'}`} ref={button}>
 					<BsChevronDown size="20px" color="white" />
 				</div>
 			</div>
-			<UserList userList={hidden} option="-top-52" />
+			<UserList userList={hidden} option="-top-32" />
 		</nav>
 	);
 }

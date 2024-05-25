@@ -1,4 +1,4 @@
-import Header from '@/components/member/teacher/header';
+import Header from '@/components/member/learner/header';
 import Sidebar from '@/components/member/learner/sidebar';
 import Tabbar from '@/components/member/tabbarLearner';
 import Content from '@/components/member/articleBookmarking/content';

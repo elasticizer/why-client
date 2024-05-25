@@ -1,13 +1,27 @@
 import Image from 'next/image';
-import {useState,useRef,useEffect} from 'react';
+import { useState, useRef, useEffect } from 'react';
 import styles from '@/styles/teacher.module.css';
 import UserList from '@/components/member/userList';
 import { BsBell } from "react-icons/bs";
+import { useSession } from '@/contexts/session';
 
 
 export default function Header() {
 	const button = useRef();
 	const [hidden, setHidden] = useState(true);
+	const [Icon, setIcon] = useState("");
+
+	const session = useSession();
+
+
+	useEffect(() => {
+		if (session) {
+			setIcon(session.Icon);
+		}
+	}, [session]);
+
+
+
 
 	useEffect(
 		() => {
@@ -26,7 +40,7 @@ export default function Header() {
 	);
 	return (
 		<div className={`${styles.header} hidden md:flex relative`}>
-		<UserList userList={hidden} option={'top-10 -right-3'} />
+			<UserList userList={hidden} option={'top-10 -right-3'} />
 			<a
 				href="#"
 				className={`${styles.textStyleBlack16} ${styles.headerA} `}>
@@ -36,8 +50,8 @@ export default function Header() {
 				<BsBell />
 			</div>
 			<button className={styles.user} ref={button}>
-				<Image
-					src="/learner/container.png"
+				<img
+					src={Icon}
 					alt=""
 					width={30}
 					height={30}
