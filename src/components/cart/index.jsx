@@ -1,10 +1,12 @@
 import CartList from '@/components/cart/cartList';
 import Summary from '@/components/cart/summary';
 import PrevPageBtn from './prevPageBtn';
-import { useCart } from '@/hooks/useCart';
+import { useCart } from '@/contexts/cart';
+import { useState } from 'react';
 
 export default function Cart() {
 	const { cartItem, removeItem } = useCart();
+
 
 	return (
 		<div className="container mt-8 max-w-[85rem] sm:px-6 lg:px-8 mx-auto my-8">

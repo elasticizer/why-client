@@ -68,7 +68,7 @@ export default function CourseItem({ item, checked, onChange, removeItem }) {
 						<RiDeleteBinLine /> {/* 刪除按鈕 */}
 					</button>
 					{/* 收藏Modal */}
-					<div
+					{/* <div
 						id="hs-basic-modal-collect"
 						className="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 hidden size-full fixed top-0 start-0 z-[80] opacity-0 overflow-x-hidden transition-all overflow-y-auto pointer-events-none">
 						<div className="sm:max-w-lg sm:w-full m-3 sm:mx-auto">
@@ -100,7 +100,7 @@ export default function CourseItem({ item, checked, onChange, removeItem }) {
 								</div>
 							</div>
 						</div>
-					</div>
+					</div> */}
 				</div>
 			</div>
 		</div>

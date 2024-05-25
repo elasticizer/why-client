@@ -1,15 +1,15 @@
-import MainLayout from '@/layouts/mainLayout';
+import CartLayout from '@/layouts/Cart';
 import Checkout from '@/components/checkout';
 import Finish from '@/components/checkout/finish';
 
 export default function CheckOut() {
 	return (
 		<>
-			<MainLayout>
+			<CartLayout>
 				<title>結帳頁面</title>
 				<Checkout />
 				{/* <Finish /> */}
-			</MainLayout>
+			</CartLayout>
 		</>
 	);
 }

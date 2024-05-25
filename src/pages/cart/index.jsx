@@ -1,13 +1,13 @@
-import MainLayout from '@/layouts/mainLayout';
+import CartLayout from '@/layouts/Cart';
 import Cart from '@/components/cart';
 
 export default function CartPage() {
 	return (
 		<>
-			<MainLayout>
+			<CartLayout>
 				<title>購物車</title>
 				<Cart />
-			</MainLayout>
+			</CartLayout>
 		</>
 	);
 }
