@@ -28,7 +28,7 @@ router.get(async (req, res) => {
 		const identifier = randomUUID();
 
 		await connection.execute(
-			`INSERT INTO Session (UUID, IP, ChallengeToken, UserAgent, UserSN) VALUES (?, ?, ?, ?, ?)`,
+			`INSERT INTO Session (UUID, ChallengeToken, IP, UserAgent, UserSN) VALUES (?, ?, ?, ?, ?)`,
 			[identifier, token, ip, agent, data.sn]
 		);
 
@@ -41,7 +41,10 @@ router.get(async (req, res) => {
 		});
 
 		res.setHeader('Set-Cookie', cookie);
-		res.redirect(StatusCodes.SEE_OTHER, '/');
+		res.status(StatusCodes.OK).json({
+			done: true,
+			data: null
+		});
 	} catch (e) {
 		throw new RouteError(
 			StatusCodes.UNAUTHORIZED,
@@ -57,7 +60,10 @@ function getToken(req: NextApiRequest) {
 	const token = [req.query.token].flat().at(-1);
 
 	if (!token) {
-		throw new RouteError(StatusCodes.BAD_REQUEST, 'Token not provided');
+		throw new RouteError(
+			StatusCodes.BAD_REQUEST,
+			'Token not received'
+		);
 	}
 
 	return token;

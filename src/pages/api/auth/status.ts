@@ -11,18 +11,32 @@ router.get(async (req, res) => {
 	const id = req.cookies.SESSION_ID;
 
 	if (!id) {
-		throw new RouteError(StatusCodes.BAD_REQUEST, 'Session not established');
+		throw new RouteError(
+			StatusCodes.BAD_REQUEST,
+			'Session not established'
+		);
 	}
 
 	const [[user]] = await connection.execute(
 		'SELECT User.SN, User.Email, User.FirstName, User.LastName, User.Nickname FROM Session JOIN User ON User.SN = Session.UserSN WHERE UUID = ? AND WhenRevoked IS NULL',
 		[id]
 	);
-	const name = `${user.FirstName}+${user.LastName}`;
+
+	if (!user) {
+		throw new RouteError(
+			StatusCodes.BAD_REQUEST,
+			'Session not established'
+		);
+	}
+
+	const name = user.Nickname ?? `${user.FirstName}+${user.LastName}`;
 	const icon = `https://ui-avatars.com/api/?background=random&name=${name}`;
 
 	if (!user) {
-		throw new RouteError(StatusCodes.UNAUTHORIZED, 'Invalid session received');
+		throw new RouteError(
+			StatusCodes.UNAUTHORIZED,
+			'Invalid session received'
+		);
 	}
 
 	const cookie = serialize('SESSION_ID', id, {
@@ -36,7 +50,7 @@ router.get(async (req, res) => {
 	res.setHeader('Set-Cookie', cookie);
 	res.status(StatusCodes.OK).json({
 		done: true,
-		data: Object.assign(user, { Icon: icon })
+		data: { ...user, Icon: icon }
 	});
 });
 

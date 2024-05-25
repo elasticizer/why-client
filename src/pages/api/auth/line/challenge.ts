@@ -66,8 +66,6 @@ router.get(async (req, res) => {
 	const info = getUserInfo(id_token);
 	const identifier = randomUUID();
 
-	console.log(info);
-
 	const [[user]] = await connection.execute(
 		'REPLACE INTO User (Email, FirstName, LastName) VALUES (?, ?, ?) RETURNING SN',
 		[info.email, info.name, '']

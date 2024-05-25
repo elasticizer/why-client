@@ -30,9 +30,3 @@ export async function send({ html, recipient, subject }: MailInfo) {
 		attachments: []
 	});
 }
-
-send({
-	recipient: 'receiver@localhost',
-	subject: 'Test',
-	html: '<div>123</div>'
-});
