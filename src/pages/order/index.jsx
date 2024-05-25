@@ -1,13 +1,13 @@
-import MainLayout from '@/layouts/mainLayout';
+import CartLayout from '@/layouts/Cart';
 import OrderTabs from '@/components/order/orderTabs';
 
 export default function Order() {
 	return (
 		<>
-			<MainLayout>
+			<CartLayout>
 				<title>訂單</title>
 				<OrderTabs />
-			</MainLayout>
+			</CartLayout>
 		</>
 	);
 }

@@ -9,11 +9,13 @@ const router = createRouter();
 router.get(async (req, res) => {
 	const limit = req.query.limit ?? 10;
 
-	const [results] = await connection.execute(
-		'SELECT Course.SN, Course.Name, Course.Intro,Course.Price,File.FileName, Domain.Name AS DomainName FROM Course JOIN File ON Course.ThumbnailSN = File.SN JOIN Domain ON Course.DomainSN = Domain.SN ORDER BY Course.SN DESC'
-	);
+	router.get(async (req, res) => {
+		const [results] = await connection.execute(
+			'SELECT Course.SN, Course.Name, Course.Intro,Course.Price,File.FileName, Domain.Name AS DomainName FROM Course JOIN File ON Course.ThumbnailSN = File.SN JOIN Domain ON Course.DomainSN = Domain.SN ORDER BY Course.SN DESC'
+		);
 
-	return res.status(200).json(results);
+		return res.status(200).json(results);
+	});
+
+	export default router.handler({ onError, onNoMatch });
 });
-
-export default router.handler({ onError, onNoMatch });

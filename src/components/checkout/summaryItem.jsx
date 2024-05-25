@@ -1,5 +1,3 @@
-import React from 'react';
-
 export default function SummaryItem({ domainName, name, price }) {
 	return (
 		<>

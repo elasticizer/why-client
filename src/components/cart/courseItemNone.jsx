@@ -1,10 +1,10 @@
-import React from 'react';
+import { PiListPlusBold } from "react-icons/pi";
 
 export default function CourseItemNone() {
 	return (
 		<>
-			<div className="flex flex-col items-center justify-center space-y-4 p-36">
-        <img src='https://hahow.in/static/media/empty-icon.ffab5b384149efd3fad5979bde7a0f52.svg'/>
+			<div className="flex flex-col items-center justify-center space-y-4 p-24">
+        <p className="text-9xl "><PiListPlusBold /></p>
 				<p className='text-lg font-semibold'>購物車是空的，去逛逛吧！</p>
 				<a
 					type="button"
