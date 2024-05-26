@@ -44,7 +44,9 @@ export default function CheckoutModal() {
 								取消
 							</button>
 							<button
-								type="button"
+								type="submit"
+								formaction={`/api/payment/linepay`}
+								method="post"
 								className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-orange-400 text-white hover:bg-orange-500 disabled:opacity-50 disabled:pointer-events-none">
 								確認結帳
 							</button>
