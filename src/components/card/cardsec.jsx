@@ -10,6 +10,7 @@ import { useCart } from '../../contexts/cart';
 import Link from 'next/link';
 
 
+
 export default function CardSec({ data = {
 	SN: ''
 	, Name: ''
@@ -56,7 +57,7 @@ export default function CardSec({ data = {
 	return (
 		<>
 			
-			<div href="#" className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-lg transition">
+			<div href="#" className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-2xl hover:border-gray-600 motion-reduce:transition-none motion-reduce:hover:transform-none  ">
 				<div className="relative pt-[50%] sm:pt-[60%] lg:pt-[60%]  overflow-hidden">
 					<img
 						className="w-full h-auto absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-tr-3xl  rounded-bl-3xl"
@@ -118,24 +119,25 @@ export default function CardSec({ data = {
 
 					<span className=" flex text-xl justify-between items-center font-bold tracking-tight  text-[#019fde] ">
 						<div>NT$<span>{Price}</span></div>
-
-						<div>
-							<Link href="/course/1"><button>查看課程</button></Link>
-							
-							<button onClick={() => {
-								{ addItemToCart }
-							}}>
+						
+						<div className='items-center justify-center flex'>
+							<Link href="/cart">
+							<button onClick={() => { {addItemToCart} }}>
 								<img
 									className=" size-10"
 									src="/image/cart.gif"
 									alt=""
 								/>
 							</button>
+							</Link>
+
 
 							<Toaster />
 						</div>
 
 					</span>
+					<Link href="/course/1" className='text-lg  hover:text-orange-700 border-blue-600 hover:animate-bounce justify-center flex font-bold rounded-lg   hover:bg-orange-100 bg-blue-100 text-blue-600 '>
+						<button className=' '>詳看課程  </button></Link>
 				</div>
 
 			</div>
