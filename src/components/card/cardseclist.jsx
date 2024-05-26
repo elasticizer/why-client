@@ -33,7 +33,7 @@ export default function CardSecList() {
 				</div>
 					<div className="my-24">
 				<Search setSearch={setSearch} /></div>
-					<div
+					{/* <div
 						className=" mt-5 flex 
 					items-center whitespace-nowrap ">
 						<li className="  lg:pl-0 inline-flex items-center">
@@ -47,7 +47,7 @@ export default function CardSecList() {
 								課程
 							</div>
 						</li>
-					</div>
+					</div> */}
 					<div className="p-3 sm:p-0">
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:grid-cols-3">
 							{course.map(v => {
@@ -55,7 +55,7 @@ export default function CardSecList() {
 									<CardSec
 										data={v}
 										key={v.SN}
-										// addItemToCart={addItemToCart}
+										addItemToCart={v.addItemToCart}
 									/>
 								);
 							})}

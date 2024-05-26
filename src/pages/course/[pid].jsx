@@ -10,20 +10,20 @@ import Home from '../../layouts/home';
 
 
 export default function CourseLesson() {
- 
+
 
   return (
     <>
       {/* <h1>列表頁</h1> */}
       <Home>
-        
+
         <div className="">
           <div className="relative top-0 w-full  justify-center">
             <div className=" w-full h-20 lg:absolute top-0  -z-1 ">
-              <Video   />
+              <Video />
             </div>
             <div className=" top-0 lg:top-10 h-96 w-full absolute   -z-1">
-                <SecTwo  />
+              <SecTwo />
             </div>
           </div>
 
@@ -32,7 +32,13 @@ export default function CourseLesson() {
 				</div> */}
           <div className=" container  border">
             <SecThird />
+            <Link
+              className="mt-10 flex items-center text-xl font-medium  hover:text-blue-600 focus:outline-none focus:text-blue-600"
+              href="/course">
+              {'<<'}返回全部領域
+            </Link>
           </div>
+
         </div>
       </Home>
     </>
