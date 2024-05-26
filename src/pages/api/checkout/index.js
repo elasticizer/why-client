@@ -15,9 +15,8 @@ router.get(async (req, res) => {
 	}
 	const user = await Session.associate(sessionId);
 
-
 	const [results] = await connection.execute(
-		'SELECT Course.SN, Course.Name, Course.Price, Domain.Name AS DomainName, Cart.UserSN, Cart.CourseSN FROM Cart JOIN Course ON Course.SN = Cart.CourseSN JOIN User ON User.SN = Cart.UserSN JOIN Domain ON Course.DomainSN = Domain.SN'
+		'SELECT Cart.UserSN AS id, Course.Name AS name, Course.Price AS amount FROM Cart JOIN Course ON Course.SN = Cart.CourseSN'
 	);
 	res.status(200).json(results);
 });
