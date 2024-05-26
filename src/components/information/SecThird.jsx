@@ -32,10 +32,10 @@ export default function SecThird() {
 	return (
 		<>
 			<div className="mt-[100px] sm:mt-[250px] md:mt-[350px] lg:mt-[550px] xl:mt-[800px]">
-				<div className="w-full mx-2 px-0 lg:px-0 ">
+				<div className="w-full mx-2 px-0 lg:px-0  ">
 					<div className="  lg:grid lg:grid-cols-[650px_minmax(300px,_1fr)_100px] xl:grid-cols-[850px_minmax(300px,_1fr)_100px] gap-x-10 ">
 						{/* 左邊 */}
-						<div className="pr-2">
+						<div className="mr-2 shadow-lg ">
 							<div className=" w-full inline-flex justify-between  items-center  ">
 								<div className="flex items-center  ">
 									<div className="  text-neutral-800 text-2xl font-semibold font-['Inter'] leading-loose">
@@ -51,10 +51,10 @@ export default function SecThird() {
 
 							<br />
 							{/* 手風琴 */}
-							<AccordItem />
+							{/* <AccordItem /> */}
 
 
-							<div className=" w-full   lg:sticky lg:z-50 lg:top-[89px] py-0  z-0  ">
+							<div className=" w-full border-3 shadow-lg lg:sticky lg:z-50 lg:top-[89px] py-0  z-0  ">
 								<nav
 									className=" bg-gray-200 flex space-x-0 "
 									aria-label="Tabs"
@@ -141,8 +141,8 @@ export default function SecThird() {
 						</div>
 						{/* 右邊 */}
 
-						<div className=" xl:h-[5000px]   ">
-							<div className=" sticky top-28   flex flex-col   border shadow-sm rounded-xl">
+						<div className=" xl:h-full   ">
+							<div className=" sticky top-28   flex flex-col border  border-orange-600 shadow-lg rounded-xl">
 								<div className="bg-gray-100 bg-[var(--)] border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5">
 								<p className="mt-1 font-bold text-lg text-center text-red-500">~購課好康~</p>
 								</div>
@@ -167,7 +167,7 @@ export default function SecThird() {
 												</svg>
 											</span>
 											{/* End Solid Check */}
-											<span className="text-sm sm:text-base text-gray-500 dark:text-neutral-500">
+											<span className="text-sm sm:text-base text-gray-800 dark:text-neutral-500">
 												購課即可領取優惠贈品
 											</span>
 										</li>
@@ -190,7 +190,7 @@ export default function SecThird() {
 												</svg>
 											</span>
 											{/* End Solid Check */}
-											<span className="text-sm sm:text-base text-gray-500 dark:text-neutral-500">
+											<span className="text-sm sm:text-base text-gray-800 dark:text-neutral-500">
 												不限觀看次數，{' '}
 												<span className="font-bold">終身存取權 </span>
 											</span>
@@ -213,7 +213,7 @@ export default function SecThird() {
 												</svg>
 											</span>
 											{/* End Solid Check */}
-											<span className="text-sm sm:text-base text-gray-500 dark:text-neutral-500">
+											<span className="text-sm sm:text-base text-gray-800 dark:text-neutral-500">
 												<span className="font-bold">附贈完課證書</span>
 											</span>
 										</li>
@@ -222,7 +222,7 @@ export default function SecThird() {
 									<a
 										href="#"
 										type="button"
-										className="py-3 px-4 mt-3  w-full  inline-flex items-center justify-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-orange-500 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+										className="py-3 px-4 mt-3  w-full  inline-flex items-center justify-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-500 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
 										加入購物車
 										<img src='/image/cart.gif' className='size-6 items-centerr'/>
 										
@@ -248,6 +248,7 @@ export default function SecThird() {
 									</a> */}
 								</div>
 							</div>
+							
 						</div>
 					</div>
 				</div>

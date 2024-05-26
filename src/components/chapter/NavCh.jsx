@@ -8,9 +8,10 @@ export default function NavCh() {
 		<>
 
 			<Chapter />
+			
 			{/* <ChapterVideo /> */}
 			{/* 輪播 */}
-			<div
+			{/* <div
 				data-hs-carousel='{"loadingClasses": "opacity-0"}'
 				className="relative">
 				<div className="hs-carousel relative overflow-hidden min-h-96 bg-white rounded-lg">
@@ -83,7 +84,7 @@ export default function NavCh() {
 					<span className="hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-full cursor-pointer" />
 					<span className="hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-full cursor-pointer" />
 				</div>
-			</div>
+			</div> */}
 		</>
 	);
 }

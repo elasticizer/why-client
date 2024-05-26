@@ -11,7 +11,7 @@ export function Video() {
         autoPlay
         loop
         muted
-        className=" contrast-50 rounded-lg w-full ">
+        className=" contrast-50  w-full ">
         <source
           src="/video/design02.mp4"
           type="video/mp4"

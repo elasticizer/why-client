@@ -55,6 +55,7 @@ export default function CardSec({ data = {
 	const { addItemToCart } = useCart();
 	return (
 		<>
+			<Link href="/course/1">
 			<div href="#" className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-lg transition">
 				<div className="relative pt-[50%] sm:pt-[60%] lg:pt-[60%]  overflow-hidden">
 					<img
@@ -136,7 +137,7 @@ export default function CardSec({ data = {
 				</div>
 
 			</div>
-
+			</Link>
 		</>
 	);
 }

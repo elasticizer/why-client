@@ -11,7 +11,7 @@ export default function Chapter() {
                     </div>
 
                     <div className=" pl-5 text-zinc-600 text-base font-normal font-['Inter'] leading-relaxed">
-                        共 6 章 60 單元｜總時長 901 分鐘
+                        {/* 共 6 章 60 單元｜總時長 901 分鐘 */}
                     </div>
                 </div>
                 {/* <button
@@ -160,17 +160,12 @@ export default function Chapter() {
                                     <div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t">
                                         <button
                                             type="button"
-                                            className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
+                                            className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
                                             data-hs-overlay="#hs-vertically-centered-modal"
                                         >
-                                            Close
+                                            返回
                                         </button>
-                                        <button
-                                            type="button"
-                                            className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                                        >
-                                            Save changes
-                                        </button>
+                                      
                                     </div>
                                 </div>
                             </div>
@@ -185,188 +180,8 @@ export default function Chapter() {
                     </div>
                 </div>
             </div>
-            <div
-                className="hs-accordion-group my-3"
-                data-hs-accordion-always-open="">
-                <div
-                    className=" hs-accordion  hs-accordion-active:border active border border-transparent rounded-lg "
-                    id="hs-active-bordered-heading-two">
-                    <button
-                        className="relative bg-orange-200/80 rounded-lg  text-neutral-600 text-lg font-semibold font-['Inter'] leading-7 hs-accordion-toggle hs-accordion-active:border-blue-500 inline-flex justify-between items-center gap-x-3 w-full  text-start  py-4 px-5 hover:text-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-                        aria-controls="hs-basic-active-bordered-collapse-two">
-                        <div className="w-6 h-6  mr-10 absolute bg-orange-400 rounded-xl justify-center items-center inline-flex">
-                            <div className=" text-white text-sm font-semibold font-['Inter'] leading-snug">
-                                1
-                            </div>
-                        </div>
-                        <div className=" ml-10">
-                            {' '}
-                            CH1-產品設計的核心觀念：UX 設計思維與產品開發流程
-                        </div>
-
-                        <svg
-                            className="hs-accordion-active:hidden block size-4"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width={24}
-                            height={24}
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round">
-                            <path d="m6 9 6 6 6-6" />
-                        </svg>
-                        <svg
-                            className="hs-accordion-active:block hidden size-4"
-                            xmlns="http://www.w3.org/2000/svg"
-                            width={24}
-                            height={24}
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            strokeWidth={2}
-                            strokeLinecap="round"
-                            strokeLinejoin="round">
-                            <path d="m18 15-6-6-6 6" />
-                        </svg>
-                    </button>
-                    <div
-                        id="hs-basic-active-bordered-collapse-two"
-                        className=" hs-accordion-content w-full overflow-hidden transition-[height] duration-300 justify-start "
-                        aria-labelledby="hs-active-bordered-heading-two">
-                        <div className="w-full  hover:bg-gray-300/55  pl-[26.20px] pr-6 pt-[7.50px] pb-2 bg-white justify-center items-start gap-[7.80px] inline-flex">
-                            <div className="pl-3 text-orange-300 text-base font-semibold font-['Inter'] leading-relaxed">
-                                01
-                            </div>
-                            <div className="w-full text-black/opacity-60 text-base font-normal font-['Inter'] leading-relaxed">
-                                【2024更新】課前學習手冊：如何最有效的學習此課程
-                            </div>
-                            <div className="w-8 self-stretch  inline-flex ">
-                                <div className=" content-center w-[30.26px] h-[26px] text-right text-neutral-400 text-xs font-normal font-['Inter'] leading-relaxed">
-                                    21:34
-                                </div>
-                            </div>
-                        </div>
-                        <div className="w-full  hover:bg-gray-300/55  pl-[26.20px] pr-6 pt-[7.50px] pb-2 bg-white justify-center items-start gap-[7.80px] inline-flex">
-                            <div className="pl-3 text-orange-300 text-base font-semibold font-['Inter'] leading-relaxed">
-                                02
-                            </div>
-                            <div className="w-full text-black/opacity-60 text-base font-normal font-['Inter'] leading-relaxed">
-                                UI/UX 設計簡介與核心觀念
-                            </div>
-                            <div className="w-8 self-stretch  inline-flex ">
-                                <div className=" content-center w-[30.26px] h-[26px] text-right text-neutral-400 text-xs font-normal font-['Inter'] leading-relaxed">
-                                    10:47
-                                </div>
-                            </div>
-                        </div>
-                        <div className="w-full  hover:bg-gray-300/55  pl-[26.20px] pr-6 pt-[7.50px] pb-2 bg-white justify-center items-start gap-[7.80px] inline-flex">
-                            <div className="pl-3 text-orange-300 text-base font-semibold font-['Inter'] leading-relaxed">
-                                03
-                            </div>
-                            <div className="w-full text-black/opacity-60 text-base font-normal font-['Inter'] leading-relaxed">
-                                熟悉常見的產品開發流程
-                            </div>
-                            <div className="w-8 self-stretch  inline-flex ">
-                                <div className=" content-center w-[30.26px] h-[26px] text-right text-neutral-400 text-xs font-normal font-['Inter'] leading-relaxed">
-                                    12:14
-                                </div>
-                            </div>
-                        </div>
-                        <div className="w-full  hover:bg-gray-300/55  pl-[26.20px] pr-6 pt-[7.50px] pb-2 bg-white justify-center items-start gap-[7.80px] inline-flex">
-                            <div className="pl-3 text-orange-300 text-base font-semibold font-['Inter'] leading-relaxed">
-                                04
-                            </div>
-                            <div className="w-full text-black/opacity-60 text-base font-normal font-['Inter'] leading-relaxed">
-                                產品(UI/UX)設計師需要具備的能力
-                            </div>
-                            <div className=" w-40 rounded-sm justify-center inline-flex">
-                                
-                                <button
-                                    type="button"
-                                    className="py-1 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-100 text-red-600 hover:bg-red-200 disabled:opacity-50 disabled:pointer-events-none dark:hover:bg-red-900 dark:text-red-500 dark:hover:text-red-400"
-                                    data-hs-overlay="#hs-vertically-centered-modal"
-                                >
-                                    免費預覽
-                                </button>
-                                <div
-                                    id="hs-vertically-centered-modal"
-                                    className="hs-overlay hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none"
-                                >
-                                    <div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
-                                        <div className="w-full flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto">
-                                            <div className="flex justify-between items-center py-3 px-4 border-b">
-                                                <h3 className="font-bold text-gray-800">
-                                                    章節1
-                                                </h3>
-                                                <button
-                                                    type="button"
-                                                    className="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-                                                    data-hs-overlay="#hs-vertically-centered-modal"
-                                                >
-                                                    <span className="sr-only">Close</span>
-                                                    <svg
-                                                        className="flex-shrink-0 size-4"
-                                                        xmlns="http://www.w3.org/2000/svg"
-                                                        width={24}
-                                                        height={24}
-                                                        viewBox="0 0 24 24"
-                                                        fill="none"
-                                                        stroke="currentColor"
-                                                        strokeWidth={2}
-                                                        strokeLinecap="round"
-                                                        strokeLinejoin="round"
-                                                    >
-                                                        <path d="M18 6 6 18" />
-                                                        <path d="m6 6 12 12" />
-                                                    </svg>
-                                                </button>
-                                            </div>
-                                            <div className="p-4 overflow-y-auto">
-                                                <p className="text-gray-800">
-                                                    <Video />
-                                                </p>
-                                            </div>
-                                            <div className="flex justify-end items-center gap-x-2 py-3 px-4 border-t">
-                                                <button
-                                                    type="button"
-                                                    className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-medium rounded-lg border border-gray-200 bg-white text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none"
-                                                    data-hs-overlay="#hs-vertically-centered-modal"
-                                                >
-                                                    Close
-                                                </button>
-                                                <button
-                                                    type="button"
-                                                    className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-                                                >
-                                                    Save changes
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-
-
-
-
-                                {/* <button
-									type="button"
-									className="py-3 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-100 text-blue-800 hover:bg-blue-200 disabled:opacity-50 disabled:pointer-events-none dark:hover:bg-blue-900 dark:text-blue-400">
-									試看單元
-								</button> */}
-                            </div>
-
-                            <div className="w-8 self-stretch  inline-flex ">
-                                <div className=" content-center w-[30.26px] h-[26px] text-right text-neutral-400 text-xs font-normal font-['Inter'] leading-relaxed">
-                                    25:30
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div className="hs-accordion-group my-3">
+           
+            {/* <div className="hs-accordion-group my-3">
                 <div
                     className=" hs-accordion  hs-accordion-active:border active border border-transparent rounded-lg "
                     id="hs-active-bordered-heading-two">
@@ -534,7 +349,7 @@ export default function Chapter() {
                         </div>
                     </div>
                 </div>
-            </div>
+            </div> */}
         </>
     )
 }

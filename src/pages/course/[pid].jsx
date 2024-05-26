@@ -19,10 +19,10 @@ export default function CourseLesson() {
         
         <div className="">
           <div className="relative top-0 w-full  justify-center">
-            <div className="w-full h-20 lg:absolute top-0  -z-1 ">
+            <div className=" w-full h-20 lg:absolute top-0  -z-1 ">
               <Video   />
             </div>
-            <div className="border top-0 lg:top-10 h-96 w-full absolute   -z-1">
+            <div className=" top-0 lg:top-10 h-96 w-full absolute   -z-1">
                 <SecTwo  />
             </div>
           </div>
