@@ -57,11 +57,11 @@ export default function CourseItem({ item, checked, onChange, removeItem }) {
 			<div className="flex lg:flex-col md:flex-col sm:flex-row lg:items-end md:items-end sm:items-center gap-3 sm:ps-6 lg:ps-0 md:h-full sm:w-full md:w-fit sm:justify-between">
 				<div className="text-xl font-bold">NT${item.Price}</div>
 				<div className="flex items-end gap-3 text-2xl">
-					<button
+					{/* <button
 						className="text-orange-500 hover:text-orange-400"
 						data-hs-overlay="#hs-basic-modal-collect">
 						<TbHeartPlus />
-					</button>
+					</button> */}
 					<button
 						className="text-red-400 hover:text-red-600"
 						onClick={() => notifyAndRemove(item)}>
