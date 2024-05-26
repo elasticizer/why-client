@@ -10,25 +10,21 @@ const router = createRouter();
 const orders = {};
 
 router.get(async (req, res) => {
-  const id = req.query.id; // 路由參數: id
-  const [results] = await connection.execute(
-    'SELECT Cart.UserSN AS id, Course.Name AS name, Course.Price AS amount FROM Cart JOIN Course ON Course.SN = Cart.CourseSN WHERE id = ?',
-    [id]
-  );
+	const id = req.query.id; // 路由參數: id
+	const [results] = await connection.execute(
+		'SELECT Cart.UserSN AS id, Course.Name AS name, Course.Price AS amount FROM Cart JOIN Course ON Course.SN = Cart.CourseSN WHERE id = ?',
+		[id]
+	);
+	console.log(id);
+	const order = results[id]; // 找對應於 id 的訂單資料
+	order.orderId = parseInt(new Date().getTime() / 1000); // 訂單編號
+	orders[order.orderId] = order; // 訂單資料添加到 orders 物件中
 
-  console.log(id);
-  const orders = results.map((result) => ({
-    id: result.id,
-    name: result.name,
-    amount: result.amount,
-    currency: 'TWD' // 在此處新增 currency: 'TWD'
-  }));
+	console.log('orders:', orders);
 
-  console.log(orders);
+	console.log('results:', results);
 
-  res.status(200).json(orders);
+	res.status(200).json(results);
 });
-
-console.log(orders);
 
 export default router.handler({ onError, onNoMatch });
