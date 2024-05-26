@@ -69,7 +69,8 @@ const [course, setCourse] = useState([]);
 					<h3 className=" mt-6 block text-2xl text-white font-bold  sm:text-3xl md:text-4xl lg:text-4xl dark:text-white"
 						>
 							{course[0].Name}
-						</h3><p className="pt-3 lg:pt-1 mt-2 text-base lg:text-white dark:text-neutral-400">
+					</h3>
+					<p className="pt-3 lg:pt-1 mt-2 text-base lg:text-white dark:text-neutral-400">
 							
 						</p>
 					
@@ -98,9 +99,7 @@ const [course, setCourse] = useState([]);
 									</span>
 								</span>
 
-								<span className="mb-8 text-3xl  lg:text-4xl font-bold tracking-tight text-[#FF782D] ">
-									NT$1,800
-								</span>
+								
 
 								<div className="flex justify-center  gap-20">
 									<a

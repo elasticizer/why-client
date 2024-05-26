@@ -54,7 +54,7 @@ export default function NavIntro() {
 	
 	return (
 		<>
-			<div dangerouslySetInnerHTML={{ __html: course[0].Syllabus }} />
+			<div className="overflow-auto" dangerouslySetInnerHTML={{ __html: course[0].Syllabus }} />
 
 		</>
 	);

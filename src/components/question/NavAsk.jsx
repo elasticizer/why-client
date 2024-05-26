@@ -44,7 +44,7 @@ export default function NavAsk() {
 				<div className=" w-12 h-12  bg-white/opacity-0 rounded-3xl shadow border-black/opacity-5 justify-center items-center inline-flex">
 					<img
 						className="inline-block size-[46px] rounded-full"
-						src="/img/cat-5.jpg"
+						src="/image/cat-5.jpg"
 						alt="Image Description"
 					/>
 				</div>
@@ -62,7 +62,7 @@ export default function NavAsk() {
 				<div className=" w-12 h-12  bg-white/opacity-0 rounded-3xl shadow border-black/opacity-5 justify-center items-center inline-flex">
 					<img
 						className="inline-block size-[46px] rounded-full"
-						src="/img/cat-5.jpg"
+						src="/image/cat-5.jpg"
 						alt="Image Description"
 					/>
 				</div>
