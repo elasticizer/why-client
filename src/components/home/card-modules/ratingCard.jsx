@@ -15,9 +15,7 @@ export default function RatingCard({ data }) {
 				alt="Image Description"
 			/>
 			<div className="px-2 py-2 md:px-5">
-				<h3 className="text-lg font-bold text-gray-800 line-clamp-1">
-					{data.Name}
-				</h3>
+				<h3 className="font-bold text-gray-800 line-clamp-1">{data.Name}</h3>
 				<p className="mt-1 text-gray-500 line-clamp-2">{data.Intro}</p>
 			</div>
 			<div className="flex items-center pt-1 pb-2 pl-4 gap-1 text-sm sm:gap-2">
