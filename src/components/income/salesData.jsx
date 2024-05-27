@@ -24,8 +24,8 @@ export default function SalesData() {
 			{/* thead */}
 			<div className="flex flex-row justify-between items-center px-4 py-2 border rounded-t-lg font-semibold bg-yellow-50">
 				<div className="w-1/2">課程名稱</div>
-				<div className="w-1/5 text-center">售出日期</div>
-				<div className="w-1/5 text-center">收益金額</div>
+				<div className="w-1/3 text-center">售出日期</div>
+				<div className="w-1/3 text-center">收益金額</div>
 			</div>
 			{/* end thead */}
 			{/* tbody */}
