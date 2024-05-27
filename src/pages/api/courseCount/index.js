@@ -17,7 +17,7 @@ router.get(async (req, res) => {
 	const user = await Session.associate(sessionId);
 
 	const [data] = await connection.execute(
-		'SELECT Course.Name,Course.Identifier,Course.Price, Course.WhenLaunched,`Order`.SN AS OrderSN, `Order`.WhenPaid,SUM(Course.Price) AS Income, COUNT(*) AS Total FROM Course JOIN User ON User.SN = Course.TeacherSN JOIN OrderDetail ON OrderDetail.CourseSN = Course.SN JOIN `Order` ON `Order`.SN = OrderDetail.OrderSN WHERE Course.WhenLaunched IS NOT NULL AND `Order`.WhenPaid IS NOT NULL AND User.SN = ? GROUP BY Course.SN',
+		'SELECT Course.Name, Course.Identifier, Course.Price,Course.WhenLaunched,User.SN AS TeacherSN,SUM( CASE WHEN `Order`.WhenPaid IS NOT NULL THEN Course.Price ELSE 0 END) AS Income,COUNT(`Order`.SN) AS Total FROM Course JOIN User ON User.SN = Course.TeacherSN LEFT JOIN OrderDetail ON OrderDetail.CourseSN = Course.SN LEFT JOIN `Order` ON `Order`.SN = OrderDetail.OrderSN AND `Order`.WhenPaid IS NOT NULL WHERE Course.WhenLaunched IS NOT NULL AND User.SN = ? GROUP BY Course.SN',
 		[user.SN]
 	);
 	console.log(data);
