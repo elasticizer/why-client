@@ -1,6 +1,9 @@
 import React from 'react';
+import { useCart } from '@/contexts/cart';
 
 export default function CheckoutModal() {
+	const cart = useCart();
+
 	return (
 		<>
 			<div
@@ -45,8 +48,21 @@ export default function CheckoutModal() {
 							</button>
 							<button
 								type="submit"
-								formaction={`/api/payment/linepay`}
-								method="post"
+								onClick={async e => {
+									e.preventDefault();
+
+									const method = 'POST';
+									const fd = cart.cartItem.reduce(
+										(body, item) => (body.append('courses', item.SN), body),
+										new FormData()
+									);
+									const { data } = await fetch(
+										'/api/cart/checkout',
+										{ method, body: new URLSearchParams(fd) }
+									).then(r => r.json());
+
+									location.replace(data);
+								}}
 								className="py-2 px-3 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-orange-400 text-white hover:bg-orange-500 disabled:opacity-50 disabled:pointer-events-none">
 								確認結帳
 							</button>
