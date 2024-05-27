@@ -1,4 +1,4 @@
-import CartLayout from '@/layouts/Cart';
+import CartLayout from '@/layouts/cart';
 import Cart from '@/components/cart';
 
 export default function CartPage() {
