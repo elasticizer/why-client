@@ -39,3 +39,5 @@ next-env.d.ts
 # lock
 bun.lockb
 package-lock.json
+
+settings.json
