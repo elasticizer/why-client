@@ -41,7 +41,7 @@ export default function Rating() {
 	};
 
 	return (
-		<section data-aos="zoom-in-down">
+		<section data-aos="fade-up-left">
 			{/* <!-- Card Blog --> */}
 			<div className=" max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
 				{/* <!-- Title --> */}
