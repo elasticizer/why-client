@@ -17,13 +17,13 @@ export default function Index() {
 	};
 	return (
 		<Home>
-			<title>WhyAcademy</title>
+			<title>Why Academy</title>
 			<button
 				className={styles.floatingButton}
 				onClick={toggleModal}>
 				<Image
 					className={styles.floatingIcon}
-					src="/image/why_icon.png"
+					src="/images/why_icon.png"
 					width={50}
 					height={50}
 					alt="按鈕圖片"
