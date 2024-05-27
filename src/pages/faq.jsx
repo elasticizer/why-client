@@ -1,14 +1,13 @@
 import React from 'react';
-import Navbar2 from '@/components/head/navbar2';
-import Footer from '@/components/head/footer';
-import Faq from '../components/faq/faq';
+import Home from '@/layouts/home';
+import Faq from '../components/home/faq/faq';
 
 export default function FaqSection() {
 	return (
 		<>
-			<Navbar2 />
+			<Home />
 			<Faq />
-			<Footer />
+			<Home />
 		</>
 	);
 }
