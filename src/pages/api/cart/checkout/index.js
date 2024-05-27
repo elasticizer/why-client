@@ -29,8 +29,8 @@ router.post(async (req, res) => {
 		[user.SN]
 	);
 	const [[order]] = await connection.execute(
-		'INSERT INTO "Order" (LearnerSN, CouponSN,WhenPaid) VALUES (?, ?) RETURNING SN',
-		[user.SN, null]
+		'INSERT INTO "Order" (LearnerSN, CouponSN,WhenPaid) VALUES (?, ?, ?) RETURNING SN',
+		[user.SN, null, datetime()]
 	);
 
 	req.body.courses.forEach(
