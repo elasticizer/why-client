@@ -53,38 +53,11 @@ export default function Navbar() {
 								href="#">
 								領域
 							</Link>
-							<div className="hs-dropdown hs-dropdown-example relative inline-flex">
-								<button
-									id="hs-dropdown-example"
-									type="button"
-									className="hs-dropdown-toggle inline-flex items-center gap-x-2 text-md font-medium text-gray-500 hover:text-orange-400">
-									部落格
-									<IoIosArrowDown />
-								</button>
-
-								<div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2">
-									<Link
-										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-										href="#">
-										分類1
-									</Link>
-									<Link
-										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-										href="#">
-										分類2
-									</Link>
-									<Link
-										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-										href="#">
-										分類3
-									</Link>
-									<Link
-										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100"
-										href="#">
-										分類4
-									</Link>
-								</div>
-							</div>
+							<Link
+								className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
+								href="#">
+								部落格
+							</Link>
 							<Link
 								className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
 								href="#">
