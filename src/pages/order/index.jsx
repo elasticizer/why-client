@@ -1,4 +1,4 @@
-import CartLayout from '@/layouts/Cart';
+import CartLayout from '@/layouts/cart';
 import OrderTabs from '@/components/order/orderTabs';
 
 export default function Order() {
