@@ -4,17 +4,11 @@ import { EOL } from 'os';
 import { createInterface } from 'readline';
 
 export default class Envelope {
-	/**
-	 * @param {Partial<Record<string | symbol, unknown>>} data
-	 */
-	constructor(data) {
-		this.data = data;
-	}
+	constructor(
+		public data: Partial<Record<string | symbol, unknown>>
+	) {}
 
-	/**
-	 * @param {import('fs').PathLike} file
-	 */
-	static async open(file) {
+	static async open(file: import('fs').PathLike) {
 		const data = {};
 		const stream = createReadStream(file);
 
@@ -27,10 +21,7 @@ export default class Envelope {
 		return new this(data);
 	}
 
-	/**
-	 * @param {import('fs').PathLike} file
-	 */
-	async seal(file) {
+	async seal(file: import('fs').PathLike) {
 		return writeFile(
 			file,
 			[...Object.entries(this.data)].reduce(
