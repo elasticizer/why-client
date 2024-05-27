@@ -17,19 +17,19 @@ export default function Slideshow() {
 						<div className="hs-carousel-body absolute top-0 bottom-0 start-0 flex flex-nowrap transition-transform duration-700 opacity-0">
 							{/* <!-- Item --> */}
 							<div className="hs-carousel-slide">
-								<div className="h-[20rem] w-full md:h-[calc(100vh-106px)] flex flex-col bg-cover bg-center bg-no-repeat bg-[url('/image/slide4.jpg')]"></div>
+								<div className="h-[20rem] w-full md:h-[calc(100vh-106px)] flex flex-col bg-cover bg-center bg-no-repeat bg-[url('/images/slide4.jpg')]"></div>
 							</div>
 							{/* <!-- End Item --> */}
 
 							{/* <!-- Item --> */}
 							<div className="hs-carousel-slide">
-								<div className="h-[20rem] md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] flex flex-col bg-cover bg-center bg-no-repeat bg-[url('/image/slide5.jpg')]"></div>
+								<div className="h-[20rem] md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] flex flex-col bg-cover bg-center bg-no-repeat bg-[url('/images/slide5.jpg')]"></div>
 							</div>
 							{/* <!-- End Item --> */}
 
 							{/* <!-- Item --> */}
 							<div className="hs-carousel-slide">
-								<div className="h-[20rem] md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] flex flex-col bg-cover bg-center bg-no-repeat bg-[url('/image/slide3.jpg')]"></div>
+								<div className="h-[20rem] md:h-[calc(100vh-106px)] md:h-[calc(100vh-106px)] flex flex-col bg-cover bg-center bg-no-repeat bg-[url('/images/slide3.jpg')]"></div>
 							</div>
 							{/* <!-- End Item --> */}
 						</div>

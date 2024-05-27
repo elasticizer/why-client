@@ -8,7 +8,7 @@ export default function Intro() {
 				<div className="course max-w-[75rem] mx-auto flex justify-center flex-col px-4 py-10 sm:px-6 lg:px-8 lg:py-14">
 					<div className="flex mb-10">
 						<Image
-							src="/image/why-question.jpeg"
+							src="/images/why-question.jpeg"
 							width={1200}
 							height={100}
 						/>

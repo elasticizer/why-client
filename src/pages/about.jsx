@@ -21,7 +21,7 @@ export default function About() {
 				onClick={toggleModal}>
 				<Image
 					className={styles.floatingIcon}
-					src="/image/why_icon.png"
+					src="/images/why_icon.png"
 					width={50}
 					height={50}
 					alt="按鈕圖片"

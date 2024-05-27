@@ -20,7 +20,7 @@ export default function Navbar() {
 						<Link href="/">
 							<div className="flex-none text-xl font-semibold dark:text-white">
 								<Image
-									src="/image/why_logo.png"
+									src="/images/why_logo.png"
 									width={250}
 									height={100}
 									alt="why logo"

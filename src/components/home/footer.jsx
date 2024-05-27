@@ -16,7 +16,7 @@ export default function Footer() {
 									className="flex-none text-xl font-semibold text-white"
 									href="#">
 									<Image
-										src="/image/why_logo-white.png"
+										src="/images/why_logo-white.png"
 										width={300}
 										height={100}
 										alt="why logo"
