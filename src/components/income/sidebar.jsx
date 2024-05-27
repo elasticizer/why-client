@@ -8,7 +8,7 @@ export default function Sidebar({ data }) {
 			<div className="mb-10 lg:col-span-1 lg:w-full lg:h-fit bg-gray-100 lg:from-gray-50 rounded-xl lg:via-transparent lg:to-transparent dark:from-neutral-800">
 				<div className="sm:p-4 lg:px-8 flex lg:flex-col md:flex-row justify-center md:gap-6 lg:gap-1 md:items-center sm:justify-around sm:items-center">
 					{/* 會員 */}
-					<div className="group m-2 flex sm:flex-col lg:flex-row items-center gap-x-2 gap-y-3 lg:mb-5 dark:border-neutral-700">
+					<div className="group m-2 flex flex-row items-center gap-x-2 gap-y-3 lg:mb-5 dark:border-neutral-700">
 						<a
 							className="block flex-shrink-0"
 							href="#">
@@ -21,7 +21,7 @@ export default function Sidebar({ data }) {
 						<a
 							className="group grow block"
 							href="">
-							<h5 className="group-hover:text-gray-600 text-sm font-semibold text-gray-800 dark:group-hover:text-neutral-400 dark:text-neutral-200">
+							<h5 className="group-hover:text-gray-600 text-md sm:text-xl font-semibold text-gray-800 dark:group-hover:text-neutral-400 dark:text-neutral-200">
 								{session?.Nickname || session?.FirstName}
 							</h5>
 						</a>
