@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useState } from 'react';
 import { BsFillTrash3Fill } from "react-icons/bs";
 import Swal from 'sweetalert2';
 import 'animate.css';

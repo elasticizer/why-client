@@ -1,13 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { BsCheckLg, BsX } from "react-icons/bs";
+import React from 'react';
 
 
-export default function UploadTables({ SetUploadFileAlertDisplay, lesson, lessonData }) {
-	console.log(lessonData);
 
-	const putData = async() => {
-		const response = await fetch("").then(r => r.json).catch(err => err);
-	};
+export default function UploadTables({ SetUploadFileAlertDisplay, lessonData, setPutData }) {
 
 	return (
 		<div className="flex flex-col w-full">
@@ -80,6 +75,7 @@ export default function UploadTables({ SetUploadFileAlertDisplay, lesson, lesson
 												<button className="bg-amber-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={(e) => {
 													e.preventDefault();
 													SetUploadFileAlertDisplay("");
+													setPutData(v);
 												}}>編輯</button>
 											</td>
 										</tr>

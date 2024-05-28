@@ -1,10 +1,8 @@
-import Image from 'next/image';
 import { createRef, useEffect, useState } from 'react';
 import styles from '@/styles/learner.module.css';
 import { GoVideo } from "react-icons/go";
-import { RiPencilFill } from "react-icons/ri";
 import { RiFunctionLine } from "react-icons/ri";
-import { MdArticle, MdOutlineAnalytics } from "react-icons/md";
+import { MdArticle} from "react-icons/md";
 import { BsChevronDown } from "react-icons/bs";
 import UserList from "./userList";
 import Link from 'next/link';

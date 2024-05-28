@@ -1,4 +1,3 @@
-import { useState } from 'react';
 import { BsCloudUploadFill } from "react-icons/bs";
 import 'animate.css';
 import { useRouter } from 'next/router'

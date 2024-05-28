@@ -1,5 +1,4 @@
 import { useState,useEffect } from 'react';
-import styles from '@/styles/learner.module.css';
 import Link from 'next/link';
 import 'animate.css';
 

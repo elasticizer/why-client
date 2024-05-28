@@ -1,5 +1,4 @@
 import Link from 'next/link';
-import { useState } from 'react';
 import 'animate.css';
 import { BsCart } from "react-icons/bs";
 import { IoMdLogOut } from "react-icons/io";

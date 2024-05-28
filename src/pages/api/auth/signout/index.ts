@@ -19,7 +19,7 @@ router.post(async (req, res) => {
 		maxAge: 0,
 		httpOnly: true,
 		path: '/',
-		sameSite: 'lax'
+		sameSite: 'lax',
 		// secure: true
 	});
 

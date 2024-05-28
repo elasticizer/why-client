@@ -1,14 +1,12 @@
 import { useEffect, useRef, useState } from 'react';
 import Quill from "@/components/member/uploadCourse/Quill";
-import { GoVideo } from "react-icons/go";
-import { RiPencilFill } from "react-icons/ri";
 import UploadTables from "@/components/member/uploadCourse/uploadTables";
 import { errorAlert } from "@/components/member/errorAlert";
 import { extname } from 'path';
 import axios from 'axios';
 
 
-export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, courseClass, setCourseClass, lesson, lessonData, setCourseProgress, SetUploadCourseAlertDisplay }) {
+export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, lesson, lessonData, setCourseProgress, SetUploadCourseAlertDisplay, setPutData, setLessonData }) {
 	const [courseTitle, setCourseTitle] = useState("");
 	const [domain, setDomain] = useState("");
 	const [price, setPrice] = useState("");
@@ -16,15 +14,36 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 	const [previewURL, setPreviewURL] = useState("/learner/upload.png");
 	const [selectVideoFile, setSelectVideoFile] = useState(null);
 	const [previewVideo, setPreviewVideo] = useState("/learner/upload.png");
-	// const [viedoButton, setVideoButton] = useState("select");
-	// const [practiceButton, setPracticeButton] = useState("select");
 	const [courseDescription, setCourseDescription] = useState("");
 	const [instructorExperience, setInstructorExperience] = useState('');
-
 	const [selectData, setSelectData] = useState([]);
+
+	// 帶入已加入過的值
+	useEffect(() => {
+		const urlParams = new URLSearchParams(window.location.search);
+		const answer = urlParams.get('CourseSN');
+		if (answer) {
+			const handleData = async () => {
+				const response = await fetch(`/api/teacher/putCourse?courseSN=${answer}`).then(r => r.json()).catch(err => err);
+				const results = response.results;
+				setCourseTitle(results[0].CourseName);
+				setDomain(results[0].DomainSN);
+				setCourseDescription(results[0].CourseIntro);
+				setPrice(results[0].Price);
+				setInstructorExperience(results[0].Syllabus);
+				setLessonData(results);
+			};
+			handleData();
+		}
+
+	}, []);
+
+
+
+
 	const handleData = async () => {
 		try {
-			const response = await fetch('/api/domain');
+			const response = await fetch('/api/teacher/domain');
 			const results = await response.json();
 			setSelectData(results);
 		} catch (err) {
@@ -175,19 +194,23 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 			return false;
 		}
 
-		SetUploadCourseAlertDisplay('')
+		SetUploadCourseAlertDisplay('');
 
 		const formdata = new FormData(formEl.current);
 
-		console.log(lesson);
+
 
 
 		lesson.forEach(v => formdata.append("lesson[]", v));
+
+		if (answer) {
+			formdata.append("_method", "put");
+		}
 		formdata.append("courseDescription", courseDescription);
 		formdata.append("syllabuse", instructorExperience);
 
 		try {
-			const response = await axios.post("/api/uploadCourse", formdata, {
+			const response = await axios.post("/api/teacher/uploadCourse", formdata, {
 				headers: {
 					'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
 				},
@@ -329,41 +352,6 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 								</div>
 							</div>
 
-							{/* SECTION 教學類型 */}
-							{/* <div className="sm:col-span-4">
-								<label
-									htmlFor="courseClass"
-									className="block text-md font-semibold leading-6 text-gray-900"
-								>
-									教學類型
-								</label>
-								<div className="mt-2 flex">
-									<input type="hidden" name="courseClass" value={courseClass} />
-									<button className={`block   border-0 py-1.5 text-gray-900 shadow-sm ring-1  ring-gray-300 ${viedoButton} w-40 p-2 sm:text-sm sm:leading-6 me-3 flex flex-col items-center`} onClick={(e) => {
-										e.preventDefault();
-										setCourseClass("video");
-										if (practiceButton) {
-											setVideoButton("ring-4  ring-orange-300");
-											setPracticeButton("");
-										}
-									}}>
-										<GoVideo size="30px" color="#999999" />
-										<p className="mt-2  font-semibold">課程</p>
-										<p className="text-justify">在影片講座、測驗、編碼練習等協助下，創造豐富的學習體驗。</p>
-									</button>
-									<button className={`block  border-0 py-1.5 text-gray-900 shadow-sm ring-1  ring-gray-300  w-40 p-2 ${practiceButton} sm:text-sm sm:leading-6 me-3 flex flex-col items-center`} onClick={(e) => {
-										e.preventDefault();
-										setCourseClass("practice");
-										if (viedoButton) {
-											setPracticeButton("ring-4  ring-orange-300");
-											setVideoButton("");
-										}
-									}}>
-										<RiPencilFill size="30px" color="#999999" />
-										<p className="mt-2 font-semibold">作業</p>
-										<p className="text-justify">在影片講座、測驗、編碼練習等協助下，創造豐富的學習體驗。</p></button>
-								</div>
-							</div> */}
 
 							{/* SECTION 講師經歷 得用append加進formdata*/}
 							<div className="col-span-full">
@@ -468,7 +456,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 								</label>
 								<div className="mt-2">
 									<div className="sm:flex overflow-y-scroll">
-										<UploadTables UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay} {...{ lesson }} {...{ lessonData }}
+										<UploadTables UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay} {...{ lessonData }} setPutData={setPutData}
 										/>
 									</div>
 								</div>
