@@ -20,7 +20,6 @@ router.get(async (req, res) => {
 		'SELECT Course.Name, Course.Identifier, Course.Price, `Order`.SN AS OrderSN, `Order`.WhenPaid FROM Course JOIN User ON User.SN = Course.TeacherSN JOIN OrderDetail ON OrderDetail.CourseSN = Course.SN JOIN `Order` ON `Order`.SN = OrderDetail.OrderSN WHERE Course.WhenLaunched IS NOT NULL AND `Order`.WhenPaid IS NOT NULL AND User.SN = ?',
 		[user.SN]
 	);
-	console.log(data);
 	res.status(200).json(data);
 });
 
