@@ -5,7 +5,6 @@ import UploadCard from '@/components/member/teacher/uploadCard';
 import Content from '@/components/member/teacher/content';
 import Search from "@/components/member/search";
 import { useState } from "react";
-import { BsSearch } from "react-icons/bs";
 import React, { useEffect } from 'react';
 import styles from '@/styles/teacher.module.css';
 import Link from 'next/link';
@@ -13,26 +12,21 @@ import Link from 'next/link';
 export default function Index() {
 	const [windowNav, setWindowNav] = useState("hidden");
 	const [data, setData] = useState([{}]);
+	const [lastData, setLastData] = useState(null);
 	const [search, setSearch] = useState("");
 
 	const handleData = async () => {
 		const res = await fetch('/api/teacher').then(r => r.json()).catch(err => err);
 		if (res) {
 			setData(res.results);
+			setLastData(res.results.at(-1));
 		}
 	};
-
 	useEffect(() => {
 		handleData();
 	}, []);
 
-
-	const lastData = data.at(-1);
-	console.log(data);
-
 	const contentData = data && data.filter(v => v.Name && v.Name.includes(search));
-
-
 
 	return (
 		<>
@@ -43,7 +37,7 @@ export default function Index() {
 				<h1 className="text-2xl md:text-3xl font-semibold mt-10">課程</h1>
 				<div className='mt-10 hidden md:flex justify-between'>
 					<div className="flex items-center md:flex ">
-						<Search setSearch={setSearch}/>
+						<Search setSearch={setSearch} />
 					</div>
 					<Link href="/teacher/uploadCourse">
 						<button
@@ -54,12 +48,14 @@ export default function Index() {
 					</Link>
 
 				</div>
-				<UploadCard
-					Name={lastData.Name}
-					Intro={lastData.Intro}
-					Filename={lastData.Filename}
-					WhenCreated={lastData.WhenCreated}
-				/>
+				{lastData &&
+					<UploadCard
+						Name={lastData.Name}
+						Intro={lastData.Intro}
+						Filename={lastData.Filename}
+						WhenCreated={lastData.WhenCreated}
+					/>}
+
 				<div className="md:hidden mt-5">
 					<Search />
 				</div>
@@ -67,7 +63,7 @@ export default function Index() {
 					已發表課程
 				</h1>
 
-				<Content data={contentData} search={search}/>
+				<Content data={contentData} search={search} />
 			</div>
 			<Tabbar setWindowNav={setWindowNav} windowNav={windowNav} />
 

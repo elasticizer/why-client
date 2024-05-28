@@ -4,7 +4,7 @@ import Record from '@/components/member/learner/record';
 import Sidebar from '@/components/member/learner/sidebar';
 import Tabbar from '@/components/member/tabbarLearner';
 import Content from '@/components/member/learner/content';
-import { useEffect, useState } from 'react';
+import {useState } from 'react';
 import styles from '@/styles/learner.module.css';
 import { useSession } from '@/contexts/session';
 

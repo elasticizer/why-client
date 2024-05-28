@@ -34,7 +34,7 @@ router.get(async (req, res) => {
 		maxAge: 24 * 60 * 60,
 		httpOnly: true,
 		path: '/',
-		sameSite: 'lax'
+		sameSite: 'lax',
 		// secure: true
 	});
 

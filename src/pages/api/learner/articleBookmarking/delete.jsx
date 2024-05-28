@@ -1,6 +1,6 @@
 import { createRouter } from "next-connect";
 import connection from '@/handlers/sqlite3';
-import React from 'react';
+
 
 const router = createRouter();
 

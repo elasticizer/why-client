@@ -1,22 +1,15 @@
 import { createRouter } from "next-connect";
 import multer from 'multer';
-import { extname, resolve } from 'path';
-import { env } from 'process';
+import { extname, join } from 'path';
 import { randomUUID } from 'crypto';
 import Session from '@/helpers/session';
 import { RouteError } from '@/handlers/router';
 import connection from '@/handlers/sqlite3';
 
 
-
-
-
-
-
-
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, resolve(env.PWD, "public", "learner", "LessonVideo"));
+		cb(null, join("public", "learner", "LessonVideo"));
 	},
 
 	filename: function (req, file, cb) {
@@ -33,6 +26,51 @@ export const config = {
 		bodyParser: false
 	}
 };
+
+
+
+router.get(async (req, res) => {
+	const sessionId = req.cookies.SESSION_ID;
+	if (!sessionId) {
+		throw new RouteError(
+			StatusCodes.FORBIDDEN,
+			'沒有登入'
+		);
+	}
+	const user = await Session.associate(sessionId);
+
+	const userSN = user.SN;
+	const courseSN = req.query.courseSN;
+
+	const [results] = await connection.execute(`
+	SELECT
+	Course.SN AS CourseSN,
+	Course.Name AS CourseName,
+	Course.Intro AS CourseIntro,
+	Course.Syllabus,
+	Course.Price,
+	Domain.SN AS DomainSN,
+	Lesson.SN,
+	Lesson.Title,
+	Lesson.WhenCreated,
+	Lesson.WhenLastEdited,
+	Lesson.VideoSN
+FROM Course
+	JOIN Domain ON Course.DomainSN = Domain.SN
+	JOIN Lesson ON Course.SN = Lesson.CourseSN
+WHERE
+	Course.SN = ?`, [courseSN]);
+
+	console.log(results);
+
+
+	res.status(200).json({ message: "查詢成功", results: results });
+
+
+
+});
+
+
 
 router.use(upload.fields([{ name: 'courseCover', maxCount: 1 }, { name: 'promotionalVideo', maxCount: 1 }])).post(async (req, res) => {
 	const sessionId = req.cookies.SESSION_ID;
@@ -75,8 +113,6 @@ router.use(upload.fields([{ name: 'courseCover', maxCount: 1 }, { name: 'promoti
 	}
 
 
-
-
 	// 寫入封面到File 查詢FileSN
 	await connection.execute('INSERT INTO File (Filename,Extension,ContentType,ContentHash,WhenUploaded,UploaderSN) VALUES (?,?,?,?,CURRENT_TIMESTAMP,?)', [thumbnailName, thumbnailExt, thumbnailType, thumbnailHash, teacherSN]);
 
@@ -104,12 +140,11 @@ router.use(upload.fields([{ name: 'courseCover', maxCount: 1 }, { name: 'promoti
 	const courseSN = courseData[0].SN;
 
 	for (const v of lesson) {
-		console.log(v);
 		await connection.execute('UPDATE Lesson set CourseSN=? WHERE SN=?', [courseSN, v]);
 	}
 
 
-	res.status(200).json({message:"上傳成功" });
+	res.status(200).json({ message: "上傳成功" });
 });
 
 export default router.handler({

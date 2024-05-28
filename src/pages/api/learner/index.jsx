@@ -1,5 +1,4 @@
 import { createRouter } from "next-connect";
-import React from 'react';
 import Session from '@/helpers/session';
 import { RouteError } from '@/handlers/router';
 import connection from '@/handlers/sqlite3';

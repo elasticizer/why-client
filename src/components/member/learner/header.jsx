@@ -1,4 +1,4 @@
-import Image from 'next/image';
+
 import { useEffect, useRef, useState } from 'react';
 import styles from '@/styles/learner.module.css';
 import UserList from '@/components/member/userList';

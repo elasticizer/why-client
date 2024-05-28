@@ -5,7 +5,6 @@ import ProfileCard from "@/components/member/profileCard";
 import Content from "@/components/member/myCourse/content";
 import Domain from '@/components/member/domain';
 import Search from "@/components/member/search";
-import { BsSearch } from "react-icons/bs";
 import { useState } from 'react';
 import styles from '@/styles/learner.module.css';
 

@@ -1,6 +1,4 @@
-import Image from 'next/image';
 import React, { useState, useEffect } from 'react';
-import styles from '@/styles/learner.module.css';
 
 export default function Card({
 	key,

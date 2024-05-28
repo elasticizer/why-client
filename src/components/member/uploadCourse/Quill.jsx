@@ -1,6 +1,5 @@
 import "react-quill/dist/quill.snow.css"; // Import quill styles
 import dynamic from "next/dynamic";
-import { useState } from "react";
 
 const ReactQuill = dynamic(import("react-quill"), { ssr: false });
 
@@ -22,6 +21,7 @@ export default function Quill({ text, setText, metion }) {
 							["blockquote", "code-block"],
 							[{ list: "ordered" }, { list: "bullet" }],
 							[{ script: "sub" }, { script: "super" }],
+							[{ image: "image" }],
 						],
 					}}
 					formats={[
@@ -37,6 +37,7 @@ export default function Quill({ text, setText, metion }) {
 						"list",
 						"bullet",
 						"script",
+						"image",
 					]}
 				/>
 			</div>

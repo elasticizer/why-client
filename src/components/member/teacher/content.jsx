@@ -3,7 +3,8 @@ import styles from '@/styles/teacher.module.css';
 import ContentCard from '@/components/member/teacher/contentCard';
 
 
-export default function Content({ data}) {
+export default function Content({data}) {
+console.log(data);
 
 
 	return (

@@ -1,20 +1,17 @@
-import { useRef, useState, useEffect } from 'react';
-import { BsCloudUploadFill, BsX } from "react-icons/bs";
-import Quill from "@/components/member/uploadCourse/Quill";
+import { useRef, useState } from 'react';
+import { BsCloudUploadFill } from "react-icons/bs";
 import Dropzone from "@/components/member/uploadCourse/dropzone";
 import axios from 'axios';
 import 'animate.css';
 import { extname } from 'path';
 import { errorAlert } from "@/components/member/errorAlert";
 
-export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, lesson, setLesson, lessonData, setLessonData }) {
+export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, lesson, setLesson, lessonData, setLessonData, putData, setPutData }) {
 	const [displayForm, setDisplayForm] = useState("");
 	const [uploadDuring, setUploadDuring] = useState("hidden");
 	const [video, setVideo] = useState(null);
 	const [progress, setProgress] = useState(0);
 	const [chapterName, setChapterName] = useState("");
-	// const [homeworkName, setHomeworkName] = useState("");
-	// const [text, setText] = useState('');
 	const [videoLimit, setVideoLimit] = useState('');
 	const [videoLimitMetion, setVideoLimitMetion] = useState('white');
 	const [chapterNameLimit, setChapterNameLimit] = useState('');
@@ -22,6 +19,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 
 
 	const formEl = useRef(null);
+
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
@@ -60,25 +58,70 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 		setUploadDuring("");
 
 		const formData = new FormData(formEl.current);
-		try {
-			formData.append('video', video);
-			const response = await axios.post('/api/uploadVideo', formData, {
-				headers: {
-					'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
-				},
-				onUploadProgress: (progressEvent) => {
-					const progressPercent = Math.round(
-						(progressEvent.loaded * 100) / progressEvent.total
-					); // 計算上傳進度的百分比
-					setProgress(progressPercent); // 更新進度狀態
-				},
-			});
-			setLesson([...lesson, response.data.SN]);
-			setLessonData([...lessonData, response.data]);
-			return response;
-		} catch (error) {
-			console.error('影片上傳失敗', error);
+		if (putData.length !== 0) {
+			const data = putData;
+			try {
+				formData.append('_method', 'put');
+				formData.append('video', video);
+				formData.append('putInfor', JSON.stringify(data));
+
+				const response = await axios.post('/api/teacher/uploadVideo', formData, {
+					headers: {
+						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
+					},
+					onUploadProgress: (progressEvent) => {
+						const progressPercent = Math.round(
+							(progressEvent.loaded * 100) / progressEvent.total
+						); // 計算上傳進度的百分比
+						setProgress(progressPercent); // 更新進度狀態
+					},
+				});
+
+
+
+				let updateLesson = lessonData.find((v) => {
+					return (
+						v.SN === response.data.SN
+					);
+				});
+
+
+
+				if (updateLesson) {
+					updateLesson.Title = response.data.Title;
+					updateLesson.WhenLastEdited = response.data.WhenLastEdited;
+				}
+				return response;
+			} catch (error) {
+				console.error('影片上傳失敗', error);
+			}
+
+		} else {
+
+
+			try {
+				formData.append('video', video);
+				console.log(video);
+
+				const response = await axios.post('/api/teacher/uploadVideo', formData, {
+					headers: {
+						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
+					},
+					onUploadProgress(progressEvent) {
+						const progressPercent = Math.ceil(
+							(progressEvent.loaded * 100) / progressEvent.total
+						); // 計算上傳進度的百分比
+						setProgress(progressPercent); // 更新進度狀態
+					}
+				});
+				setLesson([...lesson, response.data.SN]);
+				setLessonData([...lessonData, response.data]);
+				return response;
+			} catch (error) {
+				console.error('影片上傳失敗', error);
+			}
 		}
+
 	};
 
 	return (
@@ -93,15 +136,12 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 
 			{/* 表單開關 */}
 			<form className={`flex w-full flex-col items-center my-5 ${displayForm}`} onSubmit={e => handleSubmit(e)} ref={formEl}>
-				<Dropzone video={video} setVideo={setVideo} metion={videoLimit} />
-				<p className={`text-xs leading-6 text-${videoLimitMetion} `}>
-					請上傳mp4檔</p>
 				<div className="flex  shadow-sm ring-1 ring-gray-300 sm:max-w-md w-full mt-5">
 					<input
 						type="text"
 						name="lessonTitle"
 						autoComplete="lessonTitle"
-						className={`block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6 ${chapterNameLimit}`}
+						className={`block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400 sm:text-sm sm:leading-6 ${chapterNameLimit}`}
 						placeholder="輸入章節名稱..."
 						value={chapterName}
 						onChange={(e) => {
@@ -112,26 +152,9 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 				<p className={`text-xs leading-6 text-${chapterNameLimitMetion} `}>
 					輸入內容不能低於5個字元</p>
 
-
-				{/* 填寫作業 */}
-				{/* <div className={(courseClass == "video") ? "hidden" : ""}>
-					<div className="flex  shadow-sm ring-1 ring-gray-300 sm:max-w-md w-full mt-5">
-						<input
-							type="text"
-							name="practiceName"
-							autoComplete="practiceName"
-							className="block flex-1 border-0 bg-transparent py-1.5 pl-1 text-gray-900 placeholder:text-gray-400  sm:text-sm sm:leading-6"
-							placeholder="填寫作業名稱..."
-							value={homeworkName}
-							onChange={(e) => {
-								setHomeworkName(e.target.value);
-							}}
-						/>
-					</div>
-					<div className="sm:max-w-md w-full mt-5">
-						<Quill setText={setText} text={text} />
-					</div>
-				</div> */}
+				<Dropzone video={video} setVideo={setVideo} metion={videoLimit} />
+				<p className={`text-xs leading-6 text-${videoLimitMetion} `}>
+					請上傳mp4檔</p>
 				<div className="mt-2">
 					<button
 						type="button"
@@ -144,6 +167,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 							setVideoLimitMetion('white');
 							setChapterNameLimit("");
 							setChapterNameLimitMetion('white');
+							setPutData([]);
 						}}
 					>
 						離開
@@ -178,6 +202,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 								setProgress(0);
 								setChapterName("");
 								setUploadDuring("hidden");
+								setPutData([]);
 								// setHomeworkName("");
 								// setText("");
 							}}

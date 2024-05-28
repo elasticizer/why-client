@@ -4,7 +4,7 @@ export default function Domain({ setDomain }) {
 	const [data, setData] = useState([]);
 	const handleData = async () => {
 		try {
-			const response = await fetch('/api/domain');
+			const response = await fetch('/api/teacher/domain');
 			const results = await response.json();
 			setData(results);
 		} catch (err) {

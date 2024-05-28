@@ -11,7 +11,7 @@ export default function ContentCard({
 	WhenCreated }) {
 	return (
 		<>
-			<Link href="#" className="conteneCard bg-white border  shadow-sm sm:flex w-full flex-col mb-2 px-3 py-4 hover:bg-gray-100">
+			<Link href={`/teacher/uploadCourse?CourseSN=${SN}`} className="conteneCard bg-white border  shadow-sm sm:flex w-full flex-col mb-2 px-3 py-4 hover:bg-gray-100">
 				<div className="contentItem flex overflow-hidden">
 					<img
 						className="contentItemPic w-20 h-auto sm:w-32 m-1 me-5 object-cover"
