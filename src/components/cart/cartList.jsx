@@ -66,7 +66,7 @@ export default function CartList() {
 						/>
 					))}
 
-					<CouponModal />
+					{/* <CouponModal /> */}
 				</>
 			)}
 		</div>
