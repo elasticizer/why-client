@@ -1,38 +1,5 @@
-import { useState, useEffect } from 'react';
-
-export default function CouponItem() {
-	const couponData = [
-		{
-			SN: 1,
-			name: '隨機優惠',
-			directions: '隨機優惠券，折扣90%',
-			discountRate: 0.1
-		},
-		{
-			SN: 2,
-			name: '畢業生專屬',
-			directions: '畢業生專屬優惠，折扣50%',
-			discountRate: 0.5
-		},
-		{
-			SN: 3,
-			name: '端午節優惠',
-			directions: '端午節特別優惠，享受額外75%折扣',
-			discountRate: 0.25
-		},
-		{
-			SN: 4,
-			name: '會員專屬',
-			directions: '會員享85%折扣',
-			discountRate: 0.15
-		},
-		{
-			SN: 5,
-			name: '夏季優惠',
-			directions: '夏天專屬優惠，折扣89%',
-			discountRate: 0.11
-		}
-	];
+export default function CouponItem({ onClick, selectedCoupon }) {
+	
 
 	return (
 		<>

@@ -1,15 +1,20 @@
+// SummaryOrder.js
 import CheckoutModal from './checkoutModal';
 import { useState, useEffect } from 'react';
 import { useCart } from '@/contexts/cart';
 
-export default function SummaryOrder() {
+export default function SummaryOrder({ selectedCoupon }) {
 	const [discount, setDiscount] = useState(0); // 預設折扣金額
-
 	const { totalPrice, totalQty } = useCart();
 
 	useEffect(() => {
-		setDiscount(Math.round(totalPrice * 0.1));
-	}, [totalPrice]);
+		if (selectedCoupon) {
+			setDiscount(Math.round(totalPrice * selectedCoupon.discountRate));
+		} else {
+			setDiscount(0);
+		}
+	}, [totalPrice, selectedCoupon]);
+
 	return (
 		<>
 			{/* 送出結帳確認提示框 */}
@@ -30,7 +35,7 @@ export default function SummaryOrder() {
 							<span
 								className="hs-tooltip-content hs-tooltip-shown:opacity-50 hs-tooltip-shown:visible opacity-0 transition-opacity inline-block absolute invisible z-10 py-1 px-2 bg-gray-600 text-white text-xs rounded-lg"
 								role="tooltip">
-								全館享9折優惠
+								{selectedCoupon ? selectedCoupon.name : '無優惠券'}
 							</span>
 						</div>
 						{/* 小計 */}
