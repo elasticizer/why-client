@@ -28,7 +28,7 @@ export default function IncomePage() {
 				<div className="max-w-[85rem] px-4 sm:px-6 lg:px-8 mx-auto">
 					<div className="grid lg:grid-cols-4 gap-y-8 lg:gap-y-0 lg:gap-x-6 md:gap-y-3 sm:gap-y-3">
 						<Sidebar {...{ data }} />
-						<Content {...{ data }} />
+						<Content data={data} />
 					</div>
 				</div>
 			</div>
