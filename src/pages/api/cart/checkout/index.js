@@ -29,11 +29,11 @@ router.post(async (req, res) => {
 		[user.SN]
 	);
 	const [[order]] = await connection.execute(
-		'INSERT INTO "Order" (LearnerSN, CouponSN,WhenPaid) VALUES (?, ?, ?) RETURNING SN',
-		[user.SN, null, datetime()]
+		'INSERT INTO "Order" (LearnerSN, CouponSN) VALUES (?, ?) RETURNING SN',
+		[user.SN, null]
 	);
 
-	req.body.courses.forEach(
+	[req.body.courses].flat().forEach(
 		async courseSN =>
 			await connection.execute(
 				'INSERT INTO OrderDetail (OrderSN, CourseSN) VALUES (?, ?)',
@@ -100,7 +100,7 @@ router.post(async (req, res) => {
 	}
 
 	// 結帳後清除購物車
-	await connection.execute('DELETE FROM Cart WHERE UserSN = ?', [user.SN]);
+	await connection.execute('DELETE FROM Cart');
 
 	res.status(StatusCodes.CREATED).json({
 		done: true,
