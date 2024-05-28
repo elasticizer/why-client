@@ -1,23 +1,23 @@
 import { useState, useEffect } from 'react';
-import CourseCard from './courseCard';
+import Recommended from './recommended';
 
 export default function Finish() {
-	const [courses, setCourses] = useState([]);
+	const [orders, setOrders] = useState([]);
 
 	useEffect(() => {
-		getCourses();
+		getOrders();
 	}, []);
 
-	const getCourses = async () => {
-		const url = '/api/cart/checkout';
+	const getOrders = async () => {
+		const url = '/api/transaction';
 		try {
 			const res = await fetch(url);
 			const data = await res.json();
-			setCourses(data);
+			setOrders(data);
 			console.log(data);
 		} catch (e) {
 			console.error(e);
-			setCourses([]);
+			setOrders([]);
 		}
 	};
 
@@ -34,13 +34,18 @@ export default function Finish() {
 				<div
 					className="bg-white border rounded-xl shadow-sm sm:flex lg:flex-row md:flex-col sm:flex-col"
 					dir="ltr">
-					<div className="flex-shrink-0 relative lg:w-full overflow-hidden lg:pt-[20%] sm:pt-[50%] sm:rounded-t-xl sm:max-w-full md:rounded-t-xl md:max-w-full lg:rounded-s-xl lg:rounded-e-none lg:max-w-xs">
-						<img
-							className="size-full absolute top-0 start-0 object-cover"
-							src="https://images.hahow.in/images/660637d3b38e616560508c46?width=450"
-							alt="Course Thumbnail"
-						/>
-					</div>
+					{orders.map((order, i) => (
+						<div
+							className="flex-shrink-0 relative lg:w-full overflow-hidden lg:pt-[20%] sm:pt-[50%] sm:rounded-t-xl sm:max-w-full md:rounded-t-xl md:max-w-full lg:rounded-s-xl lg:rounded-e-none lg:max-w-xs"
+							key={i}>
+							<img
+								className="size-full absolute top-0 start-0 object-cover"
+								src={order.Filename}
+								alt="Course Thumbnail"
+							/>
+						</div>
+					))}
+
 					<div className="w-full">
 						<div className="flex flex-col h-full sm:p-7">
 							<h3 className="text-lg font-bold text-gray-800">
@@ -109,20 +114,15 @@ export default function Finish() {
 
 				{/* Title */}
 				<div className="text-center">
-					<p className="font-semibold text-3xl">類似課程</p>
+					<p className="font-semibold text-3xl">推薦課程</p>
 				</div>
 				{/* End Title */}
 
-				{/* 類似課程 */}
+				{/* 推薦課程 */}
 				<div className="flex gap-5">
-					{courses.map((course, i) => (
-						<CourseCard
-							key={course.i}
-							name={course.Name}
-						/>
-					))}
+					<Recommended />
 				</div>
-				{/* End 類似課程 */}
+				{/* End 推薦課程 */}
 			</div>
 		</div>
 	);
