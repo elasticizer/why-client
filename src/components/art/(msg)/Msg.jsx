@@ -1,29 +1,21 @@
 import clsx from "clsx";
 import moment from "moment";
-import React from "react";
 
 export default function Msg({ msg, userId }) {
-  const {
-    msg_id,
-    room_id,
-    sender_id,
-    msg: msgContent,
-    created_at,
-    updated_at,
-  } = msg;
+  const { msg_id, room_id, sender_id, msg: msgContent, createdAt } = msg;
+
   const isSender = userId === sender_id;
-  console.log(isSender);
   return (
     <>
       <div className="w-full">
-        <time
+        <span
           className={clsx(
-            "text-xs opacity-50 ",
-            isSender && "pl-auto items-end    "
+            "text-xs opacity-50 flex",
+            isSender && "justify-end "
           )}
         >
-          {moment(updated_at).format("hh:mm a")}
-        </time>
+          {moment(createdAt).locale("en").format("YYYY-MM-DD　HH:mm")}
+        </span>
         <div
           className={clsx(
             "px-2 py-1 rounded-md bg-white max-w-[90%] w-fit ",

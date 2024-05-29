@@ -74,6 +74,13 @@ export const AuthProvider = ({ children }) => {
       asyncGetFollowList();
       asyncGetFavList();
       asyncGetClapList();
+      console.log(auth.id,"auth.id");
+      if (auth.id === "637742b19d29c62bfd10e368") {
+        localStorage.setItem("userInfo", "637742b19d29c62bfd10e368");
+      }
+      if (auth.id === "637742b19d29c62bfd10e367") {
+        localStorage.setItem("userInfo", "637742b19d29c62bfd10e367");
+      }
     } else {
       // 登出時要設回空
       setFollow(null);
@@ -82,6 +89,23 @@ export const AuthProvider = ({ children }) => {
     }
   }, [auth]);
 
+  useEffect(() => {
+    const userInfo = localStorage.getItem("userInfo");
+    if (userInfo === "637742b19d29c62bfd10e368") {
+      setAuth({
+        id: "637742b19d29c62bfd10e368",
+        username: "AME",
+        img: "https://randomuser.me/api/portraits/women/79.jpg",
+      });
+    }
+    if (userInfo === "637742b19d29c62bfd10e367") {
+      setAuth({
+        id: "637742b19d29c62bfd10e367",
+        username: "NEO",
+        img: "https://randomuser.me/api/portraits/men/51.jpg",
+      });
+    }
+  }, []);
   const router = useRouter();
 
   // 登入頁路由

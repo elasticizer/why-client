@@ -5,7 +5,6 @@ export default function Index() {
     <>
       <section className="flex flex-row justify-center mt-5">
         <div className="w-2/3">
-          <h2 className="">精選文章</h2>
           <div className="mx-2 card-group">
             <ArtCardGroup></ArtCardGroup>
           </div>

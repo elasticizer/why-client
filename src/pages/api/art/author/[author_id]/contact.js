@@ -11,8 +11,6 @@ export default async function handler(req, res) {
         where: { [Op.or]: [{ member_id: id }, { user_id: id }] },
         raw: true,
       });
-
-      // 找沒找到都回200，沒的話data是空字串
       return res.status(200).json({ data });
     } catch (error) {
       console.log(chalk.bgRed(error.message));

@@ -2,63 +2,58 @@ import React, { useEffect, useRef, useState } from "react";
 import Msg from "./Msg";
 import { IoClose } from "react-icons/io5";
 import { pusherClient } from "@/utils/pusher";
+import useSWR from "swr";
+import { fetcher } from "@/utils/utils";
+import MsgTarget from "./MsgTarget";
 
-export default function MsgBoard({ memberId, userId, name, img, setOpen }) {
+export default function MsgBoardImcoming({
+  userId,
+  setOpenConversation,
+  roomId,
+}) {
+  const { data, error, isLoading } = useSWR(`/api/art/room/${roomId}`, fetcher);
   const [msgTosend, setMsgTosend] = useState("");
-  const [roomId, setRoomId] = useState(null);
   const [msgs, setMsgs] = useState([]);
   const msgAnimateRef = useRef(null);
-  const hasEffectRun = useRef(false);
   async function send(e) {
     e.preventDefault();
-    if (roomId) {
-      try {
-        const saveMsgBody = { userId, msgTosend };
-        const sendRes = await fetch(`/api/art/room/${roomId}`, {
-          method: "POST",
-          body: JSON.stringify(saveMsgBody),
-        });
-        const sendResult = await sendRes.json();
-        console.log(sendResult.status);
-        setMsgTosend("");
-        console.log(" setMsgTosend()");
-      } catch (error) {
-        console.log(error);
-      }
-    }
-  }
-  async function checkRoomId() {
+
     try {
-      const body = { memberId, userId };
-      const res = await fetch(`/api/art/room`, {
+      const saveMsgBody = { userId, msgTosend };
+      const sendRes = await fetch(`/api/art/room/${roomId}`, {
         method: "POST",
-        body: JSON.stringify(body),
+        body: JSON.stringify(saveMsgBody),
       });
-      const r = await res.json();
-      setRoomId(r.data.room_id);
+      const sendResult = await sendRes.json();
+      console.log(sendResult.status);
+      setMsgTosend("");
+      console.log(" setMsgTosend()");
     } catch (error) {
       console.log(error);
     }
   }
+
   async function getOldData(roomId) {
     try {
       const res = await fetch(`/api/art/room?room_id=${roomId}`);
       const r = await res.json();
       if (r.data) {
         setMsgs(r.data);
-        // console.log(r.data);
+        console.log(r.data);
       }
     } catch (error) {
       console.log(error);
     }
   }
   function handler(data) {
-    console.log("data", data);
     setMsgs((prevMsgs) => [...prevMsgs, data]);
   }
   async function init(roomId) {
     await getOldData(roomId);
-    console.log("Subscribed to room_id:", roomId);
+  }
+
+  useEffect(() => {
+    init(roomId);
     pusherClient.subscribe(roomId);
     pusherClient.bind("incoming-msg", (data) => {
       console.log("incoming-msg data:", data);
@@ -66,50 +61,38 @@ export default function MsgBoard({ memberId, userId, name, img, setOpen }) {
         handler(data);
       }
     });
-  }
-
-  useEffect(() => {
-    if (!hasEffectRun.current) {
-      checkRoomId();
-      hasEffectRun.current = true;
-    }
+    console.log("Subscribed to room_id:", roomId);
+    return () => {
+      console.log("Unsubscribing from room_id:", roomId);
+      pusherClient.unsubscribe(roomId);
+      pusherClient.unbind("incoming-msg");
+    };
   }, []);
-
-  useEffect(() => {
-    if (roomId) {
-      init(roomId);
-
-      return () => {
-        console.log("Unsubscribing from room_id:", roomId);
-        pusherClient.unsubscribe(roomId);
-        pusherClient.unbind("incoming-msg");
-      };
-    } else {
-      setMsgs([]);
-    }
-  }, [roomId]);
 
   useEffect(() => {
     if (msgAnimateRef.current) {
       msgAnimateRef.current.scrollTop = msgAnimateRef.current.scrollHeight;
     }
   }, [msgs]);
+  if (error || data?.error) return <div>failed to load</div>;
+  if (isLoading)
+    return (
+      <div className="author-banner w-full flex justify-center items-center">
+        loading...
+      </div>
+    );
 
+  const { id, room_id, member_id, user_id, createdAt, updatedAt } = data.data;
+  const target_id = userId === member_id ? user_id : member_id;
   return (
     <>
-      <div className="w-[350px] h-fit fixed left-36 flex flex-col shadow-xl bg-theme-1 p-5 rounded-3xl z-50 bottom-20 gap-5">
-        <div className="flex items-center rounded-xl justify-between">
-          <div className="flex items-center gap-5">
-            <div className="avatar">
-              <div className="w-14 rounded-xl border-4 border-white ">
-                <img src={img} />
-              </div>
-            </div>
-            <span className="text-xl font-black ">{name}</span>
-          </div>
+      <div className="w-[350px] h-fit flex flex-col shadow-xl bg-theme-1 p-5 rounded-3xl z-50 gap-5">
+        <div className="flex items-center rounded-xl justify-between ">
+          <MsgTarget target_id={target_id}></MsgTarget>
+
           <div
             className="btn btn-sm btn-circle self-start btn-ghost"
-            onClick={() => setOpen(false)}
+            onClick={() => setOpenConversation(false)}
           >
             <IoClose className="  " />
           </div>
@@ -126,7 +109,6 @@ export default function MsgBoard({ memberId, userId, name, img, setOpen }) {
             })}
         </div>
 
-        {/* <MsgInput memberId={memberId} userId={userId}></MsgInput> */}
         <form
           className="w-full rounded-x flex flex-row justify-between gap-3 "
           onSubmit={send}

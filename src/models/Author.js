@@ -29,6 +29,18 @@ export default async function Author(sequelize) {
         type: DataTypes.JSON,
         allowNull: true,
       },
+      is_hide_clap: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+      },
+      is_hide_liked: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+      },
+      is_hide_followed: {
+        type: DataTypes.BOOLEAN,
+        allowNull: true,
+      },
     },
     {
       tableName: "author", //直接提供資料表名稱

@@ -3,11 +3,12 @@ import LikeArtCardGroup from "../../../../components/art/(author)/LikeArtCardGro
 import { useEffect, useState } from "react";
 import clsx from "clsx";
 import AuthorPage from "../../../../components/art/(author)/AuthorPage";
+import CheckBlocked from "../../../../components/art/(author)/CheckBlocked";
 
 export default function Index({}) {
   const router = useRouter();
   const [ready, setReady] = useState(false);
-  const [tab, setTab] = useState("default");
+  const [tab, setTab] = useState("released");
   const id = router.query.slug;
 
   useEffect(() => {
@@ -24,23 +25,9 @@ export default function Index({}) {
     return (
       <>
         <AuthorPage id={id}></AuthorPage>
-        <section className="flex flex-row justify-center mt-5 gap-5 ">
-          <section className="w-[350px]">
+        <section className="flex flex-row justify-center mt-5">
+          <section className="w-[300px]">
             <ul className="menu rounded-box w-full text-2xl">
-              <li
-                onClick={() => {
-                  setTab("default");
-                }}
-              >
-                <a
-                  className={clsx(
-                    "h-20 flex items-center author-tab",
-                    tab === "default" && "author-tab-active"
-                  )}
-                >
-                  動態
-                </a>
-              </li>
               <li
                 onClick={() => {
                   setTab("released");
@@ -83,10 +70,24 @@ export default function Index({}) {
                   收藏的文章
                 </a>
               </li>
+              <li
+                onClick={() => {
+                  setTab("follow");
+                }}
+              >
+                <a
+                  className={clsx(
+                    "h-20 flex items-center author-tab",
+                    tab === "follow" && "author-tab-active"
+                  )}
+                >
+                  追蹤的人
+                </a>
+              </li>
             </ul>
           </section>
-          <section className="max-w-[1200px]">
-            <LikeArtCardGroup tab={tab} author_id={id}></LikeArtCardGroup>
+          <section className="max-w-[1250px]">
+            <CheckBlocked tab={tab} id={id}></CheckBlocked>
           </section>
         </section>
       </>
