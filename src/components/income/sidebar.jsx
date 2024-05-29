@@ -2,21 +2,22 @@ import { useSession } from '@/contexts/session';
 
 export default function Sidebar({ data }) {
 	const session = useSession();
+	console.log(data);
 
 	return (
-		<div className="mb-10 lg:col-span-1 lg:w-full lg:h-fit bg-gray-100 lg:from-gray-50 rounded-xl lg:via-transparent lg:to-transparent dark:from-neutral-800">
-			<div className="sm:p-4 lg:px-8 flex lg:flex-col md:flex-row justify-center md:gap-6 lg:gap-1 md:items-center sm:justify-around sm:items-center">
+		<div className="w-full lg:col-span-1 lg:w-full lg:h-fit bg-gray-100 lg:from-gray-50 rounded-xl lg:via-transparent lg:to-transparent dark:from-neutral-800">
+			<div className="w-full flex lg:flex-col md:flex-row justify-center md:gap-6 lg:gap-1">
 				{/* 會員 */}
-				<div className="group m-2 flex flex-row items-center gap-x-2 gap-y-3 lg:mb-5 dark:border-neutral-700">
+				<div className="group m-2 flex flex-row justify-center items-center gap-x-2 lg:mb-5">
 					<div className="block flex-shrink-0">
 						<img
-							className="size-10 rounded-full"
+							className="size-15 rounded-full"
 							src={session?.Icon}
 							alt="Image Description"
 						/>
 					</div>
-					<div className="group grow block">
-						<h5 className="text-md sm:text-xl font-semibold">
+					<div className="inline-block">
+						<h5 className="text-xl sm:text-2xl font-semibold">
 							{session?.Nickname || session?.FirstName}
 						</h5>
 					</div>
