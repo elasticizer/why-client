@@ -1,5 +1,4 @@
 import { RiDeleteBinLine } from 'react-icons/ri';
-import { TbHeartPlus } from 'react-icons/tb';
 import Swal from 'sweetalert2';
 import withReactContent from 'sweetalert2-react-content';
 
@@ -57,50 +56,11 @@ export default function CourseItem({ item, checked, onChange, removeItem }) {
 			<div className="flex lg:flex-col md:flex-col sm:flex-row lg:items-end md:items-end sm:items-center gap-3 sm:ps-6 lg:ps-0 md:h-full sm:w-full md:w-fit sm:justify-between">
 				<div className="text-xl font-bold">NT${item.Price}</div>
 				<div className="flex items-end gap-3 text-2xl">
-					{/* <button
-						className="text-orange-500 hover:text-orange-400"
-						data-hs-overlay="#hs-basic-modal-collect">
-						<TbHeartPlus />
-					</button> */}
 					<button
 						className="text-red-400 hover:text-red-600"
 						onClick={() => notifyAndRemove(item)}>
-						<RiDeleteBinLine /> {/* 刪除按鈕 */}
+						<RiDeleteBinLine />
 					</button>
-					{/* 收藏Modal */}
-					{/* <div
-						id="hs-basic-modal-collect"
-						className="hs-overlay hs-overlay-open:opacity-100 hs-overlay-open:duration-500 hidden size-full fixed top-0 start-0 z-[80] opacity-0 overflow-x-hidden transition-all overflow-y-auto pointer-events-none">
-						<div className="sm:max-w-lg sm:w-full m-3 sm:mx-auto">
-							<div className="flex flex-col bg-orange-50 border shadow-sm rounded-xl pointer-events-auto">
-								<div className="flex justify-between items-center py-3 px-4">
-									<h3 className="font-bold text-orange-800 text-sm">
-										已將「{item.Name}」移至收藏清單
-									</h3>
-									<button
-										type="button"
-										className="flex justify-center items-center size-7 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
-										data-hs-overlay="#hs-basic-modal-collect">
-										<span className="sr-only">Close</span>
-										<svg
-											className="flex-shrink-0 size-4"
-											xmlns="http://www.w3.org/2000/svg"
-											width={24}
-											height={24}
-											viewBox="0 0 24 24"
-											fill="none"
-											stroke="currentColor"
-											strokeWidth={2}
-											strokeLinecap="round"
-											strokeLinejoin="round">
-											<path d="M18 6 6 18" />
-											<path d="m6 6 12 12" />
-										</svg>
-									</button>
-								</div>
-							</div>
-						</div>
-					</div> */}
 				</div>
 			</div>
 		</div>

@@ -1,14 +1,8 @@
-import { useState, useEffect } from 'react';
 import Link from 'next/link';
 import { useCart } from '@/contexts/cart';
 
 export default function Summary() {
-
 	const { totalPrice, totalQty } = useCart();
-
-	// useEffect(() => {
-	// 	setDiscount(Math.round(totalPrice * 0.1));
-	// }, [totalPrice]);
 
 	return (
 		<>
