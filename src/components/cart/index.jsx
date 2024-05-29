@@ -1,8 +1,7 @@
+import { useCart } from '@/contexts/cart';
 import CartList from '@/components/cart/cartList';
 import Summary from '@/components/cart/summary';
 import PrevPageBtn from './prevPageBtn';
-import { useCart } from '@/contexts/cart';
-import { useState } from 'react';
 
 export default function Cart() {
 	const { cartItem, removeItem } = useCart();

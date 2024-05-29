@@ -1,9 +1,8 @@
+import { useCart } from '@/contexts/cart';
 import { useState, useEffect } from 'react';
 import CheckAll from '@/components/cart/checkAll';
 import CourseItem from '@/components/cart/courseItem';
 import CourseItemNone from '@/components/cart/courseItemNone';
-import CouponModal from '@/components/cart/couponModal';
-import { useCart } from '@/contexts/cart';
 
 export default function CartList() {
 	const { cartItem, removeItem } = useCart();
@@ -66,7 +65,6 @@ export default function CartList() {
 						/>
 					))}
 
-					{/* <CouponModal /> */}
 				</>
 			)}
 		</div>
