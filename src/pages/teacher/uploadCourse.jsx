@@ -27,7 +27,7 @@ export default function UploadCourse() {
 				<Header />
 
 				<h1 className="text-2xl md:text-3xl font-semibold mt-10">上傳課程</h1>
-				<Content UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay} courseClass={courseClass} setCourseClass={setCourseClass}  {...{ lesson }} {...{ lessonData }} setCourseProgress={setCourseProgress} SetUploadCourseAlertDisplay={SetUploadCourseAlertDisplay} putData={putData} setPutData={setPutData} {...{ setLessonData }} />
+				<Content UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay} courseClass={courseClass} setCourseClass={setCourseClass}  {...{ lesson }} {...{ lessonData }} courseProgress={courseProgress} setCourseProgress={setCourseProgress} SetUploadCourseAlertDisplay={SetUploadCourseAlertDisplay} putData={putData} setPutData={setPutData} {...{ setLessonData }} />
 				<UploadFileAlert UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay} courseClass={courseClass} setCourseClass={setCourseClass} {...{ lesson }} {...{ setLesson }} {...{ lessonData }} {...{ setLessonData }} putData={putData} setPutData={setPutData} />
 				<UploadCourseAlert courseProgress={courseProgress} UploadCourseAlertDisplay={UploadCourseAlertDisplay} SetUploadCourseAlertDisplay={SetUploadCourseAlertDisplay} />
 			</div>

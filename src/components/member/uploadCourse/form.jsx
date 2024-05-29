@@ -6,7 +6,7 @@ import { extname } from 'path';
 import axios from 'axios';
 
 
-export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, lesson, lessonData, setCourseProgress, SetUploadCourseAlertDisplay, setPutData, setLessonData }) {
+export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, lesson, lessonData, courseProgress, setCourseProgress, SetUploadCourseAlertDisplay, setPutData, setLessonData }) {
 	const [courseTitle, setCourseTitle] = useState("");
 	const [domain, setDomain] = useState("");
 	const [price, setPrice] = useState("");
@@ -212,19 +212,19 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 			formdata.append("courseDescription", courseDescription);
 			formdata.append("syllabuse", instructorExperience);
 			try {
-				const response = await axios.post("/api/teacher/putCourse", formdata, {
+				await axios.post("/api/teacher/putCourse", formdata, {
 					headers: {
 						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
 					},
 					onUploadProgress: (progressEvent) => {
+						if (courseProgress === 100) return;
 						const progressPercent = Math.round(
 							(progressEvent.loaded * 100) / progressEvent.total
 						); // 計算上傳進度的百分比
 						setCourseProgress(progressPercent); // 更新進度狀態
 					},
-				});
-				const data = await response.json();
-
+				}).then(response => setCourseProgress(100));
+				console.log("上傳成功");
 			} catch (err) {
 				console.log(err);
 			}
@@ -240,14 +240,14 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
 					},
 					onUploadProgress: (progressEvent) => {
+						if (courseProgress === 100) return;
 						const progressPercent = Math.round(
 							(progressEvent.loaded * 100) / progressEvent.total
 						); // 計算上傳進度的百分比
 						setCourseProgress(progressPercent); // 更新進度狀態
 					},
-				});
-				const data = await response.json();
-
+				}).then(response => setCourseProgress(100));
+				console.log("上傳成功");
 			} catch (err) {
 				console.log(err);
 			}
