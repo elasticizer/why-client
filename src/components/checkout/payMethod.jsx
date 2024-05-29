@@ -20,7 +20,7 @@ export default function PayMethod() {
 							className="hs-accordion-toggle hs-accordion-active:text-blue-600 inline-flex justify-between items-center gap-x-3 w-full font-semibold text-start text-gray-800 py-4 px-5 hover:text-gray-500 disabled:opacity-50 disabled:pointer-events-none"
 							aria-controls="hs-basic-active-bordered-collapse-one">
 							<div className="flex flex-row justify-center items-center gap-1">
-								LINE PAY
+								LINE Pay
 							</div>
 
 							<svg
@@ -63,79 +63,6 @@ export default function PayMethod() {
 							</div>
 						</div>
 					</div>
-					{/* 信用卡一次付款 */}
-					{/* <div
-						className="hs-accordion hs-accordion-active:border-gray-200 bg-white border border-transparent rounded-xl"
-						id="hs-active-bordered-heading-two">
-						<button
-							className="hs-accordion-toggle hs-accordion-active:text-blue-600 inline-flex justify-between items-center gap-x-3 w-full font-semibold text-start text-gray-800 py-4 px-5 hover:text-gray-500 disabled:opacity-50 disabled:pointer-events-none"
-							aria-controls="hs-basic-active-bordered-collapse-two">
-							<div className="flex flex-row justify-center items-center gap-1">
-								<input
-									type="radio"
-									name="hs-default-radio"
-									className="shrink-0 mt-0.5 border-gray-200 rounded-full text-blue-600 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-									id="hs-checked-radio"
-								/>
-								信用卡一次付款
-							</div>
-							<svg
-								className="hs-accordion-active:hidden block size-3.5"
-								xmlns="http://www.w3.org/2000/svg"
-								width={24}
-								height={24}
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth={2}
-								strokeLinecap="round"
-								strokeLinejoin="round">
-								<path d="M5 12h14" />
-								<path d="M12 5v14" />
-							</svg>
-							<svg
-								className="hs-accordion-active:block hidden size-3.5"
-								xmlns="http://www.w3.org/2000/svg"
-								width={24}
-								height={24}
-								viewBox="0 0 24 24"
-								fill="none"
-								stroke="currentColor"
-								strokeWidth={2}
-								strokeLinecap="round"
-								strokeLinejoin="round">
-								<path d="M5 12h14" />
-							</svg>
-						</button>
-						<div
-							id="hs-basic-active-bordered-collapse-two"
-							className="hs-accordion-content hidden w-full overflow-hidden transition-[height] duration-300 "
-							aria-labelledby="hs-active-bordered-heading-two">
-							<div className="pb-4 px-5">
-								<div className="mt-2 space-y-2">
-									<input
-										type="text"
-										className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-										placeholder="信用卡卡號"
-									/>
-									<div className="grid sm:flex gap-3">
-										<input
-											type="text"
-											className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-											placeholder="信用卡有效期限"
-										/>
-										<input
-											type="text"
-											className="py-2 px-3 pe-11 block w-full border-gray-200 shadow-sm text-sm rounded-lg focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-											placeholder="卡片背面後三碼"
-											maxLength={3}
-										/>
-									</div>
-								</div>
-							</div>
-						</div>
-					</div> */}
-					
 				</div>
 			</div>
 		</>

@@ -1,10 +1,9 @@
-import React from 'react';
-
+import { PiListPlusBold } from "react-icons/pi";
 export default function OrderItemNone() {
 	return (
 		<>
 			<div className="flex flex-col items-center justify-center space-y-4 p-36">
-				<img src="https://hahow.in/static/media/empty-icon.ffab5b384149efd3fad5979bde7a0f52.svg" />
+			<p className="text-9xl "><PiListPlusBold /></p>
 				<p>尚未有訂單</p>
 				<a
 					type="button"

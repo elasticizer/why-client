@@ -14,7 +14,6 @@ export default function Recommended() {
 			const res = await fetch(url);
 			const data = await res.json();
 			setCourses(data);
-			console.log(data);
 		} catch (e) {
 			console.error(e);
 			setCourses([]);

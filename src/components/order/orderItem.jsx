@@ -1,23 +1,4 @@
-import { useState, useEffect } from 'react';
-
-export default function OrderItem() {
-	const [orders, setOrders] = useState([]);
-
-	useEffect(() => {
-		const getOrder = async () => {
-			const url = '/api/transaction';
-			try {
-				const res = await fetch(url);
-				const data = await res.json();
-				setOrders(data);
-				// console.log(data);
-			} catch (e) {
-				setOrders([]);
-			}
-		};
-		getOrder();
-	}, []);
-	console.log(orders);
+export default function OrderItem({ item }) {
 	return (
 		<>
 			<div className="container">
@@ -26,9 +7,9 @@ export default function OrderItem() {
 					<div className="flex justify-between items-center border-b-2 pb-2">
 						<div className="flex flex-col gap-y-1">
 							{/* 訂單編號 */}
-							<p className="text-xl font-semibold">ADUQ2189H1</p>
+							<p className="text-xl font-semibold">{item.SN}</p>
 							{/* 訂單日期 */}
-							<p className="text-sm">2024-03-31</p>
+							<p className="text-sm">{item.WhenCheckedOut.split(' ')[0]}</p>
 						</div>
 						<div className="flex items-center gap-x-1">
 							<p className="font-bold">已完成</p>
@@ -48,35 +29,27 @@ export default function OrderItem() {
 						{/* 訂單內容 */}
 						<div className="flex gap-3 lg:flex-row sm:flex-col md:flex-col">
 							{/* 課程圖片 */}
-							<div className="sm:hidden lg:flex rounded-xl relative h-24 w-48  mx-2">
+							<div className="rounded-xl flex relative group overflow-hidden transition w-48 mx-2">
 								<img
-									className="absolute top-0 start-0 object-cover h-24 w-48 rounded-xl shadow-lg hover:z-10"
-									src="https://images.hahow.in/images/660637d3b38e616560508c46"
-								/>
-								{/* 多課程 課程圖片疊加 */}
-								<img
-									className="absolute top-5 hover:top-10 start-0 object-cover h-24 w-48 rounded-xl shadow-lg ease-in duration-300"
-									src="https://images.hahow.in/images/6479757650ac16648e1ead96"
+									className="absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
+									src={item.Filename}
+									alt={item.Name}
 								/>
 							</div>
 							{/* 訂單資料 */}
 							<div className="flex sm:flex-col md:flex-col lg:flex-row sm:gap-3 md:gap-6 lg:gap-3">
-								<div className="flex flex-col gap-3">
-									<div className="">
+								<div className="flex flex-col gap-3  w-3/4">
+									<div className="me-4">
 										<p className="font-bold lg:text-lg md:text-base sm:text-base">
 											課程名稱
 										</p>
-										<div className="inline-flex items-center">
+										<div className="inline-flex items-center me-8">
 											<span className="size-2 inline-block bg-orange-300 rounded-full me-2"></span>
-											<span className="text-gray-600 lg:text-base md:text-sm sm:text-sm tracking-wide">
-												原創角色設計全攻略｜從風格定位到 IP 經營
-											</span>
-										</div>
-										<div className="inline-flex items-center">
-											<span className="size-2 inline-block bg-orange-300 rounded-full me-2"></span>
-											<span className="text-gray-600 lg:text-base md:text-sm sm:text-sm tracking-wide">
-												玩轉 RPA：使用 UiPath 打造專屬小助理
-											</span>
+											<a
+												className="mt-1 -ms-1 p-1 inline-flex items-center text-sm gap-x-2 rounded-lg border border-transparent text-gray-500 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none"
+												href="#">
+												{item.Name}
+											</a>
 										</div>
 									</div>
 									<div>
@@ -84,17 +57,17 @@ export default function OrderItem() {
 											付款方式
 										</p>
 										<p className="text-gray-600 lg:text-base md:text-sm sm:text-sm">
-											信用卡付款
+											LINE Pay付款
 										</p>
 									</div>
 								</div>
-								<div className="flex lg:flex-col md:flex-row sm:flex-row gap-x-6 gap-y-3 lg:w-2/4">
+								<div className="flex lg:flex-col md:flex-row sm:flex-row gap-x-6 gap-y-3  w-1/4">
 									<div>
 										<p className="font-bold lg:text-lg md:text-base sm:text-base">
 											總額
 										</p>
 										<p className="text-gray-600 lg:text-base md:text-sm sm:text-sm">
-											$1000
+											NT${item.Amount}
 										</p>
 									</div>
 									<div>
@@ -102,7 +75,7 @@ export default function OrderItem() {
 											折扣
 										</p>
 										<p className="text-gray-600 lg:text-base md:text-sm sm:text-sm">
-											$100
+											NT$100
 										</p>
 									</div>
 									<div>
@@ -110,7 +83,7 @@ export default function OrderItem() {
 											付款金額
 										</p>
 										<p className="text-gray-600 lg:text-base md:text-sm sm:text-sm">
-											NT$900
+											NT${item.Amount - 100}
 										</p>
 									</div>
 								</div>
@@ -165,7 +138,7 @@ export default function OrderItem() {
 										訂單成立時間
 									</h3>
 									<p className="mt-1 text-sm text-gray-600 dark:text-neutral-400">
-										2024-03-30
+										{item.WhenCheckedOut}
 									</p>
 								</div>
 								{/* End Right Content */}
@@ -186,7 +159,7 @@ export default function OrderItem() {
 										付款時間
 									</h3>
 									<p className="mt-1 text-sm text-gray-600 dark:text-neutral-400">
-										2024-03-31
+										{item.WhenPaid}
 									</p>
 								</div>
 								{/* End Right Content */}
