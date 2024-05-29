@@ -17,7 +17,7 @@ export default function UploadCourse() {
 	const [lesson, setLesson] = useState([]);
 	const [lessonData, setLessonData] = useState([]);
 	const [courseProgress, setCourseProgress] = useState(0);
-	const [putData, setPutData] = useState([]);
+	const [putData, setPutData] = useState("");
 
 
 	return (

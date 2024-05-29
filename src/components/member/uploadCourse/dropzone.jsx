@@ -21,14 +21,14 @@ export default function Dropzone({ video, setVideo, metion }) {
 	return (
 		<div {...getRootProps()} style={dropzoneStyle} className={`sm:max-w-md w-full ${metion}`}>
 			<input {...getInputProps()} type="file" name="video" />
-			<p>{(!video) ?
+			{(!video) ?
 				"拖放影片到這裡，或點擊選擇影片" :
 				<div className="flex flex-col items-center">
 					<BsCheckLg color='#28FF28' size="60px" />
 					<p className="mt-2">{video.name}</p>
 					<p>已經準備好上傳</p>
 				</div>
-			}</p>
+			}
 		</div>
 	);
 };

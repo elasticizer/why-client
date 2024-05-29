@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-export default function UploadTables({ SetUploadFileAlertDisplay, lessonData, setPutData }) {
+export default function UploadTables({ SetUploadFileAlertDisplay, lessonData,putData, setPutData }) {
 
 	return (
 		<div className="flex flex-col w-full">

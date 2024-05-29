@@ -63,12 +63,12 @@ router.use(upload.fields([{ name: 'courseCover', maxCount: 1 }, { name: 'promoti
 	const promotionalVideoType = req.files.promotionalVideo[0].mimetype;
 	// console.log(req.body,req.files);
 
-
-	const [repeatData] = await connection.execute('SELECT Name FROM Course WHERE Name=?', [title]);
-	if (repeatData.length > 0) {
-		res.status(500).json({ message: "課程上傳失敗，已有相同課程名稱" });
-		return false;
-	}
+// 名字相同不能上傳
+	// const [repeatData] = await connection.execute('SELECT Name FROM Course WHERE Name=?', [title]);
+	// if (repeatData.length > 0) {
+	// 	res.status(500).json({ message: "課程上傳失敗，已有相同課程名稱" });
+	// 	return false;
+	// }
 
 
 	// 寫入封面到File 查詢FileSN

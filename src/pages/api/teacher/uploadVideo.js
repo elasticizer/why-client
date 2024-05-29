@@ -46,8 +46,10 @@ router.use(upload.single("video")).post(async (req, res) => {
 
 		const putInforString = req.body.putInfor;
 		const putInforObj = JSON.parse(putInforString);
-
+console.log("修改api");
+		console.log(putInforString);
 		console.log(putInforObj);
+		console.log(1111111);
 
 
 		const lessonSN = putInforObj.SN;
@@ -82,9 +84,9 @@ router.use(upload.single("video")).post(async (req, res) => {
 
 
 	} else {
+		console.log("新的api");
 		const { lessonTitle } = req.body;
 		const file = req.file;
-		console.log(file);
 
 		const filename = file.filename;
 		const ext = extname(filename).substring(1);
