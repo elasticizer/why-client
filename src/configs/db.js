@@ -3,7 +3,7 @@ import chalk from 'chalk';
 import applyModels from '../db-helpers/sequelize/models-setup.js';
 
 const sequelize = new Sequelize('why_blog', 'root', '0000', {
-	host: '127.0.0.1',
+	host: '172.23.52.90',
 	port: '3306',
 	dialect: 'mysql',
 	logging: false,
