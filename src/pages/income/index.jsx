@@ -16,7 +16,6 @@ export default function Index() {
 	return (
 		<>
 			<div className={`${styles.container}`}>
-				{/* header */}
 				<Header />
 				<title>講師收益</title>
 				<IncomePage />
@@ -25,8 +24,6 @@ export default function Index() {
 				setWindowNav={setWindowNav}
 				windowNav={windowNav}
 			/>
-
-			{/* SECTION mobileWindowNavbar */}
 			<Sidebar
 				WindowNav={windowNav}
 				setWindowNav={setWindowNav}
