@@ -1,26 +1,8 @@
 import { useState, useEffect } from 'react';
 import Recommended from './recommended';
+import Link from 'next/link';
 
 export default function Finish() {
-	const [orders, setOrders] = useState([]);
-
-	useEffect(() => {
-		getOrders();
-	}, []);
-
-	const getOrders = async () => {
-		const url = '/api/transaction';
-		try {
-			const res = await fetch(url);
-			const data = await res.json();
-			setOrders(data);
-			console.log(data);
-		} catch (e) {
-			console.error(e);
-			setOrders([]);
-		}
-	};
-
 	return (
 		<div className="container mt-8 max-w-[85rem] sm:px-6 lg:px-8 mx-auto my-8">
 			<div className="relative mx-auto max-w-4xl grid space-y-5 sm:space-y-10">
@@ -34,17 +16,13 @@ export default function Finish() {
 				<div
 					className="bg-white border rounded-xl shadow-sm sm:flex lg:flex-row md:flex-col sm:flex-col"
 					dir="ltr">
-					{orders.map((order, i) => (
-						<div
-							className="flex-shrink-0 relative lg:w-full overflow-hidden lg:pt-[20%] sm:pt-[50%] sm:rounded-t-xl sm:max-w-full md:rounded-t-xl md:max-w-full lg:rounded-s-xl lg:rounded-e-none lg:max-w-xs"
-							key={i}>
-							<img
-								className="size-full absolute top-0 start-0 object-cover"
-								src={order.Filename}
-								alt="Course Thumbnail"
-							/>
-						</div>
-					))}
+					<div className="flex-shrink-0 relative lg:w-full overflow-hidden lg:pt-[20%] sm:pt-[50%] sm:rounded-t-xl sm:max-w-full md:rounded-t-xl md:max-w-full lg:rounded-s-xl lg:rounded-e-none lg:max-w-xs">
+						<img
+							className="size-full absolute top-0 start-0 object-cover"
+							src="https://images.hahow.in/images/5aa8ddd7d0f8ac001e287e74"
+							alt="Course Thumbnail"
+						/>
+					</div>
 
 					<div className="w-full">
 						<div className="flex flex-col h-full sm:p-7">
@@ -100,11 +78,13 @@ export default function Finish() {
 										className="py-0.5 px-2 inline-flex items-center justify-center gap-x-2 font-semibold rounded-lg border border-transparent bg-orange-500 text-white hover:bg-orange-400 disabled:opacity-50 disabled:pointer-events-none">
 										開始上課
 									</button>
-									<button
-										type="button"
-										className="py-0.5 px-2 inline-flex items-center justify-center gap-x-2 font-semibold rounded-lg border border-transparent bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50 disabled:pointer-events-none">
-										查看訂單
-									</button>
+									<Link href={'/order'}>
+										<button
+											type="button"
+											className="py-0.5 px-2 inline-flex items-center justify-center gap-x-2 font-semibold rounded-lg border border-transparent bg-blue-500 text-white hover:bg-blue-600 disabled:opacity-50 disabled:pointer-events-none">
+											查看訂單
+										</button>
+									</Link>
 								</div>
 							</div>
 						</div>
