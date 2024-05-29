@@ -1,4 +1,4 @@
-import { createReadStream } from 'fs';
+import { type PathLike, createReadStream } from 'fs';
 import { writeFile } from 'fs/promises';
 import { EOL } from 'os';
 import { createInterface } from 'readline';
@@ -8,7 +8,7 @@ export default class Envelope {
 		public data: Partial<Record<string | symbol, unknown>>
 	) {}
 
-	static async open(file: import('fs').PathLike) {
+	static async open(file: PathLike) {
 		const data = {};
 		const stream = createReadStream(file);
 
@@ -21,7 +21,7 @@ export default class Envelope {
 		return new this(data);
 	}
 
-	async seal(file: import('fs').PathLike) {
+	async seal(file: PathLike) {
 		return writeFile(
 			file,
 			[...Object.entries(this.data)].reduce(

@@ -10,16 +10,16 @@ type EffectProps = {
 };
 
 const Effect = ({ callback }: EffectProps) => (
-	console.log(Effect.name),
-	useEffect(callback, [callback]),
-	null
+	useEffect(callback, [callback]), null
 );
 
 export default function App({ Component, pageProps }: AppProps) {
 	const pathname = usePathname();
 	const callback = useCallback(
-		() => void import('preline/preline')
-			.then(module => module.HSStaticMethods.autoInit()),
+		() =>
+			void import('preline/preline').then(module =>
+				module.HSStaticMethods.autoInit()
+			),
 		[pathname]
 	);
 

@@ -17,7 +17,7 @@ export default function Signin() {
 
 	return (
 		<SessionLayout>
-			<div className="bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
+			<div className="relative bg-white border border-gray-200 rounded-xl shadow-sm dark:bg-neutral-900 dark:border-neutral-700">
 				<div className="p-4 sm:p-8">
 					<div className="text-center">
 						<h1 className="block text-2xl font-bold text-gray-800 dark:text-white">

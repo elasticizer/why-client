@@ -16,7 +16,7 @@ export default function Signout() {
 			: void sleep(1000n)
 				.then(() => fetch('/api/auth/signout', { method: 'POST' }))
 				.then(r => r.json())
-				.then(({ done }: ApiResponseBody<{}>) => setDone(done))
+				.then(({ done }: ApiResponseBody<null>) => setDone(done))
 				.then(() => sleep(1000n))
 				.then(() => router.replace('/')),
 		[]
