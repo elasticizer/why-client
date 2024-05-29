@@ -1,8 +1,7 @@
-// CouponSelect.js
-import React from 'react';
-import CouponItem from '../cart/couponItem';
+import { useCoupon } from '@/contexts/coupon';
 
-export default function CouponSelect({ setSelectedCoupon, selectedCoupon }) {
+export default function CouponSelect() {
+	const { selectedCoupon, setSelectedCoupon } = useCoupon();
 	const couponData = [
 		{
 			SN: 1,
@@ -36,10 +35,6 @@ export default function CouponSelect({ setSelectedCoupon, selectedCoupon }) {
 		}
 	];
 
-	const handleCouponSelect = coupon => {
-		setSelectedCoupon(coupon);
-	};
-
 	return (
 		<>
 			<div className="border border-gray-300 rounded-lg p-4">
@@ -58,7 +53,7 @@ export default function CouponSelect({ setSelectedCoupon, selectedCoupon }) {
 						<a
 							key={i}
 							className="max-w-xs flex flex-col border border-t-4 border-t-orange-400 hover:border-t-4 hover:border-t-orange-600 shadow-sm rounded-xl cursor-pointer w-1/4"
-							onClick={() => handleCouponSelect(coupon)}>
+							onClick={() => setSelectedCoupon(coupon)}>
 							<div className="p-4 md:p-5">
 								<h3 className="text-lg text-center font-bold text-gray-800">
 									{coupon.name}

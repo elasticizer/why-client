@@ -1,11 +1,12 @@
-// SummaryOrder.js
 import CheckoutModal from './checkoutModal';
 import { useState, useEffect } from 'react';
 import { useCart } from '@/contexts/cart';
+import { useCoupon } from '@/contexts/coupon';
 
-export default function SummaryOrder({ selectedCoupon }) {
+export default function SummaryOrder() {
 	const [discount, setDiscount] = useState(0); // 預設折扣金額
 	const { totalPrice, totalQty } = useCart();
+	const { selectedCoupon } = useCoupon();
 
 	useEffect(() => {
 		if (selectedCoupon) {
@@ -18,7 +19,7 @@ export default function SummaryOrder({ selectedCoupon }) {
 	return (
 		<>
 			{/* 送出結帳確認提示框 */}
-			<CheckoutModal />
+			<CheckoutModal discount={discount} />
 			<div className="lg:col-span-1 lg:w-full lg:h-fit lg:via-transparent lg:to-transparent border border-gray-300 rounded-lg">
 				<div className="sticky top-0 start-0">
 					<div className="group flex items-center gap-x-3 dark:border-neutral-700 bg-gray-100">
