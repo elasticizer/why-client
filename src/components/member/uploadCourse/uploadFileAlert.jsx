@@ -77,13 +77,17 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
 					},
 					onUploadProgress: (progressEvent) => {
+						if (progress === 100) return;
 						const progressPercent = Math.round(
 							(progressEvent.loaded * 100) / progressEvent.total
 						); // 計算上傳進度的百分比
 						setProgress(progressPercent); // 更新進度狀態
 					},
+				}).then(response => {
+					setProgress(100);
+					return response;
 				});
-
+				console.log("上傳成功");
 
 
 				let updateLesson = lessonData.find((v) => {
@@ -115,12 +119,18 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
 					},
 					onUploadProgress(progressEvent) {
+						if (progress === 100) return;
 						const progressPercent = Math.ceil(
 							(progressEvent.loaded * 100) / progressEvent.total
 						); // 計算上傳進度的百分比
 						setProgress(progressPercent); // 更新進度狀態
 					}
+				}).then((response) => {
+					setProgress(100);
+					return response;
 				});
+				console.log("上傳成功");
+
 				setLesson([...lesson, response.data.SN]);
 				setLessonData([...lessonData, response.data]);
 				return response;
