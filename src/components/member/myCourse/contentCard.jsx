@@ -16,7 +16,7 @@ export default function Card({ picUrl, title, domain, Nickname }) {
 			<div className="flex w-full h-full  shadow-sm ring-1 ring-gray-300 md:flex-col relative overflow-hidden hover:bg-gray-100">
 				<div className="w-1/3 h-36 md:h-52 md:w-full md:me-0 overflow-hidden">
 					<img
-						className="hover:scale-125 hover:scale-125 ease-in duration-300"
+						className="hover:scale-125 ease-in duration-300"
 						src={picUrl && picUrl.startsWith('h') ? picUrl : `/learner/LessonVideo/${picUrl}`}
 						alt=""
 						style={{ "width": "100%", "height": "100%", "object-fit": "cover" }}

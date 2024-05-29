@@ -13,7 +13,7 @@ export default function UploadCard({
 
 
 	return (
-		<Link href="#" className="bg-white border shadow-sm md:flex mt-10 ">
+		<Link href="#" className="bg-white ring-1 ring-gray-300 shadow-sm md:flex mt-10 ">
 			<div className="flex-shrink-0 relative w-full overflow-hidden pt-[50%] md:pt-[15%] md:max-w-60">
 				<img
 					className="size-full absolute top-0 start-0 object-cover"

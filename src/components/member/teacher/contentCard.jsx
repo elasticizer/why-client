@@ -11,39 +11,31 @@ export default function ContentCard({
 	WhenCreated }) {
 	return (
 		<>
-			<Link href={`/teacher/uploadCourse?CourseSN=${SN}`} className="conteneCard bg-white border  shadow-sm sm:flex w-full flex-col mb-2 px-3 py-4 hover:bg-gray-100">
-				<div className="contentItem flex overflow-hidden">
+			<Link href={`/teacher/uploadCourse?CourseSN=${SN}`} className="flex w-full  ring-1  ring-gray-300 relative overflow-hidden hover:bg-gray-100 shadow-sm">
+				<div className="w-36 md:w-52 h-28 md:h-36 overflow-hidden">
 					<img
-						className="contentItemPic w-20 h-auto sm:w-32 m-1 me-5 object-cover"
+						className="w-full me-3 object-cover size-full hover:scale-125 ease-in duration-300"
 						src={`/learner/LessonVideo/${Filename}`}
 						alt=""
 					/>
 
-					<div className="contentItemText">
-						<h3 className="text-lg font-bold text-gray-800 sm:text-xl">
-							課程：{Name}
-						</h3>
-						<p className="mt-1 text-gray-500 text-sm line-clamp-2	sm:text-base ">
+				</div>
+
+				<div className="flex-col items-start w-full p-2 md:p-5">
+					<h3 className="text-sm md:text-lg font-bold text-gray-800 md:text-xl line-clamp-1">
+						課程：{Name}
+					</h3>
+					<div className="mt-1 text-gray-500 text-sm text-wrap md:text-base line-clamp-2">
 						<span className="font-extrabold text-gray-800">描述：</span>{Intros && stripHtml(Intros).result}
-						</p>
-						<div className="sm:mt-auto">
-							<div className="text-xs text-gray-500 flex content-center	mt-1 sm:text-sm items-center">
-								<MdAccessTime />
-								創建時間{WhenCreated}
-							</div>
+					</div>
+					<div className="md:mt-auto">
+						<div className="text-xs text-gray-500 flex content-center	mt-1 md:text-sm items-center">
+							<MdAccessTime />
+							創建時間{WhenCreated}
 						</div>
 					</div>
 				</div>
 			</Link>
-			<style jsx>{`
-				.contentList {
-					display: flex;
-					flex-wrap: wrap;
-					flex-direction: column;
-					align-items: center;
-					justify-content: center;
-				}
-			`}</style>
 		</>
 	);
 }
