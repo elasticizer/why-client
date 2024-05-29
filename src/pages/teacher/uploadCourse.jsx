@@ -12,7 +12,6 @@ import styles from '@/styles/teacher.module.css';
 export default function UploadCourse() {
 	const [windowNav, setWindowNav] = useState("hidden");
 	const [UploadFileAlertDisplay, SetUploadFileAlertDisplay] = useState("hidden");
-	const [UploadCourseAlertDisplay, SetUploadCourseAlertDisplay] = useState("hidden");
 	const [courseClass, setCourseClass] = useState("video");
 	const [lesson, setLesson] = useState([]);
 	const [lessonData, setLessonData] = useState([]);
@@ -27,9 +26,8 @@ export default function UploadCourse() {
 				<Header />
 
 				<h1 className="text-2xl md:text-3xl font-semibold mt-10">上傳課程</h1>
-				<Content UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay} courseClass={courseClass} setCourseClass={setCourseClass}  {...{ lesson }} {...{ lessonData }} courseProgress={courseProgress} setCourseProgress={setCourseProgress} SetUploadCourseAlertDisplay={SetUploadCourseAlertDisplay} putData={putData} setPutData={setPutData} {...{ setLessonData }} />
+				<Content UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay} courseClass={courseClass} setCourseClass={setCourseClass}  {...{ lesson }} {...{ lessonData }} courseProgress={courseProgress} setCourseProgress={setCourseProgress}  putData={putData} setPutData={setPutData} {...{ setLessonData }} />
 				<UploadFileAlert UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay} courseClass={courseClass} setCourseClass={setCourseClass} {...{ lesson }} {...{ setLesson }} {...{ lessonData }} {...{ setLessonData }} putData={putData} setPutData={setPutData} />
-				<UploadCourseAlert courseProgress={courseProgress} UploadCourseAlertDisplay={UploadCourseAlertDisplay} SetUploadCourseAlertDisplay={SetUploadCourseAlertDisplay} />
 			</div>
 			<Tabbar setWindowNav={setWindowNav} windowNav={windowNav} />
 

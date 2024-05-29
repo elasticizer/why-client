@@ -4,10 +4,11 @@ import UploadTables from "@/components/member/uploadCourse/uploadTables";
 import { errorAlert } from "@/components/member/errorAlert";
 import { extname } from 'path';
 import axios from 'axios';
+import UploadCourseAlert from "@/components/member/uploadCourse/uploadCourseAlert";
 
 
 
-export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, lesson, lessonData, courseProgress, setCourseProgress, SetUploadCourseAlertDisplay,putData, setPutData, setLessonData }) {
+export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, lesson, lessonData, putData, setPutData, setLessonData }) {
 	const [courseTitle, setCourseTitle] = useState("");
 	const [domain, setDomain] = useState("");
 	const [price, setPrice] = useState("");
@@ -19,6 +20,8 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 	const [instructorExperience, setInstructorExperience] = useState('');
 	const [selectData, setSelectData] = useState([]);
 	const [courseSN, setCourseSN] = useState("");
+	const [uploadCourseAlertDisplay, SetUploadCourseAlertDisplay] = useState(false);
+	const [done, setDone] = useState(false);
 
 
 	// 帶入已加入過的值
@@ -67,10 +70,8 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 	const [selectMetion, setSelectMetion] = useState('white');
 	const [priceLimit, setPriceLimit] = useState('');
 	const [priceMetion, setPriceMetion] = useState('white');
-
 	const [courseDescriptionLimite, setCourseDescriptionLimite] = useState('');
 	const [courseDescriptionLimiteMetion, setCourseDescriptionLimiteMetion] = useState('white');
-
 	const [instructorExperienceLimite, setInstructorExperienceLimite] = useState('');
 	const [instructorExperienceLimiteMetion, setInstructorExperienceLimiteMetion] = useState('white');
 	const [selectFileLimite, setSelectFileLimite] = useState('');
@@ -82,6 +83,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 	const formEl = useRef();
 	const ext = ["jpg", "png", "jpeg"];
 	const videoExt = "mp4";
+	const progressEl = useRef(null);
 
 	const handleFileChange = (e) => {
 		//files[0]提供多檔上傳功能才會有files[]，單檔案上傳只會有file
@@ -198,7 +200,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 			return false;
 		}
 
-		SetUploadCourseAlertDisplay('');
+		SetUploadCourseAlertDisplay(true);
 
 		const formdata = new FormData(formEl.current);
 
@@ -218,14 +220,16 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
 					},
 					onUploadProgress: (progressEvent) => {
-						if (courseProgress === 100) return;
-						const progressPercent = Math.round(
+						if (progressEl.current.value === 100) return;
+						progressEl.current.value = Math.round(
 							(progressEvent.loaded * 100) / progressEvent.total
 						); // 計算上傳進度的百分比
-						setCourseProgress(progressPercent); // 更新進度狀態
+						// 更新進度狀態
 					},
-				}).then(response => setCourseProgress(100));
-				console.log("上傳成功");
+				}).then(response =>
+					console.log("上傳成功"));
+				setDone(true);
+				progressEl.current.value = 100;
 			} catch (err) {
 				console.log(err);
 			}
@@ -241,14 +245,16 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
 					},
 					onUploadProgress: (progressEvent) => {
-						if (courseProgress === 100) return;
-						const progressPercent = Math.round(
+						if (progressEl.current.value === 100) return;
+						progressEl.current.value = Math.round(
 							(progressEvent.loaded * 100) / progressEvent.total
 						); // 計算上傳進度的百分比
-						setCourseProgress(progressPercent); // 更新進度狀態
 					},
-				}).then(response => setCourseProgress(100));
-				console.log("上傳成功");
+				}).then(response => {
+					console.log("上傳成功");
+					setDone(true);
+					progressEl.current.value = 100;
+				});
 			} catch (err) {
 				console.log(err);
 			}
@@ -406,7 +412,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 								</label>
 								<div className="mt-2">
 									<div className="sm:flex ">
-										<div className="mb-5 sm:mb-0 sm:me-5 w-full sm:w-6/12 md:h-72 overflow-y-scroll">
+										<div className="mb-5 sm:mb-0 sm:me-5 w-full h-44 sm:w-6/12 md:h-72 overflow-y-scroll">
 											<img src={previewURL} alt="" style={{ "width": "100%" }} />
 										</div>
 										<div className="sm:w-6/12">
@@ -503,12 +509,15 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 					<button
 						type="submit"
 						className=" bg-orange-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-orange-500"
+
 					>
 						送出
 					</button>
 				</div>
 			</form>
 
+			{/* 開啟上傳課程的功能 */}
+			<UploadCourseAlert progress={35} uploadCourseAlertDisplay={uploadCourseAlertDisplay} progressEl={progressEl} SetUploadCourseAlertDisplay={SetUploadCourseAlertDisplay} done={done}/>
 		</>
 
 	);
