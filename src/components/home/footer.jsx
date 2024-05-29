@@ -12,16 +12,16 @@ export default function Footer() {
 						{/* <!-- Grid --> */}
 						<div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6">
 							<div className="col-span-full lg:col-span-2 flex justify-center items-center">
-								<a
+								<Link
 									className="flex-none text-xl font-semibold text-white"
-									href="#">
+									href="/">
 									<Image
 										src="/images/why_logo-white.png"
 										width={300}
 										height={100}
 										alt="why logo"
 									/>
-								</a>
+								</Link>
 							</div>
 							{/* <!-- End Col --> */}
 
@@ -90,7 +90,7 @@ export default function Footer() {
 											/>
 										</div>
 										<button
-											className="w-full sm:w-auto whitespace-nowrap p-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-sky-400	 text-white hover:bg-sky-600 disabled:opacity-50 disabled:pointer-events-none"
+											className="w-auto  whitespace-nowrap p-3 inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-sky-400 text-white hover:bg-sky-500 disabled:opacity-50 disabled:pointer-events-none"
 											type="submit">
 											送出
 										</button>
