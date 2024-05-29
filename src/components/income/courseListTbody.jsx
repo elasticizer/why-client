@@ -11,12 +11,13 @@ export default function CourseListTbody({ data }) {
 					</p>
 					<p className="text-xs text-gray-500">{data.Identifier}</p>
 				</div>
-				<div className="w-1/3 text-center">
-					<p className="text-sm">{data.WhenLaunched}</p>
+				<div className="w-1/4 text-center">
+					<p className="text-sm">{data.WhenLaunched.slice(0, 10)}</p>
 				</div>
-				<div
-					className="w-1/3 text-center
-				">
+				<div className="w-1/6 text-center">
+					<p className="text-md">{data.Total}堂</p>
+				</div>
+				<div className="w-1/4 text-center">
 					<p className="text-sm">NT${data.Income}</p>
 				</div>
 			</div>

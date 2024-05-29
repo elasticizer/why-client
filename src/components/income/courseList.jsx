@@ -4,6 +4,7 @@ import SelectBoxCourse from './selectBoxCourse';
 
 export default function CourseList({ data }) {
 	const [desc, setDesc] = useState(true);
+	const [descCourse, setDescCourse] = useState(true);
 	const [filteredData, setFilteredData] = useState(data);
 	const [searchKeyword, setSearchKeyword] = useState('');
 
@@ -44,10 +45,23 @@ export default function CourseList({ data }) {
 			{/* table */}
 			{/* thead */}
 			<div className="flex flex-row justify-between items-center px-4 py-2 border rounded-t-lg font-semibold bg-gray-100">
-				<div className="w-1/2">課程名稱</div>
-				<div className="w-1/3 text-center">開課時間</div>
+				<div className="w-1/2 ">課程名稱</div>
+				<div className="w-1/4 text-center">開課日期</div>
 				<div
-					className="w-1/3 text-center cursor-pointer"
+					className="w-1/6 text-center cursor-pointer"
+					onClick={() => {
+						const sortedData = [...filteredData].sort((a, b) =>
+							descCourse
+								? new Date(a.Total) - new Date(b.Total)
+								: new Date(b.Total) - new Date(a.Total)
+						);
+						setFilteredData(sortedData);
+						setDescCourse(!descCourse);
+					}}>
+					售出堂數 {descCourse ? '▼' : '▲'}
+				</div>
+				<div
+					className="w-1/4 text-center cursor-pointer"
 					onClick={() => {
 						const sortedData = [...filteredData].sort((a, b) =>
 							desc
@@ -57,7 +71,7 @@ export default function CourseList({ data }) {
 						setFilteredData(sortedData);
 						setDesc(!desc);
 					}}>
-					課程收益 {desc ? '▼' : '▲'}
+					課程總收益 {desc ? '▼' : '▲'}
 				</div>
 			</div>
 			{/* end thead */}
