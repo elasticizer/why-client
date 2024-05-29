@@ -17,6 +17,8 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 	const [courseDescription, setCourseDescription] = useState("");
 	const [instructorExperience, setInstructorExperience] = useState('');
 	const [selectData, setSelectData] = useState([]);
+	const [courseSN, setCourseSN] = useState("");
+
 
 	// 帶入已加入過的值
 	useEffect(() => {
@@ -26,18 +28,20 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 			const handleData = async () => {
 				const response = await fetch(`/api/teacher/putCourse?courseSN=${answer}`).then(r => r.json()).catch(err => err);
 				const results = response.results;
+				console.log(results);
 				setCourseTitle(results[0].CourseName);
 				setDomain(results[0].DomainSN);
+				setPreviewURL(`/learner/LessonVideo/${results[0].ThumbnailFilename}`);
+				setPreviewVideo(`/learner/LessonVideo/${results[0].DailyFilename}`);
 				setCourseDescription(results[0].CourseIntro);
 				setPrice(results[0].Price);
 				setInstructorExperience(results[0].Syllabus);
 				setLessonData(results);
+				setCourseSN(answer);
 			};
 			handleData();
 		}
-
 	}, []);
-
 
 
 
@@ -173,7 +177,6 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 			isValid = false;
 		}
 		if (selectVideoFile === null) {
-			console.log("空的");
 			setSelectVideoFileLimite('ring ring-red-400');
 			setSelectVideoFileLimiteMetion('red-500');
 			isValid = false;
@@ -198,38 +201,60 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 
 		const formdata = new FormData(formEl.current);
 
-
-
-
 		lesson.forEach(v => formdata.append("lesson[]", v));
 
-		if (answer) {
-			formdata.append("_method", "put");
+
+
+
+		if (courseSN) {
+			formdata.append("_method", "POST");
+			formdata.append("courseSN", courseSN);
+			formdata.append("courseDescription", courseDescription);
+			formdata.append("syllabuse", instructorExperience);
+			try {
+				const response = await axios.post("/api/teacher/putCourse", formdata, {
+					headers: {
+						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
+					},
+					onUploadProgress: (progressEvent) => {
+						const progressPercent = Math.round(
+							(progressEvent.loaded * 100) / progressEvent.total
+						); // 計算上傳進度的百分比
+						setCourseProgress(progressPercent); // 更新進度狀態
+					},
+				});
+				const data = await response.json();
+
+			} catch (err) {
+				console.log(err);
+			}
+
+		} else {
+
+			formdata.append("courseDescription", courseDescription);
+			formdata.append("syllabuse", instructorExperience);
+
+			try {
+				const response = await axios.post("/api/teacher/uploadCourse", formdata, {
+					headers: {
+						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
+					},
+					onUploadProgress: (progressEvent) => {
+						const progressPercent = Math.round(
+							(progressEvent.loaded * 100) / progressEvent.total
+						); // 計算上傳進度的百分比
+						setCourseProgress(progressPercent); // 更新進度狀態
+					},
+				});
+				const data = await response.json();
+
+			} catch (err) {
+				console.log(err);
+			}
 		}
-		formdata.append("courseDescription", courseDescription);
-		formdata.append("syllabuse", instructorExperience);
 
-		try {
-			const response = await axios.post("/api/teacher/uploadCourse", formdata, {
-				headers: {
-					'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
-				},
-				onUploadProgress: (progressEvent) => {
-					const progressPercent = Math.round(
-						(progressEvent.loaded * 100) / progressEvent.total
-					); // 計算上傳進度的百分比
-					setCourseProgress(progressPercent); // 更新進度狀態
-				},
-			});
-			const data = await response.json();
-
-		} catch (err) {
-			console.log(err);
-		}
-
-
-		// window.location.href = '/teacher';
 	};
+
 
 
 
@@ -420,7 +445,8 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 								<div className="mt-2">
 									<div className="sm:flex ">
 										<div className="mb-5 sm:mb-0 sm:me-5 w-full sm:w-6/12	md:h-72">
-											<video src={previewVideo} alt="" style={{ "width": "100%" }} controls autoPlay />
+											<video src={previewVideo} alt="" style={{ "width": "100%" }} controls />
+											{/* controls autoPlay */}
 										</div>
 										<div className="sm:w-6/12">
 											<p className="text-base text-justify" >製作一部引人入勝的宣傳影片，能夠吸引學生的注意力，並迅速介紹您課程的內容，讓他們對所學內容有更清晰的預覽。若影片製作精良，學生報名您課程的可能性將大大提高。重要規範：請上傳 mp4 檔案類型。</p>

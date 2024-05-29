@@ -58,6 +58,13 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 		setUploadDuring("");
 
 		const formData = new FormData(formEl.current);
+
+		formData.delete('video');
+		// 因為dropzone的關係，它一開始的video的欄位是空的
+		// 我們又自己加了一個video欄位進去造成multer錯亂，
+		// 所以得先刪建立formdata並刪除空的video，再加入有檔案的video，
+		// 才不會讓檔案上傳之後，又被刪除
+
 		if (putData.length !== 0) {
 			const data = putData;
 			try {
