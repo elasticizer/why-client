@@ -21,13 +21,12 @@ export default async function handler(req, res) {
         //   { pid: '611c8c99cbcf8f00070ad1bf' }
         // ]
         const pidArr = data.map((v) => v.pid);
-        // 有找到的話
         data = await Article.findAll({
           where: { id: pidArr },
           raw: true,
         });
       }
-      // 找沒找到都回200，沒的話data是空字串
+      // 找沒找到都回200，沒的話data是空陣列
       return res.status(200).json({ data });
     } catch (error) {
       console.log(chalk.bgRed(error.message));

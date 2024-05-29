@@ -29,7 +29,7 @@ export default function ArtDetailLeft({ id }) {
   } = data.data;
   return (
     <div className="w-[1000px] flex flex-col gap-10 ">
-      <Breadcrumbs></Breadcrumbs>
+      <Breadcrumbs sub_group_id={sub_group_id} title={title}></Breadcrumbs>
       <div className="flex flex-col">
         <h2 className="text-5xl font-bold leading-relaxed">{title}</h2>
         <div className="flex gap-4 justify-end items-center font-bold text-gray-500">
@@ -49,25 +49,20 @@ export default function ArtDetailLeft({ id }) {
       </Suspense>
       <div className="divider font-bold text-gray-400">更多內容</div>
       <div className="flex flex-col gap-8 bg-orange-100 pb-16 my-8">
-        <h2 className="text-2xl my-4 text-center font-extrabold rounded-xl py-8">
+        <h2 className="text-2xl my-4 text-center rounded-xl py-8 mb-8 bg-orange-100 font-black  text-[#ff8d0a] tracking-widest">
           系列文章
         </h2>
         <div className="overflow-x-auto">
-          <div className="card-group flex flex-row gap-8 h-[400px] py-5 mx-5 w-[150%]">
-            {/* <ArtCard2></ArtCard2>
-                <ArtCard2></ArtCard2>
-                <ArtCard2></ArtCard2>
-                <ArtCard2></ArtCard2> */}
-          </div>
+         
         </div>
         {/* <Indicator></Indicator> */}
       </div>
-      <div className="flex flex-col gap-8 bg-blue-100 pb-16">
-        <h2 className="text-2xl my-4 text-center font-extrabold rounded-xl py-8 ">
+      <div className="flex flex-col gap-8 bg-[#d2efff] pb-16">
+        <h2 className="text-2xl my-4 text-center font-extrabold rounded-xl py-8 text-[#465de4]">
           課程推薦
         </h2>
         <div className="card-group flex flex-row gap-8 justify-center py-5 mx-5">
-          <div className="card w-96 bg-base-100 shadow-right-bottom-violet">
+          <div className="card w-96 bg-base-100 shadow-right-bottom-violet transition hover:-translate-y-5">
             <div className="card-body">
               <h2 className="card-title">德文輕鬆學</h2>
               <p>▶ 德文輕鬆學，零基礎也學得會的實用會話</p>
@@ -79,7 +74,7 @@ export default function ArtDetailLeft({ id }) {
             </div>
           </div>
 
-          <div className="card w-96 bg-base-100 shadow-right-bottom-violet">
+          <div className="card w-96 bg-base-100 shadow-right-bottom-violet transition hover:-translate-y-5">
             <div className="card-body">
               <h2 className="card-title">德文輕鬆學</h2>
               <p>▶ 德文輕鬆學，零基礎也學得會的實用會話</p>
@@ -95,7 +90,7 @@ export default function ArtDetailLeft({ id }) {
       </div>
 
       <div className="pt-1">
-        <h2 className="text-2xl my-4 text-center font-extrabold rounded-xl py-3 bg-yellow-100 ">
+        <h2 className="text-2xl my-4 text-center rounded-xl py-8 mb-8 bg-orange-100 font-black  text-[#ff8d0a] tracking-widest">
           延伸閱讀
         </h2>
         <div className="">

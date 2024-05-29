@@ -17,7 +17,7 @@ const Author = ({ author_id }) => {
   if (error || data?.error) return <div>failed to load</div>;
   if (isLoading) return <div>loadingAuthor</div>;
 
-  const { sn, _id, name, profile_image_url, meta_description, links } =
+  const { sn, name, profile_image_url, meta_description, links } =
     data.data;
   return (
     <>

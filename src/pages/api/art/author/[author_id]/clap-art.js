@@ -15,17 +15,13 @@ export default async function handler(req, res) {
       });
 
       if (data) {
-        //物件陣列  
-        // [
-        //   { art_id: '6214a34bd6a9990007161f51' },
-        // ]
         const pidArr = data.map((v) => v.art_id);
         data = await Article.findAll({
           where: { id: pidArr },
           raw: true,
         });
       }
-      // 找沒找到都回200，沒的話data是空字串
+      // 找沒找到都回200，沒的話data是空陣列
       return res.status(200).json({ data });
     } catch (error) {
       console.log(chalk.bgRed(error.message));

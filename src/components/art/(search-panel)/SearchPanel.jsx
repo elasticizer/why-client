@@ -6,6 +6,7 @@ import FormFieldSubGroup from "./FormFieldSubGroup";
 import { useEffect, useState } from "react";
 import { useRouter } from "next/router";
 import OrderSelect from "./OrderSelect";
+import { useRef } from "react";
 const keywordLikeArr = ["文章標題", "作者", "tag", "內容"];
 export default function SearchPanel({ selected }) {
   const router = useRouter();
@@ -15,7 +16,11 @@ export default function SearchPanel({ selected }) {
   const [subgroups, setSubGroups] = useState({});
   const [sortMethod, setSortMethod] = useState(0);
   const [showSub, setShowSub] = useState(false);
-
+  const keywordInput = useRef(null);
+  const [oldKeywordArr, setOldKeywordArr] = useState(
+    JSON.parse(localStorage.getItem("keyword")) || []
+  );
+  console.log(oldKeywordArr, "oldKeywordArr");
   async function handleSubmit(e) {
     e.preventDefault();
     const dataToSend = {
@@ -28,6 +33,12 @@ export default function SearchPanel({ selected }) {
     const body = JSON.stringify(dataToSend);
     console.log(body);
     localStorage.setItem("searchbody", body);
+    if (keyword?.trim() && !oldKeywordArr.includes(keyword.trim())) {
+      localStorage.setItem(
+        "keyword",
+        JSON.stringify([...oldKeywordArr, keyword.trim()])
+      );
+    }
     if (router.pathname === "/art/search") {
       router.reload();
     } else {
@@ -35,10 +46,19 @@ export default function SearchPanel({ selected }) {
     }
   }
 
+  function remove_history(v) {
+    console.log(" e.stopPropagation();");
+    if (oldKeywordArr.includes(v)) {
+      const newKeywordArr = oldKeywordArr.filter((item) => item !== v);
+      localStorage.setItem("keyword", JSON.stringify(newKeywordArr));
+      setOldKeywordArr(newKeywordArr);
+    }
+  }
   function handle_keyword(e) {
     setKeyword(e.target.value);
   }
   function handle_history(e) {
+    keywordInput.current.focus();
     setKeyword(e.currentTarget.getAttribute("value"));
   }
   function handle_keywordLike(e) {
@@ -67,12 +87,47 @@ export default function SearchPanel({ selected }) {
             handleSubmit(e);
           }}
         >
-          <input
-            placeholder="搜索文章"
-            className="focus-visible:outline-none indent-1"
-            value={keyword}
-            onChange={handle_keyword}
-          />
+          <div className="dropdown">
+            <div tabIndex={0} role="button" onKeyUp={(e) => e.preventDefault()}>
+              <input
+                placeholder="搜索文章"
+                className="focus-visible:outline-none indent-1"
+                value={keyword}
+                onChange={handle_keyword}
+                ref={keywordInput}
+              />
+            </div>
+            <ul
+              tabIndex={0}
+              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52"
+            >
+              {oldKeywordArr.length > 0 && (
+                <li className="font-bold  text-left text-zinc-500">歷史搜索</li>
+              )}
+              {oldKeywordArr.map((v, i) => {
+                return (
+                  <li
+                    className=" search-history-li font-bold text-zinc-500 rounded-xl"
+                    value={v}
+                    onClick={handle_history}
+                    key={i}
+                  >
+                    {v}
+                    <div
+                      className="btn btn-circle btn-sm"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        remove_history(v);
+                      }}
+                    >
+                      <IoClose />
+                    </div>
+                  </li>
+                );
+              })}
+            </ul>
+          </div>
+
           <div className="text-3xl search-icon text-orange-300 flex items-center">
             <FaSearch />
           </div>
@@ -101,22 +156,6 @@ export default function SearchPanel({ selected }) {
               );
             })}
           </div>
-          <li className="menu-title text-left text-xl text-bg-line-1">
-            歷史搜索
-          </li>
-
-          <ul className="divide-y divide-gray-200 h-20 overflow-y-scroll text-xl pl-4">
-            <li
-              className=" search-history-li"
-              value="Item1"
-              onClick={handle_history}
-            >
-              Item1
-              <button className="btn btn-circle btn-sm">
-                <IoClose />
-              </button>
-            </li>
-          </ul>
 
           <li className="menu-title text-left text-xl text-bg-line-1">
             文章分類

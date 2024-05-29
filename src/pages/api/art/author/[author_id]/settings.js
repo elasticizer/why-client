@@ -3,32 +3,19 @@ import chalk from "chalk";
 const { Author } = sequelize.models;
 
 export default async function handler(req, res) {
-  if (req.method === "GET") {
-    const id = req.query.author_id;
-
-    try {
-      const data = await Author.findOne({ where: { id: id } });
-      if (data) {
-        return res.status(200).json({ data });
-      }
-      throw new Error(`找不到Authorid${id}`);
-    } catch (error) {
-      console.log(chalk.bgRed(error.message));
-      return res.status(404).json({ error: error.message });
-    }
-  }
-  // 改個人簡介
   if (req.method === "POST") {
     const id = req.query.author_id;
     const payload = await JSON.parse(req.body);
-    const meta_description = payload.meta_description;
+    console.log(payload);
+    const [is_hide_clap, is_hide_liked, is_hide_followed] = payload.settings;
     try {
       const data = await Author.update(
-        { meta_description },
+        { is_hide_clap, is_hide_liked, is_hide_followed},
         { where: { id: id } }
       );
+      console.log();
       if (data) {
-        return res.status(200).json({ data });
+        return res.status(200).json({ status: "success" });
       }
       throw new Error(`找不到Authorid${id}`);
     } catch (error) {

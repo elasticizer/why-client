@@ -16,7 +16,6 @@ export default async function Room(sequelize) {
         type: DataTypes.STRING,
         allowNull: false,
       },
-    
     },
     {
       tableName: "room", //直接提供資料表名稱

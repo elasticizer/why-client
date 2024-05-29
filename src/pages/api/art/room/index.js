@@ -39,6 +39,15 @@ export default async function handler(req, res) {
         },
         raw: true,
       });
+      // console.log(data);
+      // {
+      //   msg_id: 28,
+      //   room_id: 'eecdc7f6-bb13-4c04-94b0-2eb89a2f54df',
+      //   sender_id: '637742b19d29c62bfd10e368',
+      //   msg: 'hi',
+      //   createdAt: 2024-05-22T08:01:20.000Z,
+      //   updatedAt: 2024-05-22T08:01:20.000Z
+      // },
       if (data) {
         return res.status(200).json({ data });
       }

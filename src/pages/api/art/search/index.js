@@ -15,7 +15,7 @@ export default async function handler(req, res) {
     let sortSelectAll = [];
     let subgroupsArr = [];
     let orArr = [];
-    let where = [];
+    let where;
     switch (sortMethod) {
       case "1":
         orderType = ["published_at", "desc"];
@@ -46,6 +46,7 @@ export default async function handler(req, res) {
         }
         subgroupsArr = [...subgroupsArr, ...subgroups[sort]];
       }
+
       if (sortSelectAll.length > 0) {
         const data = await Sub_Groups.findAll({
           attributes: ["id"],
@@ -59,7 +60,6 @@ export default async function handler(req, res) {
         subgroupsArr = [...subgroupsArr, ...sortSelectAllResult];
       }
     }
-
     if (keyword) {
       keywordLike.forEach((v) => {
         switch (v) {
@@ -71,11 +71,11 @@ export default async function handler(req, res) {
             });
             break;
           case "2":
-            orArr.push({
-              author_id: {
-                [Op.like]: `%${keyword}%`,
-              },
-            });
+            // orArr.push({
+            //   author_id: {
+            //     [Op.like]: `%${keyword}%`,
+            //   },
+            // });
             break;
           case "3":
             orArr.push({
@@ -95,10 +95,10 @@ export default async function handler(req, res) {
       });
     }
     // return;
-    console.log({ orderType });
-    // 有沒有選group
+    console.log(orArr.length, "orArr.length");
+    console.log("subgroupsArr", subgroupsArr);
 
-    if (subgroupsArr.length > 1) {
+    if (subgroupsArr.length > 0) {
       if (orArr.length > 0) {
         where = {
           [Op.or]: [...orArr],
@@ -118,6 +118,7 @@ export default async function handler(req, res) {
         where = {};
       }
     }
+    console.log(where, "where");
 
     let finalQuery = {
       offset: page * 20,
