@@ -6,7 +6,8 @@ import { extname } from 'path';
 import axios from 'axios';
 
 
-export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, lesson, lessonData, courseProgress, setCourseProgress, SetUploadCourseAlertDisplay, setPutData, setLessonData }) {
+
+export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay, lesson, lessonData, courseProgress, setCourseProgress, SetUploadCourseAlertDisplay,putData, setPutData, setLessonData }) {
 	const [courseTitle, setCourseTitle] = useState("");
 	const [domain, setDomain] = useState("");
 	const [price, setPrice] = useState("");
@@ -482,7 +483,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 								</label>
 								<div className="mt-2">
 									<div className="sm:flex overflow-y-scroll">
-										<UploadTables UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay} {...{ lessonData }} setPutData={setPutData}
+										<UploadTables UploadFileAlertDisplay={UploadFileAlertDisplay} SetUploadFileAlertDisplay={SetUploadFileAlertDisplay} {...{ lessonData }} putData={putData} setPutData={setPutData}
 										/>
 									</div>
 								</div>

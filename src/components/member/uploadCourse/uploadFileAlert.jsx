@@ -10,21 +10,22 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 	const [displayForm, setDisplayForm] = useState("");
 	const [uploadDuring, setUploadDuring] = useState("hidden");
 	const [video, setVideo] = useState(null);
-	const [progress, setProgress] = useState(0);
 	const [chapterName, setChapterName] = useState("");
 	const [videoLimit, setVideoLimit] = useState('');
 	const [videoLimitMetion, setVideoLimitMetion] = useState('white');
 	const [chapterNameLimit, setChapterNameLimit] = useState('');
 	const [chapterNameLimitMetion, setChapterNameLimitMetion] = useState('white');
+	const [done, setDone] = useState(false);
 
 
 	const formEl = useRef(null);
+	const progressRef = useRef(null);
 
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
-
 		let isValid = "ture";
+
 		// 影片上傳判斷
 		if (extname(video.name).substring(1) !== "mp4") {
 			console.log("沒通過");
@@ -65,8 +66,10 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 		// 所以得先刪建立formdata並刪除空的video，再加入有檔案的video，
 		// 才不會讓檔案上傳之後，又被刪除
 
-		if (putData.length !== 0) {
+		if (putData) {
+			console.log("近來修改");
 			const data = putData;
+
 			try {
 				formData.append('_method', 'put');
 				formData.append('video', video);
@@ -76,15 +79,16 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 					headers: {
 						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
 					},
-					onUploadProgress: (progressEvent) => {
-						if (progress === 100) return;
-						const progressPercent = Math.round(
+					onUploadProgress(progressEvent) {
+						if (progressRef.current.value === 100) return;
+
+						progressRef.current.value = Math.round(
 							(progressEvent.loaded * 100) / progressEvent.total
 						); // 計算上傳進度的百分比
-						setProgress(progressPercent); // 更新進度狀態
 					},
 				}).then(response => {
-					setProgress(100);
+					setDone(true);
+					progressRef.current.value = 100;
 					return response;
 				});
 				console.log("上傳成功");
@@ -96,13 +100,11 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 					);
 				});
 
-
-
 				if (updateLesson) {
 					updateLesson.Title = response.data.Title;
 					updateLesson.WhenLastEdited = response.data.WhenLastEdited;
 				}
-				return response;
+
 			} catch (error) {
 				console.error('影片上傳失敗', error);
 			}
@@ -111,29 +113,30 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 
 
 			try {
-				formData.append('video', video);
-				console.log(video);
+				console.log("近來新的");
 
+				formData.append('video', video);
 				const response = await axios.post('/api/teacher/uploadVideo', formData, {
 					headers: {
 						'Content-Type': 'multipart/form-data', // 設置標頭，表明傳送的是 FormData
 					},
 					onUploadProgress(progressEvent) {
-						if (progress === 100) return;
-						const progressPercent = Math.ceil(
+						if (progressRef.current.value === 100) return;
+// 狀態是記憶體，更新速度沒有那麼快，useState不會跟著馬上渲染，但會在固定時間渲染，所以產生許多問題如進度條到不到位
+						progressRef.current.value = Math.floor(
 							(progressEvent.loaded * 100) / progressEvent.total
 						); // 計算上傳進度的百分比
-						setProgress(progressPercent); // 更新進度狀態
 					}
-				}).then((response) => {
-					setProgress(100);
+				}).then(response => {
+					setDone(true);
+					progressRef.current.value = 100;
 					return response;
 				});
+
 				console.log("上傳成功");
 
 				setLesson([...lesson, response.data.SN]);
 				setLessonData([...lessonData, response.data]);
-				return response;
 			} catch (error) {
 				console.error('影片上傳失敗', error);
 			}
@@ -152,7 +155,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 
 
 			{/* 表單開關 */}
-			<form className={`flex w-full flex-col items-center my-5 ${displayForm}`} onSubmit={e => handleSubmit(e)} ref={formEl}>
+			<form className={`flex w-full flex-col items-center my-5 ${displayForm}`} onSubmit={handleSubmit} ref={formEl}>
 				<div className="flex  shadow-sm ring-1 ring-gray-300 sm:max-w-md w-full mt-5">
 					<input
 						type="text"
@@ -175,7 +178,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 				<div className="mt-2">
 					<button
 						type="button"
-						className=" ring-1 ring-orange-500 text-orange-500 px-6 py-2 text-sm font-semibold  shadow-sm hover:text-orange-300  hover:ring-orange-300" onClick={(e) => {
+						className="ring-1 ring-orange-500 text-orange-500 px-6 py-2 text-sm font-semibold  shadow-sm hover:text-orange-300  hover:ring-orange-300" onClick={(e) => {
 							e.preventDefault();
 							SetUploadFileAlertDisplay("hidden");
 							setVideo(null);
@@ -184,7 +187,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 							setVideoLimitMetion('white');
 							setChapterNameLimit("");
 							setChapterNameLimitMetion('white');
-							setPutData([]);
+							setPutData("");
 						}}
 					>
 						離開
@@ -202,11 +205,11 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 				{!!video && (
 					<div className="text-center">
 						<p>已選擇影片：{video.name}</p>
-						<progress value={progress} max={100} className="flex border h-3 rounded-full sm:max-w-md w-full  mt-5" />
+						<progress ref={progressRef} value={0} max={100} className="flex border h-3 rounded-full sm:max-w-md w-full  mt-5" />
 					</div>
 				)}
-				{(progress !== 100) && <div className="my-5">請不要未完成檔案上傳就關閉頁面，避免出錯</div>}
-				{(progress === 100) &&
+				{done || <div className="my-5">請不要未完成檔案上傳就關閉頁面，避免出錯</div>}
+				{done &&
 					<div className="flex flex-col items-center my-5">
 						<p>檔案已上傳完成</p>
 
@@ -216,10 +219,9 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 								SetUploadFileAlertDisplay("hidden");
 								setDisplayForm("");
 								setVideo(null);
-								setProgress(0);
 								setChapterName("");
 								setUploadDuring("hidden");
-								setPutData([]);
+								setPutData("");
 								// setHomeworkName("");
 								// setText("");
 							}}
