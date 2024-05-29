@@ -1,4 +1,5 @@
 import { useCoupon } from '@/contexts/coupon';
+import { useState, useEffect } from 'react';
 
 export default function CouponSelect() {
 	const { selectedCoupon, setSelectedCoupon } = useCoupon();
@@ -34,6 +35,21 @@ export default function CouponSelect() {
 			discountRate: 0.11
 		}
 	];
+
+	const [coupons, setCoupons] = useState([]);
+
+	useEffect(() => {
+		const getCoupons = async () => {
+			const url = '/api/transaction/coupon';
+			try {
+				const res = await fetch(url);
+				const data = await res.json();
+			} catch (e) {
+				setCoupons([]);
+			}
+		};
+		getCoupons();
+	}, []);
 
 	return (
 		<>
