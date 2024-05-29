@@ -91,10 +91,9 @@ export default function Faq() {
 		setFilteredFaqs(filtered);
 	};
 
-	const handleSearchKeyPress = event => {
-		if (event.key === 'Enter') {
-			handleSearch();
-		}
+	const handleClearSearch = () => {
+		setSearchTerm('');
+		setFilteredFaqs(faqs);
 	};
 
 	return (
@@ -120,17 +119,24 @@ export default function Faq() {
 								提出疑問
 							</p>
 						</div>
-						<div className="flex items-center gap-2">
-							<input
-								type="text"
-								value={searchTerm}
-								onChange={handleSearchChange}
-								onKeyPress={handleSearchKeyPress}
-								placeholder="搜尋常見問題"
-								className="py-3 px-5 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-							/>
-							<button onClick={handleSearch}>
-								<FaSearch />
+						<div className="flex flex-col justify-start gap-2">
+							<div className="w-full flex gap-2">
+								<input
+									type="text"
+									value={searchTerm}
+									onChange={handleSearchChange}
+									placeholder="搜尋常見問題"
+									className="py-3 px-5 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
+								/>
+								<button onClick={handleSearch}>
+									<FaSearch />
+								</button>
+							</div>
+							<button
+								type="button"
+								onClick={handleClearSearch}
+								className="w-1/5 sm:w-1/6 p-1 text-sm font-semibold rounded-lg border border-transparent bg-sky-400 text-white hover:bg-sky-500 disabled:opacity-50 disabled:pointer-events-none">
+								清除
 							</button>
 						</div>
 					</div>
