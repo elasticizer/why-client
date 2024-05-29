@@ -424,6 +424,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 												<input
 													onChange={handleFileChange}
 													type="file"
+													accept=".jpg,.jpeg,.png"
 													name="courseCover"
 													className={`block w-full border border-gray-200 shadow-sm text-sm focus:z-10 focus:border-black-500 focus:ring-black-500 disabled:opacity-50 disabled:pointer-events-none
     											file:bg-gray-50 file:border-0
@@ -464,6 +465,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 												<input
 													onChange={handleVideoFileChange}
 													type="file"
+													accept=".mp4"
 													name="promotionalVideo"
 													className={`block w-full border border-gray-200 shadow-sm text-sm focus:z-10 focus:border-black-500 focus:ring-black-500 disabled:opacity-50 disabled:pointer-events-none
     											file:bg-gray-50 file:border-0
@@ -517,7 +519,7 @@ export default function Form({ UploadFileAlertDisplay, SetUploadFileAlertDisplay
 			</form>
 
 			{/* 開啟上傳課程的功能 */}
-			<UploadCourseAlert progress={35} uploadCourseAlertDisplay={uploadCourseAlertDisplay} progressEl={progressEl} SetUploadCourseAlertDisplay={SetUploadCourseAlertDisplay} done={done}/>
+			<UploadCourseAlert progress={35} uploadCourseAlertDisplay={uploadCourseAlertDisplay} progressEl={progressEl} SetUploadCourseAlertDisplay={SetUploadCourseAlertDisplay} done={done} />
 		</>
 
 	);
