@@ -222,6 +222,7 @@ export default function UploadFileAlert({ UploadFileAlertDisplay, SetUploadFileA
 								setChapterName("");
 								setUploadDuring("hidden");
 								setPutData("");
+								setDone(false)
 								// setHomeworkName("");
 								// setText("");
 							}}
