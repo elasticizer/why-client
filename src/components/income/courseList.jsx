@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CourseListTbody from './courseListTbody';
-import SelectBox from './selectBox';
+import SelectBoxCourse from './selectBoxCourse';
 
 export default function CourseList({ data }) {
 	const [desc, setDesc] = useState(true);
@@ -34,18 +34,16 @@ export default function CourseList({ data }) {
 
 	return (
 		<>
-			<SelectBox
+			<SelectBoxCourse
 				searchKeyword={searchKeyword}
 				handleSearchChange={handleSearchChange}
 				handleSearchClick={handleSearchClick}
 				handleClearSearch={handleClearSearch}
 				data={data}
 			/>
-			{/* searchBar */}
-			{/* searchBar */}
 			{/* table */}
 			{/* thead */}
-			<div className="flex flex-row justify-between items-center px-4 py-2 border rounded-t-lg font-semibold bg-yellow-50">
+			<div className="flex flex-row justify-between items-center px-4 py-2 border rounded-t-lg font-semibold bg-gray-100">
 				<div className="w-1/2">課程名稱</div>
 				<div className="w-1/3 text-center">開課時間</div>
 				<div

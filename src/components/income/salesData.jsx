@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import SalesDataTbody from './salesDataTbody';
-import SelectBox from './selectBox';
+import SelectBoxSale from './selectBoxSale';
 
 export default function SalesData() {
 	const [data, setData] = useState([]);
@@ -48,7 +48,7 @@ export default function SalesData() {
 
 	return (
 		<>
-			<SelectBox
+			<SelectBoxSale
 				searchKeyword={searchKeyword}
 				handleSearchChange={handleSearchChange}
 				handleSearchClick={handleSearchClick}
@@ -57,7 +57,7 @@ export default function SalesData() {
 			/>
 			{/* table */}
 			{/* thead */}
-			<div className="flex flex-row justify-between items-center px-4 py-2 border rounded-t-lg font-semibold bg-yellow-50">
+			<div className="flex flex-row justify-between items-center px-4 py-2 border rounded-t-lg font-semibold bg-gray-100">
 				<div className="w-1/2">課程名稱</div>
 				<div
 					className="w-1/3 text-center cursor-pointer"
@@ -65,8 +65,8 @@ export default function SalesData() {
 						setFilteredData(
 							filteredData.sort((a, b) =>
 								desc
-									? new Date(b.WhenPaid) - new Date(a.WhenPaid)
-									: new Date(a.WhenPaid) - new Date(b.WhenPaid)
+									? new Date(a.WhenPaid) - new Date(b.WhenPaid)
+									: new Date(b.WhenPaid) - new Date(a.WhenPaid)
 							)
 						),
 						setDesc(!desc)
