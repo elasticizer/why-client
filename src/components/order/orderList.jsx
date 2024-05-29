@@ -1,98 +1,93 @@
 import { useState, useEffect } from 'react';
 import OrderItem from './orderItem';
 import OrderItemNone from './orderItemNone';
+import AOS from 'aos';
+import 'aos/dist/aos.css';
 
 export default function OrderList() {
 	const [orders, setOrders] = useState([]);
+	const [completedOrders, setCompletedOrders] = useState([]);
+	const [invalidOrders, setInvalidOrders] = useState([]);
 
 	useEffect(() => {
-		const getOrder = async () => {
+		AOS.init();
+	}, []);
+
+	useEffect(() => {
+		const getOrders = async () => {
 			const url = '/api/transaction';
 			try {
 				const res = await fetch(url);
 				const data = await res.json();
+
+				const completed = data.filter(order => order[0].WhenPaid);
+				const invalid = data.filter(order => !order[0].WhenPaid);
+
 				setOrders(data);
+				setCompletedOrders(completed);
+				setInvalidOrders(invalid);
+				console.log(data);
 			} catch (e) {
 				setOrders([]);
+				setCompletedOrders([]);
+				setInvalidOrders([]);
 			}
 		};
-		getOrder();
+		getOrders();
 	}, []);
-
-	// // 合併訂單依 SN 的函式
-	// const mergeOrdersBySN = data => {
-	// 	const mergedOrders = {};
-	// 	data.forEach(obj => {
-	// 		const sn = obj.SN;
-	// 		if (!mergedOrders[sn]) {
-	// 			mergedOrders[sn] = obj; // 為 SN 建立新條目
-	// 		} else {
-	// 			// 將現有資料與當前物件合併 (自訂邏輯在此)
-	// 			mergedOrders[sn] = {
-	// 				SN: sn,
-					
-	// 				amount: mergedOrders[sn].amount + obj.amount 
-	// 				// ...
-	// 			};
-	// 		}
-	// 	});
-	// 	return Object.values(mergedOrders); // 轉換回陣列
-	// };
-
-	orders.forEach(obj => {
-		console.log(obj);
-		const name = obj[0].Name;
-		const amount = obj[0].Amount;
-		const sn = obj[0].SN;
-		console.log('SN:', sn);
-		console.log('Name:', name);
-		console.log('Amount:', amount);
-	});
 
 	return (
 		<>
 			<div>
 				<div
+					data-aos="zoom-in-down"
 					id="horizontal-alignment-1"
 					role="tabpanel"
 					aria-labelledby="horizontal-alignment-item-1">
 					{orders.length === 0 ? (
 						<OrderItemNone />
 					) : (
-						orders.map(order => {
-							return order.map(item => (
-								<OrderItem
-									key={item.SN}
-									item={item}
-								/>
-							));
-						})
+						orders.map(order => (
+							<OrderItem
+								key={order[0].SN}
+								item={order}
+							/>
+						))
 					)}
 				</div>
 				<div
+					data-aos="zoom-in-down"
 					id="horizontal-alignment-2"
 					className="hidden"
 					role="tabpanel"
 					aria-labelledby="horizontal-alignment-item-2">
-					{orders.length === 0 ? (
+					{completedOrders.length === 0 ? (
 						<OrderItemNone />
 					) : (
-						orders.map(order => {
-							return order.map(item => (
-								<OrderItem
-									key={item.SN}
-									item={item}
-								/>
-							));
-						})
+						completedOrders.map(order => (
+							<OrderItem
+								key={order[0].SN}
+								item={order}
+							/>
+						))
 					)}
 				</div>
 				<div
+					data-aos="zoom-in-down"
 					id="horizontal-alignment-3"
 					className="hidden"
 					role="tabpanel"
 					aria-labelledby="horizontal-alignment-item-3">
-					{/* <OrderItem /> */}
+					{invalidOrders.length === 0 ? (
+						<OrderItemNone />
+					) : (
+						invalidOrders.map(order => (
+							<OrderItem
+								key={order[0].SN}
+								item={order}
+							/>
+						))
+					)}
 				</div>
 			</div>
 		</>

@@ -22,7 +22,6 @@ export default function CheckoutModal({ discount }) {
 			(body, item) => (body.append('courses', item.SN), body),
 			new FormData()
 		);
-		fd.append('amount', totalPrice - discount);
 		const { data } = await fetch('/api/cart/checkout', {
 			method,
 			body: new URLSearchParams(fd)
