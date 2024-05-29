@@ -8,12 +8,6 @@ import { RouteError } from '@/handlers/router';
 import connection from '@/handlers/sqlite3';
 
 
-
-
-
-
-
-
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
 		cb(null, join("public", "learner", "LessonVideo"));
@@ -44,6 +38,8 @@ router.use(upload.fields([{ name: 'courseCover', maxCount: 1 }, { name: 'promoti
 	}
 	const user = await Session.associate(sessionId);
 	console.log(req.files);
+	console.log(req.body);
+
 
 
 	const Identigier = randomUUID();

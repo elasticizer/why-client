@@ -28,7 +28,7 @@ export const config = {
 };
 
 
-
+// 取得表單舊資料
 router.get(async (req, res) => {
 	const sessionId = req.cookies.SESSION_ID;
 	if (!sessionId) {
@@ -44,24 +44,27 @@ router.get(async (req, res) => {
 
 	const [results] = await connection.execute(`
 	SELECT
-	Course.SN AS CourseSN,
-	Course.Name AS CourseName,
-	Course.Intro AS CourseIntro,
-	Course.Syllabus,
-	Course.Price,
-	Domain.SN AS DomainSN,
-	Lesson.SN,
-	Lesson.Title,
-	Lesson.WhenCreated,
-	Lesson.WhenLastEdited,
-	Lesson.VideoSN
-FROM Course
-	JOIN Domain ON Course.DomainSN = Domain.SN
-	JOIN Lesson ON Course.SN = Lesson.CourseSN
+    Course.SN AS CourseSN,
+    Course.Name AS CourseName,
+    Course.Intro AS CourseIntro,
+    Course.Syllabus,
+    Course.Price,
+    Domain.SN AS DomainSN,
+    Lesson.SN,
+    Lesson.Title,
+    Lesson.WhenCreated,
+    Lesson.WhenLastEdited,
+    Lesson.VideoSN,
+    File1.Filename AS ThumbnailFilename,
+    File2.Filename AS DailyFilename
+FROM
+    Course
+    JOIN Domain ON Course.DomainSN = Domain.SN
+    JOIN Lesson ON Course.SN = Lesson.CourseSN
+    JOIN File AS File1 ON Course.ThumbnailSN = File1.SN
+    JOIN File AS File2 ON Course.DailySN = File2.SN
 WHERE
-	Course.SN = ?`, [courseSN]);
-
-	console.log(results);
+    Course.SN = ?;`, [courseSN]);
 
 
 	res.status(200).json({ message: "查詢成功", results: results });
@@ -71,7 +74,7 @@ WHERE
 });
 
 
-
+// 修改表單
 router.use(upload.fields([{ name: 'courseCover', maxCount: 1 }, { name: 'promotionalVideo', maxCount: 1 }])).post(async (req, res) => {
 	const sessionId = req.cookies.SESSION_ID;
 	if (!sessionId) {
@@ -81,68 +84,68 @@ router.use(upload.fields([{ name: 'courseCover', maxCount: 1 }, { name: 'promoti
 		);
 	}
 	const user = await Session.associate(sessionId);
-	console.log(req.files);
 
-
-	const Identigier = randomUUID();
+	const courseSN = req.body.courseSN;
 	const title = req.body.title;
 	const domainSN = req.body.domain;
 	const intro = req.body.courseDescription;
 	const Syllabus = req.body.syllabuse;
 	const price = req.body.price;
 	const teacherSN = user.SN;
-	const lesson = req.body.lesson;
+	const lesson = req.body.lesson || "";
+
+	//封面
 	const thumbnailName = req.files.courseCover[0].filename;
 	const thumbnailExt = extname(thumbnailName).substring(1);
 	const thumbnailType = req.files.courseCover[0].mimetype;
 	const thumbnailHash = randomUUID();
+
+
+	//宣傳影片
 	const promotionalVideoHash = randomUUID();
-
-
-
 	const promotionalVideolName = req.files.promotionalVideo[0].filename;
 	const promotionalVideoExt = extname(promotionalVideolName).substring(1);
 	const promotionalVideoType = req.files.promotionalVideo[0].mimetype;
-	// console.log(req.body,req.files);
 
 
-	const [repeatData] = await connection.execute('SELECT Name FROM Course WHERE Name=?', [title]);
-	if (repeatData.length > 0) {
-		res.status(500).json({ message: "課程上傳失敗，已有相同課程名稱" });
-		return false;
-	}
+
 
 
 	// 寫入封面到File 查詢FileSN
-	await connection.execute('INSERT INTO File (Filename,Extension,ContentType,ContentHash,WhenUploaded,UploaderSN) VALUES (?,?,?,?,CURRENT_TIMESTAMP,?)', [thumbnailName, thumbnailExt, thumbnailType, thumbnailHash, teacherSN]);
+	const [[thumbnailData]] = await connection.execute('INSERT INTO File (Filename,Extension,ContentType,ContentHash,WhenUploaded,UploaderSN) VALUES (?,?,?,?,CURRENT_TIMESTAMP,?) RETURNING SN', [thumbnailName, thumbnailExt, thumbnailType, thumbnailHash, teacherSN]);
 
-	const [thumbnailData] = await connection.execute('SELECT SN FROM File WHERE Filename=?', [thumbnailName]);
-	// 拿到封面的SN
-	const thumbnailSN = thumbnailData[0].SN;
+	const thumbnailDataSN = thumbnailData.SN;
 
 
-
-	// 寫入樣片到File 取得FileSN
-	await connection.execute('INSERT INTO File (Filename,Extension,ContentType,ContentHash,WhenUploaded,UploaderSN) VALUES (?,?,?,?,CURRENT_TIMESTAMP,?)', [promotionalVideolName, promotionalVideoExt, promotionalVideoType, promotionalVideoHash, teacherSN]);
-
-	const [promotionalVideoData] = await connection.execute('SELECT SN FROM File WHERE Filename=?', [promotionalVideolName]);
-	// 拿到樣片的SN
-	const DailySN = promotionalVideoData[0].SN;
-
-	// 寫入Course
+	// // 寫入樣片到File 取得FileSN
+	const [[DailyData]] = await connection.execute('INSERT INTO File (Filename,Extension,ContentType,ContentHash,WhenUploaded,UploaderSN) VALUES (?,?,?,?,CURRENT_TIMESTAMP,?) RETURNING SN', [promotionalVideolName, promotionalVideoExt, promotionalVideoType, promotionalVideoHash, teacherSN]);
 
 
-	await connection.execute('INSERT INTO Course (Identifier,Name,Intro,Syllabus,Price,WhenCreated,TeacherSN,DomainSN,ThumbnailSN,DailySN,ApproverSN) VALUES (?,?,?,?,?, CURRENT_TIMESTAMP,?,?,?,?,0)', [Identigier, title, intro, Syllabus, price, teacherSN, domainSN, thumbnailSN, DailySN]);
+	const DailySN = DailyData.SN;
 
 
-	const [courseData] = await connection.execute('SELECT SN FROM Course WHERE Name=? AND Price=? AND TeacherSN=?', [title, price, teacherSN]);
-	// 拿到課程的SN
-	const courseSN = courseData[0].SN;
+	// 修改Course
+	await connection.execute(`
+	UPDATE Course SET
+	Name=?,
+	Intro=?,
+	Syllabus=?,
+	Price=?,
+	TeacherSN=?,
+	DomainSN=?,
+	ThumbnailSN=?,
+	DailySN=?,
+	WhenLaunched=CURRENT_TIMESTAMP
+	WHERE SN=?
+	`, [title, intro, Syllabus, price, teacherSN, domainSN, thumbnailDataSN, DailySN, courseSN]);
 
-	for (const v of lesson) {
-		await connection.execute('UPDATE Lesson set CourseSN=? WHERE SN=?', [courseSN, v]);
+
+	// 修改Lesson
+	if (lesson) {
+		for (const v of lesson) {
+			await connection.execute('UPDATE Lesson set CourseSN=? WHERE SN=?', [courseSN, v]);
+		}
 	}
-
 
 	res.status(200).json({ message: "上傳成功" });
 });
