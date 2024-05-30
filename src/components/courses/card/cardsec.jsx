@@ -5,7 +5,7 @@ import { IoTimeOutline } from 'react-icons/io5';
 import styles from '@/styles/font.module.css';
 import { BsBookmarkHeart } from 'react-icons/bs';
 import { BsBookmarkHeartFill } from "react-icons/bs";
-import toast, { Toaster } from 'react-hot-toast';
+
 
 import { useCart } from '../../../contexts/cart';
 import Link from 'next/link';
@@ -20,12 +20,10 @@ export default function CardSec({ data = {
 	Nickname: '',
 	Filename: '',
 	DomainName: ''
-} }) {
+}, alert, setAlert, bookmark, unbookmark }) {
 	const { SN, Name, Intro, Price, Nickname, Filename, DomainName } = data
-	const [icon, setIcon] = useState(false)
-
-
 	const { addItemToCart } = useCart();
+	const [icon, setIcon] = useState(false)
 
 	const getData = async () => {
 		try {
@@ -49,13 +47,11 @@ export default function CardSec({ data = {
 			console.error("刪除收藏失敗", error);
 		}
 	};
-	const bookmark = () => toast.success('加入收藏成功');
-	const unbookmark = () => toast.success('已移除收藏');
 
 	return (
 		<>
 
-			<div data-aos="fade-left"  href="#" className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-2xl hover:border-gray-600 motion-reduce:transition-none motion-reduce:hover:transform-none  ">
+			<div data-aos="fade-left" href="#" className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-2xl hover:border-gray-600 motion-reduce:transition-none motion-reduce:hover:transform-none  ">
 				<div className="relative pt-[50%] sm:pt-[60%] lg:pt-[60%]  overflow-hidden">
 					<img
 						className="w-full h-auto absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-tr-3xl  rounded-bl-3xl"
@@ -70,11 +66,11 @@ export default function CardSec({ data = {
 						{DomainName}
 					</div>
 					<button onClick={() => {
-						icon ? setIcon(false) || unbookmark() : setIcon(true) || bookmark();
+						setIcon(!icon)
 						icon ? deleteData() : getData();
-
-
+						icon ? unbookmark() : bookmark()
 					}}
+
 					>
 						{icon ? <BsBookmarkHeartFill className=" text-red-500 sm:my-2 lg:my-0 md:size-7 sm:size-9 " /> : <BsBookmarkHeart className="text-red-500  sm:my-2 lg:my-0 md:size-7 sm:size-9 " />}
 					</button>
@@ -128,7 +124,6 @@ export default function CardSec({ data = {
 								/>
 							</button>
 
-							<Toaster />
 						</div>
 
 					</span>
