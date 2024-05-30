@@ -125,6 +125,7 @@ export default function NavAskList() {
 						res={review.response}
 						SN={review.SN}
 						setSendreview={setSendreview}
+						firstname={user.FirstName}
 					/>
 				);
 			})}

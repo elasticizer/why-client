@@ -3,7 +3,8 @@ import { TbMessageCircle2 } from 'react-icons/tb';
 import { IoArrowRedo } from 'react-icons/io5';
 import { BsFillSendFill } from 'react-icons/bs';
 
-export default function CoNavAsk({ content, res, whenCreated, nickname, setSendreview }) {
+export default function CoNavAsk({ SN, content, firstname, res, whenCreated, nickname, setSendreview }) {
+
 
     return (
         <div className="w-full h-auto p-5 border inline-flex gap-4">
@@ -17,10 +18,10 @@ export default function CoNavAsk({ content, res, whenCreated, nickname, setSendr
             <div className="w-full inline-flex flex-col">
                 <div className="inline-flex gap-3">
                     <div className="text-zinc-600 text-sm font-semibold font-['Inter'] leading-snug">
-                       {nickname}
+                        {nickname || firstname}  
                     </div>
                     <div className="text-neutral-400 text-[13.02px] font-normal font-['Inter'] leading-snug">
-                        {whenCreated}
+                        {new Date(`${whenCreated}Z`).toLocaleString()}
                     </div>
                 </div>
                 <div className="w-full mt-2 text-zinc-700 text-sm font-medium font-['Inter'] leading-snug"

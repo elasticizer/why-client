@@ -36,7 +36,7 @@ export default function CardSecList({ domain, rawDomain, setDomain, count, setCo
 						</div>
 					</div>
 
-					<div className="p-3 sm:p-0">
+					<div className="p-3 sm:p-0" >
 						<div className="grid grid-cols-1 sm:grid-cols-2 gap-8 md:grid-cols-2 lg:grid-cols-3 ">
 							{domain.map(v => {
 								return (

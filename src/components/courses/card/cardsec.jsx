@@ -55,7 +55,7 @@ export default function CardSec({ data = {
 	return (
 		<>
 
-			<div href="#" className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-2xl hover:border-gray-600 motion-reduce:transition-none motion-reduce:hover:transform-none  ">
+			<div data-aos="fade-left"  href="#" className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-2xl hover:border-gray-600 motion-reduce:transition-none motion-reduce:hover:transform-none  ">
 				<div className="relative pt-[50%] sm:pt-[60%] lg:pt-[60%]  overflow-hidden">
 					<img
 						className="w-full h-auto absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-tr-3xl  rounded-bl-3xl"
