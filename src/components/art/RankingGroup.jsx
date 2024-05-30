@@ -9,8 +9,8 @@ export default function RankingGroup() {
 	if (isLoading)
 		return (
 			<>
-				<li className=" w-[300px] h-[210px] border-4 rounded-3xl "></li>
-				<li className=" w-[300px] h-[210px] border-4 rounded-3xl "></li>
+				{/* <li className=" w-[300px] h-[210px] border-4 rounded-3xl "></li>
+				<li className=" w-[300px] h-[210px] border-4 rounded-3xl "></li> */}
 			</>
 		);
 	return (

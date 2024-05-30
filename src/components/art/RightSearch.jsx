@@ -35,7 +35,10 @@ export default function RightSearch({ id }) {
 
 			<section className="bg-white w-[350px] sticky top-0 h-screen overflow-y-scroll">
 				<div className="px-4 flex flex-col gap-8">
-					<div
+					<motion.div
+						initial={{ opacity: 0, y: -20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ type: 'spring' }}
 						onClick={e => {
 							setSelected('search');
 						}}>
@@ -43,14 +46,23 @@ export default function RightSearch({ id }) {
 							搜索文章
 							<FaSearch />
 						</button>
-					</div>
+					</motion.div>
 					{id && <ArtDetailRight id={id}></ArtDetailRight>}
-					<FieldGroup></FieldGroup>
+					<motion.div
+						initial={{ opacity: 0, y: -20 }}
+						animate={{ opacity: 1, y: 0 }}
+						transition={{ type: 'spring' }}>
+						<FieldGroup></FieldGroup>
+					</motion.div>
 
 					<div className="pt-1 ranking">
-						<h2 className="text-xl mb-8 bg-orange-100 text-center font-black rounded-xl py-3 shadow-right-bottom-sm text-[#ff8d0a] tracking-widest">
+						<motion.div
+							initial={{ opacity: 0, y: -20 }}
+							animate={{ opacity: 1, y: 0 }}
+							transition={{ duration: 0.7 }}
+							className="text-xl mb-8 bg-orange-100 text-center font-black rounded-xl py-3 shadow-right-bottom-sm text-[#ff8d0a] tracking-widest">
 							熱門文章
-						</h2>
+						</motion.div>
 						<ul className="flex flex-col gap-5 pb-20">
 							<RankingGroup></RankingGroup>
 						</ul>

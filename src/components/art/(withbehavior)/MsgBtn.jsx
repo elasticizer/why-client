@@ -15,7 +15,7 @@ export default function MsgBtn({ target, user = false, setOpen }) {
 
   function handler() {
     if (!user) {
-      toast.success("需要登入");
+      toast("需要登入");
       return;
     }
     setOpen(true);

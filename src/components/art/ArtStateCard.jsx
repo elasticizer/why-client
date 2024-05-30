@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaShareSquare } from "react-icons/fa";
 import { IoBookmark, IoBookmarkOutline } from "react-icons/io5";
 import ClapBtn from "./(withbehavior)/ClapBtn";
+import { motion } from 'framer-motion';
 
 export default function ArtStateCard({ art }) {
   const [liked, setLiked] = useState(false);
@@ -25,7 +26,10 @@ export default function ArtStateCard({ art }) {
     collections,
   } = art
   return (
-    <div className="w-full rounded-2xl flex flex-row border-4 overflow-hidden h-24 items-stretch">
+    <motion.div
+    initial={{ opacity: 0, y: -20 }}
+			animate={{ opacity: 1, y: 0 }}
+			transition={{ duration: 0.7 }} className="w-full rounded-2xl flex flex-row border-4 overflow-hidden h-24 items-stretch">
       <ClapBtn target={_id}></ClapBtn>
       <div className="btn btn-ghost btn-lg  w-1/3 flex justify-center items-between border-x-4 rounded-none h-auto ">
         <FaShareSquare className="text-4xl"></FaShareSquare>
@@ -43,6 +47,6 @@ export default function ArtStateCard({ art }) {
         )}
         收藏
       </div>
-    </div>
+    </motion.div>
   );
 }
