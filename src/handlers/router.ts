@@ -7,7 +7,12 @@ export function onError(
 	_: NextApiRequest,
 	res: NextApiResponse
 ) {
-	const { code, summary, message } = e as RouteError;
+	const { code, summary, message } = e instanceof RouteError
+		? e
+		: new RouteError(
+			StatusCodes.INTERNAL_SERVER_ERROR,
+			e instanceof Error ? e.message : String(e)
+		);
 
 	res.status(code).json({
 		done: false,
@@ -35,7 +40,7 @@ export class RouteError extends Error {
 	public name = 'RouteError';
 
 	constructor(
-		public code: number = 500,
+		public code: number = StatusCodes.INTERNAL_SERVER_ERROR,
 		public summary: string = 'Internal server error encountered',
 		public message: string = 'Please try again later.'
 	) {

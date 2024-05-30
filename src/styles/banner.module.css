@@ -1,0 +1,95 @@
+/* 全部領域-banner */
+.b {
+	background-image: url('/img/course-banner.png');
+	background: cover;
+	background-repeat: no-repeat;
+	/* background-position:top; */
+	z-index: -1;
+	height: 100vh;
+}
+
+.bg4 {
+	background-image: linear-gradient(
+		to left top,
+		#ffbe3d,
+		#ffca60,
+		#ffd57f,
+		#ffe09e,
+		#ffeabd,
+		#ffe3b9,
+		#ffdbb5,
+		#ffd4b3,
+		#ffb49f,
+		#ff8fa6,
+		#ff70c6,
+		#d468f4
+	);
+}
+
+.bg {
+	/* animation: slide 9s ease-in-out infinite alternate; */
+	/* background-image: linear-gradient(-60deg,#FAF2E8 60%, #FFB3A6 50%,#5FFBF1 20%, #FFC6DC 50%);
+   */
+
+	/* 範本 */
+	/* animation:slide 3s ease-in-out infinite alternate;
+  background-image: linear-gradient(-60deg, #6c3 50%, #09f 50%); */
+
+	/* background-image: linear-gradient(
+		-60deg,
+		#ffffff 20%,
+		#ffffff 20%,
+		#ffbe3d 80%,
+		#ff8fa6 50%,
+		#e7e535 20%,
+		#09f 10%,
+		#ffc6dc 50%
+	); */
+	width: 100%;
+	height: 100vh;
+
+	bottom: 0;
+	top: 0;
+	left: -20%;
+	opacity: 0.6;
+	position: relative;
+	right: -20%;
+	/* background-position: right top; */
+	z-index: -0;
+}
+
+.bg2 {
+	animation-direction: alternate-reverse;
+	animation-duration: 5s;
+}
+
+.bg3 {
+	animation-duration: 6s;
+}
+
+.title {
+	background-color: rgba(255, 255, 255, 0.8);
+	/* border-radius: 0.25em;
+	text-shadow: 0 0 0.25em rgba(0, 0, 0, 0.25);
+	box-sizing: border-box;
+	padding: 10vmin;
+	position: absolute;
+	width:500px;
+	text-align: center;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%); */
+}
+
+/* h1 {
+  font-family:monospace;
+} */
+
+@keyframes slide {
+	0% {
+		transform: translateX(-25%);
+	}
+	100% {
+		transform: translateX(25%);
+	}
+}
