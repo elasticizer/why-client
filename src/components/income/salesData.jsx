@@ -82,7 +82,7 @@ export default function SalesData() {
 					key={i}
 					name={data.Name}
 					identifier={data.Identifier}
-					date={data.WhenPaid}
+					date={new Date(data.WhenPaid + 'Z').toLocaleString()}
 					price={data.Price}
 				/>
 			))}

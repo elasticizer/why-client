@@ -12,7 +12,9 @@ export default function CourseListTbody({ data }) {
 					<p className="text-xs text-gray-500">{data.Identifier}</p>
 				</div>
 				<div className="w-1/4 text-center">
-					<p className="text-sm">{data.WhenLaunched.slice(0, 10)}</p>
+					<p className="text-sm">
+						{new Date(data.WhenLaunched + 'Z').toLocaleString().slice(0, 9)}
+					</p>
 				</div>
 				<div className="w-1/6 text-center">
 					<p className="text-md">{data.Total}堂</p>
