@@ -1,5 +1,4 @@
 import OrderList from './orderList';
-import SearchBox from './searchBox';
 
 export default function OrderTabs() {
 	return (
@@ -38,13 +37,10 @@ export default function OrderTabs() {
 							role="tab">
 							失效訂單
 						</button>
-						{/* <SearchBox /> */}
 					</nav>
 				</div>
 				{/* 頁面列表 */}
 				<OrderList />
-				{/* 分頁按鈕 */}
-				{/* <Pagination /> */}
 			</div>
 		</>
 	);

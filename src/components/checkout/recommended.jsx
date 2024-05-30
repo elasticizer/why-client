@@ -15,7 +15,6 @@ export default function Recommended() {
 			const data = await res.json();
 			setCourses(data);
 		} catch (e) {
-			console.error(e);
 			setCourses([]);
 		}
 	};

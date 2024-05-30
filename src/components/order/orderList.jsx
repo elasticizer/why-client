@@ -20,7 +20,6 @@ export default function OrderList() {
 				setOrders(data);
 				setCompletedOrders(completed);
 				setInvalidOrders(invalid);
-				console.log(data);
 			} catch (e) {
 				setOrders([]);
 				setCompletedOrders([]);

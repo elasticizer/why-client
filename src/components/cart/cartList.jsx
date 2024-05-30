@@ -39,8 +39,6 @@ export default function CartList() {
 			: setSelectedItems([...selectedItems, sn]);
 	};
 
-	console.log(selectedItems);
-
 	return (
 		<div className="border border-gray-300 rounded-lg">
 			{course.length === 0 ? (
