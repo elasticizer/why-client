@@ -50,7 +50,7 @@ export default function Navbar() {
 							</Link>
 							<Link
 								className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
-								href="#">
+								href="/course">
 								領域
 							</Link>
 							<Link
@@ -60,7 +60,7 @@ export default function Navbar() {
 							</Link>
 							<Link
 								className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
-								href="#">
+								href="/cart">
 								購物車
 							</Link>
 							{session ? <LogoutSession /> : <LoginSession />}

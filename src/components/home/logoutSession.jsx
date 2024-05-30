@@ -20,14 +20,14 @@ export default function LogoutSession() {
 				{session.Nickname || session.FirstName}
 			</button>
 			<div className="hs-dropdown-menu transition-[opacity,margin] duration hs-dropdown-open:opacity-100 opacity-0 w-56 hidden z-10 mt-2 min-w-60 bg-white shadow-md rounded-lg p-2">
-				<a
-					className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
-					href="#">
-					我的帳戶
-				</a>
 				<Link
 					className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
-					href="/income">
+					href="/account">
+					我的帳戶
+				</Link>
+				<Link
+					className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
+					href="/learner">
 					會員中心
 				</Link>
 				<Link
