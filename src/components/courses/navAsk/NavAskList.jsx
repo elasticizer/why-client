@@ -63,9 +63,9 @@ export default function NavAskList() {
 				</div>
 			</div>
 			<div className="px-3  text-neutral-500 font-semibold text-normal font-['Inter']  subpixel-antialiased leading-loose">
-				
+
 				<br />
-				
+
 			</div>
 			<div className="w-full  ">
 				{/* 搜尋 */}
@@ -78,7 +78,7 @@ export default function NavAskList() {
 						<div className=" w-12 h-12  bg-white/opacity-0 rounded-3xl shadow border-black/opacity-5 justify-center items-center inline-flex">
 							<img
 								className="inline-block size-[46px] rounded-full"
-								src="/image/cat-6.jpg"
+								src="/images/cat-6.jpg"
 								alt="Image Description"
 							/>
 						</div>

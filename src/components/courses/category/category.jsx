@@ -151,7 +151,7 @@ return (
 								className="w-[180px] h-[120px] justify-center items-center font-bold text-2xl text-white  bg-cover bg-no-repeat rounded-md hover:text-3xl flex hover:shadow-xl hover:duration-300 hover:ease-in active:ease-in hover:text-white-900 hover:prose-headings hover:opacity-60 hover:scale-120 transition-transform duration-500 ease-in-out contrast-75"
 								href="#"
 								onClick={() => handleDivClick(index)}
-								style={{ backgroundImage: `url('/image/topic${category.id}.png')` }}
+								style={{ backgroundImage: `url('/images/topic${category.id}.png')` }}
 							>
 								<span className="  bg-opacity-25  -inset-0 -skew-x-6 bg-red-900 relative before:text-white">
 									{mainArray[index]}

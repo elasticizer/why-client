@@ -4,8 +4,6 @@ import { StatusCodes } from 'http-status-codes';
 import { createRouter } from 'next-connect';
 import { stripHtml } from 'string-strip-html';
 
-import { createRouter } from "next-connect";
-
 const router = createRouter();
 
 router.get(async (req, res) => {

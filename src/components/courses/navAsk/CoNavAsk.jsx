@@ -11,21 +11,21 @@ export default function CoNavAsk({ SN, content, firstname, res, whenCreated, nic
             <div className="w-12 h-12 bg-white/opacity-0 rounded-3xl shadow border-black/opacity-5 justify-center items-center inline-flex">
                 <img
                     className="inline-block size-[46px] rounded-full"
-                    src="/image/cat-5.jpg"
+                    src="/images/cat-5.jpg"
                     alt="Image Description"
                 />
             </div>
             <div className="w-full inline-flex flex-col">
                 <div className="inline-flex gap-3">
                     <div className="text-zinc-600 text-sm font-semibold font-['Inter'] leading-snug">
-                        {nickname || firstname}  
+                        {nickname || firstname}
                     </div>
                     <div className="text-neutral-400 text-[13.02px] font-normal font-['Inter'] leading-snug">
                         {new Date(`${whenCreated}Z`).toLocaleString()}
                     </div>
                 </div>
                 <div className="w-full mt-2 text-zinc-700 text-sm font-medium font-['Inter'] leading-snug"
-                    >
+                >
                     {content}
                 </div>
                 {/* 老師回覆 */}
@@ -45,7 +45,7 @@ export default function CoNavAsk({ SN, content, firstname, res, whenCreated, nic
                         {res}
                     </div>
                 </div> */}
-{/*                
+                {/*                
                     <div className={`w-full flex justify-between items-center hs-collapse `}>
                     <button
              

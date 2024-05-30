@@ -28,7 +28,7 @@ export default function OrderItem({ item }) {
 							</p>
 							{/* 訂單日期 */}
 							<p className="text-sm">
-								{new Date(item[0].WhenCheckedOut + 'Z').toLocaleString().slice(0,9)}
+								{new Date(item[0].WhenCheckedOut + 'Z').toLocaleString().slice(0, 9)}
 							</p>
 						</div>
 						{item[0].WhenPaid ? (

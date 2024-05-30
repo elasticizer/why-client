@@ -9,21 +9,19 @@ import Slideshow from '../../components/courses/slideShow/slideshow';
 
 
 export default function Course() {
-	
+
 
 	return (
-		<>
-			<Home>
+		<Home>
 
-				<Banner />
-				<Slideshow />
-				<div className="bg-[#fdf9f7]">
-					<Category />
-					<div className=" flex container justify-center">
-						<Pages />
-					</div>
+			<Banner />
+			<Slideshow />
+			<div className="bg-[#fdf9f7]">
+				<Category />
+				<div className=" flex container justify-center">
+					<Pages />
 				</div>
-			</Home>
-		</>
+			</div>
+		</Home>
 	);
 }

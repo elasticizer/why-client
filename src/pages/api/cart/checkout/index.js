@@ -29,8 +29,8 @@ router.post(async (req, res) => {
 		[user.SN]
 	);
 	const [[order]] = await connection.execute(
-		'INSERT INTO "Order" (LearnerSN, CouponSN) VALUES (?, ?) RETURNING SN',
-		[user.SN, null]
+		'INSERT INTO "Order" (UUID, LearnerSN, CouponSN) VALUES (?, ?, ?) RETURNING SN, UUID',
+		[randomUUID(), user.SN, null]
 	);
 
 	[req.body.courses].flat().forEach(
@@ -56,10 +56,11 @@ router.post(async (req, res) => {
 
 	const name = env.APP_NAME;
 	const amount = products.reduce((total, value) => total + value.price, 0);
+	console.log(amount);
 	const body = JSON.stringify({
 		amount,
 		currency: 'TWD',
-		orderId: order.SN,
+		orderId: order.UUID,
 		packages: [
 			{
 				id: 1,

@@ -19,13 +19,14 @@ router.get(async (req, res) => {
 	const path = `/v3/payments/${transactionId}/confirm`;
 	const [[order]] = await connection.execute(
 		`SELECT
-      SUM(Course.Price) AS Total
-    FROM "Order"
-    JOIN OrderDetail ON OrderDetail.OrderSN = "Order".SN
-    JOIN Course ON Course.SN = OrderDetail.CourseSN
-    WHERE "Order".SN = ?`,
+		SUM(Course.Price) AS Total
+		FROM "Order"
+		JOIN OrderDetail ON OrderDetail.OrderSN = "Order".SN
+		JOIN Course ON Course.SN = OrderDetail.CourseSN
+		WHERE "Order".UUID = ?`,
 		[orderId]
 	);
+	console.log(order);
 	const body = JSON.stringify({
 		amount: order.Total,
 		currency: 'TWD'
@@ -54,7 +55,7 @@ router.get(async (req, res) => {
 	}
 
 	await connection.execute(
-		`UPDATE "Order" SET WhenPaid = CURRENT_TIMESTAMP WHERE SN = ?`,
+		`UPDATE "Order" SET WhenPaid = CURRENT_TIMESTAMP WHERE UUID = ?`,
 		[orderId]
 	);
 	console.log(orderId);

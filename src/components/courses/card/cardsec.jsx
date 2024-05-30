@@ -5,6 +5,8 @@ import { IoTimeOutline } from 'react-icons/io5';
 import styles from '@/styles/font.module.css';
 import { BsBookmarkHeart } from 'react-icons/bs';
 import { BsBookmarkHeartFill } from "react-icons/bs";
+import { IoCartOutline } from "react-icons/io5";
+import { IoCart } from "react-icons/io5";
 
 
 import { useCart } from '../../../contexts/cart';
@@ -22,8 +24,10 @@ export default function CardSec({ data = {
 	DomainName: ''
 }, alert, setAlert, bookmark, unbookmark }) {
 	const { SN, Name, Intro, Price, Nickname, Filename, DomainName } = data
+	console.log(useCart());
 	const { addItemToCart } = useCart();
 	const [icon, setIcon] = useState(false)
+	const [cartIcon, setCartIcon] = useState(false)
 
 	const getData = async () => {
 		try {
@@ -65,15 +69,7 @@ export default function CardSec({ data = {
 						className="py- px-2 inline-flex items-center gap-x-2 text-base font-medium  rounded-lg border border-transparent  bg-yellow-200 text-yellow-800 disabled:opacity-50 disabled:pointer-events-none">
 						{DomainName}
 					</div>
-					<button onClick={() => {
-						setIcon(!icon)
-						icon ? deleteData() : getData();
-						icon ? unbookmark() : bookmark()
-					}}
 
-					>
-						{icon ? <BsBookmarkHeartFill className=" text-red-500 sm:my-2 lg:my-0 md:size-7 sm:size-9 " /> : <BsBookmarkHeart className="text-red-500  sm:my-2 lg:my-0 md:size-7 sm:size-9 " />}
-					</button>
 				</div>
 
 
@@ -114,16 +110,23 @@ export default function CardSec({ data = {
 					<span className=" flex text-xl justify-between items-center font-bold tracking-tight  text-[#019fde] ">
 						<div>NT$<span>{Price}</span></div>
 
-						<div className='items-center justify-center flex'>
+						<div className='  border flex '>
 
-							<button onClick={() => { addItemToCart(data) }}>
-								<img
-									className=" size-10"
-									src="/image/cart.gif"
-									alt=""
-								/>
+							<button
+								onClick={() => {
+									addItemToCart(data)
+									setCartIcon(!cartIcon)
+								}}>
+								<IoCartOutline className="size-7 text-gray-600  lg:my-0 " />
 							</button>
-
+							<button className=" items-end justify-center"
+								onClick={() => {
+									setIcon(!icon)
+									icon ? deleteData() : getData();
+									icon ? unbookmark() : bookmark()
+								}}>
+								{icon ? <BsBookmarkHeartFill className="size-7 text-red-500  lg:my-0 " /> : <BsBookmarkHeart className=" size-7 text-red-500   lg:my-0  border" />}
+							</button>
 						</div>
 
 					</span>
