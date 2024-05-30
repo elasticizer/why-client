@@ -8,12 +8,13 @@ export default function CoNavAsk({ SN, content, firstname, res, whenCreated, nic
 
     return (
         <div className="w-full h-auto p-5 border inline-flex gap-4">
-            <div className="w-12 h-12 bg-white/opacity-0 rounded-3xl shadow border-black/opacity-5 justify-center items-center inline-flex">
-                <img
+            <div className="w-12 h-12 bg-white/opacity-0 rounded-3xl shadow border-black/opacity-5 justify-center items-center inline-flex bg-cover"
+                style={{ backgroundImage: `url('/images/comment${SN}.jpg')` }}>
+                {/* <img
                     className="inline-block size-[46px] rounded-full"
                     src="/images/cat-5.jpg"
                     alt="Image Description"
-                />
+                /> */}
             </div>
             <div className="w-full inline-flex flex-col">
                 <div className="inline-flex gap-3">

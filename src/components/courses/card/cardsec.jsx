@@ -110,14 +110,15 @@ export default function CardSec({ data = {
 					<span className=" flex text-xl justify-between items-center font-bold tracking-tight  text-[#019fde] ">
 						<div>NT$<span>{Price}</span></div>
 
-						<div className='  border flex '>
+						<div className='   flex '>
 
 							<button
 								onClick={() => {
 									addItemToCart(data)
 									setCartIcon(!cartIcon)
 								}}>
-								<IoCartOutline className="size-7 text-gray-600  lg:my-0 " />
+								{cartIcon ? <IoCart className="size-8 text-gray-700  lg:my-0 " /> :
+								<IoCartOutline className="size-8 text-gray-700  lg:my-0 " />}
 							</button>
 							<button className=" items-end justify-center"
 								onClick={() => {
@@ -125,7 +126,7 @@ export default function CardSec({ data = {
 									icon ? deleteData() : getData();
 									icon ? unbookmark() : bookmark()
 								}}>
-								{icon ? <BsBookmarkHeartFill className="size-7 text-red-500  lg:my-0 " /> : <BsBookmarkHeart className=" size-7 text-red-500   lg:my-0  border" />}
+								{icon ? <BsBookmarkHeartFill className="size-7 text-red-500  lg:my-0 " /> : <BsBookmarkHeart className=" size-7 text-red-500   lg:my-0  " />}
 							</button>
 						</div>
 
