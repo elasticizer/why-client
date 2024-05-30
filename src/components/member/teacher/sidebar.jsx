@@ -28,7 +28,7 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 
 		>
 			<div className={`${styles.windowNavHead} justify-between md:justify-center`}>
-				<Link href="/learner">
+				<Link href="/">
 					<Image
 						src="/learner/why_mini_icon.png"
 						alt=""
@@ -66,25 +66,27 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 						</div>
 						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>文章管理</div>
 					</Link>
-					<Link href="#" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
+
+					<Link href="/income" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500 `}>
 						<div>
 							<MdOutlineAnalytics size="30px" color="#999999" />
 						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>數據分析</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>銷售列表</div>
 					</Link>
 				</div>
 				<div className={styles.windowNavcontainerItem}>
-					<Link href="#" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
-						<div>
-							<GiReceiveMoney size="30px" color="#999999" />
-						</div>
-						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>提領報酬</div>
-					</Link>
-					<Link href="/learner" className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
+					<Link href="/learner" className={`${styles.windowNavItem}  hover:ps-2 hover:border-l-4 hover:border-l-red-500 hidden`}>
 						<div>
 							<PiStudent size="30px" color="#999999" />
 						</div>
 						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>學生模式</div>
+					</Link>
+					{/* 提領報酬隱藏掉，加回來只要加 ${styles.windowNavItem} */}
+					<Link href="#" className={`hover:ps-2 hover:border-l-4 hover:border-l-red-500 hidden`}>
+						<div>
+							<GiReceiveMoney size="30px" color="#999999" />
+						</div>
+						<div className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>提領報酬</div>
 					</Link>
 
 				</div>

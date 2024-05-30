@@ -22,14 +22,14 @@ export default function ContentCard({
 				</div>
 
 				<div className="flex-col items-start w-full p-2 md:p-5">
-					<h3 className="text-sm md:text-lg font-bold text-gray-800 md:text-xl line-clamp-1">
+					<h3 className="text-base font-bold text-gray-800 line-clamp-1">
 						課程：{Name}
 					</h3>
 					<div className="mt-1 text-gray-500 text-sm text-wrap md:text-base line-clamp-2">
-						<span className="font-extrabold text-gray-800">描述：</span>{Intros && stripHtml(Intros).result}
+						{Intros && stripHtml(Intros).result}
 					</div>
 					<div className="md:mt-auto">
-						<div className="text-xs text-gray-500 flex content-center	mt-1 md:text-sm items-center">
+						<div className="text-xs text-gray-500 flex mt-2 items-center">
 							<MdAccessTime />
 							創建時間{WhenCreated}
 						</div>

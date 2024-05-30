@@ -27,7 +27,7 @@ export default function UploadCard({
 					<p className="mt-1 text-gray-500 line-clamp-1 text-justify"><span className="font-extrabold text-gray-800">課程：</span>{Name}</p>
 					<p className="mt-1 text-gray-500 line-clamp-2 text-justify break-all"><span className="font-extrabold text-gray-800">課程簡介：</span>{Intro && stripHtml(Intro).result}</p>
 					<div className="mt-2">
-						<div className="text-xs text-gray-500 flex content-center	mt-1">
+						<div className="text-xs text-gray-500 flex mt-1 items-center">
 							<MdAccessTime />
 							{WhenCreated}
 						</div>

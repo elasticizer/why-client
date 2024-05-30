@@ -23,7 +23,7 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 
 		>
 			<div className={`${styles.windowNavHead} justify-between md:justify-center`}>
-				<div href="/learner">
+				<div href="/">
 					<Image
 						src="/learner/why_mini_icon.png"
 						alt=""

@@ -47,7 +47,6 @@ console.log(list);
 									/>
 								);
 							})}
-							{/* More posts... */}
 						</div>
 					</div>
 				</div>
