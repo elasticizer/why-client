@@ -2,7 +2,7 @@ import React from 'react';
 
 
 
-export default function UploadTables({ SetUploadFileAlertDisplay, lessonData,putData, setPutData }) {
+export default function UploadTables({ SetUploadFileAlertDisplay, lessonData, putData, setPutData }) {
 
 	return (
 		<div className="flex flex-col w-full">
@@ -57,6 +57,8 @@ export default function UploadTables({ SetUploadFileAlertDisplay, lessonData,put
 							</thead>
 							<tbody className="divide-y divide-gray-200">
 								{lessonData && lessonData.map((v, i) => {
+									const whencreated = new Date(v.WhenCreated + "Z").toLocaleString();
+									const whenlastedited = new Date(v.WhenLastEdited + "Z").toLocaleString();
 									return (
 										<tr key={v.SN}>
 											<td className="px-6 py-4 whitespace-nowrap text-sm font-medium text-slate-200">
@@ -66,10 +68,10 @@ export default function UploadTables({ SetUploadFileAlertDisplay, lessonData,put
 												{v.Title}
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-sm text-slate-200">
-												{v.WhenCreated}
+												{whencreated}
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-sm text-slate-200">
-												{v.WhenLastEdited}
+												{whenlastedited}
 											</td>
 											<td className="px-6 py-4 whitespace-nowrap text-end text-sm font-medium">
 												<button className="bg-amber-400 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-amber-300 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600" onClick={(e) => {

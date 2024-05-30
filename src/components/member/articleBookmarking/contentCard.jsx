@@ -15,7 +15,7 @@ export default function ContentCard({
 	ArticleSN,
 	setDataSuccess }) {
 
-
+	const whencreated = new Date(WhenCreated + "Z").toLocaleString();
 	const deletedData = async (e) => {
 
 		try {
@@ -55,7 +55,7 @@ export default function ContentCard({
 			<article className="flex max-w-full flex-col items-start justify-between shadow-sm ring-1 ring-gray-300 p-5 hover:bg-gray-100	animate__animated animate__fadeIn">
 				<div className="flex items-center gap-x-4 text-xs">
 					<time dateTime="2020-03-16" className="text-gray-500">
-						{WhenCreated}
+						{whencreated}
 					</time>
 					<div
 						className="relative z-5 rounded-full bg-orange-100 px-3 py-1.5 font-medium text-gray-600 hover:bg-gray-100"

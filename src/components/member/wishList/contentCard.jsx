@@ -2,11 +2,13 @@ import Link from 'next/link';
 import 'animate.css';
 import { BsSuitHeartFill } from "react-icons/bs";
 import Swal from 'sweetalert2';
-import { useState} from 'react';
+import { useState } from 'react';
+import { MdOutlineStarPurple500, MdOutlineStarOutline } from "react-icons/md";
 
 
 
-export default function Card({ setDataSuccess, user, collectedCoursSN, title, picUrl, price, quantity, teacher, domain }) {
+
+export default function Card({ setDataSuccess, user, collectedCoursSN, title, picUrl, price, quantity, teacher, domain, rating }) {
 	const [iconColor, setIconColor] = useState("red");
 
 
@@ -60,17 +62,27 @@ export default function Card({ setDataSuccess, user, collectedCoursSN, title, pi
 				<div className="flex w-full h-auto">
 					<div className={` flex flex-col justify-between items-start p-2 w-full`}>
 						<div className="flex flex-col w-full">
-							<div className="text-sm font-bold leading-5  md:text-base text-justify w-full line-clamp-2">{title}</div>
-							<div className="text-xs text-gray-400 leading-6 text-wrap text-justify">作者:{teacher}</div>
-							<div>
-								<button className='ring-1 ring-orange-500 text-orange-500 px-1 py-1 text-xs font-semibold shadow-sm hover:text-orange-300 hover:ring-2 hover:ring-orange-300 md:flex md:mt-2 md:mb-4'>#{domain}</button>
+							<div >
+								<button className='ring-1 ring-orange-500 text-orange-500 px-1 py-1 text-xs font-semibold shadow-sm hover:text-orange-300 hover:ring-2 hover:ring-orange-300 md:flex md:mt-2 md:mb-2'>#{domain}</button>
 							</div>
+							<div className="text-sm font-bold leading-6  md:text-base text-justify w-full line-clamp-2">{title}</div>
+							<div className="text-xs text-gray-400 leading-6 text-wrap text-justify">作者:{teacher}</div>
 
+							<div className="md:mt-1 md:mb-2 flex">
+								{Array(5).fill(1).map((v, i) => {
+									const score = i + 1;
+									return (
+										rating >= score ? <MdOutlineStarPurple500 key={i} color="yellow" size="15px" /> : <MdOutlineStarOutline key={i} color="yellow" size="15px" />
+									);
+								})}
+
+								<span className="text-xs ms-1">已售 {quantity}</span>
+							</div>
 						</div>
 
-						<div className="flex justify-between w-full items-center mt-2 md:mt-0">
-							<span className='text-base font-black text-red-500 leading-6'>${price}</span>
-							<span>已售 {quantity}</span>
+						<div className="flex items-center mt-2 md:mt-0">
+							<span className='text-base font-black text-red-500 leading-6'>NT${price}</span>
+
 						</div>
 
 					</div>
