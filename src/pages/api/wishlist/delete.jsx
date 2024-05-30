@@ -23,7 +23,7 @@ router.get(async (req, res) => {
         const { User, collectedCoursSN } = req.query;
     const sql = `DELETE FROM CollectedCourse where UserSN=? AND CourseSN=?
 	`;
-    const [results] = await connection.execute(sql, [User, collectedCoursSN]); // TODO
+    const [results] = await connection.execute(sql, [User, collectedCoursSN]); 
 
     res.status(200).json({ status: 'success', message: '刪除成功' });
     } catch (error) {

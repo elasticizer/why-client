@@ -8,12 +8,10 @@ const router = createRouter();
 
 router.get(async (req, res) => {
    
-    const [results] = await connection.execute(
-        `SELECT Course.*, Course.TeacherSN AS CourseTeacherSN, Course.Name AS CourseName, user.Nickname, File.*, Domain.Name AS DomainName 
-        FROM Course
-        JOIN user ON Course.TeacherSN = user.SN
-        JOIN File ON Course.ThumbnailSN =
-        File.SN JOIN Domain ON Course.DomainSN = Domain.SN`);
+    const sn = req.query.sn;
+    const [results] = await connection.execute('SELECT Lesson.* FROM Lesson ');
+
+
 
     res.status(200).json(results);
 });
