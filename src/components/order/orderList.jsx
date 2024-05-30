@@ -1,17 +1,11 @@
 import { useState, useEffect } from 'react';
 import OrderItem from './orderItem';
 import OrderItemNone from './orderItemNone';
-import AOS from 'aos';
-import 'aos/dist/aos.css';
 
 export default function OrderList() {
 	const [orders, setOrders] = useState([]);
 	const [completedOrders, setCompletedOrders] = useState([]);
 	const [invalidOrders, setInvalidOrders] = useState([]);
-
-	useEffect(() => {
-		AOS.init();
-	}, []);
 
 	useEffect(() => {
 		const getOrders = async () => {
@@ -40,7 +34,6 @@ export default function OrderList() {
 		<>
 			<div>
 				<div
-					data-aos="zoom-in-down"
 					id="horizontal-alignment-1"
 					role="tabpanel"
 					aria-labelledby="horizontal-alignment-item-1">
@@ -56,7 +49,6 @@ export default function OrderList() {
 					)}
 				</div>
 				<div
-					data-aos="zoom-in-down"
 					id="horizontal-alignment-2"
 					className="hidden"
 					role="tabpanel"
@@ -73,7 +65,6 @@ export default function OrderList() {
 					)}
 				</div>
 				<div
-					data-aos="zoom-in-down"
 					id="horizontal-alignment-3"
 					className="hidden"
 					role="tabpanel"

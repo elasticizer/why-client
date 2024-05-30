@@ -13,9 +13,6 @@ export default function OrderItem({ item }) {
 		(sum, currentItem) => sum + currentItem.Amount,
 		0
 	);
-
-	// const event = new Date('2017-12-20 12:00:25Z').toLocaleString();
-
 	return (
 		<>
 			<div className="container">
@@ -31,7 +28,7 @@ export default function OrderItem({ item }) {
 							</p>
 							{/* 訂單日期 */}
 							<p className="text-sm">
-								{new Date(item[0].WhenCheckedOut + 'Z').toLocaleString()}
+								{new Date(item[0].WhenCheckedOut + 'Z').toLocaleString().slice(0,9)}
 							</p>
 						</div>
 						{item[0].WhenPaid ? (
@@ -180,7 +177,7 @@ export default function OrderItem({ item }) {
 									</h3>
 									<p className="mt-1 text-sm text-gray-600 dark:text-neutral-400">
 										{item[0].WhenPaid
-											? new Date(item[0].WhenCheckedOut + 'Z').toLocaleString()
+											? new Date(item[0].WhenPaid + 'Z').toLocaleString()
 											: '付款失敗'}
 									</p>
 								</div>
