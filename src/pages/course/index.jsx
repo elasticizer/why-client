@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
-import Category from '../../components/category/category';
-import CourseList from '../../components/card/cardseclist';
-import Pages from '@/components/course/pages';
-import Banner from '../../components/banner/banner';
+import Category from '../../components/courses/category/category';
+import CourseList from '../../components/courses/card/cardseclist';
+import Pages from '../../components/courses/Pagination/pages';
+import Banner from '../../components/courses/domainbanner/banner';
 import Home from '../../layouts/home';
-import Slideshow from '../../components/slideShow/slideshow';
+import Slideshow from '../../components/courses/slideShow/slideshow';
+
 
 
 export default function Course() {
+	
 
 	return (
 		<>
@@ -17,10 +19,7 @@ export default function Course() {
 				<Slideshow />
 				<div className="bg-[#fdf9f7]">
 					<Category />
-					<div className=" py-5">
-						<CourseList />
-					</div>
-					<div className=" flex container items-center">
+					<div className=" flex container justify-center">
 						<Pages />
 					</div>
 				</div>

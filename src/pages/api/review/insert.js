@@ -7,7 +7,7 @@ import { StatusCodes } from 'http-status-codes';
 const router = createRouter();
 
 // 定义 GET 请求的处理程序
-router.get(async (req, res) => {
+router.post(async (req, res) => {
 
     try {
         const sessionId = req.cookies.SESSION_ID;
@@ -21,26 +21,23 @@ router.get(async (req, res) => {
         if (!user) {
             throw new RouteError(
                 StatusCodes.UNAUTHORIZED,
-                '不可收藏'
+                '不可留言'
             );
-            
         }
         console.log(user);
-        const { courseSN } = req.query;
-        if (!courseSN) {
+        const { content } = req.body;
+        if (!content) {
             throw new RouteError(
                 StatusCodes.BAD_REQUEST,
-                '缺少课程编号'
+                '缺少留言內容'
             );
         }
-
-        // 插入数据到 CollectedCourse 表
-        const [results] = await connection.execute(
-            "INSERT INTO CollectedCourse (UserSN, CourseSN) VALUES (?, ?)",
-            [user.SN, courseSN]
+        // 插入数据到 Review 表
+        const [[data]] = await connection.execute(
+            "INSERT INTO Review (Rate, Content, CourseSN, LearnerSN) VALUES (5, ?, 1, ?) RETURNING *",
+            [content, user.SN]
         );
-
-        res.status(200).json({ message: "成功了" });
+        res.status(200).json({ data });
     } catch (err) {
         // 捕捉所有错误并调用 onError 处理
         onError(err, req, res);
