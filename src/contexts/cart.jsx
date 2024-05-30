@@ -13,7 +13,6 @@ export function CartProvider({ children }) {
 		if (!cartItem.some(item => item.SN === course.SN)) {
 			const fd = new FormData();
 
-			fd.append('user', 1);
 			fd.append('course', course.SN);
 
 			const data = await fetch('/api/cart', {
@@ -42,7 +41,6 @@ export function CartProvider({ children }) {
 	const removeItem = async course => {
 		const fd = new FormData();
 
-		fd.append('user', 1);
 
 		if (course) {
 			fd.append('course', course.SN);

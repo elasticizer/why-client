@@ -10,7 +10,7 @@ export default function SummaryOrder() {
 
 	useEffect(() => {
 		if (selectedCoupon) {
-			setDiscount(Math.round(totalPrice * selectedCoupon.discountRate));
+			setDiscount(Math.round(totalPrice * selectedCoupon.DiscountRate));
 		} else {
 			setDiscount(0);
 		}

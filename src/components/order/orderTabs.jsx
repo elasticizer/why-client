@@ -1,5 +1,4 @@
 import OrderList from './orderList';
-// import Pagination from './pagination';
 import SearchBox from './searchBox';
 
 export default function OrderTabs() {
