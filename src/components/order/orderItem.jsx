@@ -28,14 +28,14 @@ export default function OrderItem({ item }) {
 						{item[0].WhenPaid ? (
 							<div className="flex items-center gap-x-1">
 								<p className="font-bold">已完成</p>
-								<p className="size-4 text-green-500">
+								<p className="text-xl text-green-500">
 									<HiCheckCircle />
 								</p>
 							</div>
 						) : (
 							<div className="flex items-center gap-x-1">
 								<p className="font-bold">已失效</p>
-								<p className="size-4 text-red-500">
+								<p className="text-xl text-red-500">
 									<HiXCircle />
 								</p>
 							</div>
@@ -55,7 +55,7 @@ export default function OrderItem({ item }) {
 							</div>
 							{/* 訂單資料 */}
 							<div className="flex sm:flex-col md:flex-col lg:flex-row sm:gap-3 md:gap-6 lg:gap-3">
-								<div className="flex flex-col gap-3">
+								<div className="flex flex-col gap-3 lg:w-96 md:w-48 sm:w-24">
 									<div>
 										<p className="font-bold lg:text-lg md:text-base sm:text-base">
 											課程名稱
@@ -170,7 +170,7 @@ export default function OrderItem({ item }) {
 										付款時間
 									</h3>
 									<p className="mt-1 text-sm text-gray-600 dark:text-neutral-400">
-										{item[0].WhenPaid ? item[0].WhenPaid : '未付款'}
+										{item[0].WhenPaid ? item[0].WhenPaid : '付款失敗'}
 									</p>
 								</div>
 							</div>
