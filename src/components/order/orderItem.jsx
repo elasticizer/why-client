@@ -13,17 +13,26 @@ export default function OrderItem({ item }) {
 		(sum, currentItem) => sum + currentItem.Amount,
 		0
 	);
+
+	// const event = new Date('2017-12-20 12:00:25Z').toLocaleString();
+
 	return (
 		<>
 			<div className="container">
-				<div className="border-2 border-dashed rounded-lg p-4 mt-4 mx-auto" data-aos="fade-down">
+				<div
+					className="border-2 border-dashed rounded-lg p-4 mt-4 mx-auto"
+					data-aos="fade-down">
 					{/* 訂單標頭 */}
 					<div className="flex justify-between items-center border-b-2 pb-2">
 						<div className="flex flex-col gap-y-1">
 							{/* 訂單編號 */}
-							<p className="text-xl font-semibold">{item[0].SN}</p>
+							<p className="text-xl font-semibold">
+								#{Date.parse(item[0].WhenCheckedOut) / 1000}
+							</p>
 							{/* 訂單日期 */}
-							<p className="text-sm">{item[0].WhenCheckedOut.split(' ')[0]}</p>
+							<p className="text-sm">
+								{new Date(item[0].WhenCheckedOut + 'Z').toLocaleString()}
+							</p>
 						</div>
 						{item[0].WhenPaid ? (
 							<div className="flex items-center gap-x-1">
@@ -155,7 +164,7 @@ export default function OrderItem({ item }) {
 										訂單成立時間
 									</h3>
 									<p className="mt-1 text-sm text-gray-600 dark:text-neutral-400">
-										{item[0].WhenCheckedOut}
+										{new Date(item[0].WhenCheckedOut + 'Z').toLocaleString()}
 									</p>
 								</div>
 							</div>
@@ -170,7 +179,9 @@ export default function OrderItem({ item }) {
 										付款時間
 									</h3>
 									<p className="mt-1 text-sm text-gray-600 dark:text-neutral-400">
-										{item[0].WhenPaid ? item[0].WhenPaid : '付款失敗'}
+										{item[0].WhenPaid
+											? new Date(item[0].WhenCheckedOut + 'Z').toLocaleString()
+											: '付款失敗'}
 									</p>
 								</div>
 							</div>
