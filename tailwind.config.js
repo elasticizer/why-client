@@ -8,8 +8,11 @@ const config = {
 	],
 
 	plugins: [
-		require('@tailwindcss/forms'),
-		require('preline/plugin')
+		require('@tailwindcss/forms')({
+			strategy: 'class'
+		}),
+		require('preline/plugin'),
+		require('daisyui')
 	],
 
 	theme: {
