@@ -7,9 +7,9 @@ import type { AppProps } from 'next/app';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
 import { useRouter } from 'next/router';
-
+import Home from '@/layouts/home';
 export default function App({ Component, pageProps }: AppProps) {
-	const path = usePathname();
+	const path = usePathname();	
 	const router = useRouter();
 	const isArt = router.pathname.includes('/art');
 	useEffect(
@@ -23,7 +23,9 @@ export default function App({ Component, pageProps }: AppProps) {
 		<LoaderProvider>
 			<AuthProvider>
 				{isArt && <ArtSideBar></ArtSideBar>}
-				<Component {...pageProps} />
+				<Home>
+					<Component {...pageProps} />
+				</Home>
 				<Toaster />
 			</AuthProvider>
 		</LoaderProvider>

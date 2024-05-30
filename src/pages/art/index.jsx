@@ -1,13 +1,16 @@
 import ArtCardGroup from '@/components/art/ArtCardGroup';
 import RightSearch from '@/components/art/RightSearch';
-import { AnimatePresence,useScroll,useSpring} from "framer-motion";
+import { useLoader } from '@/hooks/use-loader';
+import { AnimatePresence, useScroll, useSpring } from 'framer-motion';
+import { useEffect } from 'react';
 export default function Index() {
-  const { scrollYProgress } = useScroll();
-  const scaleX = useSpring(scrollYProgress, {
-    stiffness: 100,
-    damping: 30,
-    restDelta: 0.001
-  });
+	const { scrollYProgress } = useScroll();
+	const scaleX = useSpring(scrollYProgress, {
+		stiffness: 100,
+		damping: 30,
+		restDelta: 0.001
+	});
+
 	return (
 		<>
 			<AnimatePresence mode="wait">

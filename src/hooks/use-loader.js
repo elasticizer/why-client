@@ -27,7 +27,7 @@ export function timeout(ms) {
 export const LoaderProvider = ({
 	children,
 	close = 2,
-	global = false,
+	global = true,
 	CustomLoader = Loader
 }) => {
 	const router = useRouter();
@@ -73,12 +73,7 @@ export const LoaderProvider = ({
 				loading: show,
 				delay,
 				loader: () => <CustomLoader show={show} />,
-				loaderText: text => (
-					<LoaderText
-						text={text}
-						show={show}
-					/>
-				)
+				
 			}}>
 			{children}
 		</LoaderContext.Provider>
