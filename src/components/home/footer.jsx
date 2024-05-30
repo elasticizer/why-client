@@ -73,7 +73,7 @@ export default function Footer() {
 											mode: 'no-cors'
 										}).then(() => {
 											form.reset();
-											alert('表單送出成功');
+											alert('已收到您的訊息，我們將盡快回覆');
 										});
 									}}>
 									<div className="p-2">
