@@ -1,5 +1,6 @@
 import '@/styles/globals.css';
 import { AuthProvider } from '@/hooks/use-auth';
+import { LoaderProvider } from '@/hooks/use-loader';
 import ArtSideBar from '@/components/art/ArtSideBar';
 import { Toaster } from 'react-hot-toast';
 import type { AppProps } from 'next/app';
@@ -18,12 +19,13 @@ export default function App({ Component, pageProps }: AppProps) {
 			),
 		[path]
 	);
-
 	return (
-		<AuthProvider>
-			{isArt && <ArtSideBar></ArtSideBar>}
-			<Component {...pageProps} />
-			<Toaster />
-		</AuthProvider>
+		<LoaderProvider>
+			<AuthProvider>
+				{isArt && <ArtSideBar></ArtSideBar>}
+				<Component {...pageProps} />
+				<Toaster />
+			</AuthProvider>
+		</LoaderProvider>
 	);
 }

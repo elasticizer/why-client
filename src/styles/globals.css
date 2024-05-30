@@ -218,4 +218,36 @@
   .contact-div > li:last-child {
 	@apply border-none;
   }
+  .article-loader {
+	width: 100%;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	/*Centering my shade */
+	/* margin-bottom: 40px; */
+	/* margin-top: 56px; */
+	background-color: rgba(230, 230, 230, 0.8);
+	z-index: 9999;
+  }
+  
+  .article-loader::after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: calc(50% - 3em);
+	left: calc(50% - 3em);
+	width: 6em;
+	height: 6em;
+	border: 1.1em solid rgba(0, 0, 0, 0.2);
+	border-left: 1.1em solid #000000;
+	border-radius: 50%;
+	-webkit-animation: load8 1.1s infinite linear;
+	animation: load8 1.1s infinite linear;
+  }
+  
+  .article-loader--hide {
+	display: none;
+  }
   
