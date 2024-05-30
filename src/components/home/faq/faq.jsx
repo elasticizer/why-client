@@ -104,9 +104,7 @@ export default function Faq() {
 				<div className="grid md:grid-cols-5 gap-10">
 					<div className="md:col-span-2">
 						<div className="max-w-xs">
-							<h2 className="mb-3 text-2xl font-bold md:text-4xl md:leading-tight">
-								常見問題
-							</h2>
+							<h2 className="mb-3 text-2xl font-bold md:text-4xl">常見問題</h2>
 							<p className="mt-1 mb-3 text-gray-600">
 								以下提供您熱門的常見問題與解答
 								<br />
@@ -122,6 +120,7 @@ export default function Faq() {
 						<div className="flex flex-col justify-start gap-2">
 							<div className="w-full flex gap-2">
 								<input
+									list="faqOptions"
 									type="text"
 									value={searchTerm}
 									onChange={handleSearchChange}
@@ -132,12 +131,14 @@ export default function Faq() {
 									<FaSearch />
 								</button>
 							</div>
-							<button
-								type="button"
-								onClick={handleClearSearch}
-								className="w-1/5 sm:w-1/6 p-1 text-sm font-semibold rounded-lg border border-transparent bg-sky-400 text-white hover:bg-sky-500 disabled:opacity-50 disabled:pointer-events-none">
-								清除
-							</button>
+							<div className="flex justify-end">
+								<button
+									type="button"
+									onClick={handleClearSearch}
+									className="w-1/5 sm:w-1/6 p-1 text-sm font-semibold rounded-lg border border-transparent bg-sky-400 text-white hover:bg-sky-500 disabled:opacity-50 disabled:pointer-events-none">
+									清除
+								</button>
+							</div>
 						</div>
 					</div>
 					{/* <!-- End Col --> */}
@@ -168,6 +169,11 @@ export default function Faq() {
 				{/* <!-- End Grid --> */}
 			</div>
 			{/* <!-- End FAQ --> */}
+			<datalist id="faqOptions">
+				<option value="課程">#1</option>
+				<option value="購物車">#2</option>
+				<option value="註冊">#3</option>
+			</datalist>
 		</>
 	);
 }

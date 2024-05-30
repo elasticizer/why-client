@@ -19,7 +19,7 @@ export default function ArticleCard({ title, content, author, image }) {
 						/>
 					</div>
 					<div className="grow mt-4 sm:mt-0 sm:ms-6 px-4 sm:px-0">
-						<h6 className="text-sm font-light text-white group-hover:text-gray-600 ">
+						<h6 className="text-sm font-light text-white">
 							{author}發表的文章
 						</h6>
 						<h3 className="text-xl font-semibold text-white line-clamp-2">
