@@ -6,6 +6,7 @@ export default function Content({ domain, search }) {
 	const [data, setData] = useState([{}]);
 	const [dataSuccess, setDataSuccess] = useState('false');
 
+
 	useEffect(() => {
 		const handleData = async () => {
 			try {
@@ -39,6 +40,8 @@ export default function Content({ domain, search }) {
 							picUrl={v.Filename}
 							price={v.Price}
 							quantity={v.Total}
+							// rating={data && v.rating}
+							rating={3}
 							setDataSuccess={setDataSuccess}
 						/>
 

@@ -10,7 +10,7 @@ export default function UploadCard({
 	Filename,
 	WhenCreated }) {
 
-
+		const whencreated = new Date(WhenCreated + "Z").toLocaleString();
 
 	return (
 		<Link href="#" className="bg-white ring-1 ring-gray-300 shadow-sm md:flex mt-10 ">
@@ -29,7 +29,7 @@ export default function UploadCard({
 					<div className="mt-2">
 						<div className="text-xs text-gray-500 flex mt-1 items-center">
 							<MdAccessTime />
-							{WhenCreated}
+							{whencreated}
 						</div>
 					</div>
 				</div>
