@@ -10,10 +10,6 @@ export default function CheckoutModal({ discount }) {
 		initialValue
 	);
 
-	console.log(cart.cartItem);
-	console.log('total:', totalPrice);
-	console.log('finalTotal:', totalPrice - discount);
-
 	const handleCheckout = async e => {
 		e.preventDefault();
 
