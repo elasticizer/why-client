@@ -26,8 +26,7 @@ router.get(async (req, res) => {
 		JOIN Course ON Course.SN = OrderDetail.CourseSN
 		JOIN File ON Course.ThumbnailSN = File.SN
 		JOIN User ON User.SN = "Order".LearnerSN
-		WHERE User.SN = ?
-		ORDER BY "Order"."SN" DESC`,
+		WHERE User.SN = ?`,
 		[user.SN]
 	);
 	const order = results.reduce((total, value) => {

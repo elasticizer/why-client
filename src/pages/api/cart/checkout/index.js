@@ -56,6 +56,7 @@ router.post(async (req, res) => {
 
 	console.log(products);
 	console.log(order);
+	console.log(req.headers);
 
 	const name = env.APP_NAME;
 	const amount = products.reduce((total, value) => total + value.price, 0);

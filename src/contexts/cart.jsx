@@ -41,7 +41,6 @@ export function CartProvider({ children }) {
 	const removeItem = async course => {
 		const fd = new FormData();
 
-
 		if (course) {
 			fd.append('course', course.SN);
 		}
@@ -70,7 +69,7 @@ export function CartProvider({ children }) {
 		fetchCartItems();
 	}, []);
 
-	const totalQty = cartItem.reduce(acc => acc + 1, 0);
+	const totalQty = cartItem && cartItem.reduce(acc => acc + 1, 0);
 	const totalPrice = cartItem.reduce((acc, v) => acc + 1 * v.Price, 0);
 
 	return (
