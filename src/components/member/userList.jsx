@@ -11,15 +11,15 @@ export default function UserList({ userList, option }) {
 				userList ? 'hidden' : ''
 			} shadow-lg z-20 animate__animated animate__fadeIn `}>
 			<ul>
-				<li className=" text-center text-base py-2 px-2 ring-1 ring-gray-300">
+				<li className=" text-center text-base py-2 px-2 ring-1 ring-gray-300 hover:bg-gray-200">
 					<Link
-						href="#"
+						href="/order"
 						className="flex justify-start items-center">
 						<BsCart />
 						<span className="ms-2">購物車</span>
 					</Link>
 				</li>
-				<li className="text-center text-base py-2 px-2 ring-1 ring-gray-300">
+				<li className="text-center text-base py-2 px-2 ring-1 ring-gray-300 hover:bg-gray-200">
 					<Link
 						href="#"
 						className="flex justify-start items-center">
@@ -27,9 +27,9 @@ export default function UserList({ userList, option }) {
 						<span className="ms-2">個人檔案</span>
 					</Link>
 				</li>
-				<li className="text-center text-base py-2 px-2 ring-1 ring-gray-300">
+				<li className="text-center text-base py-2 px-2 ring-1 ring-gray-300 hover:bg-gray-200">
 					<Link
-						href="#"
+						href="/signout"
 						className="flex justify-start items-center">
 						<IoMdLogOut />
 						<span className="ms-2">登出</span>

@@ -50,7 +50,7 @@ export default function Card({ setDataSuccess, user, collectedCoursSN, title, pi
 
 	return (
 		<Link href='#' className='animate__animated animate__fadeIn relative'>
-			<div className="flex w-full h-full shadow-sm ring-1 ring-gray-300 flex-col relative rounded-lg overflow-hidden hover:bg-gray-100">
+			<div className="flex w-full h-full shadow-sm ring-1 ring-gray-300 flex-col relative overflow-hidden hover:bg-gray-100">
 				<div className="h-36 md:h-52 w-full md:me-0 overflow-hidden">
 					<img
 						className="hover:scale-125 hover:scale-125 ease-in duration-300"

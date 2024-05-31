@@ -21,14 +21,14 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 			}}>
 			<div
 				className={`${styles.windowNavHead} justify-between md:justify-center`}>
-				<div href="/">
+				<Link href="/">
 					<Image
 						src="/learner/why_mini_icon.png"
 						alt=""
 						width={40}
 						height={40}
 					/>
-				</div>
+				</Link>
 				<button
 					className={styles.rebeccapurple}
 					onClick={() => {
@@ -102,7 +102,7 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 					</Link>
 				</div>
 				<div className={styles.windowNavcontainerItem}>
-					<Link
+					{/* <Link
 						href="#"
 						className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
 						<div className="">
@@ -115,7 +115,7 @@ export default function Sidebar({ WindowNav, setWindowNav }) {
 							className={`${styles.windowNavFont} ${windowNavFont} text-gray-400 hover:text-white`}>
 							優惠票券
 						</div>
-					</Link>
+					</Link> */}
 					<Link
 						href="/learner/articleBookmarking"
 						className={`${styles.windowNavItem} hover:ps-2 hover:border-l-4 hover:border-l-red-500`}>
