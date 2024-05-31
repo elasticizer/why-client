@@ -35,7 +35,7 @@ export default function Slideshow() {
 					className=" lg:mb-6 lg:mt-8 px-7  h-full lg:h-80"
 				>
 					<div className="inline-flex justify-between font-semibold text-2xl text-Black-900 mb-2 mt-3  w-full lg:mb-2 lg:mt-6  " >
-						<div className="w-full ">最新上架</div>
+						<div className="w-full ">精選課程</div>
 						<div className=" relative flex w-full space-x-3 items-center justify-end ">
 							<button
 								type="button"

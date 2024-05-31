@@ -23,16 +23,7 @@ export default function BannerText() {
 						/>
 					</div>
 				</div>
-				{/* <div className=" mt-20 lg:mt-40  flex items-center justify-center   ">
-					<a
-						className=" lg:mt-40 animate-pulse py-3 px-4 items-center gap-x-2 text-base lg:text-xl font-semibold rounded-lg border border-transparent bg-orange-600 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-						href="#">
-						開啟探索之旅
-					</a>
-				</div> */}
-				<a
-					href="#"
-					className="mt-20 lg:mt-40 xl:mt-96 flex justify-center my-0 sm:h-16 lg:h-32 lg:w-full">
+				<a href="#" className=" mt-20 lg:mt-40 xl:mt-96  flex  justify-center my-0  sm:h-16  lg:h-32 lg:w-full ">
 					<img
 						className=" sm:h-15 sm:w-16 lg:h-25 lg:w-32"
 						src="/images/Animation - 1715325080679.gif"
