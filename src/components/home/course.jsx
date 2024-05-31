@@ -41,7 +41,7 @@ export default function Course() {
 		<>
 			<div
 				className="max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto"
-				data-aos="fade-left">
+				data-aos="fade-right">
 				<div className="mb-3 flex justify- text-2xl font-semibold justify-between">
 					<div className="flex flex-col justify-items-start gap-3 md:flex-row md:items-center">
 						<h1>最新上架</h1>

@@ -19,15 +19,16 @@ router.get(async (req, res) => {
 	const [results] = await connection.execute(
 		`SELECT Course.SN, Course.Identifier, Course.Name, Course.Price, Domain.Name AS DomainName, File.Filename, User.SN AS UserSN
 		FROM Cart
-		JOIN Course ON Course.SN = Cart.CourseSN 
-		JOIN User ON User.SN = Cart.UserSN 
-		JOIN Domain ON Course.DomainSN = Domain.SN 
+		JOIN Course ON Course.SN = Cart.CourseSN
+		JOIN User ON User.SN = Cart.UserSN
+		JOIN Domain ON Course.DomainSN = Domain.SN
 		JOIN File ON Course.ThumbnailSN = File.SN
 		WHERE User.SN = ?
 		`,
 		[user.SN]
 	);
-	res.status(StatusCodes.OK).json(results);
+
+	res.status(StatusCodes.OK).json({ done: true, data: results });
 });
 
 router.post(async (req, res) => {
@@ -39,13 +40,16 @@ router.post(async (req, res) => {
 
 	const user = await Session.associate(sessionId);
 	const { course } = req.body;
+
 	if (!course) {
-		return res.status(400).json({ done: false, message: '缺少必要欄位' });
+		throw new RouteError(StatusCodes.BAD_REQUEST, '缺少必要欄位');
 	}
-	const [results] = await connection.execute(
+
+	await connection.execute(
 		'INSERT INTO Cart (UserSN, CourseSN) VALUES (?, ?)',
 		[user.SN, course]
 	);
+
 	res.status(200).json({ done: true, message: '新增課程成功' });
 });
 
@@ -59,7 +63,7 @@ router.delete(async (req, res) => {
 	const user = await Session.associate(sessionId);
 	const { course } = req.body;
 	if (!course) {
-		return res.status(400).json({ done: false, message: '缺少必要欄位' });
+		throw new RouteError(StatusCodes.BAD_REQUEST, '缺少必要欄位');
 	}
 	const [results] = await connection.execute(
 		'DELETE FROM Cart WHERE UserSN = ? AND CourseSN = ?',

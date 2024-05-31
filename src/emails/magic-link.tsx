@@ -1,4 +1,17 @@
-import { Body, Button, Container, Head, Heading, Hr, Html, Img, Link, Preview, Section, Text } from '@react-email/components';
+import {
+	Body,
+	Button,
+	Container,
+	Head,
+	Heading,
+	Hr,
+	Html,
+	Img,
+	Link,
+	Preview,
+	Section,
+	Text
+} from '@react-email/components';
 import { env } from 'process';
 
 interface MagicLinkEmailProps {
@@ -14,7 +27,7 @@ export default function MagicLinkEmail({ link }: MagicLinkEmailProps) {
 			<Body style={main}>
 				<Container style={container}>
 					<Img
-						src={`${env.APP_URL}/image/why_mini_icon.png`}
+						src={`${env.APP_URL}/images/why_mini_icon.png`}
 						width="40"
 						height="40"
 						alt="Why Academy"
@@ -22,15 +35,23 @@ export default function MagicLinkEmail({ link }: MagicLinkEmailProps) {
 					/>
 					<Heading style={heading}>您的 Why Academy 登入連結</Heading>
 					<Section style={buttonContainer}>
-						<Button style={button} href={link}>
+						<Button
+							style={button}
+							href={link}>
 							登入
 						</Button>
 					</Section>
 					<Text style={paragraph}>此登入連結將於 15 分後失效。</Text>
-					<Text style={paragraph}>如果無法點擊上方登入按鈕，請您直接複製下方連結至網址列：</Text>
+					<Text style={paragraph}>
+						如果無法點擊上方登入按鈕，請您直接複製下方連結至網址列：
+					</Text>
 					<code style={code}>{link}</code>
 					<Hr style={hr} />
-					<Link href={env.APP_URL} style={reportLink}>Why Academy</Link>
+					<Link
+						href={env.APP_URL}
+						style={reportLink}>
+						Why Academy
+					</Link>
 				</Container>
 			</Body>
 		</Html>
@@ -40,7 +61,7 @@ export default function MagicLinkEmail({ link }: MagicLinkEmailProps) {
 const logo = {
 	borderRadius: 21,
 	width: 42,
-	height: 42,
+	height: 42
 };
 
 const main = {

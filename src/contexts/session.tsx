@@ -25,17 +25,25 @@ export function SessionProvider({ children }: Progenitive) {
 	const [session, setSession] = useState<SessionData>();
 
 	useEffect(
-		() => firstRendering.current
-			? void (firstRendering.current = false)
-			: void fetch('/api/auth/status')
-				.then(r => r.json())
-				.then(({ data }: ApiResponseBody<SessionData>) => setSession(data ?? null)),
+		() =>
+			firstRendering.current
+				? void (firstRendering.current = false)
+				: void fetch('/api/auth/status')
+						.then(r => r.json())
+						.then(({ data }: ApiResponseBody<SessionData>) =>
+							setSession(data ?? null)
+						),
 		[pathname]
 	);
 
 	return (
 		<SessionContext.Provider value={session}>
-			{session === void 0 ? null : children}
+			<div
+				className={`${
+					session === void 0 ? 'opacity-0' : 'opacity-100'
+				} transition-opacity duration-500`}>
+				{children}
+			</div>
 		</SessionContext.Provider>
 	);
 }

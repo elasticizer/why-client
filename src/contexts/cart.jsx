@@ -61,20 +61,17 @@ export function CartProvider({ children }) {
 			const res = await fetch('/api/cart', {
 				method: 'GET'
 			});
-			const data = await res.json();
-			if (data) {
+			const { done, data } = await res.json();
+			if (done) {
 				setCartItem(data);
 			}
 		};
 		fetchCartItems();
 	}, []);
 
-	const totalQty =
-		cartItem.length === 0 ? 0 : cartItem.reduce(acc => acc + 1, 0);
+	const totalQty = cartItem && cartItem.reduce(acc => acc + 1, 0);
 	const totalPrice =
-		cartItem.length === 0
-			? 0
-			: cartItem.reduce((acc, v) => acc + 1 * v.Price, 0);
+		cartItem && cartItem.reduce((acc, v) => acc + 1 * v.Price, 0);
 
 	return (
 		<CartContext.Provider

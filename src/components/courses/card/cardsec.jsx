@@ -4,30 +4,34 @@ import { MdPeopleAlt } from 'react-icons/md';
 import { IoTimeOutline } from 'react-icons/io5';
 import styles from '@/styles/font.module.css';
 import { BsBookmarkHeart } from 'react-icons/bs';
-import { BsBookmarkHeartFill } from "react-icons/bs";
-import { IoCartOutline } from "react-icons/io5";
-import { IoCart } from "react-icons/io5";
-
+import { BsBookmarkHeartFill } from 'react-icons/bs';
+import { IoCartOutline } from 'react-icons/io5';
+import { IoCart } from 'react-icons/io5';
+import { useSession } from '@/contexts/session';
 
 import { useCart } from '../../../contexts/cart';
 import Link from 'next/link';
 
-
-
-export default function CardSec({ data = {
-	SN: '',
-	Name: '',
-	Intro: '',
-	Price: 0,
-	Nickname: '',
-	Filename: '',
-	DomainName: ''
-}, alert, setAlert, bookmark, unbookmark }) {
-	const { SN, Name, Intro, Price, Nickname, Filename, DomainName } = data
-	console.log(useCart());
+export default function CardSec({
+	data = {
+		SN: '',
+		Name: '',
+		Intro: '',
+		Price: 0,
+		Nickname: '',
+		Filename: '',
+		DomainName: ''
+	},
+	alert,
+	setAlert,
+	bookmark,
+	unbookmark
+}) {
+	const session = useSession();
+	const { SN, Name, Intro, Price, Nickname, Filename, DomainName } = data;
 	const { addItemToCart } = useCart();
-	const [icon, setIcon] = useState(false)
-	const [cartIcon, setCartIcon] = useState(false)
+	const [icon, setIcon] = useState(false);
+	const [cartIcon, setCartIcon] = useState(false);
 
 	const getData = async () => {
 		try {
@@ -35,9 +39,8 @@ export default function CardSec({ data = {
 			const data = await res.json();
 			console.log(data);
 			console.log('收藏成功');
-
 		} catch (error) {
-			console.error("收藏失敗", error);
+			console.error('收藏失敗', error);
 		}
 	};
 	const deleteData = async () => {
@@ -46,17 +49,15 @@ export default function CardSec({ data = {
 			const data = await res.json();
 			console.log(data);
 			console.log('刪除收藏成功');
-
 		} catch (error) {
-			console.error("刪除收藏失敗", error);
+			console.error('刪除收藏失敗', error);
 		}
 	};
 
 	return (
-		<>
-
-			<div data-aos="fade-left" href="#" className=" w-full flex flex-col group bg-none  shadow-sm  overflow-hidden hover:shadow-2xl hover:border-gray-600 motion-reduce:transition-none motion-reduce:hover:transform-none  ">
-				<div className="relative pt-[50%] sm:pt-[60%] lg:pt-[60%]  overflow-hidden">
+		<div className="w-full flex flex-col group bg-none shadow-sm overflow-hidden hover:shadow-2xl hover:border-gray-600 motion-reduce:transition-none motion-reduce:hover:transform-none">
+			<div data-aos="fade-up">
+				<div className="relative pt-[50%] sm:pt-[60%] lg:pt-[60%] overflow-hidden">
 					<img
 						className="w-full h-auto absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-tr-3xl  rounded-bl-3xl"
 						src={Filename}
@@ -64,15 +65,10 @@ export default function CardSec({ data = {
 					/>
 				</div>
 				<div className="mt-2 flex justify-between">
-					<div
-
-						className="py- px-2 inline-flex items-center gap-x-2 text-base font-medium  rounded-lg border border-transparent  bg-yellow-200 text-yellow-800 disabled:opacity-50 disabled:pointer-events-none">
+					<div className="py- px-2 inline-flex items-center gap-x-2 text-base font-medium  rounded-lg border border-transparent  bg-yellow-200 text-yellow-800 disabled:opacity-50 disabled:pointer-events-none">
 						{DomainName}
 					</div>
-
 				</div>
-
-
 				<div className="px-2  md:p-2 gap-2">
 					<div className={styles['fonts']}></div>
 					<h3 className="text-normal h-12 tracking-wide text-lg text-black font-bold ">
@@ -85,12 +81,12 @@ export default function CardSec({ data = {
 					</Link>
 					<div className=" inline-flex space-x-4">
 						{/* <div className="inline-flex">
-							<div className="mt-0.5 size-5 flex justify-center  items-center rounded-full text-yellow-400">
-								<FaStar />
-							</div>
-							<div className=" lg:text-base text-base text-gray-500 hover:underline">
-								5.0 <span>( 168 )</span></div>
-						</div> */}
+								<div className="mt-0.5 size-5 flex justify-center  items-center rounded-full text-yellow-400">
+									<FaStar />
+								</div>
+								<div className=" lg:text-base text-base text-gray-500 hover:underline">
+									5.0 <span>( 168 )</span></div>
+							</div> */}
 						<div className="inline-flex ">
 							<div className="mt-0.5 size-5 flex items-center justify-center text-base rounded-full bg-blue-0 text-blue-600">
 								<MdPeopleAlt />
@@ -106,37 +102,46 @@ export default function CardSec({ data = {
 							<div className="lg:text-sm text-base text-gray-500">15.1H</div>
 						</div>
 					</div>
-
 					<span className=" flex text-xl justify-between items-center font-bold tracking-tight  text-[#019fde] ">
-						<div>NT$<span>{Price}</span></div>
-
-						<div className='   flex '>
-
-							<button
-								onClick={() => {
-									addItemToCart(data)
-									setCartIcon(!cartIcon)
-								}}>
-								{cartIcon ? <IoCart className="size-8 text-gray-700  lg:my-0 " /> :
-								<IoCartOutline className="size-8 text-gray-700  lg:my-0 " />}
-							</button>
-							<button className=" items-end justify-center"
-								onClick={() => {
-									setIcon(!icon)
-									icon ? deleteData() : getData();
-									icon ? unbookmark() : bookmark()
-								}}>
-								{icon ? <BsBookmarkHeartFill className="size-7 text-red-500  lg:my-0 " /> : <BsBookmarkHeart className=" size-7 text-red-500   lg:my-0  " />}
-							</button>
+						<div>
+							NT$<span>{Price}</span>
 						</div>
-
+						{Boolean(session) && (
+							<div className="flex">
+								<button
+									onClick={() => {
+										addItemToCart(data);
+										setCartIcon(!cartIcon);
+									}}>
+									{cartIcon ? (
+										<IoCart className="size-8 text-gray-700  lg:my-0 " />
+									) : (
+										<IoCartOutline className="size-8 text-gray-700  lg:my-0 " />
+									)}
+								</button>
+								<button
+									className=" items-end justify-center"
+									onClick={() => {
+										setIcon(!icon);
+										icon ? deleteData() : getData();
+										icon ? unbookmark() : bookmark();
+									}}>
+									{icon ? (
+										<BsBookmarkHeartFill className="size-7 text-red-500  lg:my-0 " />
+									) : (
+										<BsBookmarkHeart className=" size-7 text-red-500   lg:my-0  " />
+									)}
+								</button>
+							</div>
+						)}
 					</span>
-					<Link href="/course/1" className='text-lg  hover:text-orange-700 border-blue-600 hover:animate-bounce justify-center flex font-bold rounded-lg   hover:bg-orange-100 bg-blue-100 text-blue-600 '>
-						<button className=' '>詳看課程  </button></Link>
+					<Link
+						href="/course/1"
+						className="text-lg  hover:text-orange-700 border-blue-600 hover:animate-bounce justify-center flex font-bold rounded-lg   hover:bg-orange-100 bg-blue-100 text-blue-600 ">
+						<button className=" ">詳看課程 </button>
+					</Link>
 				</div>
-
 			</div>
-
-		</>
+		</div>
 	);
 }

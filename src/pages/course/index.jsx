@@ -13,7 +13,7 @@ export default function Course() {
 				<Slideshow />
 				<div className="bg-[#fdf9f7]">
 					<Category />
-					<div className=" flex container justify-center">
+					<div className="flex container justify-center py-4">
 						<Pages />
 					</div>
 				</div>
