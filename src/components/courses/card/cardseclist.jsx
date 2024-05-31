@@ -3,7 +3,7 @@ import Search from '../../courses/search/search';
 import CardSec from '../../courses/card/cardsec';
 import toast, { Toaster } from 'react-hot-toast';
 
-export default function CardSecList({ domain, rawDomain, setDomain, count, setCount }) {
+export default function CardSecList({ domain, rawDomain, setDomain }) {
 	const [search, setSearch] = useState('');
 	const [alert, setAlert] = useState('');
 	const bookmark = () => toast.success('加入收藏成功');
@@ -11,17 +11,13 @@ export default function CardSecList({ domain, rawDomain, setDomain, count, setCo
 
 
 	useEffect(() => {
-		setDomain(rawDomain.filter(course => course.CourseName.includes(search)))
+		setDomain(rawDomain.filter(course => course.Name.includes(search)))
 	}, [search]);
 
 	return (
 		<>
 			<div className="">
-
 				<div className=" mt-3  w-full lg:mb-6 lg:mt-6  lg:px-0 ">
-
-
-
 					<div className="my-4 w-full  lg:pl-0 inline-flex items-center justify-between">
 						<div className=" flex items-center  text-Black-800 font-semibold text-2xl text-Black-900  ">
 							共有
@@ -46,6 +42,7 @@ export default function CardSecList({ domain, rawDomain, setDomain, count, setCo
 										data={v}
 										key={v.SN}
 										setSearch={setSearch}
+										Search={Search}
 										setAlert={setAlert}
 										alert={alert}
 										bookmark={bookmark}
