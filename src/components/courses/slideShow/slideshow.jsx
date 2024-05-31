@@ -5,30 +5,34 @@ import Slide from './slide';
 
 export default function Slideshow() {
 	const [courses, setCourses] = useState([]);
-	const data = async () => {
-		const url = `/api/course?limit=11`;
-		try {
-			const res = await fetch(url);
-			const data = await res.json();
-			console.log(data)
-			//確定資料是陣列資料類型才設定到狀態當中
-			if (Array.isArray(data)) {
-				setCourses(data);
-			}
-		} catch (e) {
-			console.error(e);
-			setCourses([]);
-		}
-	};
+
 	useEffect(() => {
+		const data = async () => {
+			const url = `/api/course?limit=11`;
+			try {
+				const res = await fetch(url);
+				const data = await res.json();
+
+				//確定資料是陣列資料類型才設定到狀態當中
+				if (Array.isArray(data)) {
+					setCourses(data);
+				}
+			} catch (e) {
+				console.error(e);
+				setCourses([]);
+			}
+		};
+
 		data();
 	}, []);
+
+	useEffect(() => void import('preline/preline').then(module => module.HSStaticMethods.autoInit()), [courses]);
 
 	return (
 		<>
 			<div className="container ">
 				{/* 輪播 */}
-				
+
 				{/*  */}
 				<div
 					data-hs-carousel='{"loadingClasses": "opacity-0","isAutoPlay": true}'
@@ -66,7 +70,7 @@ export default function Slideshow() {
 					<div className=" hs-carousel relative overflow-hidden w-full     min-h-auto  rounded-lg"
 					>
 						<div className="hs-carousel-body   flex flex-nowrap transition-transform duration-700 opacity-0 ">
-							
+
 							{courses.reduce((pv, cv, i) => {
 								return i % 2 === 0
 									? [...pv, <Slide key={i / 2} data={[cv, courses[i + 1]]} />]
@@ -83,7 +87,7 @@ export default function Slideshow() {
 
 
 			</div>
-			
+
 
 		</>
 	);

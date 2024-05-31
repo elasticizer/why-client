@@ -37,7 +37,7 @@ export default function NavAskList() {
 		const body = new URLSearchParams(new FormData(form));
 		try {
 			const res = await fetch(`/api/review/insert`, { method: 'POST', body });
-			const data = await res.json();
+			const { data } = await res.json();
 			console.log(data);
 			console.log('新增留言成功');
 			setReview([data, ...review])
@@ -105,18 +105,18 @@ export default function NavAskList() {
 			}
 			{/* <CoNavAsk /> */}
 			{/* 學生問題 */}
-			{review.map((review, i) => {
+			{review.map((v, i) => {
 				return (
 					<CoNavAsk
-						data={review}
+						data={v}
 						key={i}
-						content={review.Content}
-						whenCreated={review.WhenCreated}
-						nickname={review.Nickname}
-						res={review.response}
-						SN={review.SN}
+						content={v.Content}
+						whenCreated={v.WhenCreated}
+						nickname={v.Nickname}
+						res={v.response}
+						SN={v.SN}
 						setSendreview={setSendreview}
-						firstname={user.FirstName}
+						firstname={v.FirstName}
 					/>
 				);
 			})}

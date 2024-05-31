@@ -6,13 +6,7 @@ export default function BannerText() {
 		<>
 			<div className="place-content-center p-8 sm:items-center lg:items-center lg:justify-center">
 				<div className="sm:items-center sm:justify-center font-semibold text-white text-4xl md:text-5xl lg:text-6xl">
-					今天想學
-					{/* <div className="w-[500px] border">
-						<Typewriter
-							text="      烹飪______?"
-							typingSpeed={80}
-						/>
-					</div> */}
+					今天想學什麼...?
 				</div>
 
 				<div className="my-8">

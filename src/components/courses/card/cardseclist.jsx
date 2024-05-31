@@ -18,7 +18,7 @@ export default function CardSecList({ domain, rawDomain, setDomain }) {
 		<>
 			<div className="">
 				<div className=" mt-3  w-full lg:mb-6 lg:mt-6  lg:px-0 ">
-					<div className="my-4 w-full  lg:pl-0 inline-flex items-center justify-between">
+					<div className="my-4 w-full  lg:pl-0 inline-flex items-center justify-between flex-col sm:flex-row">
 						<div className=" flex items-center  text-Black-800 font-semibold text-2xl text-Black-900  ">
 							共有
 							<span className=" text-orange-600  font-semibold ms-1 py-0.5 px-1.5 text-2xl "
