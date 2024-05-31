@@ -18,6 +18,9 @@ export default function CheckoutModal({ discount }) {
 			(body, item) => (body.append('courses', item.SN), body),
 			new FormData()
 		);
+		if (selectedCoupon) {
+			fd.append('couponSN', selectedCoupon.SN);
+		}
 		const { data } = await fetch('/api/cart/checkout', {
 			method,
 			body: new URLSearchParams(fd)
@@ -25,6 +28,7 @@ export default function CheckoutModal({ discount }) {
 
 		location.replace(data);
 	};
+
 	return (
 		<div
 			id="hs-basic-modal"

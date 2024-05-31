@@ -18,6 +18,10 @@ router.post(async (req, res) => {
 	const path = '/v3/payments/request';
 
 	const user = await Session.associate(req.cookies.SESSION_ID);
+
+	// 取出傳遞的優惠券 SN
+	const couponSN = req.body.couponSN || null;
+
 	const [cart] = await connection.execute(
 		`SELECT
       Course.SN AS id,
@@ -28,29 +32,32 @@ router.post(async (req, res) => {
     WHERE UserSN = ?`,
 		[user.SN]
 	);
+
 	const [[order]] = await connection.execute(
 		'INSERT INTO "Order" (UUID, LearnerSN, CouponSN) VALUES (?, ?, ?) RETURNING SN, UUID',
-		[randomUUID(), user.SN, null]
+		[randomUUID(), user.SN, couponSN]
 	);
 
-	[req.body.courses].flat().forEach(
-		async courseSN =>
-			await connection.execute(
-				'INSERT INTO OrderDetail (OrderSN, CourseSN) VALUES (?, ?)',
-				[order.SN, courseSN]
-			)
-	);
+	[req.body.courses]
+		.flat()
+		.forEach(
+			async courseSN =>
+				await connection.execute(
+					'INSERT INTO OrderDetail (OrderSN, CourseSN) VALUES (?, ?)',
+					[order.SN, courseSN]
+				)
+		);
 
 	const [products] = await connection.execute(
 		`SELECT
-			Course.SN AS id,
-			Course.Name AS name,
-			Course.Price AS price,
-			1 AS quantity
-		FROM Course
-		JOIN OrderDetail ON OrderDetail.CourseSN = Course.SN
-		JOIN "Order" ON "Order".SN = OrderDetail.OrderSN
-		WHERE "Order".SN = ?`,
+      Course.SN AS id,
+      Course.Name AS name,
+      Course.Price AS price,
+      1 AS quantity
+    FROM Course
+    JOIN OrderDetail ON OrderDetail.CourseSN = Course.SN
+    JOIN "Order" ON "Order".SN = OrderDetail.OrderSN
+    WHERE "Order".SN = ?`,
 		[order.SN]
 	);
 
@@ -98,7 +105,7 @@ router.post(async (req, res) => {
 	}
 
 	// 結帳後清除購物車
-	await connection.execute('DELETE FROM Cart');
+	await connection.execute('DELETE FROM Cart WHERE UserSN = ?', [user.SN]);
 
 	res.status(StatusCodes.CREATED).json({
 		done: true,
@@ -107,25 +114,3 @@ router.post(async (req, res) => {
 });
 
 export default router.handler({ onError, onNoMatch });
-
-async function hmac(secret, body) {
-	const encoder = new TextEncoder();
-	const algorithm = { name: 'HMAC', hash: 'SHA-256' };
-	const key = await crypto.subtle.importKey(
-		'raw',
-		encoder.encode(secret),
-		algorithm,
-		false,
-		['sign']
-	);
-	const signature = await crypto.subtle.sign(
-		algorithm.name,
-		key,
-		encoder.encode(body)
-	);
-	const digest = btoa(String.fromCharCode(...new Uint8Array(signature)));
-
-	console.log(digest);
-
-	return digest;
-}

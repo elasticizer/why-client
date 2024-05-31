@@ -20,22 +20,29 @@ router.get(async (req, res) => {
 		File.Filename, 
 		Course.Name AS Name, 
 		Course.Price AS Amount,
-		Course.SN AS CourseSN
+		Course.SN AS CourseSN,
+		Coupon.DiscountRate
 		FROM "Order"
 		JOIN "OrderDetail" ON "Order"."SN" = "OrderDetail"."OrderSN"
 		JOIN Course ON Course.SN = OrderDetail.CourseSN
 		JOIN File ON Course.ThumbnailSN = File.SN
 		JOIN User ON User.SN = "Order".LearnerSN
+		LEFT JOIN Coupon ON "Order".CouponSN = Coupon.SN
 		WHERE User.SN = ?`,
 		[user.SN]
 	);
-	const order = results.reduce((total, value) => {
-		(total[value.SN] ??= []).push(value);
 
-		return total;
+	const orders = results.reduce((acc, order) => {
+		if (!acc[order.SN]) {
+			acc[order.SN] = [];
+		}
+		acc[order.SN].push(order);
+		return acc;
 	}, {});
 
-	res.status(200).json(Object.values(order));
+	const sortedOrders = Object.values(orders).sort((a, b) => new Date(b[0].WhenPaid) - new Date(a[0].WhenPaid));
+
+	res.status(200).json(sortedOrders);
 });
 
 export default router.handler({ onError, onNoMatch });

@@ -23,7 +23,14 @@ export function CartProvider({ children }) {
 			if (!data.done) {
 				return;
 			}
-
+			const notify = () => {
+				MySwal.fire({
+					title: `<p style="font-size: 1.5rem;">成功加入購物車</p>`,
+					icon: 'success',
+					timer: 1000
+				});
+			};
+			notify();
 			const newItem = { ...course, qty: 1 };
 			const nextItem = [newItem, ...cartItem];
 

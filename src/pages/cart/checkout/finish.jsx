@@ -1,6 +1,7 @@
 import Home from '@/layouts/home';
 import CartLayout from '@/layouts/cart';
 import Finish from '@/components/checkout/finish';
+import 'animate.css';
 
 export default function CheckOut() {
 	return (
@@ -8,7 +9,9 @@ export default function CheckOut() {
 			<Home>
 				<CartLayout>
 					<title>結帳成功</title>
-					<Finish />
+					<div className="animate__animated animate__fadeInLeft">
+						<Finish />
+					</div>
 				</CartLayout>
 			</Home>
 		</>

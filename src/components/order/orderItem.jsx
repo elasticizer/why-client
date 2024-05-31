@@ -13,6 +13,8 @@ export default function OrderItem({ item }) {
 		(sum, currentItem) => sum + currentItem.Amount,
 		0
 	);
+	const discount = item[0].DiscountRate * totalAmount;
+	
 	return (
 		<>
 			<div className="container">
@@ -28,7 +30,9 @@ export default function OrderItem({ item }) {
 							</p>
 							{/* 訂單日期 */}
 							<p className="text-sm">
-								{new Date(item[0].WhenCheckedOut + 'Z').toLocaleString().slice(0, 9)}
+								{new Date(item[0].WhenCheckedOut + 'Z')
+									.toLocaleString()
+									.slice(0, 9)}
 							</p>
 						</div>
 						{item[0].WhenPaid ? (
@@ -102,7 +106,7 @@ export default function OrderItem({ item }) {
 											折扣
 										</p>
 										<p className="text-gray-600 lg:text-base md:text-sm sm:text-sm">
-											NT$100
+											-NT${discount}
 										</p>
 									</div>
 									<div>
@@ -110,7 +114,7 @@ export default function OrderItem({ item }) {
 											付款金額
 										</p>
 										<p className="text-gray-600 lg:text-base md:text-sm sm:text-sm">
-											NT${totalAmount - 100}
+											NT${totalAmount - discount}
 										</p>
 									</div>
 								</div>
