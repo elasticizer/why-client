@@ -10,11 +10,6 @@ export default function CoNavAsk({ SN, content, firstname, res, whenCreated, nic
         <div className="w-full h-auto p-5 border inline-flex gap-4">
             <div className="w-12 h-12 bg-white/opacity-0 rounded-3xl shadow border-black/opacity-5 justify-center items-center inline-flex bg-cover"
                 style={{ backgroundImage: `url('/images/comment${SN}.jpg')` }}>
-                {/* <img
-                    className="inline-block size-[46px] rounded-full"
-                    src="/images/cat-5.jpg"
-                    alt="Image Description"
-                /> */}
             </div>
             <div className="w-full inline-flex flex-col">
                 <div className="inline-flex gap-3">
@@ -83,7 +78,6 @@ export default function CoNavAsk({ SN, content, firstname, res, whenCreated, nic
                     </div>
                     <div className="pt-2 w-full flex justify-end gap-2">
                         <button
-                            
                             type="button"
                             className="rounded-lg px-2 py-1 inline-flex flex-shrink-0 justify-center items-center size-18 text-white bg-blue-600 hover:bg-blue-500 focus:z-10 focus:outline-none focus:ring-2 focus:ring-blue-500">
                             取消

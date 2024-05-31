@@ -20,9 +20,7 @@ export default function NavAskList() {
 				if (!res.ok) {
 					throw new Error(`HTTP error! status: ${res.status}`);
 				}
-
 				const viewdata = await res.json();
-
 				console.log(viewdata);
 				setReview(viewdata);
 			} catch (e) {
@@ -37,9 +35,7 @@ export default function NavAskList() {
 		e.preventDefault();
 		const form = e.currentTarget;
 		const body = new URLSearchParams(new FormData(form));
-
 		try {
-
 			const res = await fetch(`/api/review/insert`, { method: 'POST', body });
 			const data = await res.json();
 			console.log(data);
@@ -63,14 +59,9 @@ export default function NavAskList() {
 				</div>
 			</div>
 			<div className="px-3  text-neutral-500 font-semibold text-normal font-['Inter']  subpixel-antialiased leading-loose">
-
 				<br />
-
 			</div>
 			<div className="w-full  ">
-				{/* 搜尋 */}
-
-				{/* 排序 */}
 			</div>
 			{
 				user && review.every(item => item.LearnerSN !== user.SN) ?
@@ -89,7 +80,7 @@ export default function NavAskList() {
 									type="text"
 									name="content"
 									className=" peer py-3 px-4 ps-5 block w-full bg-gray-200/55 border-transparent rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-700 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
-									placeholder="在這輸入您的問題吧"
+									placeholder="在此留下對課程的評論吧"
 									ref={inputEl}
 								/>
 								<button
