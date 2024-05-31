@@ -23,23 +23,34 @@ router.get(async (req, res) => {
 	const id = user.SN;
 
 	const sql = `
-	SELECT CollectedCourse.UserSN,CollectedCourse.CourseSN AS CollectedCoursSN, Course.SN, Course.Name, Course.Price, Teacher.Nickname, File.Filename, Domain.SN AS DomainSN,Domain.Name AS DomainName, COUNT(*) AS Total
-	FROM
+	SELECT
+    CollectedCourse.UserSN,
+    CollectedCourse.CourseSN AS CollectedCoursSN,
+    Course.SN,
+    Course.Name,
+    Course.Price,
+    Teacher.Nickname,
+    File.Filename,
+    Domain.SN AS DomainSN,
+    Domain.Name AS DomainName,
+    IFNULL(AVG(Review.Rate), 0) AS AveRating,
+    COUNT(*) AS Total
+FROM
     Course
     JOIN User AS Teacher ON Teacher.SN = Course.TeacherSN
     JOIN File ON File.SN = Course.ThumbnailSN
     JOIN Domain ON Domain.SN = Course.DomainSN
-		JOIN CollectedCourse ON CollectedCourse.CourseSN=Course.SN
-	WHERE
+    JOIN CollectedCourse ON CollectedCourse.CourseSN = Course.SN
+    LEFT JOIN Review ON Review.CourseSN = Course.SN
+WHERE
     Course.SN IN (
         SELECT CourseSN
         FROM CollectedCourse
         WHERE
             UserSN = ?
     )
-	GROUP BY
+GROUP BY
     Course.SN;
-
 	`;
 	let [results] = await connection.execute(sql, [id]); // TODO
 

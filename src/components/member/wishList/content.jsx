@@ -39,8 +39,7 @@ export default function Content({ domain, search }) {
 							picUrl={v.Filename}
 							price={v.Price}
 							quantity={v.Total}
-							// rating={data && v.rating}
-							rating={3}
+							rating={v.AveRating}
 							setDataSuccess={setDataSuccess}
 						/>
 					);
