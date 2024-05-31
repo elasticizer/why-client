@@ -19,19 +19,7 @@ router.post(async (req, res) => {
 
 	const user = await Session.associate(req.cookies.SESSION_ID);
 
-	// 取出傳遞的優惠券 SN
-	const couponSN = req.body.couponSN || null;
-
-	const [cart] = await connection.execute(
-		`SELECT
-      Course.SN AS id,
-      Course.Price AS price,
-      Course.Name AS name,
-      1 AS quantity
-    FROM Cart JOIN Course ON Course.SN = Cart.CourseSN
-    WHERE UserSN = ?`,
-		[user.SN]
-	);
+	const couponSN = req.body.coupon || null;
 
 	const [[order]] = await connection.execute(
 		'INSERT INTO "Order" (UUID, LearnerSN, CouponSN) VALUES (?, ?, ?) RETURNING SN, UUID',
@@ -57,13 +45,30 @@ router.post(async (req, res) => {
     FROM Course
     JOIN OrderDetail ON OrderDetail.CourseSN = Course.SN
     JOIN "Order" ON "Order".SN = OrderDetail.OrderSN
+		LEFT JOIN Coupon ON Coupon.SN = "Order".CouponSN
     WHERE "Order".SN = ?`,
 		[order.SN]
 	);
 
 	const name = env.APP_NAME;
-	const amount = products.reduce((total, value) => total + value.price, 0);
-	console.log(amount);
+	
+	
+	const [[coupon]] = await connection.execute(
+		`SELECT
+		Coupon.Identifier AS id,
+		Coupon.Name as name,
+		SUM(Course.Price) * Coupon.DiscountRate * -1 AS price,
+		1 AS quantity
+		FROM Coupon
+		JOIN "Order" ON "Order".CouponSN = Coupon.SN
+		JOIN OrderDetail ON OrderDetail.OrderSN = "Order".SN
+		JOIN Course ON Course.SN = OrderDetail.CourseSN
+		WHERE "Order".SN = ?`,
+		[order.SN]
+	);
+	const amount = products.reduce((total, value) => total + value.price, coupon.price ?? 0);
+
+	console.log(products);
 	const body = JSON.stringify({
 		amount,
 		currency: 'TWD',
@@ -73,7 +78,7 @@ router.post(async (req, res) => {
 				id: 1,
 				amount,
 				name,
-				products
+				products: [...products, coupon.id ? coupon : null].filter(Boolean)
 			}
 		],
 		redirectUrls: {
@@ -81,6 +86,7 @@ router.post(async (req, res) => {
 			cancelUrl: `${env.APP_URL}/${env.LINEPAY_RETURN_CANCEL_URL}`
 		}
 	});
+	console.log(coupon);
 
 	const method = 'POST';
 	const nonce = randomUUID();

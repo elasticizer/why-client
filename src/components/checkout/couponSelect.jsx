@@ -19,6 +19,7 @@ export default function CouponSelect() {
 		};
 		getCoupons();
 	}, []);
+	console.log(coupons);
 
 	return (
 		<div className="border border-gray-300 rounded-lg p-4">

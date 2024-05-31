@@ -19,8 +19,9 @@ router.get(async (req, res) => {
 	const path = `/v3/payments/${transactionId}/confirm`;
 	const [[order]] = await connection.execute(
 		`SELECT
-		SUM(Course.Price) AS Total
+		SUM(Course.Price) * (1 - IFNULL(Coupon.DiscountRate, 0)) AS Total
 		FROM "Order"
+		LEFT JOIN Coupon ON Coupon.SN = "Order".CouponSN
 		JOIN OrderDetail ON OrderDetail.OrderSN = "Order".SN
 		JOIN Course ON Course.SN = OrderDetail.CourseSN
 		WHERE "Order".UUID = ?`,

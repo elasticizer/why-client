@@ -17,8 +17,8 @@ export default function CartList() {
 			const url = '/api/cart';
 			try {
 				const res = await fetch(url);
-				const data = await res.json();
-				setCourse(data);
+				const { done, data } = await res.json();
+				setCourse(done ? data : []);
 			} catch (e) {
 				setCourse([]);
 			}

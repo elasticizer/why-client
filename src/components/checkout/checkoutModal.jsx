@@ -19,7 +19,7 @@ export default function CheckoutModal({ discount }) {
 			new FormData()
 		);
 		if (selectedCoupon) {
-			fd.append('couponSN', selectedCoupon.SN);
+			fd.append('coupon', selectedCoupon.SN);
 		}
 		const { data } = await fetch('/api/cart/checkout', {
 			method,
