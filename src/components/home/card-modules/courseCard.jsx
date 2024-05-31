@@ -5,6 +5,7 @@ import 'aos/dist/aos.css';
 import { useEffect } from 'react';
 import Tags from '@/components/home/card-modules/tags';
 import { stripHtml } from 'string-strip-html';
+import Link from 'next/link';
 
 export default function CourseCard({ data }) {
 	useEffect(() => {
@@ -15,9 +16,9 @@ export default function CourseCard({ data }) {
 
 	return (
 		<>
-			<a
+			<Link
 				className="group"
-				href="#">
+				href="/course/1">
 				<div className="relative pt-[50%] sm:pt-[70%] rounded-xl overflow-hidden">
 					<img
 						className="size-full absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
@@ -46,7 +47,7 @@ export default function CourseCard({ data }) {
 						</div>
 					</div>
 				</div>
-			</a>
+			</Link>
 		</>
 	);
 }

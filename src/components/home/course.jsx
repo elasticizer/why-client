@@ -13,7 +13,7 @@ export default function Course() {
 	useEffect(() => {
 		const fetchData = async () => {
 			try {
-				const res = await fetch('/api/course');
+				const res = await fetch('/api/latestCourse');
 				let postData = await res.json();
 				setData(postData);
 			} catch (error) {
