@@ -1,4 +1,4 @@
-import { createRouter } from "next-connect";
+import { createRouter } from 'next-connect';
 import multer from 'multer';
 import { extname, join } from 'path';
 import { randomUUID } from 'crypto';
@@ -8,10 +8,9 @@ import { StatusCodes } from 'http-status-codes';
 import Session from '@/helpers/session';
 import { RouteError } from '@/handlers/router';
 
-
 const storage = multer.diskStorage({
 	destination: function (req, file, cb) {
-		cb(null, join("public", "learner", "LessonVideo"));
+		cb(null, join('public', 'learner', 'LessonVideo'));
 	},
 
 	filename: function (req, file, cb) {
@@ -23,34 +22,26 @@ const storage = multer.diskStorage({
 const router = createRouter();
 const upload = multer({ storage });
 
-
 export const config = {
 	api: {
 		bodyParser: false
 	}
 };
 
-router.use(upload.single("video")).post(async (req, res) => {
-
-
+router.use(upload.single('video')).post(async (req, res) => {
 	const sessionId = req.cookies.SESSION_ID;
 
 	if (!sessionId) {
-		throw new RouteError(
-			StatusCodes.FORBIDDEN,
-			'沒有登入'
-		);
+		throw new RouteError(StatusCodes.FORBIDDEN, '沒有登入');
 	}
 
 	if (req.body._method) {
-
 		const putInforString = req.body.putInfor;
 		const putInforObj = JSON.parse(putInforString);
-console.log("修改api");
+		console.log('修改api');
 		console.log(putInforString);
 		console.log(putInforObj);
 		console.log(1111111);
-
 
 		const lessonSN = putInforObj.SN;
 		const newLessonTitle = req.body.lessonTitle;
@@ -62,29 +53,30 @@ console.log("修改api");
 		const user = await Session.associate(sessionId);
 		const userSN = user.SN;
 
-		const [[fileResult]] = await connection.execute('INSERT INTO File (Filename,Extension,ContentType,ContentHash,UploaderSN) VALUES (?,?,?,?,?) RETURNING SN', [filename, ext, contentType, uuid, userSN]);
+		const [[fileResult]] = await connection.execute(
+			'INSERT INTO File (Filename,Extension,ContentType,ContentHash,UploaderSN) VALUES (?,?,?,?,?) RETURNING SN',
+			[filename, ext, contentType, uuid, userSN]
+		);
 
 		const newFileSN = fileResult.SN;
 
-		const [result] = await connection.execute('UPDATE LESSON SET Title=?,VideoSN=?,WhenLastEdited=CURRENT_TIMESTAMP WHERE SN=? RETURNING SN', [newLessonTitle, newFileSN, lessonSN]);
+		const [result] = await connection.execute(
+			'UPDATE LESSON SET Title=?,VideoSN=?,WhenLastEdited=CURRENT_TIMESTAMP WHERE SN=? RETURNING SN',
+			[newLessonTitle, newFileSN, lessonSN]
+		);
 
-		const [[lessonResult]] = await connection.execute('SELECT SN, Title, WhenCreated, WhenLastEdited FROM Lesson WHERE SN=?', [lessonSN]);
-
-
-
+		const [[lessonResult]] = await connection.execute(
+			'SELECT SN, Title, WhenCreated, WhenLastEdited FROM Lesson WHERE SN=?',
+			[lessonSN]
+		);
 
 		if (result.length > 0) {
 			// console.log("成功修改");
 			res.status(201).json(lessonResult);
 		} else {
-			console.log("修改失敗");
-
+			console.log('修改失敗');
 		}
-
-
-
 	} else {
-		console.log("新的api");
 		const { lessonTitle } = req.body;
 		const file = req.file;
 
@@ -94,7 +86,10 @@ console.log("修改api");
 		const uuid = randomUUID();
 		const user = await Session.associate(sessionId);
 
-		const [[fileResult]] = await connection.execute('INSERT INTO File (Filename,Extension,ContentType,ContentHash,UploaderSN) VALUES (?,?,?,?,?) RETURNING SN', [filename, ext, contentType, uuid, user.SN]);
+		const [[fileResult]] = await connection.execute(
+			'INSERT INTO File (Filename,Extension,ContentType,ContentHash,UploaderSN) VALUES (?,?,?,?,?) RETURNING SN',
+			[filename, ext, contentType, uuid, user.SN]
+		);
 
 		const viedoSN = fileResult.SN;
 
@@ -108,13 +103,6 @@ console.log("修改api");
 		res.status(200).json(lessonResult);
 		// 可以獲得這次上傳的章節的章節SN
 	}
-
-
 });
-
-
-
-
-
 
 export default router.handler({ onError, onNoMatch });

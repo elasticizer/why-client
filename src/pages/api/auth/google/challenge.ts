@@ -44,7 +44,7 @@ router.get(async (req, res) => {
 		maxAge: 0,
 		httpOnly: true,
 		path: '/',
-		sameSite: 'lax',
+		sameSite: 'lax'
 		// secure: true
 	});
 
@@ -72,7 +72,7 @@ router.get(async (req, res) => {
 		maxAge: 24 * 60 * 60,
 		httpOnly: true,
 		path: '/',
-		sameSite: 'lax',
+		sameSite: 'lax'
 		// secure: true
 	});
 
@@ -91,7 +91,7 @@ function getAccessToken(code: string): Promise<OAuthResponse> {
 			client_secret: env.GOOGLE_CLIENT_SECRET as string,
 			code: code as string,
 			grant_type: 'authorization_code',
-			redirect_uri: env.GOOGLE_REDIRECT_URI as string
+			redirect_uri: `${env.APP_URL}${env.GOOGLE_REDIRECT_URI as string}`
 		} as OAuthRequest)
 	};
 

@@ -1,12 +1,16 @@
-import { useEffect } from 'react';
+import type { Uncertain } from '@/types';
+import { useEffect, useRef } from 'react';
 
 type ModalProps = {
-	id: string;
+	done: Uncertain<boolean>;
 	summary?: string;
 	message: string;
 };
 
-export default function Modal({ id, summary, message }: ModalProps) {
+export default function Modal({ done, summary, message }: ModalProps) {
+	const id = 'hs-vertically-centered-modal';
+	const ref = useRef<HTMLDivElement>(null);
+
 	useEffect(
 		() =>
 			void import('preline/preline').then(module =>
@@ -15,10 +19,23 @@ export default function Modal({ id, summary, message }: ModalProps) {
 		[]
 	);
 
+	useEffect(
+		() =>
+			typeof done === 'boolean'
+				? (window as any).HSOverlay.open(ref.current as HTMLDivElement)
+				: (window as any).HSOverlay.close(ref.current as HTMLDivElement),
+		[done]
+	);
+
 	return (
 		<div
+			{...{ ref }}
 			{...{ id }}
-			className="hs-overlay hs-overlay-backdrop-open:bg-red-500/50 hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none [--overlay-backdrop:static]">
+			className={`hs-overlay ${
+				done
+					? 'hs-overlay-backdrop-open:bg-blue-500/50'
+					: 'hs-overlay-backdrop-open:bg-red-500/50'
+			} hidden size-full fixed top-0 start-0 z-[80] overflow-x-hidden overflow-y-auto pointer-events-none [--overlay-backdrop:static]`}>
 			<div className="hs-overlay-open:mt-7 hs-overlay-open:opacity-100 hs-overlay-open:duration-500 mt-0 opacity-0 ease-out transition-all sm:max-w-lg sm:w-full m-3 sm:mx-auto min-h-[calc(100%-3.5rem)] flex items-center">
 				<div className="w-full flex flex-col bg-white border shadow-sm rounded-xl pointer-events-auto dark:bg-neutral-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
 					<div className="flex justify-between items-center py-3 px-4 border-b dark:border-neutral-700">

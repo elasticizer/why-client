@@ -6,7 +6,7 @@ export default function Google() {
 	return (
 		<OAuth
 			name="Google"
-			onClick={() => location.assign('http://localhost:3000/api/auth/google')}>
+			onClick={() => location.assign('/api/auth/google')}>
 			<FcGoogle size={24} />
 		</OAuth>
 	);

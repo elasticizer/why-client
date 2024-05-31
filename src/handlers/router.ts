@@ -2,17 +2,16 @@ import chalk from 'chalk';
 import { ReasonPhrases, StatusCodes } from 'http-status-codes';
 import type { NextApiRequest, NextApiResponse } from 'next';
 
-export function onError(
-	e: unknown,
-	_: NextApiRequest,
-	res: NextApiResponse
-) {
-	const { code, summary, message } = e instanceof RouteError
-		? e
-		: new RouteError(
-			StatusCodes.INTERNAL_SERVER_ERROR,
-			e instanceof Error ? e.message : String(e)
-		);
+export function onError(e: unknown, _: NextApiRequest, res: NextApiResponse) {
+	console.log(e);
+
+	const { code, summary, message } =
+		e instanceof RouteError
+			? e
+			: new RouteError(
+					StatusCodes.INTERNAL_SERVER_ERROR,
+					e instanceof Error ? e.message : String(e)
+			  );
 
 	res.status(code).json({
 		done: false,
@@ -21,12 +20,9 @@ export function onError(
 			message
 		}
 	});
-};
+}
 
-export function onNoMatch(
-	_: NextApiRequest,
-	res: NextApiResponse
-) {
+export function onNoMatch(_: NextApiRequest, res: NextApiResponse) {
 	res.status(StatusCodes.METHOD_NOT_ALLOWED).json({
 		done: false,
 		info: {

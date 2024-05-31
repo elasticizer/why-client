@@ -69,8 +69,12 @@ export function CartProvider({ children }) {
 		fetchCartItems();
 	}, []);
 
-	const totalQty = cartItem && cartItem.reduce(acc => acc + 1, 0);
-	const totalPrice = cartItem.reduce((acc, v) => acc + 1 * v.Price, 0);
+	const totalQty =
+		cartItem.length === 0 ? 0 : cartItem.reduce(acc => acc + 1, 0);
+	const totalPrice =
+		cartItem.length === 0
+			? 0
+			: cartItem.reduce((acc, v) => acc + 1 * v.Price, 0);
 
 	return (
 		<CartContext.Provider

@@ -24,19 +24,22 @@ router.get(async (req, res) => {
 	const agent = req.headers['user-agent'];
 
 	try {
-		const data = verify(token, env.APP_KEY as string) as Record<string, unknown>;
+		const data = verify(token, env.APP_KEY as string) as Record<
+			string,
+			unknown
+		>;
 		const identifier = randomUUID();
 
 		await connection.execute(
 			`INSERT INTO Session (UUID, ChallengeToken, IP, UserAgent, UserSN) VALUES (?, ?, ?, ?, ?)`,
-			[identifier, token, ip, agent, data.sn]
+			[identifier, token, ip ?? '', agent, data.sn]
 		);
 
 		const cookie = serialize('SESSION_ID', identifier, {
 			maxAge: 24 * 60 * 60,
 			httpOnly: true,
 			path: '/',
-			sameSite: 'lax',
+			sameSite: 'lax'
 			// secure: true
 		});
 
@@ -46,6 +49,8 @@ router.get(async (req, res) => {
 			data: null
 		});
 	} catch (e) {
+		console.log(e);
+
 		throw new RouteError(
 			StatusCodes.UNAUTHORIZED,
 			'Invalid token received',
@@ -60,10 +65,7 @@ function getToken(req: NextApiRequest) {
 	const token = [req.query.token].flat().at(-1);
 
 	if (!token) {
-		throw new RouteError(
-			StatusCodes.BAD_REQUEST,
-			'Token not received'
-		);
+		throw new RouteError(StatusCodes.BAD_REQUEST, 'Token not received');
 	}
 
 	return token;

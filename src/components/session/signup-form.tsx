@@ -175,8 +175,8 @@ export default function SigninForm() {
 			</form>
 
 			<Modal
-				id={ids.modal}
-				summary={done ? '成功註冊' : '重複註冊'}
+				{...{ done }}
+				summary={done ? '註冊成功' : '註冊失敗'}
 				message={
 					done
 						? '請前往收件匣，按照驗證信的指示登入。'

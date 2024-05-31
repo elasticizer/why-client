@@ -1,4 +1,4 @@
-import { useId, useState } from 'react';
+import { useId, useRef, useState } from 'react';
 import Modal from './modal';
 import type { Nullable, Uncertain } from '@/types';
 import type { ApiResponseBody } from '@/types/api';
@@ -10,8 +10,7 @@ export default function SigninForm() {
 	const ids = {
 		email: useId(),
 		error: useId(),
-		persistent: useId(),
-		modal: 'hs-vertically-centered-modal'
+		persistent: useId()
 	};
 	const [done, setDone] = useState<Uncertain<boolean>>(undefined);
 	const [emailValid, setEmailValid] = useState<Nullable<boolean>>(null);
@@ -36,11 +35,6 @@ export default function SigninForm() {
 					await sleep(1000n);
 
 					setDone((data as ApiResponseBody<null>).done);
-					import('preline/preline').then(module =>
-						module.HSOverlay.open(
-							document.getElementById(ids.modal) as HTMLElement
-						)
-					);
 				}}>
 				<div className="grid gap-y-4">
 					<div>
@@ -116,8 +110,13 @@ export default function SigninForm() {
 			</form>
 
 			<Modal
-				id={ids.modal}
-				message={done ? '請前往收件匣，按照驗證信的指示登入。' : '請先註冊。'}
+				{...{ done }}
+				summary={done ? '登入驗證' : '登入失敗'}
+				message={
+					done
+						? '請前往收件匣，按照驗證信的指示登入。'
+						: '電子郵件地址未被註冊，請註冊帳戶並再試一次。'
+				}
 			/>
 		</>
 	);

@@ -42,7 +42,7 @@ router.post(async (req, res) => {
 
 	res.status(StatusCodes.OK).json({
 		done: true,
-		data: null
+		data: link
 	});
 });
 
