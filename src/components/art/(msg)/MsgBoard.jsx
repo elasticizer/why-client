@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from "react";
 import Msg from "./Msg";
 import { IoClose } from "react-icons/io5";
 import { pusherClient } from "@/utils/pusher";
-
+import { motion } from "framer-motion";
 export default function MsgBoard({ memberId, userId, name, img, setOpen }) {
   const [msgTosend, setMsgTosend] = useState("");
   const [roomId, setRoomId] = useState(null);
@@ -97,7 +97,10 @@ export default function MsgBoard({ memberId, userId, name, img, setOpen }) {
 
   return (
     <>
-      <div className="w-[350px] h-fit fixed left-36 flex flex-col shadow-xl bg-theme-1 p-5 rounded-3xl z-50 bottom-20 gap-5">
+      <motion.div 
+         initial={{ opacity: 0 ,y:30 }}
+         animate={{ opacity: 1 ,y:0}}
+         exit={{ opacity: 0 }} className="w-[350px] h-fit fixed left-36 flex flex-col shadow-xl bg-theme-1 p-5 rounded-3xl z-50 bottom-20 gap-5">
         <div className="flex items-center rounded-xl justify-between">
           <div className="flex items-center gap-5">
             <div className="avatar">
@@ -145,7 +148,7 @@ export default function MsgBoard({ memberId, userId, name, img, setOpen }) {
             送出
           </button>
         </form>
-      </div>
+      </motion.div >
     </>
   );
 }

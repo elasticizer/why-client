@@ -3,6 +3,7 @@ import useSWR from "swr";
 import { fetcher } from "@/utils/utils";
 import { IoMdContact } from "react-icons/io";
 import ContactLiItem from "./ContactLiItem";
+import { motion } from "framer-motion";
 export default function Contact({ userId, setOpenMyMsg ,setOpenConversation}) {
   const { data, error, isLoading } = useSWR(
     `/api/art/author/${userId}/contact`,
@@ -17,7 +18,10 @@ export default function Contact({ userId, setOpenMyMsg ,setOpenConversation}) {
     );
   
   return (
-    <div className="w-[350px] h-fit flex flex-col shadow-xl bg-theme-1 p-5 rounded-3xl z-50 gap-3">
+    <motion.div 
+         initial={{ opacity: 0 ,y:30 }}
+         animate={{ opacity: 1 ,y:0}}
+         exit={{ opacity: 0 }} className="w-[350px] h-fit flex flex-col shadow-xl bg-theme-1 p-5 rounded-3xl z-50 gap-3">
       <div className="flex items-center gap-5 rounded-xl justify-between ">
         <div className="flex items-center gap-3">
           <IoMdContact className="icon" />
@@ -47,6 +51,6 @@ export default function Contact({ userId, setOpenMyMsg ,setOpenConversation}) {
           })}
         </div>
       </ul>
-    </div>
+    </motion.div >
   );
 }

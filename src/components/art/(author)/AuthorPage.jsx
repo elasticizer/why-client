@@ -12,6 +12,7 @@ import { fetcher } from '@/utils/utils';
 import EditIntroBtn from './EditIntroBtn';
 import MsgBoardImcoming from '../(msg)/MsgBoardImcoming';
 import { motion } from 'framer-motion';
+import { AnimatePresence } from 'framer-motion';
 
 export default function AuthorPage({ id }) {
 	const { data, error, isLoading } = useSWR(`/api/art/author/${id}`, fetcher);
@@ -77,7 +78,7 @@ export default function AuthorPage({ id }) {
 										setShowedIntro={setShowedIntro}></EditIntroBtn>
 
 									<button
-										className="btn font-bold rounded-full"
+										className="btn font-bold rounded-full ml-auto"
 										onClick={() => {
 											setOpenMyMsg(true);
 										}}>
@@ -102,26 +103,28 @@ export default function AuthorPage({ id }) {
 				</motion.div>
 			</section>
 			<div className="fixed left-48 bottom-10 flex flex-row gap-10 z-50 items-end">
-				{openMyMsg && auth && (
-					<Contact
-						userId={auth?.id}
-						setOpenMyMsg={setOpenMyMsg}
-						setOpenConversation={setOpenConversation}></Contact>
-				)}
-				{open && auth && (
-					<MsgBoard
-						memberId={author_id}
-						userId={auth?.id}
-						name={name}
-						img={profile_image_url}
-						setOpen={setOpen}></MsgBoard>
-				)}
-				{openConversation && auth && (
-					<MsgBoardImcoming
-						roomId={openConversation}
-						userId={auth?.id}
-						setOpenConversation={setOpenConversation}></MsgBoardImcoming>
-				)}
+				<AnimatePresence >
+					{openMyMsg && auth && (
+						<Contact
+							userId={auth?.id}
+							setOpenMyMsg={setOpenMyMsg}
+							setOpenConversation={setOpenConversation}></Contact>
+					)}
+					{open && auth && (
+						<MsgBoard
+							memberId={author_id}
+							userId={auth?.id}
+							name={name}
+							img={profile_image_url}
+							setOpen={setOpen}></MsgBoard>
+					)}
+					{openConversation && auth && (
+						<MsgBoardImcoming
+							roomId={openConversation}
+							userId={auth?.id}
+							setOpenConversation={setOpenConversation}></MsgBoardImcoming>
+					)}
+				</AnimatePresence>
 			</div>
 		</>
 	);

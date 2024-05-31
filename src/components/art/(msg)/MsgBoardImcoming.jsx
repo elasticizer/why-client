@@ -5,6 +5,7 @@ import { pusherClient } from "@/utils/pusher";
 import useSWR from "swr";
 import { fetcher } from "@/utils/utils";
 import MsgTarget from "./MsgTarget";
+import { motion } from "framer-motion";
 
 export default function MsgBoardImcoming({
   userId,
@@ -86,7 +87,10 @@ export default function MsgBoardImcoming({
   const target_id = userId === member_id ? user_id : member_id;
   return (
     <>
-      <div className="w-[350px] h-fit flex flex-col shadow-xl bg-theme-1 p-5 rounded-3xl z-50 gap-5">
+     <motion.div 
+         initial={{ opacity: 0 ,y:30 }}
+         animate={{ opacity: 1 ,y:0}}
+         exit={{ opacity: 0 }} className="w-[350px] h-fit flex flex-col shadow-xl bg-theme-1 p-5 rounded-3xl z-50 gap-5">
         <div className="flex items-center rounded-xl justify-between ">
           <MsgTarget target_id={target_id}></MsgTarget>
 
@@ -127,7 +131,7 @@ export default function MsgBoardImcoming({
             送出
           </button>
         </form>
-      </div>
+      </motion.div>
     </>
   );
 }
