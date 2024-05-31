@@ -58,11 +58,13 @@ export default function Navbar() {
 								href="#">
 								部落格
 							</Link>
-							<Link
-								className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
-								href="/cart">
-								購物車
-							</Link>
+							{session ? (
+								<Link
+									className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
+									href="/cart">
+									購物車
+								</Link>
+							) : null}
 							{session ? <LogoutSession /> : <LoginSession />}
 						</div>
 					</div>
