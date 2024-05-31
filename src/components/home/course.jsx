@@ -39,38 +39,38 @@ export default function Course() {
 	};
 	return (
 		<>
-			<div
-				className="max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto"
-				data-aos="fade-right">
-				<div className="mb-3 flex justify- text-2xl font-semibold justify-between">
-					<div className="flex flex-col justify-items-start gap-3 md:flex-row md:items-center">
-						<h1>最新上架</h1>
-						<p className="text-sm font-light">查看最新課程</p>
+			<section className="max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+				<div data-aos="fade-right">
+					<div className="mb-3 flex justify- text-2xl font-semibold justify-between">
+						<div className="flex flex-col justify-items-start gap-3 md:flex-row md:items-center">
+							<h1>最新上架</h1>
+							<p className="text-sm font-light">查看最新課程</p>
+						</div>
+						<div className="flex gap-3 items-center ">
+							<button
+								className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
+								onClick={prevPage}
+								disabled={page === 1}>
+								<IoIosArrowBack />
+							</button>
+							<button
+								className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
+								onClick={nextPage}
+								disabled={page * perPage >= data.length}>
+								<IoIosArrowForward />
+							</button>
+						</div>
 					</div>
-					<div className="flex gap-3 items-center ">
-						<button
-							className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
-							onClick={prevPage}
-							disabled={page === 1}>
-							<IoIosArrowBack />
-						</button>
-						<button
-							className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
-							onClick={nextPage}
-							disabled={page * perPage >= data.length}>
-							<IoIosArrowForward />
-						</button>
+					<div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+						{displayedData.map((course, i) => (
+							<CourseCard
+								key={i}
+								data={course}
+							/>
+						))}
 					</div>
 				</div>
-				<div className="grid grid-cols-2 md:grid-cols-4 gap-6">
-					{displayedData.map((course, i) => (
-						<CourseCard
-							key={i}
-							data={course}
-						/>
-					))}
-				</div>
-			</div>
+			</section>
 		</>
 	);
 }

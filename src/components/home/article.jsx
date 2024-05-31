@@ -70,7 +70,7 @@ export default function Article() {
 				{/* <!-- Card Blog --> */}
 				<div
 					className="max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto"
-					data-aos="fade-up-right">
+					data-aos="zoom-in-up">
 					<div className="mb-3 flex justify- text-2xl font-semibold justify-between">
 						<div className="flex flex-col justify-items-start gap-3 md:flex-row md:items-center text-white">
 							<h1>精選文章</h1>

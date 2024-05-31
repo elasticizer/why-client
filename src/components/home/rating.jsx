@@ -41,43 +41,45 @@ export default function Rating() {
 	};
 
 	return (
-		<section data-aos="fade-up-left">
+		<>
 			{/* <!-- Card Blog --> */}
-			<div className=" max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
-				{/* <!-- Title --> */}
-				<div className="mb-3 flex justify- text-2xl font-semibold justify-between">
-					<div className="flex flex-col justify-items-start gap-3 md:flex-row md:items-center">
-						<h1>熱門課程</h1>
-						<p className="text-sm font-light">看看大家都在學些什麼</p>
+			<section className=" max-w-[75rem] px-4 py-10 sm:px-6 lg:px-8 lg:py-14 mx-auto">
+				<div data-aos="fade-up">
+					{/* <!-- Title --> */}
+					<div className="mb-3 flex justify- text-2xl font-semibold justify-between">
+						<div className="flex flex-col justify-items-start gap-3 md:flex-row md:items-center">
+							<h1>熱門課程</h1>
+							<p className="text-sm font-light">看看大家都在學些什麼</p>
+						</div>
+						<div className="flex gap-3 items-center ">
+							<button
+								className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
+								onClick={prevPage}
+								disabled={page === 1}>
+								<IoIosArrowBack />
+							</button>
+							<button
+								className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
+								onClick={nextPage}
+								disabled={page * perPage >= data.length}>
+								<IoIosArrowForward />
+							</button>
+						</div>
 					</div>
-					<div className="flex gap-3 items-center ">
-						<button
-							className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
-							onClick={prevPage}
-							disabled={page === 1}>
-							<IoIosArrowBack />
-						</button>
-						<button
-							className="rounded-full	border-solid border-2 border-gray-600 p-3 hover:scale-110 transition"
-							onClick={nextPage}
-							disabled={page * perPage >= data.length}>
-							<IoIosArrowForward />
-						</button>
+					{/* <!-- End Title --> */}
+					{/* <!-- Grid --> */}
+					<div className="grid grid-cols-2 gap-y-5 gap-3 md:grid-cols-3 md:gap-5">
+						{displayedData.map((course, i) => (
+							<RatingCard
+								key={i}
+								data={course}
+							/>
+						))}
 					</div>
+					{/* <!-- End Grid --> */}
 				</div>
-				{/* <!-- End Title --> */}
-				{/* <!-- Grid --> */}
-				<div className="grid grid-cols-2 gap-y-5 gap-3 md:grid-cols-3 md:gap-5">
-					{displayedData.map((course, i) => (
-						<RatingCard
-							key={i}
-							data={course}
-						/>
-					))}
-				</div>
-				{/* <!-- End Grid --> */}
-			</div>
+			</section>
 			{/* <!-- End Card Blog --> */}
-		</section>
+		</>
 	);
 }
