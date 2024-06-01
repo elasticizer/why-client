@@ -80,7 +80,8 @@ export default function Footer() {
 										<textarea
 											name="entry.691578112"
 											className="w-full py-3 px-4 block w-full border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
-											placeholder="輸入您的訊息"></textarea>
+											placeholder="輸入您的訊息"
+											required></textarea>
 									</div>
 									<div className="flex items-center gap-2 sm:flex-row sm:gap-3  p-2">
 										<div className="w-full">
@@ -90,6 +91,7 @@ export default function Footer() {
 												name="entry.28436927"
 												className="py-3 px-4 block w-full border rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none"
 												placeholder="輸入您的信箱"
+												required
 											/>
 										</div>
 										<button
