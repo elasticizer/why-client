@@ -4,8 +4,12 @@ import Link from 'next/link';
 import { FaInstagram } from 'react-icons/fa6';
 import { FaYoutube } from 'react-icons/fa';
 import { FaFacebook } from 'react-icons/fa';
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
 
 export default function Footer() {
+	const MySwal = withReactContent(Swal);
+
 	return (
 		<>
 			<footer className="w-full bg-orange-400 dark:bg-neutral-950">
@@ -73,7 +77,10 @@ export default function Footer() {
 											mode: 'no-cors'
 										}).then(() => {
 											form.reset();
-											alert('已收到您的訊息，我們將盡快回覆');
+											MySwal.fire({
+												icon: 'success',
+												text: '已收到您的訊息，我們將盡快回覆'
+											});
 										});
 									}}>
 									<div className="p-2">
