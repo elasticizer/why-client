@@ -13,7 +13,11 @@ export default function UploadCard({ Name, Intro, Filename, WhenCreated }) {
 			<div className="flex-shrink-0 relative w-full overflow-hidden pt-[50%] md:pt-[15%] md:max-w-60">
 				<img
 					className="size-full absolute top-0 start-0 object-cover"
-					src={`/learner/LessonVideo/${Filename}`}
+					src={
+						Filename && Filename.startsWith('h')
+							? Filename
+							: `/learner/LessonVideo/${Filename}`
+					}
 					alt="Image Description"
 				/>
 			</div>

@@ -18,7 +18,11 @@ export default function ContentCard({
 				<div className="w-36 md:w-52 h-28 md:h-36 overflow-hidden">
 					<img
 						className="w-full me-3 object-cover size-full hover:scale-125 ease-in duration-300"
-						src={`/learner/LessonVideo/${Filename}`}
+						src={
+							Filename && Filename.startsWith('h')
+								? Filename
+								: `/learner/LessonVideo/${Filename}`
+						}
 						alt=""
 					/>
 				</div>
