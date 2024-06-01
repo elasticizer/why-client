@@ -52,7 +52,7 @@ export default function Navbar() {
 								</div>
 							</Link>
 							<button
-								className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
+								className="flex font-medium text-gray-500 hover:text-orange-400 md:py-6"
 								onClick={toCoursePage}>
 								領域
 							</button>
