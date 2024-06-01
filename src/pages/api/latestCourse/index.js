@@ -9,7 +9,7 @@ const router = createRouter();
 router.get(async (req, res) => {
 	const limit = req.query.limit ?? 10;
 	const [results] = await connection.execute(
-		'SELECT Course.SN, Course.Name, Course.Intro,Course.WhenLaunched,Course.Price,File.FileName, Domain.Name AS DomainName FROM Course JOIN File ON Course.ThumbnailSN = File.SN JOIN Domain ON Course.DomainSN = Domain.SN ORDER BY Course.WhenCreated DESC'
+		'SELECT Course.SN, Course.Name, Course.Intro,Course.WhenCreated,Course.Price,File.FileName, Domain.Name AS DomainName FROM Course JOIN File ON Course.ThumbnailSN = File.SN JOIN Domain ON Course.DomainSN = Domain.SN ORDER BY Course.WhenCreated DESC'
 	);
 
 	res.status(200).json(results);
