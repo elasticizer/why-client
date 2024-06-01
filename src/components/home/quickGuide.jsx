@@ -41,7 +41,7 @@ export default function QuickGuide() {
 					/>
 					<QuickGuideCard
 						title={'我要開課'}
-						content={'加入 WhySchool 創作者的行列 用你的知識產生影響力'}
+						content={'加入 Why Academy 創作者的行列 用你的知識產生影響力'}
 						onclick={handleTeacherLink}
 					/>
 					<QuickGuideCard
