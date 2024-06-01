@@ -10,6 +10,9 @@ import LogoutSession from '@/components/home/logoutSession';
 
 export default function Navbar() {
 	const session = useSession();
+	const toCoursePage = () => {
+		window.location = '/course';
+	};
 
 	return (
 		<>
@@ -48,11 +51,11 @@ export default function Navbar() {
 									關於
 								</div>
 							</Link>
-							<Link
+							<button
 								className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
-								href="/course">
+								onClick={toCoursePage}>
 								領域
-							</Link>
+							</button>
 							<Link
 								className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
 								href="#">
