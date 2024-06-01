@@ -1,5 +1,4 @@
 import Category from '../../components/courses/category/category';
-import Pages from '../../components/courses/Pagination/pages';
 import Banner from '../../components/courses/domainbanner/banner';
 import Home from '../../layouts/home';
 import Slideshow from '../../components/courses/slideShow/slideshow';
@@ -14,7 +13,6 @@ export default function Course() {
 				<div className="bg-[#fdf9f7]">
 					<Category />
 					<div className="flex container justify-center py-4">
-						<Pages />
 					</div>
 				</div>
 			</CartLayout>

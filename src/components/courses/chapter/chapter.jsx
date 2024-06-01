@@ -36,7 +36,7 @@ export default function Chapter({ SN, title }) {
                     </div>
                     <div className="w-8 self-stretch inline-flex">
                         <div className="content-center w-[30.26px] h-[26px] text-right text-neutral-400 text-xs font-normal font-['Inter'] leading-relaxed">
-                            25:30
+                         
                         </div>
                     </div>
                 </div>

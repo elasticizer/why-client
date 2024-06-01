@@ -8,7 +8,7 @@ export default function AccordItem() {
 
 	return (
 		<div className="hs-accordion-group border-dotted shadow-lg border-2 border-orange-500 shadow-indigo-200/60 rounded-lg px-3">
-			<div className="hs-accordion active  shadow-indigo-200/60 mb-1 " id="hs-basic-with-title-and-arrow-stretched-heading-one">
+			<div className="hs-accordion active  shadow-indigo-200/60 mb-1  border-gray-300 border-b-2" id="hs-basic-with-title-and-arrow-stretched-heading-one">
 				<button className="hs-accordion-toggle hs-accordion-active:text-blue-600 py-3 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 hover:text-gray-500 rounded-lg text-lg disabled:opacity-50 disabled:pointer-events-none" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one">
 					你可以學到
 					<svg className="hs-accordion-active:hidden block size-4" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -49,7 +49,7 @@ export default function AccordItem() {
 					</div>
 				</div>
 			</div>
-			<div className="hs-accordion" id="hs-basic-with-title-and-arrow-stretched-heading-two">
+			<div className="hs-accordion  border-gray-300 border-b-2" id="hs-basic-with-title-and-arrow-stretched-heading-two">
 				<button className="hs-accordion-toggle hs-accordion-active:text-blue-600 py-3 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 hover:text-gray-500 rounded-lg text-lg disabled:opacity-50 disabled:pointer-events-none" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-two">
 					哪些人適合這堂課？
 					<svg className="hs-accordion-active:hidden block size-4" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
@@ -101,8 +101,8 @@ export default function AccordItem() {
 					</div>
 				</div>
 			</div>
-			<div className="hs-accordion" id="hs-basic-with-title-and-arrow-stretched-heading-three">
-				<button className="hs-accordion-toggle hs-accordion-active:text-blue-600 py-3 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 hover:text-gray-500 rounded-lg text-lg disabled:opacity-50 disabled:pointer-events-none" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-three">
+			<div className="hs-accordion" id="hs-basic-with-title-and-arrow-stretched-heading-three ">
+				<button className="hs-accordion-toggle hs-accordion-active:text-blue-600 py-3 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 hover:text-gray-500 rounded-lg text-lg disabled:opacity-50 disabled:pointer-events-none" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-three  ">
 					上課前準備
 					<svg className="hs-accordion-active:hidden block size-4" xmlns="http://www.w3.org/2000/svg" width={24} height={24} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2} strokeLinecap="round" strokeLinejoin="round">
 						<path d="m6 9 6 6 6-6" />

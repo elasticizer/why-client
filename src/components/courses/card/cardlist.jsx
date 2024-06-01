@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react';
 
-import Card from './Card';
-
+import Card from './card';
 export default function CardList() {
 	const [course, setCourses] = useState([]);
 	const data = async () => {

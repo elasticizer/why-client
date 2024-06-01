@@ -6,8 +6,35 @@ import toast, { Toaster } from 'react-hot-toast';
 export default function CardSecList({ domain, rawDomain, setDomain }) {
 	const [search, setSearch] = useState('');
 	const [alert, setAlert] = useState('');
+	const [hover, setHover] = useState(false);
+	const [focus, setFocus] = useState(false);
 	const bookmark = () => toast.success('加入收藏成功');
 	const unbookmark = () => toast.success('已移除收藏');
+	const [sortOrder, setSortOrder] = useState('asc'); // 價錢排序順序狀態，默認為升序
+	const [sortTime, setSortTime] = useState('asc'); // 時間排序順序狀態，默認為升序
+
+	const handleSortClick = () => {
+		const sortedDomain = [...domain].sort((a, b) => {
+			if (sortOrder === 'asc') {
+				return a.Price - b.Price;
+			} else {
+				return b.Price - a.Price;
+			}
+		});
+		setDomain(sortedDomain);
+		setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
+	};
+	const handleTimeClick = () => {
+		const sortedTime = [...domain].sort((a, b) => {
+			if (sortTime === 'asc') {
+				return a.Price - b.Price;
+			} else {
+				return b.Price - a.Price;
+			}
+		});
+		setDomain(sortedTime);
+		setSortTime(sortTime === 'asc' ? 'desc' : 'asc');
+	};
 
 
 	useEffect(() => {
@@ -18,7 +45,7 @@ export default function CardSecList({ domain, rawDomain, setDomain }) {
 		<>
 			<div className="">
 				<div className=" mt-3  w-full lg:mb-6 lg:mt-6  lg:px-0 ">
-					<div className="my-4 w-full  lg:pl-0 inline-flex items-center justify-between flex-col sm:flex-row">
+					<div className="my-4 w-full  lg:pl-0 inline-flex items-center justify-between flex-col sm:flex-row md:flex-col lg:flex-row">
 						<div className=" flex items-center  text-Black-800 font-semibold text-2xl text-Black-900  ">
 							共有
 							<span className=" text-orange-600  font-semibold ms-1 py-0.5 px-1.5 text-2xl "
@@ -28,7 +55,24 @@ export default function CardSecList({ domain, rawDomain, setDomain }) {
 							<span className=" text-orange-600  font-semibold ms-1 py-0.5 px-1.5 text-2xl "></span>
 							課程
 						</div>
-						<div className="">
+
+						<div className=" items-center flex sm:justify-start  lg:flex-row flex-wrap">
+							<div className="py-5 flex lg:flex-row md:flex sm:justify-start">
+								<div className="px-4 py-[3px] lg:px-5 lg:py-2 text-lg font-bold">排序：</div>
+								<button
+									className={`px-4 py-[3px] lg:px-5 lg:py-2 border-gray-300 border rounded-full transition-all duration-[0.3s] ease-[ease] delay-[0s] border-solid
+									hover:bg-orange-400 hover:text-white hover:border-none hover:font-semibold' focus:outline-none focus:bg-orange-400 focus:text-white focus:font-semibold  font-normal `}
+									onClick={handleTimeClick}>
+									{sortTime === 'asc' ? '近期上架' : '最早上架'}
+								</button>
+								<button
+									className={`px-4 py-[3px] lg:px-5 lg:py-2 border-gray-300 border rounded-full transition-all duration-[0.3s] ease-[ease] delay-[0s] border-solid
+									hover:bg-orange-400 hover:text-white hover:border-none hover:font-semibold' focus:outline-none focus:bg-orange-400 focus:text-white focus:font-semibold  font-normal `}
+									onClick={handleSortClick}>
+									{sortOrder === 'asc' ? '價格低到高' : '價格高到低'}
+								</button>
+								
+							</div>
 							<Search setSearch={setSearch} />
 						</div>
 					</div>
@@ -47,6 +91,8 @@ export default function CardSecList({ domain, rawDomain, setDomain }) {
 										alert={alert}
 										bookmark={bookmark}
 										unbookmark={unbookmark}
+										setSortOrder={setSortOrder}
+										setSortTime={setSortOrder}
 									/>
 								);
 

@@ -4,7 +4,7 @@ import Card from '../card/card';
 export default function Slide({ data }) {
 	return (
 		<div className="hs-carousel-slide pt-5 lg:py-5">
-			<div className="inline-flex  justify-center gap-3 h-full ">
+			<div className="inline-flex  justify-center gap-3 h-full w-full ">
 				<span className="sm:w-[700px] lg:w-[560px]">
 					<Card data={data[0]} />
 				</span>

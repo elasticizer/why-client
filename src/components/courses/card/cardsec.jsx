@@ -28,7 +28,7 @@ export default function CardSec({
 	unbookmark
 }) {
 	const session = useSession();
-	const { SN, Name, Intro, Price, Nickname, Filename, DomainName } = data;
+	const { SN, Name, Intro, Price, Nickname, Filename, DomainName, WhenCreated } = data;
 	const { addItemToCart } = useCart();
 	const [icon, setIcon] = useState(false);
 	const [cartIcon, setCartIcon] = useState(false);
@@ -70,7 +70,7 @@ export default function CardSec({
 					/>
 				</div>
 				<div className="mt-2 flex justify-between">
-					<div className="py- px-2 inline-flex items-center gap-x-2 text-base font-medium  rounded-lg border border-transparent  bg-yellow-200 text-yellow-800 disabled:opacity-50 disabled:pointer-events-none">
+					<div className="py-1 px-3 inline-flex items-center gap-x-2 text-base font-semibold rounded-lg border border-transparent bg-yellow-100 text-yellow-700 disabled:opacity-50 disabled:pointer-events-none ">
 						{DomainName}
 					</div>
 				</div>
@@ -79,33 +79,19 @@ export default function CardSec({
 					<h3 className="text-normal h-12 tracking-wide text-lg text-black font-bold ">
 						{Name}
 					</h3>
-					<Link
-						href="#"
-						className="block my-3  text-sm leading-tight font-base text-gray-500 hover:underline">
+					<h2
+						className="block my-3  text-sm leading-tight font-base text-gray-500 ">
 						{Nickname}
-					</Link>
+					</h2>
+					<span className="font-bold hidden">{WhenCreated}</span>
 					<div className=" inline-flex space-x-4">
-						{/* <div className="inline-flex">
-								<div className="mt-0.5 size-5 flex justify-center  items-center rounded-full text-yellow-400">
-									<FaStar />
-								</div>
-								<div className=" lg:text-base text-base text-gray-500 hover:underline">
-									5.0 <span>( 168 )</span></div>
-							</div> */}
 						<div className="inline-flex ">
-							<div className="mt-0.5 size-5 flex items-center justify-center text-base rounded-full bg-blue-0 text-blue-600">
-								<MdPeopleAlt />
-							</div>
-							<div className="lg:text-base text-base  text-gray-500">
-								1,990 <span className="font-bold"></span>
+							<div className="lg:text-base text-base  text-gray-500 line-clamp-3">
+								<span className="font-bold">{Intro}</span>
+								
 							</div>
 						</div>
-						<div className="inline-flex ">
-							<div className="size-6 flex items-center justify-center rounded-full bg-blue-0 text-blue-600">
-								<IoTimeOutline />
-							</div>
-							<div className="lg:text-sm text-base text-gray-500">15.1H</div>
-						</div>
+					
 					</div>
 					<span className=" flex text-xl justify-between items-center font-bold tracking-tight  text-[#019fde] ">
 						<div>

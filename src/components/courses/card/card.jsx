@@ -13,7 +13,7 @@ export default function Card({
 		Filename: ''
 	}
 }) {
-	const { SN, Name, Intro, Price, Nickname, Filename } = data;
+	const { SN, Name, Intro, Price, DomainName, Nickname, Filename } = data;
 	return (
 		<a
 			className="group bg-gray overflow-hidden md:max-w-2xl md:flex gap-3"
@@ -30,29 +30,26 @@ export default function Card({
 				<div className="lg:h-12 md:h-7 sm:h-5 tracking-wide text-lg text-black font-bold">
 					{Name}
 				</div>
+
 				<span className="block mt-1 text-sm leading-tight font-normal text-gray-500">
 					{Nickname}
 				</span>
 				<div className="inline-flex space-x-4">
 					<div className="inline-flex ">
-						<div className="mt-0.5 size-5 flex justify-center  rounded-full bg-blue-0 text-blue-600">
-							<MdPeopleAlt />
+						<div className="lg:text-base text-base  text-gray-500 line-clamp-2">
+							{Intro}
 						</div>
-						<div className="lg:text-sm text-base text-gray-500">
-							1,990 <span className="font-bold"></span>
-						</div>
-					</div>
-					<div className="inline-flex">
-						<div className="mt-0.5 size-5 flex justify-center  rounded-full bg-blue-0 text-blue-600">
-							<IoTimeOutline />
-						</div>
-						<div className="lg:text-sm text-base text-gray-500">15.1H</div>
 					</div>
 				</div>
-
-				<span className=" text-2xl font-bold tracking-tight  text-[#019fde]">
-					NT$<span>{Price}</span>
-				</span>
+				<div className='flex justify-between'>
+					<div className="py-1 px-3 inline-flex items-center  text-base font-semibold rounded-lg border border-transparent bg-yellow-100 text-yellow-700 disabled:opacity-50 disabled:pointer-events-none ">
+						{DomainName}
+					</div>
+					<span className=" text-2xl font-bold tracking-tight  text-[#019fde]">
+						NT$<span>{Price}</span>
+					</span>
+				</div>
+				
 			</div>
 		</a>
 	);

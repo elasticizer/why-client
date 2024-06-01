@@ -7,7 +7,7 @@ const router = createRouter();
 
 router.get(async (req, res) => {
 	const [results] = await connection.execute(
-		`SELECT Course.SN, Course.Name, Course.Intro, Course.Price, Domain.Name AS DomainName, File.Filename, User.Nickname 
+		`SELECT Course.SN, Course.Name, Course.Intro, Course.Price, Course.WhenCreated, Domain.Name AS DomainName, File.Filename, User.Nickname
         FROM Course 
         JOIN User ON Course.TeacherSN = User.SN
         JOIN Domain ON Course.DomainSN = Domain.SN 

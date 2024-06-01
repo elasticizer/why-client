@@ -8,7 +8,7 @@ export default function Slideshow() {
 
 	useEffect(() => {
 		const data = async () => {
-			const url = `/api/course?limit=11`;
+			const url = `/api/course?limit=12`;
 			try {
 				const res = await fetch(url);
 				const data = await res.json();
@@ -79,16 +79,12 @@ export default function Slideshow() {
 						</div>
 					</div>
 
-					<div className="hs-carousel-pagination flex lg:mt-0  w-full flex-nowrap  justify-center  space-x-2">
+					<div className="hs-carousel-pagination borfer flex lg:mt-0  w-full flex-nowrap  justify-center  space-x-2">
 						{[...Array(Math.ceil(courses.length / 2)).keys()].map(
 							v => <span key={v} className=" hs-carousel-active:bg-blue-700 hs-carousel-active:border-blue-700 size-3 border border-gray-400 rounded-md w-6 h-2 cursor-pointer"></span>)}
 					</div>
 				</div>
-
-
 			</div>
-
-
 		</>
 	);
 }

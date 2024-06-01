@@ -18,14 +18,14 @@ export default function Search({ setSearch }) {
                                 htmlFor="hs-search-article-1"
                                 className="block text-sm text-gray-700 font-medium dark:text-white"
                             >
-                                <span className="sr-only">搜尋熱門: 心理學</span>
+                                <span className="sr-only">想學習什麼課程?</span>
                             </label>
                             <input
                                 type="text"
                                 name="hs-search-article-1"
                                 id="hs-search-article-1"
                                 className="py-2.5 px-4 block w-full border-transparent rounded-lg focus:border-blue-500 focus:ring-blue-500 dark:bg-neutral-900 dark:border-transparent dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600 border-2"
-                                placeholder="搜尋熱門: 心理學"
+								placeholder="想學習什麼課程?"
                                 ref={inputEl}
                             />
                         </div>

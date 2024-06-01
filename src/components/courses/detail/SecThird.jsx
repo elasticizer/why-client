@@ -59,13 +59,13 @@ export default function SecThird() {
 							<div className="mt-5 border-dotted shadow-lg border-2 border-orange-500 shadow-indigo-200/60 rounded-lg">
 								<nav className=" relative z-0 flex border rounded-xl overflow-hidden" aria-label="Tabs" role="tablist">
 									<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 
-									hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-200/75 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none active " id="bar-with-underline-item-1" data-hs-tab="#bar-with-underline-1" aria-controls="bar-with-underline-1" role="tab">
+									hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-200/75 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none active focus:bg-orange-200/75" id="bar-with-underline-item-1" data-hs-tab="#bar-with-underline-1" aria-controls="bar-with-underline-1" role="tab">
 										課程內容
 									</button>
-									<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-200/75 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none" id="bar-with-underline-item-2" data-hs-tab="#bar-with-underline-2" aria-controls="bar-with-underline-2" role="tab">
-										單元與試閱
+									<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-200/75 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 focus:bg-orange-200/75 disabled:pointer-events-none" id="bar-with-underline-item-2" data-hs-tab="#bar-with-underline-2" aria-controls="bar-with-underline-2" role="tab">
+										單元與觀賞
 									</button>
-									<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-200/75 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none
+									<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-200/75 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 focus:bg-orange-200/75 disabled:pointer-events-none
 									 " id="bar-with-underline-item-3" data-hs-tab="#bar-with-underline-3" aria-controls="bar-with-underline-3" role="tab">
 										課程評論
 									</button>
@@ -203,12 +203,13 @@ export default function SecThird() {
 										</li>
 									</ul>
 									{/* End List */}
+									<div className="my-5 text-2xl font-bold tracking-tight text-center  text-[#019fde]">單堂課：<span className='text-red-500'>NT${course[0].Price}</span></div>
 									<a
 										href="#"
 										type="button"
 										className="py-3 px-4 mt-3 w-full inline-flex items-center justify-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-500 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
 									>
-										加入購物車
+										立即購買
 										<Image src='/image/cart.gif' className='size-6 items-centerr' width={24} height={24} alt='Cart' />
 									</a>
 								</div>
