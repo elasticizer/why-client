@@ -7,11 +7,13 @@ import { IoMdClose } from 'react-icons/io';
 import { useSession } from '@/contexts/session';
 import LoginSession from '@/components/home/loginSession';
 import LogoutSession from '@/components/home/logoutSession';
+import { useRouter } from 'next/router';
 
 export default function Navbar() {
+	const router = useRouter();
 	const session = useSession();
 	const toCoursePage = () => {
-		window.location = '/course';
+		router.push('/course');
 	};
 
 	return (
