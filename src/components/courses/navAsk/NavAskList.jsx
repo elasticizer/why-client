@@ -58,9 +58,7 @@ export default function NavAskList() {
 					您的建議將幫助我們更好地理解學員需求，持續改進課程內容！
 				</div>
 			</div>
-			<div className="px-3  text-neutral-500 font-semibold text-normal font-['Inter']  subpixel-antialiased leading-loose">
-				<br />
-			</div>
+			
 			<div className="w-full  ">
 			</div>
 			{
@@ -93,8 +91,8 @@ export default function NavAskList() {
 						</form>
 					</div>
 					:
-					Boolean(user) || <div className=" py-3 mx-2 w-full  border items-center  shadow  bg-green-300/25 rounded-lg justify-start inline-flex my-4">
-						<FcAdvertising className=" pl-4 w-10 h-10" />
+					Boolean(user) || <div className=" py-2  border items-center w-full shadow  bg-green-300/25 rounded-lg justify-center inline-flex my-4">
+						<FcAdvertising className=" w-10 h-10" />
 
 						<Link
 							href="/signin"
