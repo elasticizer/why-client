@@ -1,10 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import NavIntro from '../navintro/NavIntro';
 import NavCh from '../chapter/NavCh';
-import NavComment from '../review/NavComment';
 import NavAskList from '../navAsk/NavAskList';
 import AccordItem from '../navAccordItem/AccordItem';
-import Image from 'next/image';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
 
@@ -63,7 +61,7 @@ export default function SecThird() {
 								<img src='/images/課程介紹.png' height={300} width={200} />
 								<div className="border-dotted shadow-lg border-2 border-orange-500 shadow-indigo-200/60 rounded-lg">
 									<nav className=" relative z-0 flex border rounded-xl overflow-hidden" aria-label="Tabs" role="tablist">
-										<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 
+										<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500
 									hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-200/75 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none active focus:bg-orange-200/75" id="bar-with-underline-item-1" data-hs-tab="#bar-with-underline-1" aria-controls="bar-with-underline-1" role="tab">
 											課程內容
 										</button>

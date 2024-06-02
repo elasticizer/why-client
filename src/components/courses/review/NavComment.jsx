@@ -1,11 +1,9 @@
 import React from 'react';
 import { FaStar } from 'react-icons/fa6';
-
 import ReviewList from './reviewlist';
-import NavAsk from '../navAsk/NavAsk';
 
 export default function NavComment() {
-	
+
 	return (
 		<>
 			{/* 星星評分 */}
@@ -159,10 +157,10 @@ export default function NavComment() {
 
 			<hr className=" mt-3" />
 			<br />
-			
+
 			{/* 留言 */}
 			<ReviewList />
-			
+
 		</>
 	);
 }
