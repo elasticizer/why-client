@@ -1,3 +1,5 @@
+import Link from 'next/link';
+
 export default function Header() {
 	return (
 		<header className="sticky top-0 inset-x-0 flex flex-wrap sm:justify-start sm:flex-nowrap z-[48] w-full bg-white border-b text-sm py-2.5 sm:py-4 lg:ps-64 dark:bg-neutral-800 dark:border-neutral-700">
@@ -5,7 +7,7 @@ export default function Header() {
 				className="flex basis-full items-center w-full mx-auto px-4 sm:px-6"
 				aria-label="Global">
 				<div className="me-5 lg:me-0 lg:hidden">
-					<a
+					<Link
 						className="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-none focus:opacity-80"
 						href="../templates/admin/index.html"
 						aria-label="Preline">
@@ -41,7 +43,7 @@ export default function Header() {
 								fill="currentColor"
 							/>
 						</svg>
-					</a>
+					</Link>
 				</div>
 				<div className="w-full flex items-center justify-end ms-auto sm:justify-between sm:gap-x-3 sm:order-3">
 					<div className="sm:hidden">
@@ -164,7 +166,7 @@ export default function Header() {
 									</p>
 								</div>
 								<div className="mt-2 py-2 first:pt-0 last:pb-0">
-									<a
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
 										href="#">
 										<svg
@@ -182,8 +184,8 @@ export default function Header() {
 											<path d="M10.3 21a1.94 1.94 0 0 0 3.4 0" />
 										</svg>
 										Newsletter
-									</a>
-									<a
+									</Link>
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
 										href="#">
 										<svg
@@ -202,8 +204,8 @@ export default function Header() {
 											<path d="M16 10a4 4 0 0 1-8 0" />
 										</svg>
 										Purchases
-									</a>
-									<a
+									</Link>
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
 										href="#">
 										<svg
@@ -222,8 +224,8 @@ export default function Header() {
 											<path d="m8 17 4 4 4-4" />
 										</svg>
 										Downloads
-									</a>
-									<a
+									</Link>
+									<Link
 										className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-sm text-gray-800 hover:bg-gray-100 focus:ring-2 focus:ring-blue-500 dark:text-neutral-400 dark:hover:bg-neutral-700 dark:hover:text-neutral-300"
 										href="#">
 										<svg
@@ -247,7 +249,7 @@ export default function Header() {
 											<path d="M16 3.13a4 4 0 0 1 0 7.75" />
 										</svg>
 										Team Account
-									</a>
+									</Link>
 								</div>
 							</div>
 						</div>

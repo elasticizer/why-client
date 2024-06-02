@@ -1,4 +1,5 @@
 import Breadcrumb from '@/components/account/breadcrumb';
+import Link from 'next/link';
 
 type SidebarProps = {
 	id: string;
@@ -12,7 +13,7 @@ export default function Sidebar({ id }: SidebarProps) {
 				{...{ id }}
 				className="hs-overlay [--auto-close:lg] hs-overlay-open:translate-x-0 -translate-x-full transition-all duration-300 transform w-[260px] hidden fixed inset-y-0 start-0 z-[60] bg-white border-e border-gray-200 lg:block lg:translate-x-0 lg:end-auto lg:bottom-0 dark:bg-neutral-800 dark:border-neutral-700">
 				<div className="px-8 pt-4">
-					<a
+					<Link
 						className="flex-none rounded-xl text-xl inline-block font-semibold focus:outline-none focus:opacity-80"
 						href="../templates/admin/index.html"
 						aria-label="Preline">
@@ -48,14 +49,14 @@ export default function Sidebar({ id }: SidebarProps) {
 								fill="currentColor"
 							/>
 						</svg>
-					</a>
+					</Link>
 				</div>
 				<nav
 					className="hs-accordion-group p-6 w-full flex flex-col flex-wrap"
 					data-hs-accordion-always-open="">
 					<ul className="space-y-1.5">
 						<li>
-							<a
+							<Link
 								className="flex items-center gap-x-3.5 py-2 px-2.5 bg-gray-100 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-700 dark:text-white"
 								href="#">
 								<svg
@@ -73,7 +74,7 @@ export default function Sidebar({ id }: SidebarProps) {
 									<polyline points="9 22 9 12 15 12 15 22" />
 								</svg>
 								Dashboard
-							</a>
+							</Link>
 						</li>
 						<li
 							className="hs-accordion"
@@ -174,25 +175,25 @@ export default function Sidebar({ id }: SidebarProps) {
 											className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
 											<ul className="pt-2 ps-2">
 												<li>
-													<a
+													<Link
 														className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 														href="#">
 														Link 1
-													</a>
+													</Link>
 												</li>
 												<li>
-													<a
+													<Link
 														className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 														href="#">
 														Link 2
-													</a>
+													</Link>
 												</li>
 												<li>
-													<a
+													<Link
 														className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 														href="#">
 														Link 3
-													</a>
+													</Link>
 												</li>
 											</ul>
 										</div>
@@ -236,25 +237,25 @@ export default function Sidebar({ id }: SidebarProps) {
 											className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden ps-2">
 											<ul className="pt-2 ps-2">
 												<li>
-													<a
+													<Link
 														className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 														href="#">
 														Link 1
-													</a>
+													</Link>
 												</li>
 												<li>
-													<a
+													<Link
 														className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 														href="#">
 														Link 2
-													</a>
+													</Link>
 												</li>
 												<li>
-													<a
+													<Link
 														className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 														href="#">
 														Link 3
-													</a>
+													</Link>
 												</li>
 											</ul>
 										</div>
@@ -332,25 +333,25 @@ export default function Sidebar({ id }: SidebarProps) {
 								className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
 								<ul className="pt-2 ps-2">
 									<li>
-										<a
+										<Link
 											className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 											href="#">
 											Link 1
-										</a>
+										</Link>
 									</li>
 									<li>
-										<a
+										<Link
 											className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 											href="#">
 											Link 2
-										</a>
+										</Link>
 									</li>
 									<li>
-										<a
+										<Link
 											className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 											href="#">
 											Link 3
-										</a>
+										</Link>
 									</li>
 								</ul>
 							</div>
@@ -415,31 +416,31 @@ export default function Sidebar({ id }: SidebarProps) {
 								className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
 								<ul className="pt-2 ps-2">
 									<li>
-										<a
+										<Link
 											className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 											href="#">
 											Link 1
-										</a>
+										</Link>
 									</li>
 									<li>
-										<a
+										<Link
 											className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 											href="#">
 											Link 2
-										</a>
+										</Link>
 									</li>
 									<li>
-										<a
+										<Link
 											className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:bg-neutral-800 dark:text-neutral-400 dark:hover:text-neutral-300"
 											href="#">
 											Link 3
-										</a>
+										</Link>
 									</li>
 								</ul>
 							</div>
 						</li>
 						<li>
-							<a
+							<Link
 								className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-700 dark:text-neutral-400 dark:hover:text-neutral-300"
 								href="#">
 								<svg
@@ -487,10 +488,10 @@ export default function Sidebar({ id }: SidebarProps) {
 									<path d="M16 18h.01" />
 								</svg>
 								Calendar
-							</a>
+							</Link>
 						</li>
 						<li>
-							<a
+							<Link
 								className="w-full flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-neutral-700 rounded-lg hover:bg-gray-100 dark:hover:bg-neutral-900 dark:text-neutral-400 dark:hover:text-neutral-300"
 								href="#">
 								<svg
@@ -508,7 +509,7 @@ export default function Sidebar({ id }: SidebarProps) {
 									<path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
 								</svg>
 								Documentation
-							</a>
+							</Link>
 						</li>
 					</ul>
 				</nav>
