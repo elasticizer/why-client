@@ -5,6 +5,7 @@ import SelectBoxCourse from './selectBoxCourse';
 export default function CourseList({ data }) {
 	const [desc, setDesc] = useState(true);
 	const [descCourse, setDescCourse] = useState(true);
+	const [descCreateDate, setDescCreateDate] = useState(true);
 	const [filteredData, setFilteredData] = useState(data);
 	const [searchKeyword, setSearchKeyword] = useState('');
 
@@ -22,7 +23,7 @@ export default function CourseList({ data }) {
 		const newFilteredData = data.filter(item => {
 			return (
 				item.Name.toLowerCase().includes(keyword) ||
-				item.WhenLaunched.includes(keyword)
+				item.WhenCreated.includes(keyword)
 			);
 		});
 		setFilteredData(newFilteredData);
@@ -46,7 +47,19 @@ export default function CourseList({ data }) {
 			{/* thead */}
 			<div className="flex flex-row justify-between items-center px-4 py-2 border rounded-t-lg font-semibold bg-gray-100">
 				<div className="w-1/2 ">課程名稱</div>
-				<div className="w-1/4 text-center">開課日期</div>
+				<div
+					className="w-1/4 text-center cursor-pointer"
+					onClick={() => {
+						const sortedData = [...filteredData].sort((a, b) =>
+							descCreateDate
+								? new Date(a.WhenCreated) - new Date(b.WhenCreated)
+								: new Date(b.WhenCreated) - new Date(a.WhenCreated)
+						);
+						setFilteredData(sortedData);
+						setDescCreateDate(!descCreateDate);
+					}}>
+					開課日期 {descCreateDate ? '▼' : '▲'}
+				</div>
 				<div
 					className="w-1/6 text-center cursor-pointer"
 					onClick={() => {
