@@ -13,9 +13,9 @@ export default function Chapter({ SN, title }) {
             <div
                 className="border-b border-gray-200 my- hs-accordion-content w-full overflow-hidden transition-[height] duration-300 justify-start"
                 aria-labelledby="hs-active-bordered-heading-two">
-                <div className="w-full my-1 hover:bg-gray-300/55 pl-[26.20px] pr-6 pt-[7.50px] pb-2 justify-center items-start gap-[7.80px] inline-flex">
+                <div className="w-full my-1 hover:bg-gray-300/55 ps-6 py-2 justify-between items-start  inline-flex">
                     {/* 編號 */}
-                    <div className="w-8 h-6 rounded-full mr-1 bg-orange-400 justify-center items-center inline-flex">
+					<div className="w-10 h-6 lg:w-8 lg:h-6  rounded-full me-3 bg-orange-400 justify-center items-center inline-flex">
                         <div className="text-white text-sm font-semibold font-['Inter'] leading-snug">
                             {SN}
                         </div>
@@ -29,7 +29,7 @@ export default function Chapter({ SN, title }) {
                         <button
                             type="button"
                             onClick={handleModalToggle}
-                            className="py-1 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-100 text-red-600 hover:bg-red-200 disabled:opacity-50 disabled:pointer-events-none "
+                            className="py-1 px-4 inline-flex items-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-red-100 text-red-600 hover:bg-red-200 disabled:opacity-50 disabled:pointer-events-none text-nowrap"
                         >
                             影片觀看
                         </button>

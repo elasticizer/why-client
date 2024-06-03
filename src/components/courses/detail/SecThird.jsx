@@ -59,17 +59,16 @@ export default function SecThird() {
 
 							<div className='mt-5' data-aos="fade-right" data-aos-duration="1000">
 								<img src='/images/課程介紹.png' height={300} width={200} />
-								<div className="border-dotted shadow-lg   shadow-indigo-200/60 rounded-lg">
-									<nav className=" relative z-0 flex border rounded-xl overflow-hidden" aria-label="Tabs" role="tablist">
+								<div className="border-dotted shadow-lg   shadow-indigo-200/60 ">
+									<nav className=" relative z-0 flex border rounded-tr-xl rounded-tl-xl overflow-hidden" aria-label="Tabs" role="tablist">
 										<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500
-									hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-200/75 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none active focus:bg-orange-200/75" id="bar-with-underline-item-1" data-hs-tab="#bar-with-underline-1" aria-controls="bar-with-underline-1" role="tab">
+									hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-300 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none active focus:bg-orange-300" id="bar-with-underline-item-1" data-hs-tab="#bar-with-underline-1" aria-controls="bar-with-underline-1" role="tab">
 											課程內容
 										</button>
-										<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-200/75 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 focus:bg-orange-200/75 disabled:pointer-events-none" id="bar-with-underline-item-2" data-hs-tab="#bar-with-underline-2" aria-controls="bar-with-underline-2" role="tab">
+										<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-300 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 focus:bg-orange-300 disabled:pointer-events-none" id="bar-with-underline-item-2" data-hs-tab="#bar-with-underline-2" aria-controls="bar-with-underline-2" role="tab">
 											單元與觀賞
 										</button>
-										<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-200/75 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 focus:bg-orange-200/75 disabled:pointer-events-none
-									 " id="bar-with-underline-item-3" data-hs-tab="#bar-with-underline-3" aria-controls="bar-with-underline-3" role="tab">
+										<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-300 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 focus:bg-orange-300 disabled:pointer-events-none" id="bar-with-underline-item-3" data-hs-tab="#bar-with-underline-3" aria-controls="bar-with-underline-3" role="tab">
 											課程評論
 										</button>
 									</nav>
@@ -95,7 +94,7 @@ export default function SecThird() {
 						{/* 右邊 */}
 						<div className="xl:h-full">
 							<div data-aos="fade-down" className="sticky top-28 flex flex-col  shadow-indigo-200/60 shadow-lg rounded-xl">
-								<div className="bg-orange-300 bg-[var(--)] border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5">
+								<div className="bg-orange-300 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5">
 									<p className="mt-1 font-bold text-lg text-center">~購課好康~</p>
 								</div>
 								<div className="p-4 md:p-5">

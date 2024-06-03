@@ -86,7 +86,7 @@ export default function CardSec({
 					<span className="font-bold hidden">{WhenCreated}</span>
 					<div className=" inline-flex space-x-4">
 						<div className="inline-flex ">
-							<div className="lg:text-base text-base  text-gray-500 line-clamp-3">
+							<div className="lg:text-base text-base  text-gray-500 line-clamp-2">
 								<span className="font-bold">{Intro}</span>
 								
 							</div>
@@ -105,7 +105,7 @@ export default function CardSec({
 										setCartIcon(!cartIcon);
 									}}>
 									{cartIcon ? (
-										<IoCart className="size-8 text-gray-700  lg:my-0 " />
+										<IoCartOutline className="size-8 text-gray-700  lg:my-0 " />
 									) : (
 										<IoCartOutline className="size-8 text-gray-700  lg:my-0 " />
 									)}

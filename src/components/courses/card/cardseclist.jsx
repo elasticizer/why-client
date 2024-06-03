@@ -3,13 +3,29 @@ import Search from '../../courses/search/search';
 import CardSec from '../../courses/card/cardsec';
 import toast, { Toaster } from 'react-hot-toast';
 
+import Swal from 'sweetalert2';
+import withReactContent from 'sweetalert2-react-content';
+const MySwal = withReactContent(Swal);
+
 export default function CardSecList({ domain, rawDomain, setDomain }) {
 	const [search, setSearch] = useState('');
 	const [alert, setAlert] = useState('');
 	const [hover, setHover] = useState(false);
 	const [focus, setFocus] = useState(false);
-	const bookmark = () => toast.success('加入收藏成功');
-	const unbookmark = () => toast.success('已移除收藏');
+	const bookmark = () => {
+		MySwal.fire({
+			title: `<p style="font-size: 1.5rem;">成功加入收藏清單</p>`,
+			icon: 'success',
+			timer: 2000
+		});
+};
+	const unbookmark = () => {
+		MySwal.fire({
+			title: `<p style="font-size: 1.5rem;">已移除收藏清單</p>`,
+			icon: 'success',
+			timer: 2000
+		});
+	};
 	const [sortOrder, setSortOrder] = useState('asc'); // 價錢排序順序狀態，默認為升序
 	const [sortTime, setSortTime] = useState('asc'); // 時間排序順序狀態，默認為升序
 
@@ -63,7 +79,7 @@ export default function CardSecList({ domain, rawDomain, setDomain }) {
 									className={`px-4 py-[3px] lg:px-5 lg:py-2 border-gray-300 border rounded-full transition-all duration-[0.3s] ease-[ease] delay-[0s] border-solid
 									hover:bg-orange-400 hover:text-white hover:border-none hover:font-semibold' focus:outline-none focus:bg-orange-400 focus:text-white focus:font-semibold  font-normal `}
 									onClick={handleTimeClick}>
-									{sortTime === 'asc' ? '近期上架' : '最早上架'}
+									{sortTime === 'asc' ? '上架日期舊到新' : '上架日期新到舊'}
 								</button>
 								<button
 									className={`px-4 py-[3px] lg:px-5 lg:py-2 border-gray-300 border rounded-full transition-all duration-[0.3s] ease-[ease] delay-[0s] border-solid
