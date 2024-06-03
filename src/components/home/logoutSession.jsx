@@ -4,7 +4,7 @@ import { useSession } from '@/contexts/session';
 import Link from 'next/link';
 
 export default function LogoutSession() {
-    const session = useSession();
+	const session = useSession();
 
 	return (
 		<div className="hs-dropdown hs-dropdown-example relative inline-flex flex items-center gap-x-2 font-medium text-gray-500 hover:text-orange-400 md:border-s md:border-gray-300 md:my-6 md:ps-6">
@@ -24,6 +24,11 @@ export default function LogoutSession() {
 					className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
 					href="/account">
 					我的帳戶
+				</Link>
+				<Link
+					className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
+					href="/order">
+					我的訂單
 				</Link>
 				<Link
 					className="flex items-center gap-x-3.5 py-2 px-3 rounded-lg text-md text-gray-800 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 dark:text-neutral-400 "
