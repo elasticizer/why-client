@@ -43,7 +43,7 @@ export default function Slideshow() {
 						<div className=" relative flex w-full space-x-3 items-center justify-end ">
 							<button
 								type="button"
-								className=" hs-carousel-prev hs-carousel:disabled:opacity-50 disabled:pointer-events-none   justify-center items-center  text-orange-500  hover:bg-gray-800/10 rounded-s-lg">
+								className=" hs-carousel-prev hs-carousel:disabled:opacity-50 disabled:pointer-events-none   justify-center items-center  text-orange-500  rounded-s-lg">
 								<span
 									className="text-"
 									aria-hidden="true">
@@ -55,7 +55,7 @@ export default function Slideshow() {
 							</button>
 							<button
 								type="button"
-								className=" hs-carousel-next hs-carousel:disabled:opacity-50 disabled:pointer-events-none   justify-center items-center  text-orange-500 hover:bg-gray-800/10 rounded-s-lg">
+								className=" hs-carousel-next hs-carousel:disabled:opacity-50 disabled:pointer-events-none   justify-center items-center  text-orange-500 rounded-s-lg">
 								<span className="sr-only">Next</span>
 								<span
 									className="text-2xl"

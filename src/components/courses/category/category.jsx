@@ -75,14 +75,14 @@ export default function Category() {
 			<div className="container">
 				<div className="w-full px-7">
 					<div className="flex items-center whitespace-nowrap">
-						<li className="mt-10 lg:pl-0 inline-flex items-end">
+						<div className="mt-10 lg:pl-0 flex-wrap lg:inline-flex items-end ">
 							<div className="flex items-center text-Black-800 font-semibold text-2xl text-Black-900 hover:text-blue-600 focus:outline-none focus:text-blue-600">
 								全部領域
 							</div>
-							<div className=" text-blue-500 font-bold pl-8 flex justify-start items-center  text-Black-800  text-base ">
+							<div className=" text-blue-500 font-bold lg:pl-8 flex justify-start items-center  text-Black-800  text-base ">
 								改變從此開始，輕鬆掌握新技能！{' '}
 							</div>
-						</li>
+						</div>
 					</div>
 					<div className="py-5 lg:grid grid-cols-5 gap-8 flex overflow-x-auto md:gap-5 scroll-smooth snap-x">
 						{objArray.map((category, index) => (

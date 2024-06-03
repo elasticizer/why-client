@@ -28,7 +28,7 @@ export default function SecTwo() {
 	return (
 		<>
 			<div className=" container ">
-				<div className="sm:flex-col sm:flex-wrap px-6 py-6 ">
+				<div className="flex-col flex-wrap px-3 py-3 md:px-6 md:py-6  ">
 
 					<div className=" flex items-end  w-full ">
 						<li className="  lg:pl-0 inline-flex items-center sm:text-base">
@@ -66,7 +66,7 @@ export default function SecTwo() {
 
 						</span>
 					</h2>
-					<h3 className=" mt-6 block text-2xl text-white font-bold  sm:text-3xl md:text-4xl lg:text-4xl dark:text-white"
+					<h3 className=" mt-6 block text-xl text-white font-bold  sm:text-3xl md:text-4xl lg:text-4xl dark:text-white"
 					>
 						{course[0].Name}
 					</h3>

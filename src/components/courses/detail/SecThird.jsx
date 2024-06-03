@@ -39,7 +39,7 @@ export default function SecThird() {
 
 	return (
 		<>
-			<div className="mt-[100px] sm:mt-[250px] md:mt-[350px] lg:mt-[550px] xl:mt-[800px]">
+			<div className="mt-[180px] sm:mt-[350px] md:mt-[400px] lg:mt-[700px] xl:mt-[800px] 2xl:mt-[1200px]">
 				<div className="w-full mx-2 px-0 lg:px-0">
 					<div className="lg:grid lg:grid-cols-[650px_minmax(300px,_1fr)_100px] xl:grid-cols-[850px_minmax(300px,_1fr)_100px] gap-x-10">
 						{/* 左邊 */}
