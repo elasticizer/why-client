@@ -40,7 +40,7 @@ router.get(async (req, res) => {
 		return acc;
 	}, {});
 
-	const sortedOrders = Object.values(orders).sort((a, b) => new Date(b[0].WhenPaid) - new Date(a[0].WhenPaid));
+	const sortedOrders = Object.values(orders).sort((a, b) => new Date(b[0].WhenCheckedOut) - new Date(a[0].WhenCheckedOut));
 
 	res.status(200).json(sortedOrders);
 });
