@@ -33,7 +33,7 @@ export default function CourseLesson() {
 					{/* <div className="w-20 h-600 left-0 text-sm border border-y-red-300 bg-green-400 z-50 sticky top-20 ">
 					找不到喜歡的課程嗎: 來看看其他領域吧~
 				</div> */}
-					<div className="mb-5 container  border border-white">
+					<div className="mb-5 container  border border-[#fdf9f7]">
 						<SecThird />
 					</div>
 				</div>

@@ -7,7 +7,7 @@ export default function AccordItem() {
 
 
 	return (
-		<div className="hs-accordion-group border-dotted shadow-lg border-2 border-orange-500 shadow-indigo-200/60 rounded-lg px-3">
+		<div className="hs-accordion-group shadow-lg border-2 shadow-indigo-200/60 rounded-lg px-3">
 			<div className="hs-accordion active  shadow-indigo-200/60 mb-1  border-gray-300 border-b-2" id="hs-basic-with-title-and-arrow-stretched-heading-one">
 				<button className="hs-accordion-toggle hs-accordion-active:text-blue-600 py-3 inline-flex items-center justify-between gap-x-3 w-full font-semibold text-start text-gray-800 hover:text-gray-500 rounded-lg text-lg disabled:opacity-50 disabled:pointer-events-none" aria-controls="hs-basic-with-title-and-arrow-stretched-collapse-one">
 					你可以學到

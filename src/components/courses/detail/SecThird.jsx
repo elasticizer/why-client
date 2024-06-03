@@ -39,14 +39,14 @@ export default function SecThird() {
 
 	return (
 		<>
-			<div className="mt-[180px] sm:mt-[350px] md:mt-[400px] lg:mt-[700px] xl:mt-[800px] 2xl:mt-[1200px]">
+			<div className="mt-[180px] sm:mt-[350px] md:mt-[400px] lg:mt-[700px] xl:mt-[800px] 2xl:mt-[1100px]">
 				<div className="w-full mx-2 px-0 lg:px-0">
 					<div className="lg:grid lg:grid-cols-[650px_minmax(300px,_1fr)_100px] xl:grid-cols-[850px_minmax(300px,_1fr)_100px] gap-x-10">
 						{/* 左邊 */}
 						<div className="mr-2">
 							<div data-aos="fade-right" data-aos-duration="1000">
 								<img src='/images/課程資訊.png' height={300} width={200} />
-								<div className="border-dotted border-2 border-orange-600 shadow-indigo-200/60 shadow-lg rounded-lg px-3">
+								<div className=" border-2 shadow-indigo-200/60 shadow-lg rounded-lg px-3">
 									<p className="text-gray-500 font-['Inter'] leading-7 pt-3 lg:pt-1 mt-2 text-base dark:text-neutral-400 text-justify">
 										{course[0].Intro}
 									</p>
@@ -59,7 +59,7 @@ export default function SecThird() {
 
 							<div className='mt-5' data-aos="fade-right" data-aos-duration="1000">
 								<img src='/images/課程介紹.png' height={300} width={200} />
-								<div className="border-dotted shadow-lg border-2 border-orange-500 shadow-indigo-200/60 rounded-lg">
+								<div className="border-dotted shadow-lg   shadow-indigo-200/60 rounded-lg">
 									<nav className=" relative z-0 flex border rounded-xl overflow-hidden" aria-label="Tabs" role="tablist">
 										<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500
 									hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-200/75 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none active focus:bg-orange-200/75" id="bar-with-underline-item-1" data-hs-tab="#bar-with-underline-1" aria-controls="bar-with-underline-1" role="tab">
@@ -94,7 +94,7 @@ export default function SecThird() {
 						</div>
 						{/* 右邊 */}
 						<div className="xl:h-full">
-							<div data-aos="fade-down" className="sticky top-28 flex flex-col border-dotted border-2 border-orange-600 shadow-indigo-200/60 shadow-lg rounded-xl">
+							<div data-aos="fade-down" className="sticky top-28 flex flex-col  shadow-indigo-200/60 shadow-lg rounded-xl">
 								<div className="bg-orange-300 bg-[var(--)] border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5">
 									<p className="mt-1 font-bold text-lg text-center">~購課好康~</p>
 								</div>
