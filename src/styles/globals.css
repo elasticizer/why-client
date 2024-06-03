@@ -5,3 +5,254 @@
 .container {
 	@apply max-w-[75rem] mx-auto;
 }
+
+@layer utilities {
+	.text-balance {
+		text-wrap: balance;
+	}
+}
+
+/* custom */
+
+::-webkit-scrollbar-thumb {
+	background: #ececec;
+	border-radius: 12px;
+}
+::-webkit-scrollbar {
+	width: 5px;
+	height: 4px;
+}
+.art-card:hover {
+	& > figure img {
+		@apply scale-110;
+	}
+}
+.icon {
+	@apply text-2xl;
+}
+
+/* theme */
+.bg-theme {
+	background-image: linear-gradient(to left top, #ff8888, #ffab57);
+}
+.bg-theme-0 {
+	background-image: linear-gradient(to right, #71cbff, rgb(35, 182, 255));
+}
+.bg-theme-2 {
+	background-image: linear-gradient(to right, #9bdaff, rgb(73, 194, 255));
+}
+.bg-theme-2-1 {
+	background-image: linear-gradient(to right top, #ade1ff, rgb(73, 194, 255));
+}
+.bg-theme-3 {
+	background-image: linear-gradient(to bottom, #ff8888, #ff8c57, #ffab57);
+}
+.bg-theme-1 {
+	background-image: linear-gradient(
+		to right top,
+
+		#a4d558,
+		#25d99e,
+		#00d2e0,
+		#00c2ff
+	);
+}
+.bg-theme-1-1 {
+	background-image: linear-gradient(
+		to left top,
+		#a4d558,
+		#25d99e,
+		#00d2e0,
+		#00c2ff
+	);
+}
+/*shadow  */
+.shadow-right-bottom {
+	box-shadow: 10px 10px 0px rgb(255, 163, 15);
+}
+.shadow-right-bottom-violet {
+	box-shadow: 10px 10px 0px rgb(109, 138, 255);
+}
+.shadow-right-bottom-sm {
+	box-shadow: 7px 7px 0px rgb(255, 161, 10);
+}
+.shadow-right-bottom-violet-sm {
+	box-shadow: 7px 7px 0px rgb(109, 138, 255);
+}
+/* btn */
+
+.btn-theme {
+	@apply text-2xl;
+	background-color: #ff9969;
+	border: #ff9969;
+	&:hover {
+		background-color: #ff854d;
+		border: #ff854d;
+	}
+	color: white;
+}
+
+@keyframes slideIn {
+	0% {
+		transform: translateY(400px);
+		animation-timing-function: ease-out;
+	}
+	60% {
+		transform: translateY(-30px);
+		animation-timing-function: ease-in;
+	}
+	80% {
+		transform: translateY(10px);
+		animation-timing-function: ease-out;
+	}
+	100% {
+		transform: translateY(0px);
+		animation-timing-function: ease-in;
+	}
+}
+
+@keyframes fadeIn {
+	0% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+.btn-active {
+	background-color: #00c2ff;
+	border: #00c2ff;
+	color: white;
+	&:hover {
+		background-color: #008cff;
+		border: #008cff;
+	}
+}
+.search-btn {
+	@apply rounded-3xl p-4 mt-4 flex justify-between items-center outline outline-orange-300 text-orange-300 font-black text-2xl w-full bg-white z-50;
+}
+
+* {
+	@apply tracking-wide;
+	scroll-behavior: smooth;
+}
+.btn-hover-bg-org {
+	background-color: #00c2ff;
+	border: #00c2ff;
+	color: white;
+	&:hover {
+		background-color: #008cff;
+		border: #008cff;
+	}
+}
+.form-field-input {
+	&:active {
+		background-color: #ffab57;
+		border: #ffab57;
+	}
+	&:is(input[type='checkbox']:checked),
+	&:is(input[type='checkbox']:checked):hover {
+		background-color: #ffab57;
+		color: #ffffff;
+		border: #ffab57;
+	}
+}
+.search-history-li {
+	@apply flex flex-row justify-between items-center p-3 transition cursor-pointer;
+	&:hover {
+		background-color: #ebebeb;
+		border: #ebebeb;
+	}
+}
+.checkbox:checked {
+	background-color: #ff8c57;
+	--chkbg: #ff8c57;
+	border-color: #ff8c57;
+}
+.text-bg-line-1 {
+	position: relative;
+	font-size: 26px;
+	/* &::before {
+	  content: "";
+	  display: block;
+	  position: absolute;
+	  left: 1px;
+	  background: rgb(255, 226, 195);
+	  width: 10px;
+	  height: 28px;
+	} */
+}
+.author-banner {
+	overflow: visible;
+	background-image: linear-gradient(
+		to left top,
+		#a4d558,
+		#25d99e,
+		#00d2e0,
+		#00c2ff
+	);
+	background-repeat: no-repeat;
+	background-size: 100% 250px;
+	height: 400px;
+}
+.author-tab {
+	@apply font-black;
+	&:hover {
+		background-color: unset;
+		color: #0dc084;
+	}
+	&:active {
+		background-color: unset !important;
+	}
+}
+.author-tab-active {
+	background-color: unset;
+	color: #25d99e;
+}
+
+/* text */
+.text-title-tracking-widest {
+	@apply tracking-widest text-3xl font-black text-zinc-400 rounded-3xl bg-slate-50;
+}
+
+.contact-div > li:last-child {
+	@apply border-none;
+}
+.article-loader {
+	width: 100%;
+	position: fixed;
+	left: 0;
+	right: 0;
+	top: 0;
+	bottom: 0;
+	/*Centering my shade */
+	/* margin-bottom: 40px; */
+	/* margin-top: 56px; */
+	background-color: rgba(230, 230, 230, 0.8);
+	z-index: 9999;
+}
+
+.article-loader::after {
+	content: '';
+	display: block;
+	position: absolute;
+	top: calc(50% - 3em);
+	left: calc(50% - 3em);
+	width: 6em;
+	height: 6em;
+	border: 1.1em solid rgba(0, 0, 0, 0.2);
+	border-left: 1.1em solid #000000;
+	border-radius: 50%;
+	-webkit-animation: load8 1.1s infinite linear;
+	animation: load8 1.1s infinite linear;
+}
+
+.article-loader--hide {
+	display: none;
+}
+.btn-light-orange {
+	@apply bg-orange-100 border-none text-orange-400;
+	&:hover {
+		@apply bg-orange-200
+	}
+}

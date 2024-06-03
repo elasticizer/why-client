@@ -5,7 +5,7 @@ export default function Document() {
 		<Html>
 			<Head />
 
-			<body>
+			<body className='min-h-screen '>
 				<Main />
 				<NextScript />
 			</body>

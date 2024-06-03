@@ -1,17 +1,34 @@
 import '@/styles/globals.css';
-
+import { AuthProvider } from '@/hooks/use-auth';
+import ArtSideBar from '@/components/art/ArtSideBar';
+import Layout from '../components/layout';
+import { Toaster } from 'react-hot-toast';
 import type { AppProps } from 'next/app';
 import { usePathname } from 'next/navigation';
 import { useEffect } from 'react';
-
+import { useRouter } from 'next/router';
 export default function App({ Component, pageProps }: AppProps) {
 	const path = usePathname();
-
+	const router = useRouter();
+	const isArt = router.pathname.includes('/art');
 	useEffect(
-		() => void import('preline/preline')
-			.then(module => module.HSStaticMethods.autoInit()),
+		() =>
+			void import('preline/preline').then(module =>
+				module.HSStaticMethods.autoInit()
+			),
 		[path]
 	);
+	return (
+		<>
+			<Layout>
+				<AuthProvider>
+					{isArt && <ArtSideBar></ArtSideBar>}
 
-	return <Component {...pageProps} />;
+					<Component {...pageProps} />
+
+					<Toaster />
+				</AuthProvider>
+			</Layout>
+		</>
+	);
 }
