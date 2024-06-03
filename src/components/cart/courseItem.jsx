@@ -41,7 +41,11 @@ export default function CourseItem({ item, checked, onChange, removeItem }) {
 					<div className="w-40 h-20 rounded flex relative group overflow-hidden transition">
 						<img
 							className="size-full absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded"
-							src={item.Filename}
+							src={
+								item.Filename && item.Filename.startsWith('h')
+									? item.Filename
+									: `/learner/LessonVideo/${item.Filename}`
+							}
 							alt={item.Name}
 						/>
 					</div>

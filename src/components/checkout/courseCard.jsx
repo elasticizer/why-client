@@ -7,10 +7,10 @@ export default function CourseCard({ name, filename }) {
 				<img
 					className="size-full absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-t-xl"
 					src={
-							filename && filename.startsWith('h')
-								? filename
-								: `/learner/LessonVideo/${filename}`
-						}
+						filename && filename.startsWith('h')
+							? filename
+							: `/learner/LessonVideo/${filename}`
+					}
 				/>
 			</div>
 			<div className="p-4 md:p-5">

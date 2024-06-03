@@ -14,7 +14,7 @@ export default function OrderItem({ item }) {
 		0
 	);
 	const discount = item[0].DiscountRate * totalAmount;
-	
+
 	return (
 		<>
 			<div className="container">
@@ -59,7 +59,11 @@ export default function OrderItem({ item }) {
 							<div className="rounded-xl flex relative group overflow-hidden transition w-48 mx-2">
 								<img
 									className="absolute top-0 start-0 object-cover group-hover:scale-105 transition-transform duration-500 ease-in-out rounded-xl"
-									src={item[0].Filename}
+									src={
+										item[0].Filename && item[0].Filename.startsWith('h')
+											? item[0].Filename
+											: `/learner/LessonVideo/${item[0].Filename}`
+									}
 									alt={item[0].Name}
 								/>
 							</div>
