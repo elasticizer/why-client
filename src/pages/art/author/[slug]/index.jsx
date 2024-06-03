@@ -36,7 +36,7 @@ export default function Index({}) {
 				<AnimatePresence mode="wait">
 					<AuthorPage id={id}></AuthorPage>
 				</AnimatePresence>
-				<section className="flex flex-row justify-center mt-5">
+				<section className="flex flex-row justify-center mt-5  mb-20">
 					<section className="w-[300px]">
 						<ul className="menu rounded-box w-full text-2xl">
 							<li

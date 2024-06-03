@@ -95,7 +95,7 @@ const ArtCard = ({ data }) => {
 							<IoCaretUp className="icon" />
 							<p>{clap_total}</p>
 						</div>
-						<div className="">
+						{/* <div className="">
 							{1 ? (
 								<div
 									className="tooltip tooltip-bottom flex justify-start items-center gap-2 transition hover:bg-slate-100 rounded-full px-4 py-1"
@@ -112,7 +112,7 @@ const ArtCard = ({ data }) => {
 									<p className="text-orange-400">+1</p>
 								</div>
 							)}
-						</div>
+						</div> */}
 						<div
 							className="flex justify-start items-center gap-2 tooltip tooltip-bottom transition hover:bg-slate-100 rounded-full px-4 py-1"
 							data-tip={`${view_count}人看過`}>

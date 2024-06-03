@@ -40,7 +40,7 @@ export default function Index({}) {
 
 		toast('請不要新增空段落');
 		toast('段落名稱不可為空');
-
+		fetch(`/api/art/`, { method: 'POST' });
 		return;
 		// toast.success('保存成功');
 		setIsSave(true);
@@ -155,7 +155,7 @@ export default function Index({}) {
 				</form>
 			</dialog>
 
-			<section className="flex flex-row justify-center pt-5 gap-5 min-h-screen bg-orange-50">
+			<section className="flex flex-row justify-center pt-5 gap-5 min-h-screen bg-orange-50  mb-20">
 				<div className="w-[1000px] flex flex-col gap-10 mb-20">
 					<h2 className="text-2xl font-black text-orange-300 w-full rounded-xl border-4 p-4 text-center border-orange-200 shadow-right-bottom-sm bg-white">
 						新增文章

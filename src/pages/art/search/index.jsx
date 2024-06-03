@@ -73,7 +73,7 @@ export default function Index() {
 	if (data?.info)
 		return (
 			<>
-				<section className="flex flex-row justify-center mt-5">
+				<section className="flex flex-row justify-center mt-5  mb-20">
 					<div className="w-2/3">
 						<div className="flex justify-between  items-center mt-4">
 							<h2 className="text-3xl font-black text-zinc-500 pl-5">

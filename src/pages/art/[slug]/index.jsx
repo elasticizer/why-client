@@ -10,7 +10,7 @@ export default function Index({}) {
 
   return (
     <>
-      <section className="flex flex-row justify-center mt-5 gap-5">
+      <section className="flex flex-row justify-center mt-5 gap-5  mb-20">
         <ArtDetailLeft id={id}></ArtDetailLeft>
         <RightSearch id={id}></RightSearch>
       </section>
