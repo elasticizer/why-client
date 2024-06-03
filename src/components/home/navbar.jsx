@@ -60,7 +60,7 @@ export default function Navbar() {
 							</button>
 							<Link
 								className="font-medium text-gray-500 hover:text-orange-400 md:py-6"
-								href="#">
+								href="http://172.23.52.90:3000/art">
 								部落格
 							</Link>
 							{session ? (
