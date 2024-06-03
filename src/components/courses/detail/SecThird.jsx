@@ -26,8 +26,8 @@ export default function SecThird() {
 				setCourse([]);
 			}
 
-			import('preline/preline').then(
-				module => module.HSStaticMethods.autoInit()
+			import('preline/preline').then(module =>
+				module.HSStaticMethods.autoInit()
 			);
 		};
 		fetchdata();
@@ -44,8 +44,14 @@ export default function SecThird() {
 					<div className="lg:grid lg:grid-cols-[650px_minmax(300px,_1fr)_100px] xl:grid-cols-[850px_minmax(300px,_1fr)_100px] gap-x-10">
 						{/* 左邊 */}
 						<div className="mr-2">
-							<div data-aos="fade-right" data-aos-duration="1000">
-								<img src='/images/課程資訊.png' height={300} width={200} />
+							<div
+								data-aos="fade-right"
+								data-aos-duration="1000">
+								<img
+									src="/images/課程資訊.png"
+									height={300}
+									width={200}
+								/>
 								<div className=" border-2 shadow-indigo-200/60 shadow-lg rounded-lg px-3">
 									<p className="text-gray-500 font-['Inter'] leading-7 pt-3 lg:pt-1 mt-2 text-base dark:text-neutral-400 text-justify">
 										{course[0].Intro}
@@ -53,33 +59,79 @@ export default function SecThird() {
 								</div>
 							</div>
 							<br />
-							<div data-aos="fade-right" data-aos-duration="1000">
-								<img src='/images/課程特色.png' height={300} width={200} />
-								<AccordItem /></div>
+							<div
+								data-aos="fade-right"
+								data-aos-duration="1000">
+								<img
+									src="/images/課程特色.png"
+									height={300}
+									width={200}
+								/>
+								<AccordItem />
+							</div>
 
-							<div className='mt-5' data-aos="fade-right" data-aos-duration="1000">
-								<img src='/images/課程介紹.png' height={300} width={200} />
+							<div
+								className="mt-5"
+								data-aos="fade-right"
+								data-aos-duration="1000">
+								<img
+									src="/images/課程介紹.png"
+									height={300}
+									width={200}
+								/>
 								<div className="border-dotted shadow-lg   shadow-indigo-200/60 ">
-									<nav className=" relative z-0 flex border rounded-tr-xl rounded-tl-xl overflow-hidden" aria-label="Tabs" role="tablist">
-										<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500
-									hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-300 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none active focus:bg-orange-300" id="bar-with-underline-item-1" data-hs-tab="#bar-with-underline-1" aria-controls="bar-with-underline-1" role="tab">
+									<nav
+										className=" relative z-0 flex border rounded-tr-xl rounded-tl-xl overflow-hidden"
+										aria-label="Tabs"
+										role="tablist">
+										<button
+											type="button"
+											className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500
+									hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-300 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 disabled:pointer-events-none active focus:bg-orange-300"
+											id="bar-with-underline-item-1"
+											data-hs-tab="#bar-with-underline-1"
+											aria-controls="bar-with-underline-1"
+											role="tab">
 											課程內容
 										</button>
-										<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-300 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 focus:bg-orange-300 disabled:pointer-events-none" id="bar-with-underline-item-2" data-hs-tab="#bar-with-underline-2" aria-controls="bar-with-underline-2" role="tab">
+										<button
+											type="button"
+											className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-300 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 focus:bg-orange-300 disabled:pointer-events-none"
+											id="bar-with-underline-item-2"
+											data-hs-tab="#bar-with-underline-2"
+											aria-controls="bar-with-underline-2"
+											role="tab">
 											單元與觀賞
 										</button>
-										<button type="button" className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-300 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 focus:bg-orange-300 disabled:pointer-events-none" id="bar-with-underline-item-3" data-hs-tab="#bar-with-underline-3" aria-controls="bar-with-underline-3" role="tab">
+										<button
+											type="button"
+											className="hs-tab-active:border-b-blue-600 hs-tab-active:text-gray-900 relative min-w-0 flex-1   first:border-s-0 border-s border-b-2 py-4 px-4 text-gray-500 hover:text-gray-700 text-lg font-bold text-center overflow-hidden hover:bg-orange-300 focus:z-10 focus:outline-none focus:text-blue-600 disabled:opacity-50 focus:bg-orange-300 disabled:pointer-events-none"
+											id="bar-with-underline-item-3"
+											data-hs-tab="#bar-with-underline-3"
+											aria-controls="bar-with-underline-3"
+											role="tab">
 											課程評論
 										</button>
 									</nav>
 									<div className="mt-3">
-										<div id="bar-with-underline-1" role="tabpanel" aria-labelledby="bar-with-underline-item-1">
+										<div
+											id="bar-with-underline-1"
+											role="tabpanel"
+											aria-labelledby="bar-with-underline-item-1">
 											<NavIntro />
 										</div>
-										<div id="bar-with-underline-2" className="hidden" role="tabpanel" aria-labelledby="bar-with-underline-item-2">
+										<div
+											id="bar-with-underline-2"
+											className="hidden"
+											role="tabpanel"
+											aria-labelledby="bar-with-underline-item-2">
 											<NavCh />
 										</div>
-										<div id="bar-with-underline-3" className="hidden" role="tabpanel" aria-labelledby="bar-with-underline-item-3">
+										<div
+											id="bar-with-underline-3"
+											className="hidden"
+											role="tabpanel"
+											aria-labelledby="bar-with-underline-item-3">
 											<div className="text-gray-500">
 												<NavAskList />
 											</div>
@@ -87,15 +139,16 @@ export default function SecThird() {
 									</div>
 								</div>
 							</div>
-
-
-
 						</div>
 						{/* 右邊 */}
 						<div className="xl:h-full">
-							<div data-aos="fade-down" className="sticky top-28 flex flex-col  shadow-indigo-200/60 shadow-lg rounded-xl">
+							<div
+								data-aos="fade-down"
+								className="sticky top-28 flex flex-col  shadow-indigo-200/60 shadow-lg rounded-xl">
 								<div className="bg-orange-300 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5">
-									<p className="mt-1 font-bold text-lg text-center">~購課好康~</p>
+									<p className="mt-1 font-bold text-lg text-center">
+										~購課好康~
+									</p>
 								</div>
 								<div className="p-4 md:p-5">
 									<ul className="space-y-2 sm:space-y-4">
@@ -111,8 +164,7 @@ export default function SecThird() {
 													stroke="currentColor"
 													strokeWidth={2}
 													strokeLinecap="round"
-													strokeLinejoin="round"
-												>
+													strokeLinejoin="round">
 													<polyline points="20 6 9 17 4 12" />
 												</svg>
 											</span>
@@ -132,8 +184,7 @@ export default function SecThird() {
 													stroke="currentColor"
 													strokeWidth={2}
 													strokeLinecap="round"
-													strokeLinejoin="round"
-												>
+													strokeLinejoin="round">
 													<polyline points="20 6 9 17 4 12" />
 												</svg>
 											</span>
@@ -153,8 +204,7 @@ export default function SecThird() {
 													stroke="currentColor"
 													strokeWidth={2}
 													strokeLinecap="round"
-													strokeLinejoin="round"
-												>
+													strokeLinejoin="round">
 													<polyline points="20 6 9 17 4 12" />
 												</svg>
 											</span>
@@ -174,8 +224,7 @@ export default function SecThird() {
 													stroke="currentColor"
 													strokeWidth={2}
 													strokeLinecap="round"
-													strokeLinejoin="round"
-												>
+													strokeLinejoin="round">
 													<polyline points="20 6 9 17 4 12" />
 												</svg>
 											</span>
@@ -195,8 +244,7 @@ export default function SecThird() {
 													stroke="currentColor"
 													strokeWidth={2}
 													strokeLinecap="round"
-													strokeLinejoin="round"
-												>
+													strokeLinejoin="round">
 													<polyline points="20 6 9 17 4 12" />
 												</svg>
 											</span>
@@ -206,12 +254,21 @@ export default function SecThird() {
 										</li>
 									</ul>
 									{/* End List */}
-									<div className="my-5 text-2xl font-bold tracking-tight text-center  text-[#019fde]">單堂課：<span className='text-red-500'>NT${course[0].Price}</span></div>
+									<div className="my-5 text-2xl font-bold tracking-tight text-center  text-[#019fde]">
+										單堂課：
+										<span className="text-red-500">NT${course[0].Price}</span>
+									</div>
 									<a
 										href="#"
 										type="button"
-										className="py-3 px-4 mt-3 w-full inline-flex items-center justify-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-500 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none"
-									><img src='/images/cart.gif' className='size-6 items-centerr' width={200} height={120} alt='Cart' />
+										className="py-3 px-4 mt-3 w-full inline-flex items-center justify-center gap-x-2 text-sm font-semibold rounded-lg border border-transparent bg-blue-500 text-white hover:bg-blue-700 disabled:opacity-50 disabled:pointer-events-none">
+										<img
+											src="/images/cart.gif"
+											className="size-6 items-centerr"
+											width={200}
+											height={120}
+											alt="Cart"
+										/>
 										立即購買
 									</a>
 								</div>
