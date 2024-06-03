@@ -1,4 +1,5 @@
 import { useSession } from '@/contexts/session';
+import Image from 'next/image';
 import Link from 'next/link';
 import { LuHome, LuLogOut } from 'react-icons/lu';
 
@@ -81,10 +82,11 @@ export default function Header() {
 								id="hs-dropdown-with-header"
 								type="button"
 								className="w-[2.375rem] h-[2.375rem] inline-flex justify-center items-center gap-x-2 text-sm font-semibold rounded-full border border-transparent text-gray-800 hover:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-white dark:hover:bg-neutral-700">
-								<img
-									className="inline-block size-[38px] rounded-full ring-2 ring-white dark:ring-neutral-800"
-									src={session?.Icon}
-									alt="Image Description"
+								<Image
+									className="inline-block rounded-full ring-2 ring-white dark:ring-neutral-800"
+									src={session?.Icon ?? ''}
+									alt="Profile Picture"
+									fill={true}
 								/>
 							</button>
 							<div

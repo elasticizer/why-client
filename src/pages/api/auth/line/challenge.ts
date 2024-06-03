@@ -70,7 +70,7 @@ router.get(async (req, res) => {
 
 	await connection.execute(
 		`INSERT INTO Session (UUID, ChallengeToken, IP, UserAgent, UserSN) VALUES (?, ?, ?, ?, ?)`,
-		[identifier, id_token, ip, agent, user.SN]
+		[identifier, id_token, ip ?? '', agent, user.SN]
 	);
 
 	const cookie1 = serialize('SESSION_ID', identifier, {
@@ -96,7 +96,9 @@ function getAccessToken(code: string): Promise<OAuthResponse> {
 			client_secret: env.LINE_CHANNEL_SECRET as string,
 			code: code as string,
 			grant_type: 'authorization_code',
-			redirect_uri: (env.APP_URL as string).concat(env.LINE_REDIRECT_URI as string)
+			redirect_uri: (env.APP_URL as string).concat(
+				env.LINE_REDIRECT_URI as string
+			)
 		} as OAuthRequest)
 	};
 

@@ -1,4 +1,4 @@
-import { useId, useRef, useState } from 'react';
+import { useId, useState } from 'react';
 import Modal from './modal';
 import type { Nullable, Uncertain } from '@/types';
 import type { ApiResponseBody } from '@/types/api';
@@ -49,10 +49,11 @@ export default function SigninForm() {
 								name="email"
 								id={ids.email}
 								required
-								className={`${emailValid === false
-									? 'pe-10 border-red-500 focus:border-red-500 focus:ring-red-500 dark:border-red-500 dark:focus:ring-red-500'
-									: 'border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-700 dark:focus:ring-neutral-600'
-									} leading-6 py-3 px-4 block w-full rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500`}
+								className={`${
+									emailValid === false
+										? 'pe-10 border-red-500 focus:border-red-500 focus:ring-red-500 dark:border-red-500 dark:focus:ring-red-500'
+										: 'border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-700 dark:focus:ring-neutral-600'
+								} leading-6 py-3 px-4 block w-full rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500`}
 								aria-describedby={ids.error}
 								onInput={e => setEmailValid(e.currentTarget.checkValidity())}
 							/>
@@ -70,8 +71,9 @@ export default function SigninForm() {
 						</div>
 						<p
 							id={ids.error}
-							className={`${emailValid === false ? '' : 'hidden'
-								} text-xs text-red-600 mt-2`}>
+							className={`${
+								emailValid === false ? '' : 'hidden'
+							} text-xs text-red-600 mt-2`}>
 							請輸入正確的電子郵件地址。
 						</p>
 					</div>

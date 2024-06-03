@@ -60,12 +60,16 @@ router.get(async (req, res) => {
 
 	const [[user]] = await connection.execute(
 		'REPLACE INTO User (Email, FirstName, LastName) VALUES (?, ?, ?) RETURNING SN',
-		[info.email ?? info.sub.concat('@google'), info.given_name, info.family_name]
+		[
+			info.email ?? info.sub.concat('@google'),
+			info.given_name,
+			info.family_name
+		]
 	);
 
 	await connection.execute(
 		`INSERT INTO Session (UUID, ChallengeToken, IP, UserAgent, UserSN) VALUES (?, ?, ?, ?, ?)`,
-		[identifier, access_token, ip, agent, user.SN]
+		[identifier, access_token, ip ?? '', agent, user.SN]
 	);
 
 	const cookie1 = serialize('SESSION_ID', identifier, {
