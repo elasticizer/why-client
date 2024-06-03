@@ -19,7 +19,12 @@ router.get(async (req, res) => {
 		);
 	}
 
-	const token = getToken(req);
+	const token = [req.query.token].flat().at(-1);
+
+	if (!token) {
+		throw new RouteError(StatusCodes.BAD_REQUEST, 'Token not received');
+	}
+
 	const ip = req.socket.remoteAddress;
 	const agent = req.headers['user-agent'];
 
@@ -49,8 +54,6 @@ router.get(async (req, res) => {
 			data: null
 		});
 	} catch (e) {
-		console.log(e);
-
 		throw new RouteError(
 			StatusCodes.UNAUTHORIZED,
 			'Invalid token received',
@@ -60,13 +63,3 @@ router.get(async (req, res) => {
 });
 
 export default router.handler({ onError, onNoMatch });
-
-function getToken(req: NextApiRequest) {
-	const token = [req.query.token].flat().at(-1);
-
-	if (!token) {
-		throw new RouteError(StatusCodes.BAD_REQUEST, 'Token not received');
-	}
-
-	return token;
-}

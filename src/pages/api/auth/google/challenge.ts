@@ -60,7 +60,7 @@ router.get(async (req, res) => {
 
 	const [[user]] = await connection.execute(
 		'REPLACE INTO User (Email, FirstName, LastName) VALUES (?, ?, ?) RETURNING SN',
-		[info.email, info.given_name, info.family_name]
+		[info.email ?? info.sub.concat('@google'), info.given_name, info.family_name]
 	);
 
 	await connection.execute(

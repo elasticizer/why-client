@@ -294,7 +294,7 @@ CREATE TABLE `Series` (
 CREATE TABLE `Staff` (
 	`SN` INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT /* 序號 */,
 	`Username` VARCHAR(64) NOT NULL UNIQUE /* 使用者名稱 */,
-	`E-mail` TEXT NOT NULL UNIQUE /* 電子信箱地址 */,
+	`Email` TEXT NOT NULL UNIQUE /* 電子信箱地址 */,
 	`PasswordHash` TEXT NULL /* 密碼雜湊值 */,
 	`FirstName` NVARCHAR(128) NOT NULL /* 名字 */,
 	`LastName` NVARCHAR(128) NOT NULL /* 姓氏 */,
@@ -407,7 +407,7 @@ INSERT INTO `Permission` (`Code`, `Name`, `Description`) VALUES
 	('STAFF_EDIT', '編輯職員', ''),
 	('STAFF_VIEW', '檢視職員', '');
 
-INSERT INTO `Staff` (`SN`, `FirstName`, `LastName`, `Username`, `E-mail`, `WhenDeactivated`, `CreatorSN`) VALUES
+INSERT INTO `Staff` (`SN`, `FirstName`, `LastName`, `Username`, `Email`, `WhenDeactivated`, `CreatorSN`) VALUES
 	(0, 'root', '', 'root@localhost', 'root@localhost', CURRENT_TIMESTAMP, NULL),
 	(-1, 'Jackall', 'Chien', '04@localhost', '04@localhost', NULL, 0),
 	(-2, 'Poyuan', 'Fang', '05@localhost', '05@localhost', NULL, 0),

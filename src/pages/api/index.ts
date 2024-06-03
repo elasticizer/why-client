@@ -9,7 +9,6 @@ const router = createRouter<NextApiRequest, NextApiResponse>();
 router.get(async (req, res) => {
 	const [[data]] = await connection.execute('SELECT * FROM example');
 
-
 	res.status(StatusCodes.OK).json(data);
 });
 

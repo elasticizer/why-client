@@ -1,14 +1,26 @@
+import MagicLinkEmail from '@/emails/magic-link';
+import { send } from '@/handlers/mailer';
 import { onError, onNoMatch } from '@/handlers/router';
 import connection from '@/handlers/sqlite3';
 import Session from '@/helpers/session';
 import type { Long } from '@/types';
+import { render } from '@react-email/components';
+import chalk from 'chalk';
 import { createHash, randomUUID } from 'crypto';
 import { type PathLike, createReadStream } from 'fs';
 import { StatusCodes } from 'http-status-codes';
+import jwt from 'jsonwebtoken';
 import multer from 'multer';
 import type { NextApiRequest, NextApiResponse } from 'next';
 import { createRouter } from 'next-connect';
 import { extname, join } from 'path';
+import { env } from 'process';
+
+export const config = {
+	api: {
+		bodyParser: false
+	}
+};
 
 const router = createRouter<
 	NextApiRequest & Record<string, unknown>,
@@ -19,7 +31,7 @@ const upload = multer({
 		destination: join('public', 'profile'),
 
 		filename(_, file, callback) {
-			callback(null, randomUUID().concat(extname(file.filename)));
+			callback(null, randomUUID().concat(extname(file.originalname)));
 		}
 	}),
 
@@ -40,41 +52,56 @@ router.get(async (req, res) => {
 	});
 });
 
-router.patch(<any>upload.single('picture'), async (req, res) => {
+router.use(<any>upload.single('icon')).patch(async (req, res) => {
 	const session = await Session.associate(req.cookies.SESSION_ID ?? '');
 	const body = req.body;
-	const file = req.file as Express.Multer.File;
+	const icon = req.file as Express.Multer.File;
+
+	const [[file]] = icon ? await connection.execute(
+		`INSERT INTO File (Filename, Extension, ContentType, ContentHash, UploaderSN)
+		VALUES (?, ?, ?, ?, ?)
+		RETURNING SN`,
+		[
+			icon.filename,
+			extname(icon.filename).slice(1),
+			icon.mimetype,
+			randomUUID(),
+			session.SN,
+		]
+	) : [[null]];
 
 	await connection.execute(
-		'UPDATE User'.concat(
-			'SET `E-mail` = IFNULL(?, `E-mail`)',
-			'SET FirstName = IFNULL(?, FirstName)',
-			'SET LastName = IFNULL(?, LatName)',
-			'SET Nickname = IFNULL(?, Nickname)',
-			'SET Intro = IFNULL(?, Intro)',
-			'SET PFPSN = (',
-			''.concat(
-				'INSERT INTO File (Filename, Extension, ContentType, ContentHash, UploaderSN)',
-				'VALUES (?, ?, ?, ?, ?)',
-				'RETURNING SN'
-			),
-			')',
-			'WHERE SN = ?'
-		),
+		`UPDATE User
+		SET FirstName = IFNULL(?, FirstName),
+			LastName = IFNULL(?, LastName),
+			Nickname = IFNULL(?, Nickname),
+			Intro = IFNULL(?, Intro),
+			PFPSN = IFNULL(?, PFPSN)
+		WHERE SN = ?`,
 		[
-			body.email,
 			body.first_name,
 			body.last_name,
 			body.nickname,
 			body.intro,
-			file.filename,
-			extname(file.filename).slice(1),
-			file.mimetype,
-			await checksum(file.path),
-			session.SN,
+			file?.SN,
 			session.SN
 		]
 	);
+
+	if (body.email !== session.Email) {
+		const token = jwt.sign({ sn: session.SN, email: body.email }, env.APP_KEY as string, {
+			expiresIn: 15 * 60
+		});
+		const link = `${env.APP_URL}/account/information/verification?token=${token}`;
+
+		send({
+			html: render(MagicLinkEmail({ link })),
+			recipient: body.email,
+			subject: '驗證您的 Why Academy 電子郵件地址'
+		});
+
+		console.info(chalk.bgYellowBright('Magic link:', link));
+	}
 
 	res.status(StatusCodes.OK).json({
 		done: true,

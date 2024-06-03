@@ -14,7 +14,7 @@ router.get(async (_, res) => {
 	const search = new URLSearchParams({
 		client_id: env.GOOGLE_CLIENT_ID as string,
 		prompt: 'select_account',
-		redirect_uri: `${env.APP_URL}${env.GOOGLE_REDIRECT_URI as string}`,
+		redirect_uri: (env.APP_URL as string).concat(env.GOOGLE_REDIRECT_URI as string),
 		response_type: 'code',
 		scope: [
 			'https://www.googleapis.com/auth/userinfo.email',

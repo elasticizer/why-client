@@ -4,14 +4,13 @@ import type { NextApiRequest, NextApiResponse } from 'next';
 
 export function onError(e: unknown, _: NextApiRequest, res: NextApiResponse) {
 	console.log(e);
-
 	const { code, summary, message } =
 		e instanceof RouteError
 			? e
 			: new RouteError(
-					StatusCodes.INTERNAL_SERVER_ERROR,
-					e instanceof Error ? e.message : String(e)
-			  );
+				StatusCodes.INTERNAL_SERVER_ERROR,
+				e instanceof Error ? e.message : String(e)
+			);
 
 	res.status(code).json({
 		done: false,

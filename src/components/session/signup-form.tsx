@@ -59,11 +59,10 @@ export default function SigninForm() {
 								name="first_name"
 								id={ids.firstName}
 								required
-								className={`${
-									firstNameValid === false
+								className={`${firstNameValid === false
 										? 'pe-10 border-red-500 focus:border-red-500 focus:ring-red-500 dark:border-red-500 dark:focus:ring-red-500'
 										: 'border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-700 dark:focus:ring-neutral-600'
-								} py-3 px-4 pe-11 block w-full shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500`}
+									} py-3 px-4 pe-11 block w-full shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500`}
 								onInput={e =>
 									setFirstNameValid(e.currentTarget.checkValidity())
 								}
@@ -81,11 +80,10 @@ export default function SigninForm() {
 								name="last_name"
 								id={ids.lastName}
 								required
-								className={`${
-									lastNameValid === false
+								className={`${lastNameValid === false
 										? 'pe-10 border-red-500 focus:border-red-500 focus:ring-red-500 dark:border-red-500 dark:focus:ring-red-500'
 										: 'border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-700 dark:focus:ring-neutral-600'
-								} py-3 px-4 pe-11 block w-full shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500`}
+									} py-3 px-4 pe-11 block w-full shadow-sm -mt-px -ms-px first:rounded-t-lg last:rounded-b-lg sm:first:rounded-s-lg sm:mt-0 sm:first:ms-0 sm:first:rounded-se-none sm:last:rounded-es-none sm:last:rounded-e-lg text-sm relative focus:z-10 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500`}
 								onInput={e => setLastNameValid(e.currentTarget.checkValidity())}
 							/>
 						</div>
@@ -103,18 +101,16 @@ export default function SigninForm() {
 								name="email"
 								id={ids.email}
 								required
-								className={`${
-									emailValid === false
+								className={`${emailValid === false
 										? 'pe-10 border-red-500 focus:border-red-500 focus:ring-red-500 dark:border-red-500 dark:focus:ring-red-500'
 										: 'border-gray-200 focus:border-blue-500 focus:ring-blue-500 dark:border-neutral-700 dark:focus:ring-neutral-600'
-								} leading-6 py-3 px-4 block w-full rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500`}
+									} leading-6 py-3 px-4 block w-full rounded-lg text-sm disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:text-neutral-400 dark:placeholder-neutral-500`}
 								aria-describedby={ids.error}
 								onInput={e => setEmailValid(e.currentTarget.checkValidity())}
 							/>
 							<div
-								className={`${
-									emailValid === false ? '' : 'hidden'
-								} flex items-center absolute inset-y-0 end-0 pointer-events-none pe-3`}>
+								className={`${emailValid === false ? '' : 'hidden'
+									} flex items-center absolute inset-y-0 end-0 pointer-events-none pe-3`}>
 								<svg
 									className="size-5 text-red-500"
 									width={16}
@@ -128,9 +124,8 @@ export default function SigninForm() {
 						</div>
 						<p
 							id={ids.error}
-							className={`${
-								emailValid === false ? '' : 'hidden'
-							} text-xs text-red-600 mt-2`}>
+							className={`${emailValid === false ? '' : 'hidden'
+								} text-xs text-red-600 mt-2`}>
 							請輸入正確的電子郵件地址。
 						</p>
 					</div>
@@ -176,7 +171,7 @@ export default function SigninForm() {
 
 			<Modal
 				{...{ done }}
-				summary={done ? '註冊成功' : '註冊失敗'}
+				summary={done ? '註冊驗證' : '註冊失敗'}
 				message={
 					done
 						? '請前往收件匣，按照驗證信的指示登入。'

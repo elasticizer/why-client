@@ -14,7 +14,7 @@ router.get(async (_, res) => {
 	const search = new URLSearchParams({
 		client_id: env.LINE_CHANNEL_ID as string,
 		prompt: 'consent',
-		redirect_uri: env.LINE_REDIRECT_URI as string,
+		redirect_uri: (env.APP_URL as string).concat(env.LINE_REDIRECT_URI as string),
 		response_type: 'code',
 		scope: ['email', 'openid', 'profile'].join(' '),
 		state: uuid

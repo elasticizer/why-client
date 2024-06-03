@@ -15,16 +15,25 @@ router.get(async (req, res) => {
 	}
 
 	const [[user]] = await connection.execute(
-		'SELECT User.SN, User.Email, User.FirstName, User.LastName, User.Nickname FROM Session JOIN User ON User.SN = Session.UserSN WHERE UUID = ? AND WhenRevoked IS NULL',
+		`SELECT
+			User.SN,
+			User.Email,
+			User.FirstName,
+			User.LastName,
+			User.Nickname,
+			User.Intro,
+			File.Filename AS Icon
+		FROM Session
+		JOIN User ON User.SN = Session.UserSN
+		LEFT JOIN File ON File.SN = User.PFPSN
+		WHERE UUID = ?
+		AND WhenRevoked IS NULL`,
 		[id]
 	);
 
 	if (!user) {
 		throw new RouteError(StatusCodes.BAD_REQUEST, 'Session not established');
 	}
-
-	const name = user.Nickname ?? `${user.FirstName}+${user.LastName}`;
-	const icon = `https://ui-avatars.com/api/?background=random&name=${name}`;
 
 	if (!user) {
 		throw new RouteError(StatusCodes.UNAUTHORIZED, 'Invalid session received');
@@ -38,10 +47,17 @@ router.get(async (req, res) => {
 		// secure: true
 	});
 
+	const name = user.Nickname ?? `${user.FirstName}+${user.LastName}`;
+
 	res.setHeader('Set-Cookie', cookie);
 	res.status(StatusCodes.OK).json({
 		done: true,
-		data: { ...user, Icon: icon }
+		data: {
+			...user,
+			Icon: user.Icon
+				? '/profile/'.concat(user.Icon as string)
+				: `https://ui-avatars.com/api/?background=random&name=${name}`
+		}
 	});
 });
 

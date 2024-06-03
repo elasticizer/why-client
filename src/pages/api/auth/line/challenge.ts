@@ -65,7 +65,7 @@ router.get(async (req, res) => {
 
 	const [[user]] = await connection.execute(
 		'REPLACE INTO User (Email, FirstName, LastName) VALUES (?, ?, ?) RETURNING SN',
-		[info.email, info.name, '']
+		[info.email ?? info.sub.concat('@line'), info.name, '']
 	);
 
 	await connection.execute(
@@ -96,7 +96,7 @@ function getAccessToken(code: string): Promise<OAuthResponse> {
 			client_secret: env.LINE_CHANNEL_SECRET as string,
 			code: code as string,
 			grant_type: 'authorization_code',
-			redirect_uri: env.LINE_REDIRECT_URI as string
+			redirect_uri: (env.APP_URL as string).concat(env.LINE_REDIRECT_URI as string)
 		} as OAuthRequest)
 	};
 

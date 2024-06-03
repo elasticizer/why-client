@@ -15,7 +15,7 @@ const router = createRouter<NextApiRequest, NextApiResponse>();
 router.post(async (req, res) => {
 	const { email } = req.body;
 	const [[user]] = await connection.execute(
-		'SELECT SN, Email FROM User WHERE Email = ?',
+		'SELECT SN, Email FROM User WHERE Email = ? AND WhenDeactivated IS NULL',
 		[email]
 	);
 
@@ -35,7 +35,7 @@ router.post(async (req, res) => {
 	send({
 		html: render(MagicLinkEmail({ link })),
 		recipient: email,
-		subject: '您的 Why Academy 登入連結'
+		subject: '登入您的 Why Academy 帳戶'
 	});
 
 	console.info(chalk.bgBlueBright('Magic link:', link));

@@ -1,10 +1,12 @@
 import { useSession } from '@/contexts/session';
-import type { Nullable } from '@/types';
+import type { Nullable, Uncertain } from '@/types';
 import type { ApiResponseBody } from '@/types/api';
-import Image from 'next/image';
 import { useRouter } from 'next/router';
-import { useId, useState } from 'react';
+import { useEffect, useId, useState } from 'react';
 import Filler from '../filler';
+import Spinner from '../session/spinner';
+import { sleep } from '@/utilities';
+import Modal from '../session/modal';
 
 export default function InformationForm() {
 	const router = useRouter();
@@ -18,7 +20,7 @@ export default function InformationForm() {
 		intro: useId()
 	};
 	const [icon, setIcon] = useState<Nullable<string>>(null);
-	const [done, setDone] = useState<Nullable<boolean>>(null);
+	const [done, setDone] = useState<Uncertain<boolean>>(undefined);
 
 	return (
 		<>
@@ -38,6 +40,8 @@ export default function InformationForm() {
 					<form
 						onSubmit={async e => {
 							e.preventDefault();
+							(document.activeElement as Nullable<HTMLElement>)?.blur();
+							setDone(null);
 
 							const method = 'PATCH';
 							const form = e.currentTarget;
@@ -47,7 +51,10 @@ export default function InformationForm() {
 								r => r.json()
 							);
 
+							await sleep(1000n);
+
 							setDone((data as ApiResponseBody<null>).done);
+							session?.refresh();
 						}}>
 						{/* Grid */}
 						<div className="grid sm:grid-cols-12 gap-2 sm:gap-6">
@@ -59,8 +66,8 @@ export default function InformationForm() {
 							{/* End Col */}
 							<div className="sm:col-span-9">
 								<div className="flex items-center gap-5">
-									<Image
-										className="inline-block size-16 rounded-full ring-2 ring-white dark:ring-neutral-900"
+									<img
+										className="inline-block size-16 rounded-full"
 										src={icon ?? session?.Icon ?? ''}
 										alt="Profile Picture"
 									/>
@@ -94,14 +101,15 @@ export default function InformationForm() {
 											<input
 												type="file"
 												name="icon"
+												accept="image/*"
 												id={ids.icon}
 												className="hidden"
 												hidden
 												onChange={e =>
 													setIcon(
-														e.currentTarget.files
+														e.currentTarget.files?.[0]
 															? URL.createObjectURL(e.currentTarget.files[0])
-															: null
+															: icon ?? null
 													)
 												}
 											/>
@@ -193,7 +201,7 @@ export default function InformationForm() {
 								<textarea
 									name="intro"
 									id={ids.intro}
-									defaultValue={''}
+									defaultValue={session?.Intro}
 									className="min-h-64 py-2 px-3 block w-full border-gray-200 rounded-lg text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-800 dark:border-neutral-700 dark:text-neutral-400 dark:placeholder-neutral-500 dark:focus:ring-neutral-600"
 								/>
 							</div>
@@ -221,6 +229,7 @@ export default function InformationForm() {
 						}}
 						keystrokesPerSecond={10n}
 					/>
+					{done === null && <Spinner />}
 				</div>
 				{/* End Card */}
 			</div>
