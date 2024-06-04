@@ -19,7 +19,7 @@ export default function BannerText() {
 				</div>
 				<a href="#" className=" mt-20 lg:mt-40 xl:mt-96  flex  justify-center my-0  sm:h-16  lg:h-32 lg:w-full ">
 					<img
-						className=" sm:h-15 sm:w-16 lg:h-25 lg:w-32"
+						className=" h-15 w-16 lg:h-25 lg:w-32"
 						src="/images/Animation - 1715325080679.gif"
 						alt=""
 					/>

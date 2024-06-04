@@ -4,6 +4,7 @@ import CoNavAsk from './CoNavAsk';
 import { useSession } from '@/contexts/session';
 import Link from 'next/link';
 
+
 export default function NavAskList() {
 
 	const [review, setReview] = useState([]);
@@ -64,10 +65,10 @@ export default function NavAskList() {
 			{
 				user && review.every(item => item.LearnerSN !== user.SN) ?
 					<div className="w-full pl-4 border items-center px-2 py-3 shadow   rounded-lg justify-start gap-2 inline-flex my-4">
-						<div className=" w-12 h-12  bg-white/opacity-0 rounded-3xl shadow border-black/opacity-5 justify-center items-center inline-flex">
+						<div className=" w-12 h-12  bg-white/opacity-0 rounded-3xl  border-black/opacity-5 justify-center items-center inline-flex">
 							<img
-								className="inline-block size-[46px] rounded-full"
-								src="/images/cat-6.jpg"
+								className="inline-block rounded-full"
+								src={user.Icon}
 								alt="Image Description"
 							/>
 						</div>
@@ -112,6 +113,7 @@ export default function NavAskList() {
 						whenCreated={v.WhenCreated}
 						nickname={v.Nickname}
 						res={v.response}
+						learnerSN={v.LearnerSN}
 						SN={v.SN}
 						setSendreview={setSendreview}
 						firstname={v.FirstName}
